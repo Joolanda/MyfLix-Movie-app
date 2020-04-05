@@ -31,8 +31,8 @@ let topMovies = [ {
   director: 'Quentin Tarantino'
 },
 {
-  title: 'Jurassic Park',
-  director: 'Steven Spielberg ao'
+  title: 'Interstellar',
+  director: 'Christopher Nolan'
 },
 {
   title: 'The Lion King',
