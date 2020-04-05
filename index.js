@@ -1,4 +1,6 @@
 const express = require('express');
+const morgan = require('morgan');
+
 const app = express();
 
 let topMovies = [ {
@@ -44,12 +46,17 @@ let topMovies = [ {
 }
 ]
 // use express.static
-//to serve  “documentation.html” file from the public folder
+//to serve “documentation.html” file from the public folder
 //app.use(express.static("public"));
 
+// use middleware library Morgan to log all requests
+app.use(morgan('common'));
 // GET requests
 app.get('/', function(req, res) {
   res.send('Welcome to my film club!')
+});
+app.get('/secreturl', function (req, res) {
+  res.send('this is a secret url with super top-secret content.');
 });
 app.get('/documentation', function(req, res) {
   res.sendFile('public/documentation.html', { root: __dirname });
