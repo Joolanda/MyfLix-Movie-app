@@ -43,6 +43,9 @@ let topMovies = [ {
   director:'Jon Watts'
 }
 ]
+// use express.static
+//to serve  “documentation.html” file from the public folder
+//app.use(express.static("public"));
 
 // GET requests
 app.get('/', function(req, res) {
