@@ -17,7 +17,7 @@ let topMovies = [ {
   director: 'Steven Spielberg'
 },
 {
-  title: 'Romeo \+ Julia',
+  title: 'Romeo + Julia',
   director: 'Baz Luhrmann'
 },
 {
@@ -47,16 +47,11 @@ let topMovies = [ {
 ]
 // use express.static
 //to serve “documentation.html” file from the public folder
-//app.use(express.static("public"));
+app.use(express.static('public'));
 
-// use middleware functions
-  //library Morgan to log all requests
+//library Morgan middleware fct to log all requests
 app.use(morgan('common'));
-  // error handling, defined last in chain
-app.use(function (err, req, res, next) {
-  console.error(err.stack);
-  res.status(500).send('something broke!');
-});
+
 // GET requests
 app.get('/', function(req, res) {
   res.send('Welcome to my film club!')
@@ -69,6 +64,12 @@ app.get('/documentation', function(req, res) {
 });
 app.get('/movies', function(req, res) {
   res.json(topMovies)
+});
+
+// error handling middleware, defined last in chain
+app.use(function (err, req, res, next) {
+console.error(err.stack);
+res.status(500).send('something broke!');
 });
 
 // listen for requests
