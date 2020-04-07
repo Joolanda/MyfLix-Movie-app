@@ -25,8 +25,8 @@ let topMovies = [ {
   director: 'J.J. Abrams'
 },
 {
-  title: 'Jurassic Park',
-  director: 'Steven Spielberg ao'
+  title: 'The Blues Brothers',
+  director: 'John Landis'
 },
 {
   title: 'Pulp Fiction',
