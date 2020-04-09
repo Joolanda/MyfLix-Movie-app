@@ -5,54 +5,94 @@ const app = express();
 
 let topMovies = [ {
   id: 1,
-  title : 'Harry Potter and the Sorcerer\'s Stone'
+  title : 'Harry Potter and the Philosopher\'s Stone'
   ,
-  director : 'Chris Columbus'
+  director : 'Chris Columbus',
+  genre : {
+    Name : "Fantasy",
+    Description : "A fantasy story is about magic or supernatural forces,... "
+  }
 },
 {
   id: 2,
   title: 'Back To The Future',
-  director: 'Robert Zemeckis'
+  director: 'Robert Zemeckis',
+  genre : {
+    Name : "Science Fiction",
+    Description : "Science fiction film (or sci-fi film) is a genre that ... "
+  }
 },
 {
   id: 3,
   title: 'Jurassic Park',
-  director: 'Steven Spielberg'
+  director: 'Steven Spielberg',
+  genre : {
+    Name : "Adventure",
+    Description : "Adventure films are a genre of film that typically use their action... "
+  }
 },
 {
   id: 4,
-  title: 'Romeo + Julia',
-  director: 'Baz Luhrmann'
+  title: 'Romeo + Juliet',
+  director: 'Baz Luhrmann',
+  genre : {
+    Name : "Drama",
+    Description : "Dramas are serious, plot-driven presentations, portraying realistic characters,... "
+  }
 },
 {
   id: 5,
   title: 'Starwars, The Rice of Skywalker',
-  director: 'J.J. Abrams'
+  director: 'J.J. Abrams',
+  genre : {
+    Name : "Science Fiction",
+    Description : "Science fiction film (or sci-fi film) is a genre that ... "
+  }
 },
 {
   id: 6,
   title: 'The Blues Brothers',
-  director: 'John Landis'
+  director: 'John Landis',
+  genre : {
+    Name : "Comedy",
+    Description : "Comedies are light-hearted plots consistently and deliberately designed to amuse... "
+  }
 },
 {
   id: 7,
   title: 'Pulp Fiction',
-  director: 'Quentin Tarantino'
+  director: 'Quentin Tarantino',
+  genre : {
+    Name : "Crime",
+    Description : "Crime films, in the broadest sense, are a film genre inspired by and ... "
+  }
 },
 {
   id: 8,
   title: 'Interstellar',
-  director: 'Christopher Nolan'
+  director: 'Christopher Nolan',
+  genre : {
+    Name : "Epic",
+    Description : "Epic films are a style of filmmaking with large scale, sweeping scope, and spectacle... "
+  }
 },
 {
   id: 9,
   title: 'The Lion King',
-  director: 'Jon Favreau'
+  director: 'Jon Favreau',
+  genre : {
+    Name : "Computer animated",
+    Description : "Computer animation is the process used for digitally generating animated images... "
+  }
 },
 {
   id: 10,
   title: 'Spiderman, Far From Home',
-  director:'Jon Watts'
+  director:'Jon Watts',
+  genre : {
+    Name : "Action",
+    Description : "Action films usually include high energy, big-budget physical stunts and chases, ... "
+  }
 }
 ]
 // use express.static
