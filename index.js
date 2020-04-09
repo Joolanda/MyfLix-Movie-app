@@ -71,7 +71,7 @@ let movies = [ {
   id: 8,
   title: 'Interstellar',
   director: 'Christopher Nolan',
-  genre : {
+  genres : {
     name : 'Epic',
     description : 'Epic films are a style of filmmaking with large scale, sweeping scope, and spectacle... '
   }
@@ -123,7 +123,7 @@ app.get('/movies/:title', (req, res) => {
 });
 // Gets the data about a genre of a movie, by Name
 app.get('/movies/:genres/:name', (req, res) => {
-  res.json(movies.find( (genre) =>
+  res.json(genres.find( (genre) =>
     { return genre.name ===req.params.name  }));
 });
 
