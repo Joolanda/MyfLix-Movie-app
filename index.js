@@ -8,62 +8,62 @@ let movies = [ {
   title : "Harry Potter and the Philosopher\'s Stone"
   ,
   director : 'Chris Columbus',
-  genre : {
-    Name : 'Fantasy',
-    Description : 'A fantasy story is about magic or supernatural forces,... '
+  genres : {
+    name : 'Fantasy',
+    description : 'A fantasy story is about magic or supernatural forces,... '
   }
 },
 {
   id: 2,
   title: 'Back To The Future',
   director: 'Robert Zemeckis',
-  genre : {
-    Name : 'Science Fiction',
-    Description : 'Science fiction film (or sci-fi film) is a genre that ... '
+  genres : {
+    name : 'Science Fiction',
+    description : 'Science fiction film (or sci-fi film) is a genre that ... '
   }
 },
 {
   id: 3,
   title: 'Jurassic Park',
   director: 'Steven Spielberg',
-  genre : {
-    Name : 'Adventure',
-    Description : 'Adventure films are a genre of film that typically use their action... '
+  genres : {
+    name : 'Adventure',
+    description : 'Adventure films are a genre of film that typically use their action... '
   }
 },
 {
   id: 4,
   title: 'Romeo + Juliet',
   director: 'Baz Luhrmann',
-  genre : {
-    Name : 'Drama',
-    Description : 'Dramas are serious, plot-driven presentations, portraying realistic characters,... '
+  genres : {
+    name : 'Drama',
+    description : 'Dramas are serious, plot-driven presentations, portraying realistic characters,... '
   }
 },
 {
   id: 5,
   title: 'Starwars, The Rice of Skywalker',
   director: 'J.J. Abrams',
-  genre : {
-    Name : 'Science Fiction',
-    Description : 'Science fiction film (or sci-fi film) is a genre that ... '
+  genres : {
+    name : 'Science Fiction',
+    description : 'Science fiction film (or sci-fi film) is a genre that ... '
   }
 },
 {
   id: 6,
   title: 'The Blues Brothers',
   director: 'John Landis',
-  genre : {
-    Name : 'Comedy',
-    Description : 'Comedies are light-hearted plots consistently and deliberately designed to amuse... '
+  genres : {
+    name : 'Comedy',
+    description : 'Comedies are light-hearted plots consistently and deliberately designed to amuse... '
   }
 },
 {
   id: 7,
   title: 'Pulp Fiction',
   director: 'Quentin Tarantino',
-  genre : {
-    Name : 'Crime',
+  genres : {
+    name : 'Crime',
     Description : 'Crime films, in the broadest sense, are a film genre inspired by and ... '
   }
 },
@@ -72,26 +72,26 @@ let movies = [ {
   title: 'Interstellar',
   director: 'Christopher Nolan',
   genre : {
-    Name : 'Epic',
-    Description : 'Epic films are a style of filmmaking with large scale, sweeping scope, and spectacle... '
+    name : 'Epic',
+    description : 'Epic films are a style of filmmaking with large scale, sweeping scope, and spectacle... '
   }
 },
 {
   id: 9,
   title: 'The Lion King',
   director: 'Jon Favreau',
-  genre : {
-    Name : 'Computer animated',
-    Description : 'Computer animation is the process used for digitally generating animated images... '
+  genres : {
+    name : 'Computer animated',
+    description : 'Computer animation is the process used for digitally generating animated images... '
   }
 },
 {
   id: 10,
   title: 'Spiderman, Far From Home',
   director:'Jon Watts',
-  genre : {
-    Name : 'Action',
-    Description : 'Action films usually include high energy, big-budget physical stunts and chases, ... '
+  genres : {
+    name : 'Action',
+    description : 'Action films usually include high energy, big-budget physical stunts and chases, ... '
   }
 }
 ]
@@ -120,6 +120,11 @@ app.get('/movies', function(req, res) {
 app.get('/movies/:title', (req, res) => {
   res.json(movies.find( (movie) =>
     { return movie.title ===req.params.title  }));
+});
+// Gets the data about a genre of a movie, by Name
+app.get('/movies/:genres/:name', (req, res) => {
+  res.json(movies.find( (genre) =>
+    { return genre.name ===req.params.name  }));
 });
 
 // error handling middleware, defined last in chain
