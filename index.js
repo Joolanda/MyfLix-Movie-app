@@ -3,7 +3,7 @@ const morgan = require('morgan');
 
 const app = express();
 
-let topMovies = [ {
+let movies = [ {
   id: 1,
   title : "Harry Potter and the Philosopher\'s Stone"
   ,
@@ -112,8 +112,14 @@ app.get('/secreturl', function (req, res) {
 app.get('/documentation', function(req, res) {
   res.sendFile('public/documentation.html', { root: __dirname });
 });
+// Gets the list of data about All movies
 app.get('/movies', function(req, res) {
   res.json(topMovies)
+});
+// Gets the data about a single movie, by title
+app.get('/movies/:title', (req, res) => {
+  res.json(movies.find( (movie) =>
+    { return movie.title ===req.params.title  }));
 });
 
 // error handling middleware, defined last in chain
