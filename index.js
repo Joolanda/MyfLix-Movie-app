@@ -160,7 +160,7 @@ app.get('/movies/:title', (req, res) => {
   res.json(movies.find( (movie) =>
     { return movie.title ===req.params.title  }));
 });
-// Gets the data about All genres, by name
+// Gets the list of data about All genres
 app.get('/genres', function(req, res) {
   res.json(genres)
 });
