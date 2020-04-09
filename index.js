@@ -5,7 +5,7 @@ const app = express();
 
 let topMovies = [ {
   id: 1,
-  title : 'Harry Potter and the Philosopher\'s Stone'
+  title : "Harry Potter and the Philosopher\'s Stone"
   ,
   director : 'Chris Columbus',
   genre : {
