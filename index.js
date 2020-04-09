@@ -114,7 +114,7 @@ app.get('/documentation', function(req, res) {
 });
 // Gets the list of data about All movies
 app.get('/movies', function(req, res) {
-  res.json(topMovies)
+  res.json(movies)
 });
 // Gets the data about a single movie, by title
 app.get('/movies/:title', (req, res) => {
