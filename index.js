@@ -227,7 +227,20 @@ app.get('/movies/:title', (req, res) => {
 app.get('/genres', function(req, res) {
   res.json(genres)
 });
-
+// Gets the data about a single genre, by name
+app.get('/genres/:name', (req, res) => {
+  res.json(genres.find( (genre) =>
+    { return genre.name ===req.params.name }));
+});
+// Gets the list of All directors
+app.get('/directors', function (req, res) {
+  res.json(directors)
+});
+// Gets the data about a single director, by name
+app.get('/directors/:name', (req, res) => {
+  res.json(directors.find( (director) =>
+    { return director.name ===req.params.name }));
+});
 // error handling middleware, defined last in chain
 app.use(function (err, req, res, next) {
 console.error(err.stack);
