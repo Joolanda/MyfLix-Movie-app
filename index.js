@@ -9,8 +9,8 @@ let topMovies = [ {
   ,
   director : 'Chris Columbus',
   genre : {
-    Name : "Fantasy",
-    Description : "A fantasy story is about magic or supernatural forces,... "
+    Name : 'Fantasy',
+    Description : 'A fantasy story is about magic or supernatural forces,... '
   }
 },
 {
@@ -18,8 +18,8 @@ let topMovies = [ {
   title: 'Back To The Future',
   director: 'Robert Zemeckis',
   genre : {
-    Name : "Science Fiction",
-    Description : "Science fiction film (or sci-fi film) is a genre that ... "
+    Name : 'Science Fiction',
+    Description : 'Science fiction film (or sci-fi film) is a genre that ... '
   }
 },
 {
@@ -27,8 +27,8 @@ let topMovies = [ {
   title: 'Jurassic Park',
   director: 'Steven Spielberg',
   genre : {
-    Name : "Adventure",
-    Description : "Adventure films are a genre of film that typically use their action... "
+    Name : 'Adventure',
+    Description : 'Adventure films are a genre of film that typically use their action... '
   }
 },
 {
@@ -36,8 +36,8 @@ let topMovies = [ {
   title: 'Romeo + Juliet',
   director: 'Baz Luhrmann',
   genre : {
-    Name : "Drama",
-    Description : "Dramas are serious, plot-driven presentations, portraying realistic characters,... "
+    Name : 'Drama',
+    Description : 'Dramas are serious, plot-driven presentations, portraying realistic characters,... '
   }
 },
 {
@@ -45,8 +45,8 @@ let topMovies = [ {
   title: 'Starwars, The Rice of Skywalker',
   director: 'J.J. Abrams',
   genre : {
-    Name : "Science Fiction",
-    Description : "Science fiction film (or sci-fi film) is a genre that ... "
+    Name : 'Science Fiction',
+    Description : 'Science fiction film (or sci-fi film) is a genre that ... '
   }
 },
 {
@@ -54,8 +54,8 @@ let topMovies = [ {
   title: 'The Blues Brothers',
   director: 'John Landis',
   genre : {
-    Name : "Comedy",
-    Description : "Comedies are light-hearted plots consistently and deliberately designed to amuse... "
+    Name : 'Comedy',
+    Description : 'Comedies are light-hearted plots consistently and deliberately designed to amuse... '
   }
 },
 {
@@ -63,8 +63,8 @@ let topMovies = [ {
   title: 'Pulp Fiction',
   director: 'Quentin Tarantino',
   genre : {
-    Name : "Crime",
-    Description : "Crime films, in the broadest sense, are a film genre inspired by and ... "
+    Name : 'Crime',
+    Description : 'Crime films, in the broadest sense, are a film genre inspired by and ... '
   }
 },
 {
@@ -72,8 +72,8 @@ let topMovies = [ {
   title: 'Interstellar',
   director: 'Christopher Nolan',
   genre : {
-    Name : "Epic",
-    Description : "Epic films are a style of filmmaking with large scale, sweeping scope, and spectacle... "
+    Name : 'Epic',
+    Description : 'Epic films are a style of filmmaking with large scale, sweeping scope, and spectacle... '
   }
 },
 {
@@ -81,8 +81,8 @@ let topMovies = [ {
   title: 'The Lion King',
   director: 'Jon Favreau',
   genre : {
-    Name : "Computer animated",
-    Description : "Computer animation is the process used for digitally generating animated images... "
+    Name : 'Computer animated',
+    Description : 'Computer animation is the process used for digitally generating animated images... '
   }
 },
 {
@@ -90,8 +90,8 @@ let topMovies = [ {
   title: 'Spiderman, Far From Home',
   director:'Jon Watts',
   genre : {
-    Name : "Action",
-    Description : "Action films usually include high energy, big-budget physical stunts and chases, ... "
+    Name : 'Action',
+    Description : 'Action films usually include high energy, big-budget physical stunts and chases, ... '
   }
 }
 ]
