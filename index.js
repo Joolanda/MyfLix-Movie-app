@@ -94,10 +94,9 @@ let movies = [ {
     description : 'Action films usually include high energy, big-budget physical stunts and chases, ... '
   }
 }
-]
+];
 
-let genres = [
-  {
+let genres = [ {
       name : 'Fantasy',
       description : 'A fantasy story is about magic or supernatural forces,... '
   },
@@ -134,6 +133,70 @@ let genres = [
       description : 'Action films usually include high energy, big-budget physical stunts and chases, ... '
   }
 ];
+
+let directors = [ {
+    name : 'Chris Columbus',
+    bio : 'Christopher Joseph Columbus is an American film director, …, for Best Comedy Film. ',
+    birth: '1958',
+   death: ' '
+},
+{
+    name : 'Robert Zemeckis',
+    bio :  ' Robert Lee Zemeckis is an American director, …, has used special effects to more dramatic and narrative purpose.',
+    birth: '1951',
+    death: ' '
+},
+{
+    name : ' Steven Spielberg   ',
+    bio :  ' Steven Allan Spielberg is considered one of the… most popular directors and producers in film history. ',
+    birth: '1946',
+    death: ' '
+},
+{
+    name : ' Baz Luhrmann ',
+    bio :  'Mark Anthony "Baz" Luhrmann is an Australian film director, …and Nicole Kidman. ',
+    Birth: '1962',
+    death: ' '
+},
+{
+    name : ' J.J. Abrams',
+    bio :  ' Abrams has created numerous television series, including Felicity, …the saga, Star Wars: The Rise of Skywalker (2019). ',
+    Birth: '1966',
+    death: ' '
+
+},
+{
+    name : 'John Landis',
+    bio :  ' John Landis is an American film director, screenwriter, actor, …, music videos with singer Michael Jackson. ',
+    Birth: '1950',
+    death: ' '
+},
+{
+    name : 'Quentin Tarantino',
+    bio :  'Quentin Jerome Tarantino is an American film director, screenwriter, …, born in Queens, New York. ',
+    Birth: '1963',
+    death: ' '
+},
+{
+    name : 'Christopher Nolan',
+    bio :  'Christopher Edward Nolan, is a British-American film director, …, and his brother, screenwriter Jonathan Nolan. ',
+    Birth: '1970',
+    death: ' '
+},
+{
+    name : 'Jon Favreau',
+    bio :  'Jonathan Favreau is an American actor, director, …., as co-producers in most of Favreau\'s directorial ventures. ',
+    Birth: '1966',
+    death: ' '
+},
+{
+    name : 'Jon Watts',
+    bio :  ' Jon Watts is an American film director, producer and… ,… on his chest to make himself "stand out in the field. ',
+    Birth: '1981',
+    death: ' '
+}
+];
+
 // use express.static
 //to serve “documentation.html” file from the public folder
 app.use(express.static('public'));
