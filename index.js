@@ -95,6 +95,45 @@ let movies = [ {
   }
 }
 ]
+
+let genres = [
+  {
+      name : 'Fantasy',
+      description : 'A fantasy story is about magic or supernatural forces,... '
+  },
+  {
+      name : 'Science Fiction',
+      description : 'Science fiction film (or sci-fi film) is a genre that ... '
+  },
+  {
+      name : 'Adventure',
+      description : 'Adventure films are a genre of film that typically use their action... '
+  },
+  {
+      name : 'Drama',
+      description : 'Dramas are serious, plot-driven presentations, portraying realistic characters,... '
+  },
+  {
+      name : 'Comedy',
+      description : 'Comedies are light-hearted plots consistently and deliberately designed to amuse... '
+  },
+  {
+      name : 'Crime',
+      description : 'Crime films, in the broadest sense, are a film genre inspired by and ... '
+  },
+  {
+      name : 'Epic',
+      description : 'Epic films are a style of filmmaking with large scale, sweeping scope, and spectacle... '
+  },
+  {
+      name : 'Computer animated',
+      description : 'Computer animation is the process used for digitally generating animated images... '
+  },
+  {
+      name : 'Action',
+      description : 'Action films usually include high energy, big-budget physical stunts and chases, ... '
+  }
+];
 // use express.static
 //to serve “documentation.html” file from the public folder
 app.use(express.static('public'));
@@ -121,10 +160,9 @@ app.get('/movies/:title', (req, res) => {
   res.json(movies.find( (movie) =>
     { return movie.title ===req.params.title  }));
 });
-// Gets the data about a genre of a movie, by Name
-app.get('/movies/:genres/:name', (req, res) => {
-  res.json(genres.find( (genre) =>
-    { return genre.name ===req.params.name  }));
+// Gets the data about All genres, by name
+app.get('/genres', function(req, res) {
+  res.json(genres)
 });
 
 // error handling middleware, defined last in chain
