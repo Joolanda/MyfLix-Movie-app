@@ -260,7 +260,7 @@ app.get('/directors/:name', (req, res) => {
 /////// Users ///////
 // Gets the list of data about All users
 app.get('/users', function(req, res) {
-  res.json(users)
+  res.json(users);
 });
 //Posts a new user to our list of users
 app.post('/users', (req, res) => {
@@ -287,7 +287,7 @@ app.delete('/users/:id', (req, res) => {
 
   if (user) {
     users = users.filter(function(obj) { return obj.id !==req.params.id });
-    res.status(201).send('User ' + req.params.id + ' was deleted.')
+    res.status(201).send('User ' + user.username + 'with id ' + req.params.id + ' was deleted.')
   }
 });
 
