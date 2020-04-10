@@ -213,9 +213,10 @@ let users = [ {
 // use express.static
 //to serve “documentation.html” file from the public folder
 app.use(express.static('public'));
-
 //library Morgan middleware fct to log all requests
 app.use(morgan('common'));
+//library body-parser middleware fct to log all requests
+app.use(bodyParser.json());
 
 // GET requests
 app.get('/', function(req, res) {
@@ -265,8 +266,8 @@ app.get('/users', function(req, res) {
 app.post('/users', (req, res) => {
   let newUser = req.body;
 
-  if (!newUser.name) {
-    const message = 'Missing "name" in request body';
+  if (!newUser.username) {
+    const message = 'Missing name in request body';
     res.status(400).send(message);
   } else {
     newUser.id = uuid.v4();
@@ -274,6 +275,22 @@ app.post('/users', (req, res) => {
     res.status(201).send(newUser);
   }
 });
+// gets the data about a single user, by name
+app.get('/users/:username', (req, res) => {
+  res.json(users.find( (user) =>
+    { return user.username === req.params.username}));
+});
+//Deletes a user from the list by id:
+app.delete('/users/:id', (req, res) => {
+  let user = users.find( (user) => {
+    return user.id === req.params.id });
+
+  if (user) {
+    users = users.filter(function(obj) { return obj.id !==req.params.id });
+    res.status(201).send('User ' + req.params.id + ' was deleted.')
+  }
+});
+
 // error handling middleware, defined last in chain
 app.use(function (err, req, res, next) {
 console.error(err.stack);
