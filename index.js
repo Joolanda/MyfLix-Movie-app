@@ -286,12 +286,14 @@ app.delete('/users/:id', (req, res) => {
     res.status(201).send('User ' + user.username + 'with id ' + req.params.id + ' was deleted.')
   }
 });
-// Update the user info by username:
-// app.put('/users/:username/:password/:email/:birthday', (req, res) => {
-// let user = users.find( (user) => {
-//  return user.username === req.params.username });
+// Update the user info by id:
+app.put('/users/:username', (req, res) => {
+  let user = users.find( (user) => {
+  return user.id === req.params.id });
+  let updateUser = req.body;
 
-//  if(user) {
+//  if(user && updateUser) {
+//    updateUser.username = user.username;
 //    user.username[req.params.username] = parseInt(req.params.password);
 //    res.status(201).send('user '+ req.params.username + 'has succesfully changed ' + req.params.password);
 //    } else {
