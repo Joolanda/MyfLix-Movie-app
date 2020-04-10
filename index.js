@@ -1,97 +1,78 @@
 const express = require('express');
 const morgan = require('morgan');
+const uuid = require('uuid');
 
 const app = express();
 
 let movies = [ {
   id: 1,
   title : "Harry Potter and the Philosopher\'s Stone",
+  description : 'Harry Potter has lived under the stairs at his aunt and uncle\'s house his whole life. But on his 11th birthday, he learns he\'s a powerful wizard -- with a place waiting for him at the Hogwarts School of Witchcraft and Wizardry. As he learns to harness his newfound powers with the help of the school\'s kindly headmaster, Harry uncovers the truth about his parents\' deaths and about the villain who\'s to blame.',
   director : 'Chris Columbus',
-  genres : {
-    name : 'Fantasy',
-    description : 'A fantasy story is about magic or supernatural forces,... '
-  }
+  genre : 'Fantasy'
 },
 {
-  id: 2,
-  title: 'Back To The Future',
-  director: 'Robert Zemeckis',
-  genres : {
-    name : 'Science Fiction',
-    description : 'Science fiction film (or sci-fi film) is a genre that ... '
-  }
+  id : 2,
+  title : 'Back To The Future',
+  description : 'It stars Michael J. Fox as teenager Marty McFly, who accidentally travels back in time, where he meets his future parents and becomes his mother\'s romantic interest.',
+  director : 'Robert Zemeckis',
+  genre : 'Science Fiction'
 },
 {
-  id: 3,
-  title: 'Jurassic Park',
-  director: 'Steven Spielberg',
-  genres : {
-    name : 'Adventure',
-    description : 'Adventure films are a genre of film that typically use their action... '
-  }
+  id : 3,
+  title : 'Jurassic Park',
+  description : 'The film is set on the fictional island of Isla Nublar, located off Central America\'s Pacific Coast near Costa Rica. There,  wealthy businessman John Hammond and a team of genetic scientists have created a wildlife park of de-extinct dinosaurs.',
+  director : 'Steven Spielberg',
+  genre : 'Adventure'
 },
 {
-  id: 4,
+  id : 4,
   title: 'Romeo + Juliet',
+  description: 'In director Baz Luhrmann\'s contemporary take on William Shakespeare\'s classic tragedy, the Montagues and Capulets have moved their ongoing feud to the sweltering suburb of Verona Beach, where Romeo and Juliet fall in love and secretly wed. Though the film is visually modern, the bard\'s dialogue remains.',
   director: 'Baz Luhrmann',
-  genres : {
-    name : 'Drama',
-    description : 'Dramas are serious, plot-driven presentations, portraying realistic characters,... '
-  }
+  genre : 'Drama'
 },
 {
-  id: 5,
+  id : 5,
   title: 'Starwars, The Rice of Skywalker',
-  director: 'J.J. Abrams',
-  genres : {
-    name : 'Science Fiction',
-    description : 'Science fiction film (or sci-fi film) is a genre that ... '
-  }
+  description : 'The surviving Resistance faces the First Order once again as the journey of Rey, Finn and Poe Dameron continues. With the power and knowledge of generations behind them, the final battle begins.',
+  director : 'J.J. Abrams',
+  genre : 'Science Fiction'
 },
 {
-  id: 6,
-  title: 'The Blues Brothers',
-  director: 'John Landis',
-  genres : {
-    name : 'Comedy',
-    description : 'Comedies are light-hearted plots consistently and deliberately designed to amuse... '
-  }
+  id : 6,
+  title : 'The Blues Brothers',
+  description : 'Jake Blues is just out of jail, and teams up with his brother, Elwood on a \'mission from God\' to raise funds for the orphanage in which they grew up. The only thing they can do is do what they do best: play music. So they get their old band together, and set out on their way—while getting in a bit of trouble here and there.',
+  director : 'John Landis',
+  genre : 'Comedy'
 },
 {
-  id: 7,
-  title: 'Pulp Fiction',
-  director: 'Quentin Tarantino',
-  genres : {
-    name : 'Crime',
-    Description : 'Crime films, in the broadest sense, are a film genre inspired by and ... '
-  }
+  id : 7,
+  title : 'Pulp Fiction',
+  director : 'Quentin Tarantino',
+  description : 'A burger-loving hit man, his philosophical partner, a drug-addled gangster\'s moll and a washed-up boxer converge in this sprawling, comedic crime caper. Their adventures unfurl in three stories that ingeniously trip back and forth in time.',
+  genre : 'Crime'
 },
 {
-  id: 8,
-  title: 'Interstellar',
-  director: 'Christopher Nolan',
-  genres : {
-    name : 'Epic',
-    description : 'Epic films are a style of filmmaking with large scale, sweeping scope, and spectacle... '
-  }
+  id : 8,
+  title : 'Interstellar',
+  description : 'Interstellar chronicles the adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.',
+  director : 'Christopher Nolan',
+  genre : 'Epic'
 },
 {
   id: 9,
   title: 'The Lion King',
+  description : 'Simba idolizes his father, King Mufasa, and takes to heart his own royal destiny. But not everyone in the kingdom celebrates the new cub\'s arrival. Scar, Mufasa\'s brother—and former heir to the throne—has plans of his own. The battle for Pride Rock is ravaged with betrayal, tragedy and drama, ultimately resulting in Simba\'s exile. With help from a curious pair of newfound friends, Simba will have to figure out how to grow up and take back what is rightfully his.',
   director: 'Jon Favreau',
-  genres : {
-    name : 'Computer animated',
-    description : 'Computer animation is the process used for digitally generating animated images... '
-  }
+  genre : 'Computer animated'
 },
 {
   id: 10,
   title: 'Spiderman, Far From Home',
+  description : 'Peter Parker and his friends go on a summer trip to Europe. However, they will hardly be able to rest - Peter will have to agree to help Nick Fury uncover the mystery of creatures that cause natural disasters and destruction throughout the continent.',
   director:'Jon Watts',
-  genres : {
-    name : 'Action',
-    description : 'Action films usually include high energy, big-budget physical stunts and chases, ... '
-  }
+  genre : 'Action'
 }
 ];
 
