@@ -198,15 +198,11 @@ let directors = [ {
 }
 ];
 let users = [ {
-  user_id : '',
+  userID : '1',
   username : 'Ruby Took',
   password : 'peiQu0hi4',
   email : 'RubyTook@teleworm.us',
-  birthday : '1988-03-31',
-  favorites : {
-    movie: 'Men in Black',
-    director: 'Barry Sonnenfeld'
-  }
+  birthday : '1988-03-31'
 }
 ];
 
@@ -262,6 +258,11 @@ app.get('/directors/:name', (req, res) => {
 app.get('/users', function(req, res) {
   res.json(users);
 });
+// Gets the data about a single user, by username
+app.get('/users/:username', (req, res) => {
+  res.json(users.find( (user) =>
+    { return user.username ===req.params.username  }));
+});
 //Posts a new user to our list of users
 app.post('/users', (req, res) => {
   let newUser = req.body;
@@ -274,11 +275,6 @@ app.post('/users', (req, res) => {
     users.push(newUser);
     res.status(201).send(newUser);
   }
-});
-// gets the data about a single user, by name
-app.get('/users/:username', (req, res) => {
-  res.json(users.find( (user) =>
-    { return user.username === req.params.username}));
 });
 //Deletes a user from the list by id:
 app.delete('/users/:id', (req, res) => {
