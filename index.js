@@ -5,8 +5,7 @@ const app = express();
 
 let movies = [ {
   id: 1,
-  title : "Harry Potter and the Philosopher\'s Stone"
-  ,
+  title : "Harry Potter and the Philosopher\'s Stone",
   director : 'Chris Columbus',
   genres : {
     name : 'Fantasy',
@@ -147,51 +146,51 @@ let directors = [ {
     death: ' '
 },
 {
-    name : ' Steven Spielberg   ',
-    bio :  ' Steven Allan Spielberg is considered one of the… most popular directors and producers in film history. ',
+    name : 'Steven Spielberg',
+    bio :  'Steven Allan Spielberg is considered one of the… most popular directors and producers in film history.',
     birth: '1946',
     death: ' '
 },
 {
-    name : ' Baz Luhrmann ',
+    name : 'Baz Luhrmann',
     bio :  'Mark Anthony "Baz" Luhrmann is an Australian film director, …and Nicole Kidman. ',
     Birth: '1962',
     death: ' '
 },
 {
-    name : ' J.J. Abrams',
-    bio :  ' Abrams has created numerous television series, including Felicity, …the saga, Star Wars: The Rise of Skywalker (2019). ',
+    name : 'J.J. Abrams',
+    bio :  'Abrams has created numerous television series, including Felicity, …the saga, Star Wars: The Rise of Skywalker (2019).',
     Birth: '1966',
     death: ' '
 
 },
 {
     name : 'John Landis',
-    bio :  ' John Landis is an American film director, screenwriter, actor, …, music videos with singer Michael Jackson. ',
+    bio :  'John Landis is an American film director, screenwriter, actor, …, music videos with singer Michael Jackson.',
     Birth: '1950',
     death: ' '
 },
 {
     name : 'Quentin Tarantino',
-    bio :  'Quentin Jerome Tarantino is an American film director, screenwriter, …, born in Queens, New York. ',
+    bio :  'Quentin Jerome Tarantino is an American film director, screenwriter, …, born in Queens, New York.',
     Birth: '1963',
     death: ' '
 },
 {
     name : 'Christopher Nolan',
-    bio :  'Christopher Edward Nolan, is a British-American film director, …, and his brother, screenwriter Jonathan Nolan. ',
+    bio :  'Christopher Edward Nolan, is a British-American film director, …, and his brother, screenwriter Jonathan Nolan.',
     Birth: '1970',
     death: ' '
 },
 {
     name : 'Jon Favreau',
-    bio :  'Jonathan Favreau is an American actor, director, …., as co-producers in most of Favreau\'s directorial ventures. ',
+    bio :  'Jonathan Favreau is an American actor, director, …., as co-producers in most of Favreau\'s directorial ventures.',
     Birth: '1966',
     death: ' '
 },
 {
     name : 'Jon Watts',
-    bio :  ' Jon Watts is an American film director, producer and… ,… on his chest to make himself "stand out in the field. ',
+    bio :  'Jon Watts is an American film director, producer and… ,… on his chest to make himself "stand out in the field.',
     Birth: '1981',
     death: ' '
 }
