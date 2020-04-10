@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const uuid = require('uuid');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -196,6 +197,18 @@ let directors = [ {
     death: ' '
 }
 ];
+let users = [ {
+  user_id : '',
+  username : 'Ruby Took',
+  password : 'peiQu0hi4',
+  email : 'RubyTook@teleworm.us',
+  birthday : '1988-03-31',
+  favorites : {
+    movie: 'Men in Black',
+    director: 'Barry Sonnenfeld'
+  }
+}
+];
 
 // use express.static
 //to serve “documentation.html” file from the public folder
@@ -214,6 +227,7 @@ app.get('/secreturl', function (req, res) {
 app.get('/documentation', function(req, res) {
   res.sendFile('public/documentation.html', { root: __dirname });
 });
+//////// Movies ////////
 // Gets the list of data about All movies
 app.get('/movies', function(req, res) {
   res.json(movies)
@@ -241,6 +255,24 @@ app.get('/directors', function (req, res) {
 app.get('/directors/:name', (req, res) => {
   res.json(directors.find( (director) =>
     { return director.name ===req.params.name }));
+});
+/////// Users ///////
+// Gets the list of data about All users
+app.get('/users', function(req, res) {
+  res.json(users)
+});
+//Posts a new user to our list of users
+app.post('/users', (req, res) => {
+  let newUser = req.body;
+
+  if (!newUser.name) {
+    const message = 'Missing "name" in request body';
+    res.status(400).send(message);
+  } else {
+    newUser.id = uuid.v4();
+    users.push(newUser);
+    res.status(201).send(newUser);
+  }
 });
 // error handling middleware, defined last in chain
 app.use(function (err, req, res, next) {
