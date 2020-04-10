@@ -8,71 +8,91 @@ let movies = [ {
   id: 1,
   title : "Harry Potter and the Philosopher\'s Stone",
   description : 'Harry Potter has lived under the stairs at his aunt and uncle\'s house his whole life. But on his 11th birthday, he learns he\'s a powerful wizard -- with a place waiting for him at the Hogwarts School of Witchcraft and Wizardry. As he learns to harness his newfound powers with the help of the school\'s kindly headmaster, Harry uncovers the truth about his parents\' deaths and about the villain who\'s to blame.',
+  genre : 'Fantasy',
   director : 'Chris Columbus',
-  genre : 'Fantasy'
+  imagePath : '',
+  featured : 'true'
 },
 {
   id : 2,
   title : 'Back To The Future',
   description : 'It stars Michael J. Fox as teenager Marty McFly, who accidentally travels back in time, where he meets his future parents and becomes his mother\'s romantic interest.',
+  genre : 'Science Fiction',
   director : 'Robert Zemeckis',
-  genre : 'Science Fiction'
+  imagePath : '',
+  genres : 'Science Fiction'
 },
 {
   id : 3,
   title : 'Jurassic Park',
   description : 'The film is set on the fictional island of Isla Nublar, located off Central America\'s Pacific Coast near Costa Rica. There,  wealthy businessman John Hammond and a team of genetic scientists have created a wildlife park of de-extinct dinosaurs.',
+  genre : 'Adventure',
   director : 'Steven Spielberg',
-  genre : 'Adventure'
+  imagePath : '',
+  featured : 'true'
 },
 {
   id : 4,
   title: 'Romeo + Juliet',
   description: 'In director Baz Luhrmann\'s contemporary take on William Shakespeare\'s classic tragedy, the Montagues and Capulets have moved their ongoing feud to the sweltering suburb of Verona Beach, where Romeo and Juliet fall in love and secretly wed. Though the film is visually modern, the bard\'s dialogue remains.',
+  genre : 'Drama',
   director: 'Baz Luhrmann',
-  genre : 'Drama'
+  imagePath : '',
+  featured : 'true'
 },
 {
   id : 5,
-  title: 'Starwars, The Rice of Skywalker',
+  title : 'Starwars, The Rice of Skywalker',
   description : 'The surviving Resistance faces the First Order once again as the journey of Rey, Finn and Poe Dameron continues. With the power and knowledge of generations behind them, the final battle begins.',
+  genres : 'Science Fiction',
   director : 'J.J. Abrams',
-  genre : 'Science Fiction'
+  imagePath : '',
+  featured : 'true'
 },
 {
   id : 6,
   title : 'The Blues Brothers',
   description : 'Jake Blues is just out of jail, and teams up with his brother, Elwood on a \'mission from God\' to raise funds for the orphanage in which they grew up. The only thing they can do is do what they do best: play music. So they get their old band together, and set out on their way—while getting in a bit of trouble here and there.',
+  genres : 'Comedy',
   director : 'John Landis',
-  genre : 'Comedy'
+  imagePath : '',
+  featured : 'true'
 },
 {
   id : 7,
   title : 'Pulp Fiction',
-  director : 'Quentin Tarantino',
   description : 'A burger-loving hit man, his philosophical partner, a drug-addled gangster\'s moll and a washed-up boxer converge in this sprawling, comedic crime caper. Their adventures unfurl in three stories that ingeniously trip back and forth in time.',
-  genre : 'Crime'
+  genres : 'Crime',
+  director : 'Quentin Tarantino',
+  imagePath : '',
+  featured : 'true'
 },
 {
   id : 8,
   title : 'Interstellar',
   description : 'Interstellar chronicles the adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.',
+  genre : 'Epic',
   director : 'Christopher Nolan',
-  genre : 'Epic'
+  imagePath : '',
+  featured : 'true'
 },
 {
   id: 9,
   title: 'The Lion King',
   description : 'Simba idolizes his father, King Mufasa, and takes to heart his own royal destiny. But not everyone in the kingdom celebrates the new cub\'s arrival. Scar, Mufasa\'s brother—and former heir to the throne—has plans of his own. The battle for Pride Rock is ravaged with betrayal, tragedy and drama, ultimately resulting in Simba\'s exile. With help from a curious pair of newfound friends, Simba will have to figure out how to grow up and take back what is rightfully his.',
+  genre : 'Computer animated',
   director: 'Jon Favreau',
-  genre : 'Computer animated'
+  imagePath : '',
+  featured : 'true'
 },
 {
   id: 10,
   title: 'Spiderman, Far From Home',
   description : 'Peter Parker and his friends go on a summer trip to Europe. However, they will hardly be able to rest - Peter will have to agree to help Nick Fury uncover the mystery of creatures that cause natural disasters and destruction throughout the continent.',
+  genre : 'Action',
   director:'Jon Watts',
-  genre : 'Action'
+  imagePath : '',
+  featured : 'true'
 }
 ];
 
@@ -212,6 +232,7 @@ app.get('/genres/:name', (req, res) => {
   res.json(genres.find( (genre) =>
     { return genre.name ===req.params.name }));
 });
+
 // Gets the list of All directors
 app.get('/directors', function (req, res) {
   res.json(directors)
