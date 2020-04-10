@@ -286,6 +286,19 @@ app.delete('/users/:id', (req, res) => {
     res.status(201).send('User ' + user.username + 'with id ' + req.params.id + ' was deleted.')
   }
 });
+// Update the user info by username:
+// app.put('/users/:username/:password/:email/:birthday', (req, res) => {
+// let user = users.find( (user) => {
+//  return user.username === req.params.username });
+
+//  if(user) {
+//    user.username[req.params.username] = parseInt(req.params.password);
+//    res.status(201).send('user '+ req.params.username + 'has succesfully changed ' + req.params.password);
+//    } else {
+//    res.status(404).send('user with the name ' + req.params.username + 'was not found.')
+//    }
+//  });
+
 
 // error handling middleware, defined last in chain
 app.use(function (err, req, res, next) {
