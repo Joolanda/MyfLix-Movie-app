@@ -1,13 +1,33 @@
-.requests-table {
-  table-layout: auto;
-  border-spacing: 10px;
-  width: 75%;
-
+table {
+  display: table;
+  border-collapse: collapse;
+  border-color: grey;
+  border-spacing: 2px;
+  width: 100%;
+  margin-bottom: 45px;
+}
+thead {
+  display: table-header-group;
+  border-color: inherit;
+  font-weight: bold;
+}
+p {
+ padding: 20px 10px;
 }
 
-table,
-th,
+th {
+  border: 1px dashed #a7b1b9;;
+  text-align: center;
+  padding: 10px;
+}
+
 td {
-  border: 1px solid black;
-  border-collapse: collapse;
+  display: table-cell;
+  vertical-align: inherit;
+}
+
+tr {
+    vertical-align: inherit;
+    border-color: inherit;
+    font-weight: inherit;
 }
