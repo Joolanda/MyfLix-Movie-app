@@ -21,7 +21,7 @@ let movies = [ {
   genre : 'Science Fiction',
   director : 'Robert Zemeckis',
   imagePath : '',
-  genres : 'Science Fiction'
+  featured : 'true'
 },
 {
   id : 3,
