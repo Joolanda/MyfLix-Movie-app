@@ -39,15 +39,29 @@
         <td scope="row">Return data (description, genre, director, Image url, whether it's featured or not) about a single movie by title to the user…</td>
         <td> /movies/[Title] </td>
         <td style="color: #c7254e"> GET </td>
-        <td> </td>
-        <td> </td>
+        <td> None </td>
+        <td> A JSON object holding data about a single movie, containing an ID, title, and some other properties. Example:
+          <p style="color: #008800">
+              { <br>
+                  id: 3,<br>
+                    title: "Jurassic Park",<br>
+                    description: "The film is set on the fictional island  ....
+                    created a wildlife park of de-extinct dinosaurs.",<br>
+
+                    genre: "Adventure",<br>
+                    director: "Steven Spielberg",<br>
+                    imagePath: "",<br>
+                    Featured: true<br>
+                  }
+          </p>
+        </td>
       </tr>
       <tr>
-        <th scope="row"> </th>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
+        <td scope="row">Return data about All genres (description) by name </td>
+        <td> /genres/[Name]</td>
+        <td style="color: #c7254e"> GET </td>
+        <td> None</td>
+        <td> A JSON object holding data about all genres </td>
       </tr>
       <tr>
         <th scope="row"> </th>
