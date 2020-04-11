@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--  <link rel="favicon icon" href="img/favicon-16x16.png">-->
     <title>My Flix</title>
-    <link href="css/styles.css" rel"=stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
   </head>
 <body>
   <div>
@@ -19,7 +19,7 @@
       <caption> Web server documentation - REST API Movie and User requests </caption>
       <br>
     <thead>
-      <tr>
+      <tr class="headers">
         <th scope="col">REQUEST - Business Logic</th>
         <th scope="col">URL</th>
         <th scope="col">HTTP Method</th>
@@ -74,29 +74,77 @@
                 bio: " John Landis is an American film director, screenwriter, actor,…, music videos with singer Michael Jackson. "
                 Birth "1950",<br>
                 death: "",<br>
+                }
           </p>
         </td>
       </tr>
       <tr>
-        <th scope="row"> </th>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <th scope="row"> </th>
-        <td> </td>
-        <td> </td>
+        <td scope="row">Allow new users to register</td>
+        <td>/users</td>
+        <td style="color: #c7254e"> POST </td>
         <td> </td>
         <td> </td>
       </tr>
       <tr>
-        <th scope="row"> </th>
+        <td scope="row">Allow users to update their user info (username, password, email, date of birth) </td>
+        <td> /users/[Username]</td>
+        <td style="color: #c7254e"> PUT </td>
+        <td>A JSON object holding data about the current user to update, structured like:
+          <p style="color: #008800">
+            {<br>
+              UserID : "",<br>
+              Username : "Ruby Took",<br>
+              Password : "peiQu0hi4",<br>
+              Email : "RubyTook@teleworm.us",<br>
+              Birthday : "1948-03-31",<br>
+            }
+          </p>
+        </td>
+        <td> A JSON object holding data about the new user to register, structured like:
+          <p style="color: #008800">
+            { <br>
+              UserID : "",<br>
+              Username : "Ruby Took",<br>
+              Password : "peiQu0hi4",<br>
+              Email : "RubyTook@teleworm.us",<br>
+              Birthday : "1988-03-31",<br>
+              Favorites : {<br>
+                FavMovieID: "",<br>
+                FavMovie : "Men in Black",<br>
+                Director : "Barry Sonnenfeld"
+              }    <br>
+            }
+</td>
+      </tr>
+      <tr>
+        <td scope="row"> Allow users to add a movie to their list of favorites</td>
+        <td> /users/[Username]/ favorites/[FavMovie]</td>
+        <td style="color: #c7254e"> POST </td>
+        <td> A JSON object holding data about the movie to add to the user's list of favorite movies, structured like:
+          <p style="color: #008800">
+            {<br>
+              Favorites : {<br>
+                FavMovie : "Titanic",<br>
+                Director : "James Cameron"
+                } <br>
+              }<br>
+</td>
         <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
+      </tr>
+      <tr>
+        <td scope="row"> Allow users to remove a movie to their list of favorites</td>
+        <td> /users/[Username]/ favorites/[FavMovie]</td>
+        <td style="color: #c7254e"> DELETE </td>
+        <td> None</td>
+        <td> A text message indicating whether the movie was succesfully removed from the users' favorite-list.</td>
+      </tr>
+      <tr>
+        <td scope="row"> Allow existing users to deregister
+(remove a user by Username or id) </td>
+        <td> /users/[Username]/</td>
+        <td style="color: #c7254e"> DELETE </td>
+        <td> None</td>
+        <td> A text message indicating whether the user's account was succesfully removed.</td>
       </tr>
   </div>
 </body>

@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 table {
   display: table;
   border-collapse: collapse;
@@ -18,10 +22,12 @@ p {
 th {
   border: 1px dashed #a7b1b9;
   text-align: center;
+  background-color: #e8ebed;
   padding: 10px;
 }
 
 td {
+  border: 1px dashed #a7b1b9;
   display: table-cell;
   vertical-align: inherit;
 }
