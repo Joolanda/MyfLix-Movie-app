@@ -31,7 +31,7 @@
       <tr>
         <td scope="row">Return a list of All movies to the user </td>
         <td> /movies</td>
-        <td> GET </td>
+        <td style="color: #c7254e">GET </td>
         <td> None </td>
         <td> A JSON object holding data about all movies</td>
       </tr>
@@ -63,11 +63,19 @@
         <td> A JSON object holding data about all genres </td>
       </tr>
       <tr>
-        <th scope="row"> </th>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
+        <td scope="row">Return data about a director (bio, birth year, death year) by name </td>
+        <td> /directors/[name]</td>
+        <td style="color: #c7254e"> GET </td>
+        <td> None</td>
+        <td>A JSON object holding data about a single director, containing name, birth year, death year, movies. Example:
+          <p style="color: #008800">
+            { <br>
+                name: "John Landis",<br>
+                bio: " John Landis is an American film director, screenwriter, actor,…, music videos with singer Michael Jackson. "
+                Birth "1950",<br>
+                death: "",<br>
+          </p>
+        </td>
       </tr>
       <tr>
         <th scope="row"> </th>
