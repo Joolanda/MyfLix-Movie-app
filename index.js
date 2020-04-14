@@ -284,7 +284,7 @@ app.delete('/users/:id', (req, res) => {
 
   if (user) {
     users = users.filter(function(obj) { return obj.id !==req.params.id });
-    res.status(201).send('User ' + user.username + 'with id ' + req.params.id + ' was deleted.')
+    res.status(201).send('User ' + user.username + ' with id ' + req.params.id + ' was deleted.')
   }
 });
 // get a user from users list by id
