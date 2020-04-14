@@ -198,11 +198,12 @@ let directors = [ {
 }
 ];
 let users = [ {
-  userID : '1',
+  id : '0',
   username : 'Ruby Took',
   password : 'peiQu0hi4',
   email : 'RubyTook@teleworm.us',
-  birthday : '1988-03-31'
+  birthday : '1988-03-31',
+  favorites : 'Interstellar'
 }
 ];
 
@@ -286,20 +287,33 @@ app.delete('/users/:id', (req, res) => {
     res.status(201).send('User ' + user.username + 'with id ' + req.params.id + ' was deleted.')
   }
 });
-// Update the user info by id:
-app.put('/users/:username', (req, res) => {
-  let user = users.find( (user) => {
-  return user.id === req.params.id });
-  let updateUser = req.body;
+// get a user from users list by id
+app.get('users/:id', (req, res) => {
+  res.json(users.find( (user) =>
+  { return user.id === req.params.id; }));
+});
 
-//  if(user && updateUser) {
-//    updateUser.username = user.username;
-//    user.username[req.params.username] = parseInt(req.params.password);
-//    res.status(201).send('user '+ req.params.username + 'has succesfully changed ' + req.params.password);
-//    } else {
-//    res.status(404).send('user with the name ' + req.params.username + 'was not found.')
-//    }
-//  });
+// Update the user info by id:
+app.put('/users/:id', (req, res) => {
+let user = users.find( (user) => {
+  return user.id === req.params.id });
+  let updatedUser = req.body;
+
+  if(user && updateUser) {
+    //preserve following user data:
+    updatedUser.id = user.id;
+    updatedUser.favorites = user.favorites;
+
+    Object.assign(user, updatedUser);
+    users = users.map((user) => (user.id === updatedUser.id) ? updatedUser : user);
+    res.status(201).send('User '+ user + 'with user ID: 'req.params.id + 'has succesfully changed ');
+  } else if (! updatedUser.username) {
+    const message = 'Missing name in request body';
+    res.status(400).send(message);
+  } else {
+    res.status(404).send('User with the name ' + req.params.id + 'was not found.')
+    }
+  });
 
 
 // error handling middleware, defined last in chain
