@@ -326,7 +326,7 @@ app.post('users/:id/:movie_id', (req, res)=> {
     return movie.id === req.params.movie_id });
 
     if (user && movie) {
-      user.favorites = [...new Set([...user.favorites, req.params.movie.id])];
+      user.favorites = [...new Set([...user.favorites, req.params.movie_id])];
       res.status(201).send('User ' + user + 'favorite(s): ' + req.params.movie_id + 'are succesfully added');
     } else if (!movie) {
       res.status(404).send('Movie with id ' + req.params.movie_id + ' was not found.');
