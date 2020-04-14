@@ -203,10 +203,8 @@ let users = [ {
   password : 'peiQu0hi4',
   email : 'RubyTook@teleworm.us',
   birthday : '1988-03-31',
-  favorites : [{
-    id: '8'
-  }]
-}
+  favorites : ['8']
+  }
 ];
 
 // use express.static
@@ -322,7 +320,7 @@ let user = users.find( (user) => {
 app.post('users/:id/:movie_id', (req, res)=> {
   let user = users.find( (user) => {
     return user.id === req.params.id });
-  let movie = movies.find((movie) => {
+  let movie = movies.find( (movie) => {
     return movie.id === req.params.movie_id });
 
     if (user && movie) {
@@ -337,7 +335,7 @@ app.post('users/:id/:movie_id', (req, res)=> {
 // remove a favorite movie from the list.
 app.delete('/users/:id/:movie_id', (req, res) => {
   let user = users.find( (user) => {
-    return user.id === req.params.id; 
+    return user.id === req.params.id;
   });
   let movie = movies.find( (movie) => {
     return movie.id === req.params.movie_id;
