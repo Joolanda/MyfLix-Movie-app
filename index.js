@@ -309,7 +309,7 @@ let user = users.find( (user) => {
 
     Object.assign(user, updatedUser);
     users = users.map((user) => (user.id === updatedUser.id) ? updatedUser : user);
-    res.status(201).send('User '+ user + 'with user ID: ' + req.params.id + 'has succesfully changed ');
+    res.status(201).send('User ''+ user.username + ' with id: ': ' + req.params.id + 'has succesfully changed ');
   } else if (! updatedUser.username) {
     const message = 'Missing name in request body';
     res.status(400).send(message);
