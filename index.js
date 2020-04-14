@@ -299,7 +299,7 @@ let user = users.find( (user) => {
   return user.id === req.params.id });
   let updatedUser = req.body;
 
-  if(user && updateUser) {
+  if(user && updatedUser) {
     //preserve following user data:
     updatedUser.id = user.id;
     updatedUser.favorites = user.favorites;
