@@ -343,7 +343,7 @@ app.delete('/users/:id/:movie_id', (req, res) => {
 
   if (user && movie) {
     user.favorites = user.favorites.filter((movie_id) => { return movie_id !== req.params.movie_id; });
-    res.status(201).send(user);
+    res.status(201).send('Movie with id ' + req.params.movie_id + ' was succesfully removed');
   } else if (!movie) {
     res.status(404).send('Movie with id ' + req.params.movie_id + ' was not found.');
   } else {
