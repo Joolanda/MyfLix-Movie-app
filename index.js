@@ -327,14 +327,31 @@ app.post('users/:id/:movie_id', (req, res)=> {
 
     if (user && movie) {
       user.favorites = [...new Set([...user.favorites, req.params.movie_id])];
-      res.status(201).send('User ' + user + 'favorite(s): ' + req.params.movie_id + 'are succesfully added');
+      res.status(201).send(user);
     } else if (!movie) {
       res.status(404).send('Movie with id ' + req.params.movie_id + ' was not found.');
     } else {
       res.status(404).send('User with id ' + req.params.id + ' was not found.');
     }
 });
+// remove a favorite movie from the list.
+app.delete('/users/:id/:movie_id', (req, res) => {
+  let user = users.find( (user) => {
+    return user.id === req.params.id; 
+  });
+  let movie = movies.find( (movie) => {
+    return movie.id === req.params.movie_id;
+  });
 
+  if (user && movie) {
+    user.favorites = user.favorites.filter((movie_id) => { return movie_id !== req.params.movie_id; });
+    res.status(201).send(user);
+  } else if (!movie) {
+    res.status(404).send('Movie with id ' + req.params.movie_id + ' was not found.');
+  } else {
+    res.status(404).send('User with id ' + req.params.id + ' was not found.');
+  }
+});
 // error handling middleware, defined last in chain
 app.use(function (err, req, res, next) {
 console.error(err.stack);
