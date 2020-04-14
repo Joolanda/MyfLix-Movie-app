@@ -203,7 +203,9 @@ let users = [ {
   password : 'peiQu0hi4',
   email : 'RubyTook@teleworm.us',
   birthday : '1988-03-31',
-  favorites : 'Interstellar'
+  favorites : [{
+    id: '8'
+  }]
 }
 ];
 
@@ -287,6 +289,7 @@ app.delete('/users/:id', (req, res) => {
     res.status(201).send('User ' + user.username + ' with id ' + req.params.id + ' was deleted.')
   }
 });
+
 // get a user from users list by id
 app.get('users/:id', (req, res) => {
   res.json(users.find( (user) =>
@@ -299,7 +302,7 @@ let user = users.find( (user) => {
   return user.id === req.params.id });
   let updatedUser = req.body;
 
-  if(user && updatedUser) {
+  if (user && updatedUser) {
     //preserve following user data:
     updatedUser.id = user.id;
     updatedUser.favorites = user.favorites;
@@ -314,7 +317,23 @@ let user = users.find( (user) => {
     res.status(404).send('User with the name ' + req.params.id + 'was not found.')
     }
   });
+// List of favorite movies (of a single user)
+// add a favorite movie to a user from the list
+app.post('users/:id/:movie_id', (req, res)=> {
+  let user = users.find( (user) => {
+    return user.id === req.params.id });
+  let movie = movies.find((movie) => {
+    return movie.id === req.params.movie_id });
 
+    if (user && movie) {
+      user.favorites = [...new Set([...user.favorites, req.params.movie.id])];
+      res.status(201).send('User ' + user + 'favorite(s): ' + req.params.movie_id + 'are succesfully added');
+    } else if (!movie) {
+      res.status(404).send('Movie with id ' + req.params.movie_id + ' was not found.');
+    } else {
+      res.status(404).send('User with id ' + req.params.id + ' was not found.');
+    }
+});
 
 // error handling middleware, defined last in chain
 app.use(function (err, req, res, next) {
