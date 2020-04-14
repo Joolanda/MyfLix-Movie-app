@@ -37,7 +37,7 @@
       </tr>
       <tr>
         <td scope="row">Return data (description, genre, director, Image url, whether it's featured or not) about a single movie by title to the user…</td>
-        <td> /movies/[Title] </td>
+        <td> /movies/[title] </td>
         <td style="color: #c7254e"> GET </td>
         <td> None </td>
         <td> A JSON object holding data about a single movie, containing an ID, title, and some other properties. Example:
@@ -57,7 +57,7 @@
       </tr>
       <tr>
         <td scope="row">Return data about All genres (description) by name </td>
-        <td> /genres/[Name]</td>
+        <td> /genres/[name]</td>
         <td style="color: #c7254e"> GET </td>
         <td> None</td>
         <td> A JSON object holding data about all genres </td>
@@ -103,7 +103,7 @@
       </tr>
       <tr>
         <td scope="row">Allow users to update their user info (username, password, email, date of birth) </td>
-        <td> /users/[Username]</td>
+        <td> /users/[username]</td>
         <td style="color: #c7254e"> PUT </td>
         <td>A JSON object holding data about the current user to update, structured like:
           <p style="color: #008800">
@@ -121,22 +121,24 @@
       </tr>
       <tr>
         <td scope="row"> Allow users to add a movie to their list of favorites</td>
-        <td> /users/[Username]/ favorites/[FavMovie]</td>
+        <td> /users/[username]/ favorites/[movie_id]</td>
         <td style="color: #c7254e"> POST </td>
         <td> A JSON object holding data about the movie to add to the user's list of favorite movies, structured like:
           <p style="color: #008800">
             {<br>
-              Favorites : {<br>
-                FavMovie : "Titanic",<br>
-                Director : "James Cameron"
-                } <br>
-              }<br>
-</td>
-        <td> </td>
+                "id": "0",<br>
+                "username": "Ruby Took",<br>
+                "password": "peiQu0hi4",<br>
+                "email": "RubyTook@teleworm.us",<br>
+                "birthday": "1988-03-31",<br>
+                "favorites": ["5"]<br>
+              }
+            </td>
+            <td> A text message indicating whether the user's favorite movie was succesfully added to their list.</td>
       </tr>
       <tr>
         <td scope="row"> Allow users to remove a movie to their list of favorites</td>
-        <td> /users/[Username]/ favorites/[FavMovie]</td>
+        <td> /users/[username]/ favorites/[movie_id]</td>
         <td style="color: #c7254e"> DELETE </td>
         <td> None</td>
         <td> A text message indicating whether the movie was succesfully removed from the users' favorite-list.</td>
@@ -144,7 +146,7 @@
       <tr>
         <td scope="row"> Allow existing users to deregister
 (remove a user by Username or id) </td>
-        <td> /users/[Username]/</td>
+        <td> /users/[username]/</td>
         <td style="color: #c7254e"> DELETE </td>
         <td> None</td>
         <td> A text message indicating whether the user's account was succesfully removed.</td>
