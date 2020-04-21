@@ -10,6 +10,9 @@ const Users = Models.User;
 
 const app = express();
 
+mongoose.connect('mongodb://localhost:27017/myFlixDB', {
+useNewUrlParser: true, useUnifiedTopology: true});
+
 let movies = [ {
   id: '1',
   title : "Harry Potter and the Philosopher\'s Stone",
