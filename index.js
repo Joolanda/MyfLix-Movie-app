@@ -11,7 +11,9 @@ const Users = Models.User;
 const app = express();
 
 mongoose.connect('mongodb://localhost:27017/myFlixDB', {
-useNewUrlParser: true, useUnifiedTopology: true});
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 // use express.static
 //to serve “documentation.html” file from the public folder
@@ -25,11 +27,13 @@ app.use(bodyParser.json());
 app.get('/', function(req, res) {
   res.send('Welcome to my film club!')
 });
-app.get('/secreturl', function (req, res) {
+app.get('/secreturl', function(req, res) {
   res.send('this is a secret url with super top-secret content.');
 });
 app.get('/documentation', function(req, res) {
-  res.sendFile('public/documentation.html', { root: __dirname });
+  res.sendFile('public/documentation.html', {
+    root: __dirname
+  });
 });
 //////// Movies ////////
 // Gets the list of data about All movies
@@ -38,8 +42,9 @@ app.get('/movies', function(req, res) {
 });
 // Gets the data about a single movie, by title
 app.get('/movies/:title', (req, res) => {
-  res.json(movies.find( (movie) =>
-    { return movie.title ===req.params.title  }));
+  res.json(movies.find((movie) => {
+    return movie.title === req.params.title
+  }));
 });
 // Gets the list of data about All genres
 app.get('/genres', function(req, res) {
@@ -47,18 +52,20 @@ app.get('/genres', function(req, res) {
 });
 // Gets the data about a single genre, by name
 app.get('/genres/:name', (req, res) => {
-  res.json(genres.find( (genre) =>
-    { return genre.name ===req.params.name }));
+  res.json(genres.find((genre) => {
+    return genre.name === req.params.name
+  }));
 });
 
 // Gets the list of All directors
-app.get('/directors', function (req, res) {
+app.get('/directors', function(req, res) {
   res.json(directors)
 });
 // Gets the data about a single director, by name
 app.get('/directors/:name', (req, res) => {
-  res.json(directors.find( (director) =>
-    { return director.name ===req.params.name }));
+  res.json(directors.find((director) => {
+    return director.name === req.params.name
+  }));
 });
 /////// Users ///////
 // Gets the list of data about All users
@@ -67,8 +74,9 @@ app.get('/users', function(req, res) {
 });
 // Gets the data about a single user, by username
 app.get('/users/:username', (req, res) => {
-  res.json(users.find( (user) =>
-    { return user.username ===req.params.username  }));
+  res.json(users.find((user) => {
+    return user.username === req.params.username
+  }));
 });
 // Add a user from DB using mongoose models - (replace code: Posts a new user to our list of users)
 /* We'll expect JSON in this format
@@ -80,10 +88,12 @@ app.get('/users/:username', (req, res) => {
   Birthday: Date
 }*/
 app.post('/users', (req, res) => {
-  Users.findone({ Username: req.body.Username })
+  Users.findone({
+      Username: req.body.Username
+    })
     .then((user) => {
-      if(user) {
-        return res.status(400).send(req.body.Username +'already exists');
+      if (user) {
+        return res.status(400).send(req.body.Username + 'already exists');
       } else {
         Users
           .create({
@@ -92,49 +102,56 @@ app.post('/users', (req, res) => {
             Email: req.body.Email,
             Birthday: req.body.Birthday
           })
-          .then((user) =>{res.status(201).json(user) })
-        .catch((error) => {
-          console.error(error);
-          res.status(500).send('Error: ' + error);
-        })
+          .then((user) => {
+            res.status(201).json(user)
+          })
+          .catch((error) => {
+            console.error(error);
+            res.status(500).send('Error: ' + error);
+          })
       }
     })
     .catch((error) => {
       console.error(error);
       res.status(500).send('Error: ' + error);
     });
-  });
+});
 
-  if (!newUser.username) {
-    const message = 'Missing name in request body';
-    res.status(400).send(message);
-  } else {
-    newUser.id = uuid.v4();
-    users.push(newUser);
-    res.status(201).send(newUser);
-  }
+if (!newUser.username) {
+  const message = 'Missing name in request body';
+  res.status(400).send(message);
+} else {
+  newUser.id = uuid.v4();
+  users.push(newUser);
+  res.status(201).send(newUser);
+}
 });
 //Deletes a user from the list by id:
 app.delete('/users/:id', (req, res) => {
-  let user = users.find( (user) => {
-    return user.id === req.params.id });
+  let user = users.find((user) => {
+    return user.id === req.params.id
+  });
 
   if (user) {
-    users = users.filter(function(obj) { return obj.id !==req.params.id });
+    users = users.filter(function(obj) {
+      return obj.id !== req.params.id
+    });
     res.status(201).send('User ' + user.username + ' with id ' + req.params.id + ' was deleted.')
   }
 });
 
 // get a user from users list by id
 app.get('users/:id', (req, res) => {
-  res.json(users.find( (user) =>
-  { return user.id === req.params.id; }));
+  res.json(users.find((user) => {
+    return user.id === req.params.id;
+  }));
 });
 
 // Update the user info by id:
 app.put('/users/:id', (req, res) => {
-let user = users.find( (user) => {
-  return user.id === req.params.id });
+  let user = users.find((user) => {
+    return user.id === req.params.id
+  });
   let updatedUser = req.body;
 
   if (user && updatedUser) {
@@ -145,41 +162,45 @@ let user = users.find( (user) => {
     Object.assign(user, updatedUser);
     users = users.map((user) => (user.id === updatedUser.id) ? updatedUser : user);
     res.status(201).send('User ' + user.username + ' with id: ' + req.params.id + ' has succesfully changed ');
-  } else if (! updatedUser.username) {
+  } else if (!updatedUser.username) {
     const message = 'Missing name in request body';
     res.status(400).send(message);
   } else {
     res.status(404).send('User with the name ' + req.params.id + 'was not found.')
-    }
-  });
+  }
+});
 // List of favorite movies (of a single user)
 // add a favorite movie to a user from the list
-app.post('users/:id/:movie_id', (req, res)=> {
-  let user = users.find( (user) => {
-    return user.id === req.params.id });
-  let movie = movies.find( (movie) => {
-    return movie.id === req.params.movie_id });
+app.post('users/:id/:movie_id', (req, res) => {
+  let user = users.find((user) => {
+    return user.id === req.params.id
+  });
+  let movie = movies.find((movie) => {
+    return movie.id === req.params.movie_id
+  });
 
-    if (user && movie) {
-      user.favorites = [...new Set([...user.favorites, req.params.movie_id])];
-      res.status(201).send('Movie with id ' + req.params.movie_id + ' was succesfully added');
-    } else if (!movie) {
-      res.status(404).send('Movie with id ' + req.params.movie_id + ' was not found.');
-    } else {
-      res.status(404).send('User with id ' + req.params.id + ' was not found.');
-    }
+  if (user && movie) {
+    user.favorites = [...new Set([...user.favorites, req.params.movie_id])];
+    res.status(201).send('Movie with id ' + req.params.movie_id + ' was succesfully added');
+  } else if (!movie) {
+    res.status(404).send('Movie with id ' + req.params.movie_id + ' was not found.');
+  } else {
+    res.status(404).send('User with id ' + req.params.id + ' was not found.');
+  }
 });
 // remove a favorite movie from the list.
 app.delete('/users/:id/:movie_id', (req, res) => {
-  let user = users.find( (user) => {
+  let user = users.find((user) => {
     return user.id === req.params.id;
   });
-  let movie = movies.find( (movie) => {
+  let movie = movies.find((movie) => {
     return movie.id === req.params.movie_id;
   });
 
   if (user && movie) {
-    user.favorites = user.favorites.filter((movie_id) => { return movie_id !== req.params.movie_id; });
+    user.favorites = user.favorites.filter((movie_id) => {
+      return movie_id !== req.params.movie_id;
+    });
     res.status(201).send('Movie with id ' + req.params.movie_id + ' was succesfully removed');
   } else if (!movie) {
     res.status(404).send('Movie with id ' + req.params.movie_id + ' was not found.');
@@ -188,12 +209,12 @@ app.delete('/users/:id/:movie_id', (req, res) => {
   }
 });
 // error handling middleware, defined last in chain
-app.use(function (err, req, res, next) {
-console.error(err.stack);
-res.status(500).send('something broke!');
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('something broke!');
 });
 
 // listen for requests
 app.listen(8080, () =>
- console.log('My Movie app is listening on port 8080')
+  console.log('My Movie app is listening on port 8080')
 );
