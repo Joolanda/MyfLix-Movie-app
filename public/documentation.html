@@ -37,39 +37,34 @@
       </tr>
       <tr>
         <td scope="row">Return data (description, genre, director, Image url, whether it's featured or not) about a single movie by title to the user…</td>
-        <td> /movies/[title] </td>
+        <td> /movies/[Title] </td>
         <td style="color: #c7254e"> GET </td>
         <td> None </td>
         <td> A JSON object holding data about a single movie, containing an ID, title, and some other properties. Example:
           <p style="color: #008800">
               { <br>
-                  "_id":{"$oid":"5e9da6faaa98398565197490"},<br>
-                  "Title":"Jurassic Park",<br>
-                  "Description":"The film is set on the fictional island ...<br>
+                  _id: "5e9da6faaa98398565197490",<br>
+                  title: "Jurassic Park",<br>
+                  description: "The film is set on the fictional island  ....
                   created a wildlife park of de-extinct dinosaurs.",<br>
-                  "Genre":{"Name":"Adventure",<br>
-                  "Description":"Adventure films are a
-                  genre of ... in an energetic way."},<br>
-                  "Director":{<br>
-                    "Name":"Steven Spielberg",<br>
-                    "Bio":"Steven Allan Spielberg is an ....",<br>
-                    "Birth":"1946"},<br>
-                  "ImagePath":"jurassicpark.png",<br>
-                  "Featured":true}<br>
+                  genre: "Adventure",<br>
+                  director: "Steven Spielberg",<br>
+                  imagePath: "",<br>
+                  Featured: true<br>
                 }
           </p>
         </td>
       </tr>
       <tr>
         <td scope="row">Return data about All genres (description) by name </td>
-        <td> /genres/[name]</td>
+        <td> movies/Genre/[Name]</td>
         <td style="color: #c7254e"> GET </td>
         <td> None</td>
         <td> A JSON object holding data about all genres </td>
       </tr>
       <tr>
         <td scope="row">Return data about a director (bio, birth year, death year) by name </td>
-        <td> /directors/[name]</td>
+        <td> /movies/directors/[Name]</td>
         <td style="color: #c7254e"> GET </td>
         <td> None</td>
         <td>A JSON object holding data about a single director, containing name, birth year, death year, movies. Example:
@@ -96,10 +91,10 @@
               Birthday : "1988-03-31"<br>
               }
         </td>
-        <td> A JSON object holding data about the new user to register, structured like:
+        <td> A JSON object holding data about the new user to register plus ID, structured like:
           <p style="color: #008800">
             { <br>
-              UserID : "",<br>
+              _id : 5e9c54713060a1071e806910"",<br>
               Username : "Ruby Took",<br>
               Password : "peiQu0hi4",<br>
               Email : "RubyTook@teleworm.us",<br>
@@ -108,16 +103,16 @@
       </tr>
       <tr>
         <td scope="row">Allow users to update their user info (username, password, email, date of birth) </td>
-        <td> /users/[username]</td>
+        <td> /users/[Username]</td>
         <td style="color: #c7254e"> PUT </td>
         <td>A JSON object holding data about the current user to update, structured like:
           <p style="color: #008800">
             {<br>
-              "username" : "Romy Took",<br>
-              "password" : "peiQu0hi4",<br>
-              "email" : "RubyTook@teleworm.us",<br>
-              "birthday" : "1988-03-31",<br>
-              "favorites" : ["8"]
+              "Username" : "Romy Took",<br>
+              "Password" : "peiQu0hi4",<br>
+              "Email" : "RubyTook@teleworm.us",<br>
+              "Birthday" : "1988-03-31",<br>
+              "Favorites" : ["movie_id"]
             }
           </p>
         </td>
@@ -126,24 +121,24 @@
       </tr>
       <tr>
         <td scope="row"> Allow users to add a movie to their list of favorites</td>
-        <td> /users/[username]/ favorites/[movie_id]</td>
+        <td> /users/[Username]/ Favorites/[movie_id]</td>
         <td style="color: #c7254e"> POST </td>
         <td> A JSON object holding data about the movie to add to the user's list of favorite movies, structured like:
           <p style="color: #008800">
             {<br>
-                "id": "0",<br>
+                "_id": "5e9c54713060a1071e806910,<br>
                 "username": "Ruby Took",<br>
                 "password": "peiQu0hi4",<br>
                 "email": "RubyTook@teleworm.us",<br>
                 "birthday": "1988-03-31",<br>
-                "favorites": ["5"]<br>
+                "favorites": [ ObjectId("5e9c365e3060a1071e806907")] <br>
               }
             </td>
             <td> A text message indicating whether the user's favorite movie was succesfully added to their list.</td>
       </tr>
       <tr>
         <td scope="row"> Allow users to remove a movie to their list of favorites</td>
-        <td> /users/[username]/ favorites/[movie_id]</td>
+        <td> /users/[Username]/Favorites/[movie_id]</td>
         <td style="color: #c7254e"> DELETE </td>
         <td> None</td>
         <td> A text message indicating whether the movie was succesfully removed from the users' favorite-list.</td>
@@ -151,7 +146,7 @@
       <tr>
         <td scope="row"> Allow existing users to deregister
 (remove a user by Username or id) </td>
-        <td> /users/[username]/</td>
+        <td> /users/[Username]/</td>
         <td style="color: #c7254e"> DELETE </td>
         <td> None</td>
         <td> A text message indicating whether the user's account was succesfully removed.</td>
