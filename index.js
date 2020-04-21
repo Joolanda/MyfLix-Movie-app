@@ -88,9 +88,7 @@ app.get('/users/:username', (req, res) => {
   Birthday: Date
 }*/
 app.post('/users', (req, res) => {
-  Users.findOne({
-      Username: req.body.Username
-    })
+  Users.findOne({ Username: req.body.Username })
     .then((user) => {
       if (user) {
         return res.status(400).send(req.body.Username + 'already exists');
@@ -102,13 +100,11 @@ app.post('/users', (req, res) => {
             Email: req.body.Email,
             Birthday: req.body.Birthday
           })
-          .then((user) => {
-            res.status(201).json(user)
-          })
-          .catch((error) => {
-            console.error(error);
-            res.status(500).send('Error: ' + error);
-          })
+          .then((user) =>{res.status(201).json(user) })
+        .catch((error) => {
+          console.error(error);
+          res.status(500).send('Error: ' + error);
+        })
       }
     })
     .catch((error) => {
@@ -117,15 +113,6 @@ app.post('/users', (req, res) => {
     });
 });
 
-if (!newUser.username) {
-  const message = 'Missing name in request body';
-  res.status(400).send(message);
-} else {
-  newUser.id = uuid.v4();
-  users.push(newUser);
-  res.status(201).send(newUser);
-}
-});
 //Deletes a user from the list by id:
 app.delete('/users/:id', (req, res) => {
   let user = users.find((user) => {
