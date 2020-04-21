@@ -88,7 +88,7 @@ app.get('/users/:username', (req, res) => {
   Birthday: Date
 }*/
 app.post('/users', (req, res) => {
-  Users.findone({
+  Users.findOne({
       Username: req.body.Username
     })
     .then((user) => {
