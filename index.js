@@ -83,7 +83,7 @@ app.post('/users', (req, res) => {
   Users.findone({ Username: req.body.Username })
     .then((user) => {
       if(user) {
-        return res.status(400).send(req.body.Username +'already exits');
+        return res.status(400).send(req.body.Username +'already exists');
       } else {
         Users
           .create({
