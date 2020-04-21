@@ -215,6 +215,6 @@ app.use(function(err, req, res, next) {
 });
 
 // listen for requests
-app.listen(8080, () =>
-  console.log('My Movie app is listening on port 8080')
-);
+app.listen(8080, () => {
+  console.log('My Movie app is listening on port 8080');
+});
