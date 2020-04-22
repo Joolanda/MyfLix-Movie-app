@@ -23,7 +23,7 @@ app.use(morgan('common'));
 //library body-parser middleware fct to log all requests
 app.use(bodyParser.json());
 
-// GET requests
+// get requests
 app.get('/', function(req, res) {
   res.send('Welcome to my film club!')
 });
@@ -140,13 +140,6 @@ app.delete('/users/:Username', (req, res) => {
       res.status(500).send('Error: ' + err);
     });
   });
-
-// get a user from users list by id
-app.get('users/:id', (req, res) => {
-  res.json(users.find((user) => {
-    return user.id === req.params.id;
-  }));
-});
 
 // UPDATE a user's info, by username
 /* We'll expect JSON in this format
