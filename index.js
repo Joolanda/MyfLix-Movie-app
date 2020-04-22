@@ -37,8 +37,15 @@ app.get('/documentation', function(req, res) {
 });
 //////// Movies ////////
 // Gets the list of data about All movies
-app.get('/movies', function(req, res) {
-  res.json(movies)
+app.get('/movies', (req, res) => {
+  Movies.find()
+  .then((movies) => {
+    res.status(201).json(movies);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 // Gets the data about a single movie, by title
 app.get('/movies/:title', (req, res) => {
