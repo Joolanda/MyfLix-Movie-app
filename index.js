@@ -125,19 +125,21 @@ app.post('/users', (req, res) => {
     });
 });
 
-//Deletes a user from the list by id:
-app.delete('/users/:id', (req, res) => {
-  let user = users.find((user) => {
-    return user.id === req.params.id
-  });
-
-  if (user) {
-    users = users.filter(function(obj) {
-      return obj.id !== req.params.id
+//DELETE a user by username
+app.delete('/users/:Username', (req, res) => {
+  Users.findOneAndRemove({ Username: req.params.Username})
+    .then((user) => {
+      if (!user) {
+        res.status(400).send(req.params.Username + ' was not found');
+      } else {
+        res.status(200).send(req.params.Username + ' was deleted.');
+      }
+    })
+    .catch ((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
     });
-    res.status(201).send('User ' + user.username + ' with id ' + req.params.id + ' was deleted.')
-  }
-});
+  });
 
 // get a user from users list by id
 app.get('users/:id', (req, res) => {
