@@ -68,9 +68,16 @@ app.get('/directors/:name', (req, res) => {
   }));
 });
 /////// Users ///////
-// Gets the list of data about All users
-app.get('/users', function(req, res) {
-  res.json(users);
+// Get ALL users
+app.get('/users', (req, res) => {
+  Users.find()
+  .then((users) => {
+    res.status(201).json(users);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 // Gets the data about a single user, by username
 app.get('/users/:username', (req, res) => {
