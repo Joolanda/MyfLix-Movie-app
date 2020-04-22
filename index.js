@@ -177,11 +177,26 @@ app.put('/users/:Username', (req, res) => {
         res.json(updatedUser);
       }
     });
-  });  
+  });
 
-// List of favorite movies (of a single user)
-// add a favorite movie to a user from the list
-app.post('users/:id/:movie_id', (req, res) => {
+// Add a movie to a user's list of favorites
+app.post('/users/:Username/Movies/:MovieID', (req, res) => 
+  {
+    Users.findOneAndUpdate({ Username: req.params.Username
+  }, {
+      $push: { Favorites: req.params.MovieID }
+      },
+      { new: true }, // This line makes sure that the updated document is returned
+      (err, updatedUser) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send('Error: ' + err);
+        } else {
+          res.json(updatedUser);
+        }
+      });
+    });
+
   let user = users.find((user) => {
     return user.id === req.params.id
   });
