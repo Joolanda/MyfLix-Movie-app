@@ -85,9 +85,9 @@ app.get('/users/:Username', (req, res) => {
   .then((user) => {
     res.json(user);
   })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
   });
 });
 // Add a user from DB using mongoose models - (replace code: Posts a new user to our list of users)
