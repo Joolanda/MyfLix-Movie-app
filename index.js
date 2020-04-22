@@ -68,7 +68,7 @@ app.get('/directors/:name', (req, res) => {
   }));
 });
 /////// Users ///////
-// Get ALL users
+// GET all users
 app.get('/users', (req, res) => {
   Users.find()
   .then((users) => {
@@ -79,7 +79,7 @@ app.get('/users', (req, res) => {
     res.status(500).send('Error: ' + err);
   });
 });
-// Get a specific user by username
+// GET a specific user by username
 app.get('/users/:Username', (req, res) => {
   Users.findOne({ Username: req.params.Username })
   .then((user) => {
@@ -90,7 +90,7 @@ app.get('/users/:Username', (req, res) => {
     res.status(500).send('Error: ' + error);
   });
 });
-// Add a user from DB using mongoose models - (replace code: Posts a new user to our list of users)
+// ADD a user from DB using mongoose models - (replace code: Posts a new user to our list of users)
 /* We'll expect JSON in this format
 {
   ID: Integer,
@@ -146,7 +146,7 @@ app.get('users/:id', (req, res) => {
   }));
 });
 
-// Update a user's info, by username
+// UPDATE a user's info, by username
 /* We'll expect JSON in this format
 {
   Username: String,
@@ -179,7 +179,7 @@ app.put('/users/:Username', (req, res) => {
     });
   });
 
-// Add a movie to a user's list of favorites
+// ADD a movie to a user's list of favorites
 app.post('/users/:Username/Movies/:MovieID', (req, res) =>
   {
     Users.findOneAndUpdate({ Username: req.params.Username
