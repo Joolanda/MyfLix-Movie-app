@@ -146,28 +146,39 @@ app.get('users/:id', (req, res) => {
   }));
 });
 
-// Update the user info by id:
-app.put('/users/:id', (req, res) => {
-  let user = users.find((user) => {
-    return user.id === req.params.id
-  });
-  let updatedUser = req.body;
+// Update a user's info, by username
+/* We'll expect JSON in this format
+{
+  Username: String,
+  (required)
+  Password: String,
+  (required)
+  Email: String,
+  (required)
+  Birthday: Date
+}*/
 
-  if (user && updatedUser) {
-    //preserve following user data:
-    updatedUser.id = user.id;
-    updatedUser.favorites = user.favorites;
+app.put('/users/:Username', (req, res) => {
+  Users.findOneAndUpdate({ Username: req.params.Username},
+    { $set:
+      {
+        Username: req.body.Username,
+        Password: req.body.Password,
+        Email: req.body.Email,
+        Birthday: req.body.Birthday
+      }
+    },
+    { new: true }, // This line makes sure that the updated document is returned
+    (err, updatedUser) => {
+      if(err) {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      } else {
+        res.json(updatedUser);
+      }
+    });
+  });  
 
-    Object.assign(user, updatedUser);
-    users = users.map((user) => (user.id === updatedUser.id) ? updatedUser : user);
-    res.status(201).send('User ' + user.username + ' with id: ' + req.params.id + ' has succesfully changed ');
-  } else if (!updatedUser.username) {
-    const message = 'Missing name in request body';
-    res.status(400).send(message);
-  } else {
-    res.status(404).send('User with the name ' + req.params.id + 'was not found.')
-  }
-});
 // List of favorite movies (of a single user)
 // add a favorite movie to a user from the list
 app.post('users/:id/:movie_id', (req, res) => {
