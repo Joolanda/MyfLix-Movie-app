@@ -180,7 +180,7 @@ app.put('/users/:Username', (req, res) => {
   });
 
 // Add a movie to a user's list of favorites
-app.post('/users/:Username/Movies/:MovieID', (req, res) => 
+app.post('/users/:Username/Movies/:MovieID', (req, res) =>
   {
     Users.findOneAndUpdate({ Username: req.params.Username
   }, {
@@ -197,22 +197,6 @@ app.post('/users/:Username/Movies/:MovieID', (req, res) =>
       });
     });
 
-  let user = users.find((user) => {
-    return user.id === req.params.id
-  });
-  let movie = movies.find((movie) => {
-    return movie.id === req.params.movie_id
-  });
-
-  if (user && movie) {
-    user.favorites = [...new Set([...user.favorites, req.params.movie_id])];
-    res.status(201).send('Movie with id ' + req.params.movie_id + ' was succesfully added');
-  } else if (!movie) {
-    res.status(404).send('Movie with id ' + req.params.movie_id + ' was not found.');
-  } else {
-    res.status(404).send('User with id ' + req.params.id + ' was not found.');
-  }
-});
 // remove a favorite movie from the list.
 app.delete('/users/:id/:movie_id', (req, res) => {
   let user = users.find((user) => {
