@@ -48,11 +48,17 @@ app.get('/movies', (req, res) => {
   });
 });
 // Gets the data about a single movie, by title
-app.get('/movies/:title', (req, res) => {
-  res.json(movies.find((movie) => {
-    return movie.title === req.params.title
-  }));
-});
+app.get('/movies/:Title', (req, res) => {
+    Movies.findOne({ Title: req.params.Title })
+      .then((movie) => {
+        res.json(movie);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      });
+  }
+);
 // Gets the list of data about All genres
 app.get('/genres', function(req, res) {
   res.json(genres)
