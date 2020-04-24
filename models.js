@@ -9,7 +9,8 @@ Genre: {
   },
 Director: {
   Name: String,
-  Bio: String
+  Bio: String,
+  Birth: String
   },
 //Actors: [String],
   ImagePath: String,

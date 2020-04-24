@@ -61,10 +61,10 @@ app.get('/movies/:Title', (req, res) => {
 );
 
 // GETs the data about a director, by name
-app.get('/movies/:Director/:Name', (req, res) => {
+app.get('/movies/Director/:Name', (req, res) => {
   Movies.findOne({ 'Director.Name': req.params.Name })
   .then((movies) => {
-    res.status(201).json(movies.Director.Name + ' : '+ movies.Director.Bio);
+    res.status(201).json('Name: '+ movies.Director.Name + ' Bio: '+ movies.Director.Bio + ' Birth: ' + movies.Director.Birth);
   })
   .catch((err) => {
     console.error(err)
@@ -84,10 +84,10 @@ app.get('/movies/:Director/:Name', (req, res) => {
 //   });
 
 // GETs the data about Genre name and description by movie title
-app.get('/movies/:Genre/:Title', (req,res) => {
+app.get('/movies/Genre/:Title', (req,res) => {
   Movies.findOne({ Title: req.params.Title })
   .then((movie) => {
-    res.status(201).json(movie.Genre.Title + ' : ' + movie.Genre.Description);
+    res.status(201).json('Genre of this movie is: ' + movie.Genre.Name + '. ' + movie.Genre.Description);
   })
   .catch((err) => {
     console.error(err);
@@ -208,7 +208,7 @@ app.post('/users/:Username/Movies/:_id', (req, res) =>
   {
     Users.findOneAndUpdate({ Username: req.params.Username
   }, {
-      $push: { Favorites: req.params.MovieID }
+      $push: { Favorites: req.params._id }
       },
       { new: true }, // This line makes sure that the updated document is returned
       (err, updatedUser) => {
