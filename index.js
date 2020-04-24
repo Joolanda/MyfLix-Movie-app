@@ -221,26 +221,23 @@ app.post('/users/:Username/Movies/:_id', (req, res) =>
       });
     });
 
-// remove a favorite movie from the list.
-//app.delete('/users/:id/:movie_id', (req, res) => {
-//  let user = users.find((user) => {
-//    return user.id === req.params.id;
-//  });
-//  let movie = movies.find((movie) => {
-//    return movie.id === req.params.movie_id;
-//  });
-
-//  if (user && movie) {
-//    user.favorites = user.favorites.filter((movie_id) => {
-//      return movie_id !== req.params.movie_id;
-//    });
-//    res.status(201).send('Movie with id ' + req.params.movie_id + ' was succesfully removed');
-//  } else if (!movie) {
-//    res.status(404).send('Movie with id ' + req.params.movie_id + ' was not found.');
-//  } else {
-//    res.status(404).send('User with id ' + req.params.id + ' was not found.');
-//  }
-//});
+// DELETE a favorite movie from the list.
+app.delete('/users/:Username/Movies/:_id', (req, res) =>
+  {
+    Users.findOneAndUpdate({ Username: req.params.Username
+  }, {
+      $pull: { Favorites: req.params._id }
+      },
+      { new: true }, // This line makes sure that the updated document is returned
+      (err, updatedUser) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send('Error: ' + err);
+        } else {
+          res.json(updatedUser).send('Movie with ID: ' + req.params._id + ' was succesfully removed from the favorites list.')
+        }
+      });
+    });
 
 // error handling middleware, defined last in chain
 app.use(function(err, req, res, next) {
