@@ -19,10 +19,10 @@ passport.use(new LocalStrategy({
        }
        if(!user) {
        console.log('incorrect username');
-     return callback(null, false, {message: 'Incorrect username or passsword.'});
+     return callback(null, false, { message: 'Incorrect username or passsword.'});
    }
    console.log('finished');
-   rerurn callback(null, user);
+   return callback(null, user);
  });
 }));
 
