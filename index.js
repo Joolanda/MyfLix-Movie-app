@@ -20,7 +20,7 @@ app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
-var auth = require('./auth')(app);
+let auth = require('./auth')(app);
 
 
 // get requests
