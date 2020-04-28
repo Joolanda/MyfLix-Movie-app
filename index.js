@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const morgan = require('morgan');
 const uuid = require('uuid');
 const bodyParser = require('body-parser');
@@ -7,21 +8,21 @@ const Models = require('./models.js');
 
 const Movies = Models.Movie;
 const Users = Models.User;
-
-const app = express();
+const passport = require('passport');
+require('./passport');
 
 mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
-// use express.static
-//to serve “documentation.html” file from the public folder
+// Middleware functions
 app.use(express.static('public'));
-//library Morgan middleware fct to log all requests
 app.use(morgan('common'));
-//library body-parser middleware fct to log all requests
 app.use(bodyParser.json());
+
+let auth = require('./auth')(app);
+
 
 // get requests
 app.get('/', function(req, res) {
