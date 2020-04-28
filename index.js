@@ -7,8 +7,6 @@ const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 const app = express();
-const passport = require('passport');
-require('./passport');
 
 mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {
   useNewUrlParser: true,
@@ -16,12 +14,16 @@ mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {
 });
 
 // Middleware functions
-app.use(express.static('public'));
 app.use(morgan('common'));
+
 app.use(bodyParser.json());
 
-let auth = require('./auth')(app);
+var auth = require('./auth')(app);
 
+const passport = require('passport');
+require('./passport');
+
+app.use(express.static('public'));
 
 // get requests
 app.get('/', function(req, res) {
