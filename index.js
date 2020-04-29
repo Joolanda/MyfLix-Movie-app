@@ -104,7 +104,8 @@ app.get('/movies/Genre/:Title', passport.authenticate('jwt', {
 
 //// Users ////
 // GET all users
-app.get('/users', (req, res) => {
+app.get('/users', passport.authenticate('jwt', {
+  session: false }), (req, res) => {
   Users.find()
   .then((users) => {
     res.status(201).json(users);
@@ -116,7 +117,8 @@ app.get('/users', (req, res) => {
 });
 
 // GET a specific user by username
-app.get('/users/:Username',(req, res) => {
+app.get('/users/:Username', passport.authenticate('jwt', {
+  session: false }), (req, res) => {
   Users.findOne({ Username: req.params.Username })
   .then((user) => {
     res.json(user);
