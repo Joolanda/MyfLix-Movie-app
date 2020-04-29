@@ -13,7 +13,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {
   useUnifiedTopology: true
 });
 
-// Middleware functions
+//// Middleware functions ////
 app.use(morgan('common'));
 
 app.use(bodyParser.json());
@@ -37,7 +37,7 @@ app.get('/documentation', function(req, res) {
     root: __dirname
   });
 });
-//////// Movies ////////
+//// Movies ////
 // GETs the list of data about All movies
 app.get('/movies', passport.authenticate('jwt', {
   session: false }), (req, res) => {
@@ -102,10 +102,9 @@ app.get('/movies/Genre/:Title', passport.authenticate('jwt', {
 });
 
 
-/////// Users ///////
+//// Users ////
 // GET all users
-app.get('/users', passport.authenticate('jwt', {
-  session: false }), (req, res) => {
+app.get('/users', (req, res) => {
   Users.find()
   .then((users) => {
     res.status(201).json(users);
@@ -117,8 +116,7 @@ app.get('/users', passport.authenticate('jwt', {
 });
 
 // GET a specific user by username
-app.get('/users/:Username', passport.authenticate('jwt', {
-  session: false }), (req, res) => {
+app.get('/users/:Username',(req, res) => {
   Users.findOne({ Username: req.params.Username })
   .then((user) => {
     res.json(user);
@@ -164,7 +162,7 @@ app.post('/users',(req, res) => {
 });
 
 
-//DELETE a user by username
+//REMOVE existing users by username
 app.delete('/users/:Username', passport.authenticate('jwt', {
   session: false }), (req, res) => {
   Users.findOneAndRemove({ Username: req.params.Username})
@@ -217,7 +215,7 @@ app.put('/users/:Username', passport.authenticate('jwt', {
 
 // ADD a movie to a user's list of favorites
 app.post('/users/:Username/Movies/:_id', passport.authenticate('jwt', {
-  session: false }),(req, res) =>
+  session: false }), (req, res) =>
   {
     Users.findOneAndUpdate({ Username: req.params.Username
   }, {
@@ -235,7 +233,8 @@ app.post('/users/:Username/Movies/:_id', passport.authenticate('jwt', {
     });
 
 // DELETE a favorite movie from the list.
-app.delete('/users/:Username/Movies/:_id',(req, res) =>
+app.delete('/users/:Username/Movies/:_id', passport.authenticate('jwt', {
+  session: false }), (req, res) =>
   {
     Users.findOneAndUpdate({ Username: req.params.Username
   }, {
@@ -252,13 +251,13 @@ app.delete('/users/:Username/Movies/:_id',(req, res) =>
       });
     });
 
-// error handling middleware, defined last in chain
+//// error handling middleware, defined last in chain
 app.use(function(err, req, res, next) {
   console.error(err.stack);
   res.status(500).send('something broke!');
 });
 
-// listen for requests
+//// listen for requests
 app.listen(8080, () => {
   console.log('My Movie app is listening on port 8080');
 });
