@@ -20,13 +20,16 @@ app.use(morgan('common'));
 
 app.use(bodyParser.json());
 
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+// CORS implementation
+app.use(cors()); // all origins are given access
 
-// Cors implementation
-app.use(cors( {
+// only certain origins to be given access:
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+ app.use(cors( {
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
     if(allowedOrigins.indexOf(origin) === -1){
+    // If a specific origin isn't found on the list of allowed origins:
     let message = 'The CORS policy for this application doesn\'t allow access from origin ' + origin;
     return callback(new Error(message ), false);
   }
@@ -198,7 +201,8 @@ app.post('/users',
 //REMOVE existing users by username
 app.delete('/users/:Username', passport.authenticate('jwt', {
   session: false }), (req, res) => {
-  Users.findOneAndRemove({ Username: req.params.Username})
+  Users.findOneAndRemove(
+    { Username: req.params.Username})
     .then((user) => {
       if (!user) {
         res.status(400).send(req.params.Username + ' was not found');
@@ -226,7 +230,8 @@ app.delete('/users/:Username', passport.authenticate('jwt', {
 
 app.put('/users/:Username', passport.authenticate('jwt', {
   session: false }), (req, res) => {
-  Users.findOneAndUpdate({ Username: req.params.Username},
+  Users.findOneAndUpdate(
+    { Username: req.params.Username},
     { $set:
       {
         Username: req.body.Username,
@@ -250,10 +255,9 @@ app.put('/users/:Username', passport.authenticate('jwt', {
 app.post('/users/:Username/Movies/:_id', passport.authenticate('jwt', {
   session: false }), (req, res) =>
   {
-    Users.findOneAndUpdate({ Username: req.params.Username
-  }, {
-      $push: { Favorites: req.params._id }
-      },
+    Users.findOneAndUpdate(
+      { Username: req.params.Username },
+      { $push: { Favorites: req.params._id } },
       { new: true }, // This line makes sure that the updated document is returned
       (err, updatedUser) => {
         if (err) {
@@ -269,10 +273,9 @@ app.post('/users/:Username/Movies/:_id', passport.authenticate('jwt', {
 app.delete('/users/:Username/Movies/:_id', passport.authenticate('jwt', {
   session: false }), (req, res) =>
   {
-    Users.findOneAndUpdate({ Username: req.params.Username
-  }, {
-      $pull: { Favorites: req.params._id }
-      },
+    Users.findOneAndUpdate(
+      { Username: req.params.Username },
+      { $pull: { Favorites: req.params._id } },
       { new: true }, // This line makes sure that the updated document is returned
       (err, updatedUser) => {
         if (err) {
