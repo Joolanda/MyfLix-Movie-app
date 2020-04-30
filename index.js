@@ -234,7 +234,7 @@ app.put('/users/:Username', passport.authenticate('jwt', {
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
   }
-  
+
   Users.findOneAndUpdate(
     { Username: req.params.Username},
     { $set:
@@ -297,6 +297,7 @@ app.use(function(err, req, res, next) {
 });
 
 //// listen for requests
-app.listen(8080, () => {
-  console.log('My Movie app is listening on port 8080');
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0', () => {
+  console.log('Listening on port ' + port);
 });
