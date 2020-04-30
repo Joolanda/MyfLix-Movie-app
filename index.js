@@ -147,15 +147,8 @@ app.get('/users/:Username', passport.authenticate('jwt', {
     res.status(500).send('Error: ' + error);
   });
 });
-// ADD a user from DB using mongoose models - (replace code: Posts a new user to our list of users)
-/* We'll expect JSON in this format
-{
-  ID: Integer,
-  Username: String,
-  Password: String,
-  Email: String,
-  Birthday: Date
-}*/
+
+// ADD a new user to mongoose DB
 app.post('/users',
   // validation logic here for request
   [
@@ -227,9 +220,14 @@ app.delete('/users/:Username', passport.authenticate('jwt', {
   (required)
   Birthday: Date
 }*/
-
 app.put('/users/:Username', passport.authenticate('jwt', {
-  session: false }), (req, res) => {
+  session: false }),
+  [
+  check('Username', 'Username is required').isLength({min: 5}),
+  check('Username', 'Username contains non alphanummeric characters - not allowed.').isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Email', 'Email does not appear to be valid').isEmail()
+], (req, res) => {
   Users.findOneAndUpdate(
     { Username: req.params.Username},
     { $set:
@@ -253,8 +251,7 @@ app.put('/users/:Username', passport.authenticate('jwt', {
 
 // ADD a movie to a user's list of favorites
 app.post('/users/:Username/Movies/:_id', passport.authenticate('jwt', {
-  session: false }), (req, res) =>
-  {
+  session: false }), (req, res) => {
     Users.findOneAndUpdate(
       { Username: req.params.Username },
       { $push: { Favorites: req.params._id } },
@@ -271,8 +268,7 @@ app.post('/users/:Username/Movies/:_id', passport.authenticate('jwt', {
 
 // DELETE a favorite movie from the list.
 app.delete('/users/:Username/Movies/:_id', passport.authenticate('jwt', {
-  session: false }), (req, res) =>
-  {
+  session: false }), (req, res) => {
     Users.findOneAndUpdate(
       { Username: req.params.Username },
       { $pull: { Favorites: req.params._id } },
