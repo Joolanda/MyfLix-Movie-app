@@ -7,6 +7,7 @@ const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 const cors = require('cors');
+const { check, validationResult } = require('express-validator');
 const app = express();
 
 mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 
 let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 
+// Cors implementation
 app.use(cors( {
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
@@ -151,7 +153,21 @@ app.get('/users/:Username', passport.authenticate('jwt', {
   Email: String,
   Birthday: Date
 }*/
-app.post('/users',(req, res) => {
+app.post('/users',
+  // validation logic here for request
+  [
+  check('Username', 'Username is required').isLength({min: 5}),
+  check('Username', 'Username contains non alphanummeric characters - not allowed.').isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Email', 'Email does not appear to be valid').isEmail()
+], (req, res) => {
+  //check the validation object for errors
+  let errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+
   let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOne({ Username: req.body.Username })
     .then((user) => {
