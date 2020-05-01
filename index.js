@@ -10,10 +10,17 @@ const cors = require('cors');
 const { check, validationResult } = require('express-validator');
 const app = express();
 
-mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {
+//mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {
+//  useNewUrlParser: true,
+//  useUnifiedTopology: true
+//});
+
+mongoose.connect('mongodb+srv://myStorageDBadmin:12345@mystoragedb-1xpkf.mongodb.net/test?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+mongodb+srv://myStorageDBadmin:<password>@mystoragedb-1xpkf.mongodb.net/test?retryWrites=true&w=majority
+
 
 //// Middleware functions ////
 app.use(morgan('common'));
