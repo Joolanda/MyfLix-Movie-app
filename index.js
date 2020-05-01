@@ -8,6 +8,7 @@ const Movies = Models.Movie;
 const Users = Models.User;
 const cors = require('cors');
 const { check, validationResult } = require('express-validator');
+const passport = require('passport');
 const app = express();
 
 //mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {
@@ -15,15 +16,15 @@ const app = express();
 //  useUnifiedTopology: true
 //});
 
-//mongoose.connect('mongodb+srv://myStorageDBadmin:12345@mystoragedb-1xpkf.mongodb.net/myFlixDB?retryWrites=true&w=majority', {
-//  useNewUrlParser: true,
-//  useUnifiedTopology: true
-//});
-
-mongoose.connect( process.env.CONNECTION_URI, {
+mongoose.connect('mongodb+srv://myStorageDBadmin:12345@mystoragedb-1xpkf.mongodb.net/myFlixDB?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
+//mongoose.connect( process.env.CONNECTION_URI, {
+//  useNewUrlParser: true,
+//  useUnifiedTopology: true
+//});
 
 //// Middleware functions ////
 app.use(morgan('common'));
@@ -34,7 +35,7 @@ app.use(bodyParser.json());
 app.use(cors()); // all origins are given access
 
 // only certain origins to be given access:
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+let allowedOrigins = ['http://localhost:8080', 'https://myflix-movie-25.herokuapp.com'];
  app.use(cors( {
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
