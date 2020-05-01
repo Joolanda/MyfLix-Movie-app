@@ -15,7 +15,12 @@ const app = express();
 //  useUnifiedTopology: true
 //});
 
-mongoose.connect('mongodb+srv://myStorageDBadmin:12345@mystoragedb-1xpkf.mongodb.net/myFlixDB?retryWrites=true&w=majority', {
+//mongoose.connect('mongodb+srv://myStorageDBadmin:12345@mystoragedb-1xpkf.mongodb.net/myFlixDB?retryWrites=true&w=majority', {
+//  useNewUrlParser: true,
+//  useUnifiedTopology: true
+//});
+
+mongoose.connect( process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
