@@ -50,8 +50,7 @@ let allowedOrigins = ['http://localhost:8080', 'https://myflix-movie-25.herokuap
 
 var auth = require('./auth')(app);
 
-const passport = require('passport');
-require('./passport');
+//require('./passport');
 
 app.use(express.static('public'));
 
