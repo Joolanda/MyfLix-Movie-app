@@ -19,8 +19,6 @@ mongoose.connect('mongodb+srv://myStorageDBadmin:12345@mystoragedb-1xpkf.mongodb
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
-mongodb+srv://myStorageDBadmin:<password>@mystoragedb-1xpkf.mongodb.net/test?retryWrites=true&w=majority
-
 
 //// Middleware functions ////
 app.use(morgan('common'));
