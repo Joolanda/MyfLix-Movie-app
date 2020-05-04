@@ -14,18 +14,18 @@ require('./passport');
 const auth = require('./auth')(app);
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+//mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {
+//  useNewUrlParser: true,
+//  useUnifiedTopology: true
+//});
 
-//mongoose.connect(
-//  'mongodb+srv://myStorageDBadmin:12345@mystoragedb-1xpkf.mongodb.net/myFlixDB?retryWrites=true&w=majority',
-//  {
-//    useNewUrlParser: true,
-//    useUnifiedTopology: true,
-//  }
-//);
+mongoose.connect(
+  'mongodb+srv://myStorageDBadmin:12345@mystoragedb-1xpkf.mongodb.net/myFlixDB?retryWrites=true&w=majority',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 //mongoose.connect( process.env.CONNECTION_URI, {
 //  useNewUrlParser: true,
@@ -379,7 +379,9 @@ app.use(function (err, req, res, next) {
 });
 
 //// listen for requests
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 app.listen(port, '0.0.0.0', () => {
+
+
   console.log('Listening on port ' + port);
 });
