@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const uuid = require('uuid');
+//const uuid = require('uuid');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Models = require('./models.js');
@@ -11,8 +11,8 @@ const cors = require('cors');
 const { check, validationResult } = require('express-validator');
 const passport = require('passport');
 require('./passport');
-var auth = require('./auth')(app);
-const app = express();
+const auth = require('./auth')(app);
+
 
 //mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {
 //  useNewUrlParser: true,
@@ -38,13 +38,15 @@ app.use(morgan('common')); // logging with Morgan
 app.use(bodyParser.json()); // JSON Parsing
 app.use(cors()); // all origins are given access
 
+// CORS, use all origins:
+app.use(cors()); // use all origins
 // only certain origins to be given access:
 let allowedOrigins = [
   'http://localhost:8080',
   'http://localhost:3000',
-  'https://myflix-movie-25.herokuapp.com',
+  'https://myflix-movie-25.herokuapp.com'
 ];
-
+// CORS implementation
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -73,6 +75,14 @@ app.get('/documentation', function (req, res) {
     root: __dirname,
   });
 });
+// Error Handling in Express - last middleware
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  // eslint-disable-next-line no-console
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
 //// Movies ////
 // GETs the list of data about All movies
 app.get(
