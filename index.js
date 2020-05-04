@@ -18,7 +18,7 @@ const app = express();
 //  useUnifiedTopology: true
 //});
 
-mongoose.connect('mongodb+srv://myStorageDBadmin:12345@mystoragedb-1xpkf.mongodb.net/myFlixDB?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://myStorageDBadmin:12345@mystoragedb-1xpkf.mongodb.net/myStorageDB?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -37,7 +37,7 @@ app.use(express.static('public')); //retrieves files from public folder
 app.use(cors()); // all origins are given access
 
 // only certain origins to be given access:
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:3000','https://myflix-movie-25.herokuapp.com'];
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:3000','https://git.heroku.com/myflix-movie.com'];
  app.use(cors( {
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
