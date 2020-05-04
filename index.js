@@ -75,13 +75,6 @@ app.get('/documentation', function (req, res) {
     root: __dirname,
   });
 });
-// Error Handling in Express - last middleware
-// eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-  // eslint-disable-next-line no-console
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
-});
 
 //// Movies ////
 // GETs the list of data about All movies
