@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const morgan = require('morgan');
 const uuid = require('uuid');
 const bodyParser = require('body-parser');
@@ -32,11 +33,9 @@ mongoose.connect(
 //});
 
 //// Middleware functions ////
+app.use(express.static('public')); //retrieves files from public folder
 app.use(morgan('common')); // logging with Morgan
 app.use(bodyParser.json()); // JSON Parsing
-app.use(express.static('public')); //retrieves files from public folder
-
-// CORS implementation
 app.use(cors()); // all origins are given access
 
 // only certain origins to be given access:
@@ -45,6 +44,7 @@ let allowedOrigins = [
   'http://localhost:3000',
   'https://myflix-movie-25.herokuapp.com',
 ];
+
 app.use(
   cors({
     origin: (origin, callback) => {
