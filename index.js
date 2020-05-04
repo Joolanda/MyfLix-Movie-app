@@ -196,25 +196,6 @@ app.post('/users',
     });
 });
 
-
-//REMOVE existing users by username
-app.delete('/users/:Username', passport.authenticate('jwt', {
-  session: false }), (req, res) => {
-  Users.findOneAndRemove(
-    { Username: req.params.Username})
-    .then((user) => {
-      if (!user) {
-        res.status(400).send(req.params.Username + ' was not found');
-      } else {
-        res.status(200).send(req.params.Username + ' was deleted.');
-      }
-    })
-    .catch ((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-  });
-
 // UPDATE a user's info, by username
 /* We'll expect JSON in this format
 {
@@ -246,6 +227,23 @@ app.put('/users/:Username', passport.authenticate('jwt', {
       } else {
         res.json(updatedUser);
       }
+    });
+  });
+//REMOVE existing users by username
+app.delete('/users/:Username', passport.authenticate('jwt', {
+  session: false }), (req, res) => {
+  Users.findOneAndRemove(
+    { Username: req.params.Username})
+    .then((user) => {
+      if (!user) {
+        res.status(400).send(req.params.Username + ' was not found');
+      } else {
+        res.status(200).send(req.params.Username + ' was deleted.');
+      }
+    })
+    .catch ((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
     });
   });
 
