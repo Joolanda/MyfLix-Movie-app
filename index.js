@@ -9,6 +9,8 @@ const Users = Models.User;
 const cors = require('cors');
 const { check, validationResult } = require('express-validator');
 const passport = require('passport');
+require('./passport');
+var auth = require('./auth')(app);
 const app = express();
 
 //mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {
@@ -27,9 +29,9 @@ mongoose.connect('mongodb+srv://myStorageDBadmin:12345@mystoragedb-1xpkf.mongodb
 //});
 
 //// Middleware functions ////
-app.use(morgan('common'));
-
-app.use(bodyParser.json());
+app.use(morgan('common')); // logging with Morgan
+app.use(bodyParser.json()); // JSON Parsing
+app.use(express.static('public')); //retrieves files from public folder
 
 // CORS implementation
 app.use(cors()); // all origins are given access
@@ -47,12 +49,6 @@ let allowedOrigins = ['http://localhost:8080', 'https://myflix-movie-25.herokuap
   return callback(null, true);
   }
 }));
-
-var auth = require('./auth')(app);
-
-//require('./passport');
-
-app.use(express.static('public'));
 
 // get requests
 app.get('/', function(req, res) {
@@ -162,19 +158,19 @@ app.get('/users/:Username', passport.authenticate('jwt', {
 app.post('/users',
   // validation logic here for request
   [
-  check('Username', 'Username is required').isLength({min: 5}),
+  check('Username', 'Username is required').isLength({min: 4}),
 //  check('Username', 'Username contains non alphanummeric characters - not allowed.').isAlphanumeric(),
   check('Password', 'Password is required').not().isEmpty(),
   check('Email', 'Email does not appear to be valid').isEmail()
 ], (req, res) => {
   //check the validation object for errors
-  let errors = validationResult(req);
+  var errors = validationResult(req);
 
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
   }
 
-  let hashedPassword = Users.hashPassword(req.body.Password);
+  var hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOne({ Username: req.body.Username })
     .then((user) => {
       if (user) {
@@ -231,21 +227,8 @@ app.delete('/users/:Username', passport.authenticate('jwt', {
   Birthday: Date
 }*/
 app.put('/users/:Username', passport.authenticate('jwt', {
-  session: false }),
-  [
-  check('Username', 'Username is required').isLength({min: 5}),
-  check('Username', 'Username contains non alphanummeric characters - not allowed.').isAlphanumeric(),
-  check('Password', 'Password is required').not().isEmpty(),
-  check('Email', 'Email does not appear to be valid').isEmail()
-], (req, res) => {
-  //check the validation object for errors
-  let errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  }
-
-  Users.findOneAndUpdate(
+  session: false }), (req, res) => {
+  Users.findOneAndUpdate( // allows users to update their info
     { Username: req.params.Username},
     { $set:
       {
