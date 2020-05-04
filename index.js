@@ -37,7 +37,7 @@ app.use(express.static('public')); //retrieves files from public folder
 app.use(cors()); // all origins are given access
 
 // only certain origins to be given access:
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:3000','https://git.heroku.com/myflix-movie.com'];
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:3000','https://myflix-movie.herokuapp.com'];
  app.use(cors( {
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
