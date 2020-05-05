@@ -17,7 +17,6 @@ mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
 // Middleware //
 app.use(express.static('public')); //retrieves files from public folder
 app.use(morgan('common')); // logging with Morgan
