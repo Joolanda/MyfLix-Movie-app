@@ -13,26 +13,12 @@ const passport = require('passport');
 require('./passport');
 const auth = require('./auth')(app);
 
+mongoose.connect( process.env.CONNECTION_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
-//mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {
-//  useNewUrlParser: true,
-//  useUnifiedTopology: true
-//});
-
-mongoose.connect(
-  'mongodb+srv://myStorageDBadmin:12345@mystoragedb-1xpkf.mongodb.net/myFlixDB?retryWrites=true&w=majority',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
-
-//mongoose.connect( process.env.CONNECTION_URI, {
-//  useNewUrlParser: true,
-//  useUnifiedTopology: true
-//});
-
-//// Middleware functions ////
+// Middleware //
 app.use(express.static('public')); //retrieves files from public folder
 app.use(morgan('common')); // logging with Morgan
 app.use(bodyParser.json()); // JSON Parsing
@@ -76,7 +62,7 @@ app.get('/documentation', function (req, res) {
   });
 });
 
-//// Movies ////
+// Movies //
 // GETs the list of data about All movies
 app.get(
   '/movies',
@@ -138,17 +124,6 @@ app.get(
       });
   }
 );
-// GETs the data about a genre, by name
-// app.get('/movies/:Genre/:Name', (req, res) => {
-//    Movies.findOne({ 'Genre.Name': req.params.Name })
-//    .then((movies) => {
-//      res.status(201).json(movies.Genre);
-//    })
-//    .catch((err) => {
-//      console.error(err)
-//      res.status(500).send('Error: ' + err);
-//    });
-//   });
 
 // GETs the data about Genre name and description by movie title
 app.get(
@@ -175,7 +150,7 @@ app.get(
   }
 );
 
-//// Users ////
+// Users //
 // GET all users
 app.get(
   '/users',
@@ -353,7 +328,7 @@ app.delete(
     Users.findOneAndUpdate(
       { Username: req.params.Username },
       { $pull: { Favorites: req.params._id } },
-      { new: true }, // This line makes sure that the updated document is returned
+      { new: true },
       (err, updatedUser) => {
         if (err) {
           console.error(err);
@@ -372,13 +347,13 @@ app.delete(
   }
 );
 
-//// error handling middleware, defined last in chain
+// error handling middleware, defined last in chain
 app.use(function (err, req, res, next) {
   console.error(err.stack);
   res.status(500).send('something broke!');
 });
 
-//// listen for requests
+// listen for requests
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
 
