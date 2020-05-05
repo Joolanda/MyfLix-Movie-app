@@ -51,7 +51,7 @@ app.use(
 
 // get requests
 app.get('/', function (req, res) {
-  res.send('Welcome to my film club!');
+  res.send('Welcome to my film club!!');
 });
 app.get('/secreturl', function (req, res) {
   res.send('this is a secret url with super top-secret content.');
