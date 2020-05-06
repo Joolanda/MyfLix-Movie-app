@@ -141,7 +141,7 @@ app.get(
           .json(
             'Genre of this movie is: ' +
               movie.Genre.Name +
-              ". " +
+              '. ' +
               movie.Genre.Description
           );
       })
