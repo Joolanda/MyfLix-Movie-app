@@ -201,13 +201,13 @@ app.post(
   ],
   (req, res) => {
     //check the validation object for errors
-    var errors = validationResult(req);
+    let errors = validationResult(req);
 
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
 
-    var hashedPassword = Users.hashPassword(req.body.Password);
+    let hashedPassword = Users.hashPassword(req.body.Password);
     Users.findOne({ Username: req.body.Username })
       .then((user) => {
         if (user) {
