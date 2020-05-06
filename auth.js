@@ -1,10 +1,10 @@
-var jwtSecret = 'your_jwt_secret'; // same key as in JWTStrategy
-var jwt = require('jsonwebtoken');
-const passport = require('passport');
+const jwtSecret = 'your_jwt_secret'; // same key as in JWTStrategy
+const jwt = require('jsonwebtoken'),
+  passport = require('passport');
 
 require('./passport'); // local passportfile
 
-function generateJWTToken (user) {
+let generateJWTToken = (user) => {
   return jwt.sign(user, jwtSecret, {
     subject: user.Username, // this is the username generated in the JWT
     expiresIn: '7d', // the token will expire in x days
@@ -26,7 +26,7 @@ module.exports = (router) => {
         if (error) {
           res.send(error);
         }
-        var token = generateJWTToken(user.toJSON());
+        let token = generateJWTToken(user.toJSON());
         return res.json({ user, token });
       });
     })(req, res);

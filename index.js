@@ -11,7 +11,6 @@ const cors = require('cors');
 const { check, validationResult } = require('express-validator');
 const passport = require('passport');
 require('./passport');
-const auth = require('./auth')(app);
 
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
@@ -22,6 +21,10 @@ app.use(express.static('public')); //retrieves files from public folder
 app.use(morgan('common')); // logging with Morgan
 app.use(bodyParser.json()); // JSON Parsing
 app.use(cors()); // all origins are given access
+
+let auth = require('./auth')(app); // place auth.js file after bodyParser middleware function
+
+
 
 // CORS, use all origins:
 app.use(cors()); // use all origins
@@ -214,7 +217,7 @@ app.post(
             Username: req.body.Username,
             Password: hashedPassword,
             Email: req.body.Email,
-            Birthday: req.body.Birthday,
+            Birthday: req.body.Birthday
           })
             .then((user) => {
               res.status(201).json(user);
