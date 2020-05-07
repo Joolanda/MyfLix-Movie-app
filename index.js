@@ -18,11 +18,10 @@ require('./passport');
 //  useNewUrlParser: true,
 //  useUnifiedTopology: true});
 
-Mongoose.connect ('mongodb+srv://webapp:' + process.env.dbPassword + '@mystoragedb-1xpkf.mongodb.net/test?retryWrites=true&w=majority',
-  {useNewUrlParser: true,
+Mongoose.connect ('mongodb+srv://myStorageDBadmin:' + process.env.CONNECTION_URI + '@mystoragedb-1xpkf.mongodb.net/myFlixDB?retryWrites=true&w=majority',{
+  useNewUrlParser: true
   }
 );
-
 
 // Middleware //
 app.use(express.static('public')); //retrieves files from public folder
