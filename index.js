@@ -1,46 +1,42 @@
 const express = require('express');
-const app = express();
-const morgan = require('morgan');
-const uuid = require('uuid');
 const bodyParser = require('body-parser');
+const uuid = require('uuid');
+const morgan = require('morgan');
+const app = express();
+
+// Middleware //
+app.use(express.static('public')); //retrieves files from public folder
+app.use(morgan('common')); // logging with Morgan
+app.use(bodyParser.json()); // JSON Parsing
+
+const { check, validationResult } = require('express-validator');
+const passport = require('passport');
+require('./passport');
+
+// Integrating mongoose with a REST API
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 const cors = require('cors');
-const { check, validationResult } = require('express-validator');
-const passport = require('passport');
-require('./passport');
 
+//Mongoose db connections
 //mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
 
-//mongoose.connect(process.env.CONNECTION_URI, {
-//  useNewUrlParser: true,
-//  useUnifiedTopology: true});
+//mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true,useUnifiedTopology: true});
 
 mongoose.connect ('mongodb+srv://myStorageDBadmin:' + process.env.CONNECTION_URI + '@mystoragedb-1xpkf.mongodb.net/myFlixDB?retryWrites=true&w=majority',{
   useNewUrlParser: true
   }
 );
 
-// Middleware //
-app.use(express.static('public')); //retrieves files from public folder
-app.use(morgan('common')); // logging with Morgan
-app.use(bodyParser.json()); // JSON Parsing
-app.use(cors()); // all origins are given access
-
-let auth = require('./auth')(app); // place auth.js file after bodyParser middleware function
-
-
-
-// CORS, use all origins:
-app.use(cors()); // use all origins
 // only certain origins to be given access:
 let allowedOrigins = [
   'http://localhost:8080',
   'http://localhost:3000',
   'https://myflix-movie-25.herokuapp.com'
 ];
+
 // CORS implementation
 app.use(cors({
     origin: (origin, callback) => {
@@ -57,17 +53,12 @@ app.use(cors({
   })
 );
 
-// get requests
+let auth = require('./auth')(app); // place auth.js file after bodyParser middleware function
+
+// GET requests
 app.get('/', function (req, res) {
-  res.send('Welcome to my film club!!');
-});
-app.get('/secreturl', function (req, res) {
-  res.send('this is a secret url with super top-secret content.');
-});
-app.get('/documentation', function (req, res) {
-  res.sendFile('public/documentation.html', {
-    root: __dirname,
-  });
+  var responseText = 'Welcome to my film club!!'
+  res.send(responseText);
 });
 
 // Movies //
