@@ -22,7 +22,6 @@ const cors = require('cors');
 
 //Mongoose db connections
 //mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
-
 //mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true,useUnifiedTopology: true});
 
 mongoose.connect ('mongodb+srv://myStorageDBadmin:' + process.env.CONNECTION_URI + '@mystoragedb-1xpkf.mongodb.net/myFlixDB?retryWrites=true&w=majority',{
@@ -30,7 +29,7 @@ mongoose.connect ('mongodb+srv://myStorageDBadmin:' + process.env.CONNECTION_URI
   }
 );
 
-// only certain origins to be given access:
+// CORS origin sites to be given access:
 let allowedOrigins = [
   'http://localhost:8080',
   'http://localhost:3000',
