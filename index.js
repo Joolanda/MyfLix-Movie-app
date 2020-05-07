@@ -13,10 +13,17 @@ const passport = require('passport');
 require('./passport');
 
 //mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect(process.env.CONNECTION_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+
+//mongoose.connect(process.env.CONNECTION_URI, {
+//  useNewUrlParser: true,
+//  useUnifiedTopology: true});
+
+Mongoose.connect ('mongodb+srv://webapp:' + process.env.dbPassword + '@mystoragedb-1xpkf.mongodb.net/test?retryWrites=true&w=majority',
+  {useNewUrlParser: true,
+  }
+);
+
+
 // Middleware //
 app.use(express.static('public')); //retrieves files from public folder
 app.use(morgan('common')); // logging with Morgan
