@@ -18,7 +18,7 @@ require('./passport');
 //  useNewUrlParser: true,
 //  useUnifiedTopology: true});
 
-Mongoose.connect ('mongodb+srv://myStorageDBadmin:' + process.env.CONNECTION_URI + '@mystoragedb-1xpkf.mongodb.net/myFlixDB?retryWrites=true&w=majority',{
+mongoose.connect ('mongodb+srv://myStorageDBadmin:' + process.env.CONNECTION_URI + '@mystoragedb-1xpkf.mongodb.net/myFlixDB?retryWrites=true&w=majority',{
   useNewUrlParser: true
   }
 );
