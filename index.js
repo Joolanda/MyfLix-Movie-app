@@ -4,6 +4,7 @@ const uuid = require('uuid');
 const morgan = require('morgan');
 const app = express();
 
+
 // Middleware //
 app.use(express.static('public')); //retrieves files from public folder
 app.use(morgan('common')); // logging with Morgan
@@ -21,6 +22,7 @@ const Users = Models.User;
 const cors = require('cors');
 
 //Mongoose db connections
+require('dotenv').config();
 //mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true,useUnifiedTopology: true});
 
