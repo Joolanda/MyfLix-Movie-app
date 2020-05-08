@@ -21,13 +21,8 @@ const Users = Models.User;
 const cors = require('cors');
 
 //Mongoose db connections
-mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
-//mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true,useUnifiedTopology: true});
-
-//mongoose.connect ('mongodb+srv://myStorageDBadmin:' + process.env.CONNECTION_URI + '@mystoragedb-1xpkf.mongodb.net/myFlixDB?retryWrites=true&w=majority',{
-//  useNewUrlParser: true
-//  }
-//);
+//mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true,useUnifiedTopology: true});
 
 // CORS origin sites to be given access:
 let allowedOrigins = [
@@ -349,7 +344,7 @@ app.use(function (err, req, res, next) {
 });
 
 // listen for requests
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
   console.log('Listening on port ' + port);
 });
