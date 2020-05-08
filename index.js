@@ -21,8 +21,8 @@ const Users = Models.User;
 const cors = require('cors');
 
 //Mongoose db connections
-//mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true,useUnifiedTopology: true});
+mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
+//mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true,useUnifiedTopology: true});
 
 // CORS origin sites to be given access:
 let allowedOrigins = [
@@ -47,7 +47,7 @@ app.use(cors({
   })
 );
 // CORS sites use all origins
-app.use(cors()); 
+app.use(cors());
 
 let auth = require('./auth')(app); // place auth.js file after bodyParser middleware function
 
