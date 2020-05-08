@@ -46,6 +46,8 @@ app.use(cors({
     },
   })
 );
+// CORS sites use all origins
+app.use(cors()); 
 
 let auth = require('./auth')(app); // place auth.js file after bodyParser middleware function
 
