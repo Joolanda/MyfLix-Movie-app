@@ -1,8 +1,12 @@
 {
-  "name": "my-first-package",
+  "name": "movie_api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
   "dependencies": {
     "@types/bcrypt": "^3.0.0",
     "@types/cors": "^2.8.6",
@@ -29,10 +33,6 @@
   },
   "devDependencies": {
     "eslint": "^6.8.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
   },
   "repository": {
     "type": "git",
