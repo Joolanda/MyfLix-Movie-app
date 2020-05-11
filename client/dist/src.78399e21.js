@@ -28407,7 +28407,7 @@ var MyFlixApplication = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return _react.default.createElement("div", {
         className: "my-flix"
-      }, _react.default.createElement("div", null, " Good morning"));
+      }, _react.default.createElement("div", null, "Good morning!"));
     }
   }]);
 
@@ -28415,7 +28415,7 @@ var MyFlixApplication = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component); // Finds the root of your app
 
 
-var container = document.getElementByClassName('app-container')[0]; // Tells React to render your app in the root DOM element
+var container = document.getElementsByClassName('app-container')[0]; // Tells React to render your app in the root DOM element
 
 _reactDom.default.render(_react.default.createElement(MyFlixApplication), container);
 },{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","./index.scss":"index.scss"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
