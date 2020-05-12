@@ -188,47 +188,44 @@ app.get(
 );
 
 // ADD a new user to mongoose DB
-app.post(
-  '/users',
-  // validation logic here for request
-  [
-    check('Username', 'Username is required').isLength({ min: 4 }),
-    //  check('Username', 'Username contains non alphanummeric characters - not allowed.').isAlphanumeric(),
-    check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isEmail(),
-  ],
-  (req, res) => {
-    //check the validation object for errors
-    let errors = validationResult(req);
+app.post('/users', function (req, res) {
+  req.checkBody('Username', 'Username is required').notEmpty();
+  req.checkBody('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric()
+  req.checkBody('Password', 'Password is required').notEmpty();
+  req.checkBody('Email', 'Email is required').notEmpty();
+  req.checkBody('Email', 'Email does not appear to be valid').isEmail();
 
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
+  // check the validation object for errors
+  var errors = req.validationErrors();
+  if (errors) {
+    return res.status(422).json({ errors: errors });
+  }
 
-    let hashedPassword = Users.hashPassword(req.body.Password);
-    Users.findOne({ Username: req.body.Username })
-      .then((user) => {
-        if (user) {
-          return res.status(400).send(req.body.Username + 'already exists');
-        } else {
-          Users.create({
+  var hashedPassword = Users.hashPassword(req.body.Password);
+  Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
+    .then(function (user) {
+      if (user) {
+        //If the user is found, send a response that it already exists
+        return res.status(400).send(req.body.Username + " already exists");
+      } else {
+        Users
+          .create({
             Username: req.body.Username,
             Password: hashedPassword,
             Email: req.body.Email,
             Birthday: req.body.Birthday
           })
-            .then((user) => { res.status(201).json(user) })
-            .catch((error) => {
-              console.error(error);
-              res.status(500).send('Error: ' + error);
-            });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).send('Error: ' + error);
-      });
-  });
+          .then(function (user) { res.status(201).json(user) })
+          .catch(function (error) {
+            console.error(error);
+            res.status(500).send("Error: " + error);
+          });
+      }
+    }).catch(function (error) {
+      console.error(error);
+      res.status(500).send("Error: " + error);
+    });
+});
 
 // UPDATE a user's info, by username
 /* We'll expect JSON in this format
