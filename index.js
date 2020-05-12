@@ -205,9 +205,9 @@ app.post("/users", function (req, res) {
   check("Email", "Email does not appear to be valid").isEmail();
 
   // check the validation object for errors
-  var errors = req.validationErrors();
-  if (errors) {
-    return res.status(422).json({ errors: errors });
+  var errors = req.validationErrors(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
   }
 
   var hashedPassword = Users.hashPassword(req.body.Password);
