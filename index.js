@@ -11,8 +11,6 @@ app.use(express.static("public"));
 
 // install validator
 const { check, validationResult } = require("express-validator");
-//use express-validator
-app.use(validator());
 
 // Authentication(passport) and Authorization(auth)
 const passport = require("passport");
