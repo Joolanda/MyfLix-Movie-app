@@ -23,9 +23,12 @@ const cors = require('cors');
 
 //Mongoose db connections
 
+//mongoose.connect('mongodb+srv://myFlixDBadmin:54321>@myflixdb-ojsjk.mongodb.net/myFlixDB?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
+if (app.get('env') === 'production') {
+  mongoose.connect(process.env.CONNECTION_URI, { useMongoClient: true });
+} else {
 mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
-//mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true,useUnifiedTopology: true});
-//mongoose.connect('mongodb+srv://myFlixDBadmin:xxxxx>@myflixdb-ojsjk.mongodb.net/myFlixDB?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
+}
 
 // CORS origin sites to be given access:
 let allowedOrigins = [
