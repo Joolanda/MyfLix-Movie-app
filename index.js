@@ -8,6 +8,7 @@ const cors = require('cors');
 const validator = require('express-validator');
 const passport = require('passport');
 const Models = require('./models.js');
+const bcrypt = require('bcryptjs');
 
 require('./passport');
 
