@@ -46,7 +46,7 @@ app.use(
       }
       return callback(null, true);
     },
-  }),
+  })
 );
 
 // CORS sites granted acces
