@@ -22,10 +22,9 @@ const Users = Models.User;
 const cors = require('cors');
 
 //Mongoose db connections
-
 //mongoose.connect('mongodb+srv://myFlixDBadmin:54321>@myflixdb-ojsjk.mongodb.net/myFlixDB?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 if (app.get('env') === 'production') {
-  mongoose.connect('mongodb+srv://myFlixDBadmin:54321>@myflixdb-ojsjk.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+  mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 } else {
 mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
 }
