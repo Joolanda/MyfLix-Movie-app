@@ -25,7 +25,7 @@ const cors = require('cors');
 
 //mongoose.connect('mongodb+srv://myFlixDBadmin:54321>@myflixdb-ojsjk.mongodb.net/myFlixDB?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 if (app.get('env') === 'production') {
-  mongoose.connect(process.env.CONNECTION_URI, { useMongoClient: true });
+  mongoose.connect('mongodb+srv://myFlixDBadmin:54321>@myflixdb-ojsjk.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 } else {
 mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
 }
