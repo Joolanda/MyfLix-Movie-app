@@ -7,7 +7,7 @@ const app = express();
 app.use(express.static("public")); //retrieves files from public folder
 app.use(morgan("common")); // logging with Morgan
 app.use(bodyParser.json()); // JSON Parsing
-app.use(expressValidator());
+app.use(express.json());
 
 const { check, validationResult } = require("express-validator");
 const passport = require("passport");
@@ -195,16 +195,14 @@ app.get(
 
 // ADD a new user to mongoose DB
 app.post("/users", function (req, res) {
-  req.checkBody("Username", "Username is required").notEmpty();
-  req
-    .checkBody(
-      "Username",
-      "Username contains non alphanumeric characters - not allowed.",
-    )
-    .isAlphanumeric();
-  req.checkBody("Password", "Password is required").notEmpty();
-  req.checkBody("Email", "Email is required").notEmpty();
-  req.checkBody("Email", "Email does not appear to be valid").isEmail();
+  check("Username", "Username is required").notEmpty();
+  check(
+    "Username",
+    "Username contains non alphanumeric characters - not allowed.",
+  ).isAlphanumeric();
+  check("Password", "Password is required").notEmpty();
+  check("Email", "Email is required").notEmpty();
+  check("Email", "Email does not appear to be valid").isEmail();
 
   // check the validation object for errors
   var errors = req.validationErrors();
