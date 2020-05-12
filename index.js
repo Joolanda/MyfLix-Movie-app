@@ -7,7 +7,7 @@ const app = express();
 app.use(express.static("public")); //retrieves files from public folder
 app.use(morgan("common")); // logging with Morgan
 app.use(bodyParser.json()); // JSON Parsing
-app.use(express.json());
+app.use(expressValidator());
 
 const { check, validationResult } = require("express-validator");
 const passport = require("passport");
