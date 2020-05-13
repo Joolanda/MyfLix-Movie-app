@@ -52,6 +52,7 @@ app.use(
 // CORS sites granted acces
 let allowedOrigins = [
   "http://localhost:8080",
+  "http://localhost:1234",
   "https://myflix-movie-25.herokuapp.com/",
   "https://mysterious-earth-11733.herokuapp.com/",
 ];
