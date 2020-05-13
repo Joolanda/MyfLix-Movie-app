@@ -30051,6 +30051,11 @@ module.exports = require('./lib/axios');
 },{"./lib/axios":"../node_modules/axios/lib/axios.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MainView = void 0;
+
 var _react = _interopRequireDefault(require("react"));
 
 var _axios = _interopRequireDefault(require("axios"));
@@ -30079,29 +30084,42 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var MainView = /*#__PURE__*/function (_React$component) {
-  _inherits(MainView, _React$component);
+var MainView = /*#__PURE__*/function (_React$Component) {
+  _inherits(MainView, _React$Component);
 
   var _super = _createSuper(MainView);
 
   function MainView() {
-    var _this;
-
     _classCallCheck(this, MainView);
 
-    // Call the superclass constructor
-    // so React can initialize it
-    _this = _super.call(this); // Initialize the state to an empty object so we can destructure it later
-
-    _this.state = {};
-    return _this;
-  } // THis overrides the render() method of the superclass
-  // No need to call super() though, as it does not hing by default
-
+    return _super.apply(this, arguments);
+  }
 
   _createClass(MainView, [{
+    key: "componentDidMount",
+    // One of the "hooks" available in a React Component
+    value: function componentDidMount() {
+      var _this = this;
+
+      _axios.default.get('<my-api-endpoint/movies>').then(function (response) {
+        // Assign the result to the state
+        _this.setState({
+          movies: response.data
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      // If the state isn't initialized, this will throw on runtime
+      // before the data is initially loaded
+      var movies = this.state.movies; // Before the movies have been loaded
+
+      if (!movies) return _react.default.createElement("div", {
+        className: "main-view"
+      });
       return _react.default.createElement("div", {
         className: "main-view"
       }, movies.map(function (movie) {
@@ -30114,7 +30132,9 @@ var MainView = /*#__PURE__*/function (_React$component) {
   }]);
 
   return MainView;
-}(_react.default.component);
+}(_react.default.Component);
+
+exports.MainView = MainView;
 },{"react":"../../node_modules/react/index.js","axios":"../node_modules/axios/index.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
