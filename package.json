@@ -1,8 +1,12 @@
 {
   "name": "movie_api",
   "version": "1.0.0",
-  "description": "",
+  "description": "a really cool app",
+  "engines": {
+    "node": "10.16.0"
+  },
   "main": "index.js",
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
@@ -40,9 +44,7 @@
     "babel-preset-react": "^6.24.1",
     "eslint": "^6.8.0"
   },
-  "engines": {
-    "node": "10.16.0"
-  }, 
+   
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Joolanda/MyFlix-Movie-app.git"
