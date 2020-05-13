@@ -30259,7 +30259,7 @@ var MyFlixApplication = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return _react.default.createElement("div", {
         className: "my-flix"
-      }, _react.default.createElement("div", null, "Good evening!"));
+      }, _react.default.createElement(_mainView.MainView, null));
     }
   }]);
 
