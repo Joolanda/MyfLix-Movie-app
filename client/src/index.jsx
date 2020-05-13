@@ -11,7 +11,7 @@ class MyFlixApplication extends React.Component {
             <div className="my-flix">
                 <div>Good evening***</div>
                 <div>
-                    {1 + 2 === 2 ? 'Math is broken' : 'Math is awesome'}
+                    {1 + 2 === 3 ? 'Math is broken' : 'Math is awesome'}
                 </div>
             </div>
         );
