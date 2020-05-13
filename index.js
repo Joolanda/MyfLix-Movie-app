@@ -65,7 +65,7 @@ app.get("/", function (req, res) {
 // INCORPORATING AUTHORIZATION INTO THE API ENDPOINTS
 // Movies
 //Gets the list of ALL movies
-app.get("/movies", passport.authenticate("jwt", { session: false }), function (
+app.get("/movies", function (
   req,
   res,
 ) {
