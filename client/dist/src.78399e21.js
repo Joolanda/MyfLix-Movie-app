@@ -28407,7 +28407,7 @@ var MyFlixApplication = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return _react.default.createElement("div", {
         className: "my-flix"
-      }, _react.default.createElement("div", null, "Good evening***"), _react.default.createElement("div", null, 1 + 2 === 3 ? 'Math is broken' : 'Math is awesome'));
+      }, _react.default.createElement("div", null, "Good afternoon***"), _react.default.createElement("div", null, 1 + 2 === 5 ? 'Math is broken' : 'Math is awesome'));
     }
   }]);
 

@@ -9,9 +9,9 @@ class MyFlixApplication extends React.Component {
     render() {
         return (
             <div className="my-flix">
-                <div>Good evening***</div>
+                <div>Good afternoon***</div>
                 <div>
-                    {1 + 2 === 3 ? 'Math is broken' : 'Math is awesome'}
+                    {1 + 2 === 5 ? 'Math is broken' : 'Math is awesome'}
                 </div>
             </div>
         );
