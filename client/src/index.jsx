@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
+import {MainView} from './components/main-view/main-view';
 
 // Import statement to indicate that you need to bundle `./index.scss`
 import './index.scss';
@@ -10,10 +10,7 @@ class MyFlixApplication extends React.Component {
     render() {
         return (
             <div className="my-flix">
-                <div>Good afternoon***</div>
-                <div>
-                    {1 + 2 === 5 ? 'Math is broken' : 'Math is awesome'}
-                </div>
+                <MainView/>
             </div>
         );
     }
