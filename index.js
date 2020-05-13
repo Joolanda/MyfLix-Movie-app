@@ -29,6 +29,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, u
 
 // CORS origin sites to be given access:
 let allowedOrigins = [
+  'http://localhost:1234',
   'http://localhost:8080',
   'http://localhost:3000',
   'https://myflix-movie-25.herokuapp.com'
