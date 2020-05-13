@@ -14,7 +14,11 @@ class MainView extends React.component {
   // No need to call super() though, as it does not hing by default
   render() {
     return (
-      <div className="main-view"></div>
+      <div className="main-view">
+      { movies.map(movie => (
+        <div className="movie-card" key={movie._id}>{movie.Title}</div>
+      ))}
+      </div>
       );
   }
 }
