@@ -1,19 +1,30 @@
 import React from 'react';
 import axios from 'axios';
 
-class MainView extends React.component {
-  constructor () {
-    // Call the superclass constructor
-    // so React can initialize it
-    super();
+export class MainView extends React.Component {
 
-    // Initialize the state to an empty object so we can destructure it later
-    this.state = {};
-  }
-  // THis overrides the render() method of the superclass
-  // No need to call super() though, as it does not hing by default
-  render() {
-    return (
+  // One of the "hooks" availabe in a React Component
+    componentDidMount() {
+      axios.get('<my-api-eindpoint/movies>')
+      .then(response => {
+        // asign th result to the state
+        this.setState({
+          movies: response.data
+        }),
+        })
+        .catch(function ( error) {
+          console.log(error);
+        });
+      }
+    render(){
+      // If the state isn't initialized, this will throw  on runtime
+      // before the data is initially loaded
+      const { movies} = this.state;
+
+      // Before the movies have been loaded
+      if (!movies) return <div className="main-view"/>;
+
+      return (
       <div className="main-view">
       { movies.map(movie => (
         <div className="movie-card" key={movie._id}>{movie.Title}</div>
