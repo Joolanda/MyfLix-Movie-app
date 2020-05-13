@@ -79,7 +79,8 @@ app.get("/movies", function (
     });
 });
 
-// Add new Movie
+// Add new Movie 
+// task 3.3 no passport: in order to allow anonymous users to make requests on the movies endpoint
 app.post("/movies", (req, res) => {
   Movies.findOne({ Title: req.body.Title })
     .then((movie) => {
