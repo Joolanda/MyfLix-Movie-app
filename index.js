@@ -6,36 +6,31 @@ const app = express();
 
 
 // Middleware //
-app.use(express.static('public')); //retrieves files from public folder
-app.use(morgan('common')); // logging with Morgan
 app.use(bodyParser.json()); // JSON Parsing
+app.use(morgan('common')); // logging with Morgan
+app.use(express.static('public')); //retrieves files from public folder
 
+// install validator
 const { check, validationResult } = require('express-validator');
+
+// Authentication(passport) and Authorization(auth)
 const passport = require('passport');
 require('./passport');
+const auth = require('./auth')(app);
 
 // Integrating mongoose with a REST API
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
-const cors = require('cors');
 
-//Mongoose db connections
-
+//MongoDB connections
 //mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true,useUnifiedTopology: true});
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true,useUnifiedTopology: true});
 //mongoose.connect('mongodb+srv://myFlixDBadmin:xxxxx>@myflixdb-ojsjk.mongodb.net/myFlixDB?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 
-// CORS origin sites to be given access:
-let allowedOrigins = [
-  'http://localhost:1234',
-  'http://localhost:8080',
-  'http://localhost:3000',
-  'https://myflix-movie.herokuapp.com'
-];
-
 // CORS implementation
+const cors = require('cors');
 app.use(cors({
     origin: (origin, callback) => {
       if(!origin) return callback(null, true);
@@ -50,10 +45,17 @@ app.use(cors({
     },
   })
 );
-// CORS sites use all origins
-app.use(cors());
 
-let auth = require('./auth')(app); // place auth.js file after bodyParser middleware function
+// CORS origin sites to be given access:
+let allowedOrigins = [
+  'http://localhost:1234',
+  'http://localhost:8080',
+  'http://localhost:3000',
+  'https://myflix-movie.herokuapp.com'
+];
+
+// CORS sites use all origins
+//app.use(cors());
 
 // GET requests
 app.get('/', function (req, res) {
@@ -74,7 +76,7 @@ app.get(
         console.error(err);
         res.status(500).send('Error: ' + err);
       });
-  }
+  },
 );
 // GETs the data about a single movie, by title
 app.get(
@@ -91,7 +93,7 @@ app.get(
         console.error(err);
         res.status(500).send('Error: ' + err);
       });
-  }
+  },
 );
 
 // GETs the data about a director, by name
@@ -118,7 +120,7 @@ app.get(
         console.error(err);
         res.status(500).send('Error: ' + err);
       });
-  }
+  },
 );
 
 // GETs the data about Genre name and description by movie title
@@ -143,7 +145,7 @@ app.get(
         console.error(err);
         res.status(500).send('Error: ' + err);
       });
-  }
+  },
 );
 
 // Users //
@@ -162,7 +164,7 @@ app.get(
         console.error(err);
         res.status(500).send('Error: ' + err);
       });
-  }
+  },
 );
 
 // GET a specific user by username
@@ -180,16 +182,16 @@ app.get(
         console.error(error);
         res.status(500).send('Error: ' + error);
       });
-  }
+  },
 );
 
-// ADD a new user to mongoose DB
+// ADD data for a new user (Allow new users to register)
 app.post(
   '/users',
   // validation logic here for request
   [
     check('Username', 'Username is required').isLength({ min: 4 }),
-    //  check('Username', 'Username contains non alphanummeric characters - not allowed.').isAlphanumeric(),
+    check('Username', 'Username contains non alphanummeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail(),
   ],
@@ -226,8 +228,7 @@ app.post(
       console.error(error);
       res.status(500).send('Error: ' + error);
     });
-}
-);
+});
 
 // UPDATE a user's info, by username
 /* We'll expect JSON in this format
@@ -288,7 +289,7 @@ app.delete(
         console.error(err);
         res.status(500).send('Error: ' + err);
       });
-  }
+  },
 );
 
 // ADD a movie to a user's list of favorites
