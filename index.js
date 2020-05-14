@@ -248,45 +248,47 @@ app.get(
 );
 
 // Add data for a new user (Allow new users to register)
-app.post(
-  "/users",
+app.post("/users", 
   [
-    check("Username", "Username is required").isLength({ min: 4 }),
-    check(
-      "Username",
-      "Username contains non alphanumeric characters - not allowed",
-    ).isAlphanumeric(),
+    check("Username", "Username is required").isLength({min: 4}),
+    check("Username", "Username contains non alphanumeric characters - not allowed.").isAlphanumeric(),
     check("Password", "Password is required").not().isEmpty(),
-    check("Email", "Email does not appear to be valid").isEmail(),
-  ],
+    check("Email", "Email does not appear to be valid").isEmail()
+  ], (req, res) => {
 
-  (res, req) => {
-    var errors = validationResult(req);
+  // check the validation object for errors
+    let errors = validationResult(req);
+
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
-    var hashedPassword = Users.hashPassword(req.body.Password);
-    Users.findOne({ Username: req.body.Username }).then((user) => {
-      if (user) {
-        return res.status(400).send(req.body.Username + " already exists");
-      } else {
-        Users.create({
-          Username: req.body.Username,
-          Password: hashedPassword,
-          Email: req.body.Email,
-          Birthday: req.body.Birthday,
-        })
-          .then((user) => {
-            res.status(201).json(user);
-          })
-          .catch((error) => {
-            console.error(error);
-            res.status(500).send("Error: " + error);
-          });
-      }
-    });
-  },
-);
+
+    let hashedPassword = Users.hashPassword(req.body.Password);
+    Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
+      .then((user) => {
+        if (user) {
+          //If the user is found, send a response that it already exists
+          return res.status(400).send(req.body.Username + " already exists");
+        } else {
+          Users
+            .create({
+              Username: req.body.Username,
+              Password: hashedPassword,
+              Email: req.body.Email,
+              Birthday: req.body.Birthday
+            })
+            .then((user) => { res.status(201).json(user) })
+            .catch((error) => {
+              console.error(error);
+              res.status(500).send('Error: ' + error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send("Error: " + error);
+      });
+  });
 
 // Update the user's information (Allow users to update their user info (username, password, email, date of birth)
 app.put(
