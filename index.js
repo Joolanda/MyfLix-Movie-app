@@ -59,7 +59,7 @@ let allowedOrigins = [
 
 // default textual response when request hits the root folder
 app.get("/", function (req, res) {
-  res.send("Welcome to myFlix!");
+  res.send("Welcome to myFlix!!");
 });
 
 // INCORPORATING AUTHORIZATION INTO THE API ENDPOINTS
