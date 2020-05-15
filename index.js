@@ -1,8 +1,8 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+bodyParser = require("body-parser");
+uuid = require("uuid");
 const morgan = require("morgan");
 const app = express();
-uuid = require("uuid");
 
 // Middleware //
 app.use(bodyParser.json()); // JSON Parsing
@@ -20,8 +20,8 @@ const auth = require("./auth")(app);
 // Integrating mongoose with a REST API
 const mongoose = require("mongoose");
 const Models = require("./models.js");
-const Movies = Models.Movie;
-const Users = Models.User;
+Movies = Models.Movie;
+Users = Models.User;
 
 //MongoDB connections
 //mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true})..then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
@@ -57,7 +57,7 @@ let allowedOrigins = [
 // CORS sites use all origins
 //app.use(cors());
 
-// GET requests
+// default textual response when request hits the root folder
 app.get("/", function (req, res) {
   var responseText = "Welcome to my film club!!";
   res.send(responseText);
@@ -84,7 +84,7 @@ app.get(
   (req, res) => {
     Movies.findOne({ Title: req.params.Title })
       .then((movie) => {
-        res.status(201).json(movie);
+        res.json(movie);
       })
       .catch((err) => {
         console.error(err);
@@ -102,9 +102,7 @@ app.get(
   (req, res) => {
     Movies.findOne({ "Director.Name": req.params.Name })
       .then((movies) => {
-        res
-          .status(201)
-          .json(
+        res.json(
             "Name: " +
               movies.Director.Name +
               " Bio: " +
@@ -136,7 +134,7 @@ app.get(
               movie.Genre.Name +
               ". " +
               movie.Genre.Description
-          );
+              );
       })
       .catch((err) => {
         console.error(err);
@@ -156,7 +154,8 @@ app.get("/users", (req, res) => {
       console.error(err);
       res.status(500).send("Error: " + err);
     });
-});
+  }
+);
 
 // ADD data for a new user (Allow new users to register)
 app.post(
@@ -326,13 +325,7 @@ app.delete(
           console.error(err);
           res.status(500).send("Error: " + err);
         } else {
-          res
-            .json(updatedUser)
-            .send(
-              "Movie with ID: " +
-                req.params._id +
-                " was succesfully removed from the favorites list."
-            );
+          res.json(updatedUser);
         }
       }
     );
@@ -347,7 +340,7 @@ app.use((err, req, res, next) => {
 });
 
 // listen for requests
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 app.listen(port, "0.0.0.0", () => {
  // console.log("Listening on port " + port);
 });
