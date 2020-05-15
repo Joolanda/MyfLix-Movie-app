@@ -200,9 +200,9 @@ app.post(
             });
         }
       })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).send("Error: " + error);
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
       });
   }
 );
