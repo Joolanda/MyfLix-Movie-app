@@ -148,14 +148,10 @@ app.get(
   },
 );
 
-// Users //
+// Start users scripts here//
 // GET all users
 app.get(
-  '/users',
-  passport.authenticate('jwt', {
-    session: false,
-  }),
-  (req, res) => {
+  '/users', (req, res) => {
     Users.find()
       .then((users) => {
         res.status(201).json(users);
@@ -163,24 +159,6 @@ app.get(
       .catch((err) => {
         console.error(err);
         res.status(500).send('Error: ' + err);
-      });
-  },
-);
-
-// GET a specific user by username
-app.get(
-  '/users/:Username',
-  passport.authenticate('jwt', {
-    session: false,
-  }),
-  (req, res) => {
-    Users.findOne({ Username: req.params.Username })
-      .then((user) => {
-        res.json(user);
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).send('Error: ' + error);
       });
   },
 );
@@ -229,6 +207,24 @@ app.post(
       res.status(500).send('Error: ' + error);
     });
 });
+
+// GET a specific user by username
+app.get(
+  '/users/:Username',
+  passport.authenticate('jwt', {
+    session: false,
+  }),
+  (req, res) => {
+    Users.findOne({ Username: req.params.Username })
+      .then((user) => {
+        res.json(user);
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send('Error: ' + error);
+      });
+  },
+);
 
 // UPDATE a user's info, by username
 /* We'll expect JSON in this format
@@ -351,7 +347,7 @@ app.use(function (err, req, res, next) {
 });
 
 // listen for requests
-const port = process.env.PORT || 8080;
+var port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
   console.log('Listening on port ' + port);
 });
