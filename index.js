@@ -340,9 +340,10 @@ app.delete(
 );
 
 // error handling middleware, defined last in chain
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("something broke!!");
+  next();
 });
 
 // listen for requests
