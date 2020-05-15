@@ -25,10 +25,7 @@ const Users = Models.User;
 
 //MongoDB connections
 mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true}).catch(error => handleError(error));
-//mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+//mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true,});
 //mongoose.connect('mongodb+srv://myFlixDBadmin:xxxxx>@myflixdb-ojsjk.mongodb.net/myFlixDB?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 
 // CORS implementation
