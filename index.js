@@ -1,8 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const uuid = require("uuid");
 const morgan = require("morgan");
 const app = express();
+uuid = require("uuid");
 
 // Middleware //
 app.use(bodyParser.json()); // JSON Parsing
@@ -24,7 +24,7 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 //MongoDB connections
-//mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true}).catch(error => handleError(error));
+//mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true})..then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
 mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true,});
 //mongoose.connect('mongodb+srv://myFlixDBadmin:xxxxx>@myflixdb-ojsjk.mongodb.net/myFlixDB?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 
@@ -348,6 +348,6 @@ app.use(function (err, req, res, next) {
 // listen for requests
 var port = process.env.PORT || 8080;
 app.listen(port, "0.0.0.0", () => {
-  console.log("Listening on port " + port);
+ // console.log("Listening on port " + port);
 });
 
