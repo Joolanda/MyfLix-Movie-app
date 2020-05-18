@@ -34,7 +34,7 @@ export class MainView extends React.Component {
     return (
      <div className="main-view">
      { movies.map(movie => (
-       <div className="movie-card" key={movie._id}>{movie.Title}</div>
+       <MovieCard key={movie._id}>{movie.Title}</div>
      ))}
      </div>
     );
