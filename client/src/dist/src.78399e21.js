@@ -30097,11 +30097,10 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
   _createClass(MainView, [{
     key: "componentDidMount",
-    // One of the "hooks" available in a React Component
     value: function componentDidMount() {
       var _this = this;
 
-      _axios.default.get('<https://myflix-movie.herokuapp.com/movies>').then(function (response) {
+      _axios.default.get('https://myflix-movie.herokuapp.com/movies').then(function (response) {
         // Assign the result to the state
         _this.setState({
           movies: response.data
