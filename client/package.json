@@ -1,9 +1,9 @@
 {
   "devDependencies": {
     "babel-core": "^6.26.3",
-    "sass": "^1.26.5"
+    "sass": "1.26.5"
   },
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "0.19.2"
   }
 }
