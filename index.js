@@ -48,12 +48,7 @@ app.use(
 );
 
 // CORS origin sites to be given access:
-let allowedOrigins = [
-  "http://localhost:1234",
-  "http://localhost:8080",
-  "http://localhost:3000",
-  "https://myflix-movie.herokuapp.com",
-];
+let allowedOrigins = ["http://localhost:1234","*"];
 
 // CORS sites use all origins
 //app.use(cors());
