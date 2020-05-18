@@ -29,7 +29,7 @@ render() {
   return (
    <div className="main-view">
    { movies.map(movie => (
-     <div className="movie-card" key={movie._id}>{movie.Title}</div>
+       <div className="movie-card" key={movie._id}>{movie.Title}</div>
    ))}
    </div>
   );
