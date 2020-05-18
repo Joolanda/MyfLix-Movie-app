@@ -2,6 +2,13 @@ import React from 'react';
 import axios from 'axios';
 
 export class MainView extends React.Component {
+  constructor() {
+    super();
+    this.state = {}
+  }
+
+    // This overrides the render() method of the superclass
+  // No need to call super() though, as it does nothing by default
 
   componentDidMount() {
     axios.get('https://myflix-movie.herokuapp.com/movies')
@@ -15,7 +22,7 @@ export class MainView extends React.Component {
         console.log(error);
       });
   }
-  
+
   render() {
     // If the state isn't initialized, this will throw on runtime
     // before the data is initially loaded

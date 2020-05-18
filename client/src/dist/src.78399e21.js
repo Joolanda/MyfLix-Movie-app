@@ -30090,19 +30090,25 @@ var MainView = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(MainView);
 
   function MainView() {
+    var _this;
+
     _classCallCheck(this, MainView);
 
-    return _super.apply(this, arguments);
-  }
+    _this = _super.call(this);
+    _this.state = {};
+    return _this;
+  } // This overrides the render() method of the superclass
+  // No need to call super() though, as it does nothing by default
+
 
   _createClass(MainView, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this = this;
+      var _this2 = this;
 
       _axios.default.get('https://myflix-movie.herokuapp.com/movies').then(function (response) {
         // Assign the result to the state
-        _this.setState({
+        _this2.setState({
           movies: response.data
         });
       }).catch(function (error) {
@@ -30295,7 +30301,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53779" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58451" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
