@@ -30096,7 +30096,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
   _createClass(MovieCard, [{
     key: "render",
     value: function render() {
-      // This is given to the <movieCard/> component by the outer world
+      // This is given to the <MovieCard/> component by the outer world
       // which, in this case, is `MainView`, as MainView`is what's connected
       // to your database via the movies endpoint of your API
       var movie = this.props.movie;
@@ -30363,7 +30363,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58451" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50161" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
