@@ -30098,21 +30098,11 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           movie = _this$props.movie,
-          onCLick = _this$props.onCLick;
+          _onClick = _this$props.onClick;
       return _react.default.createElement("div", {
-        onClick: function (_onClick) {
-          function onClick() {
-            return _onClick.apply(this, arguments);
-          }
-
-          onClick.toString = function () {
-            return _onClick.toString();
-          };
-
-          return onClick;
-        }(function () {
-          return onClick(movie);
-        }),
+        onClick: function onClick() {
+          return _onClick(movie);
+        },
         className: "movie-card"
       }, movie.Title);
     }
@@ -30318,7 +30308,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             return _this3.onMovieClick(movie);
           }
         });
-      }));
+      }), _react.default.createElement("button", null, "Back"));
     }
   }]);
 
