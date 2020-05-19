@@ -30197,7 +30197,13 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "label"
       }, "Director: "), _react.default.createElement("span", {
         className: "value"
-      }, movie.Director.Name)));
+      }, movie.Director.Name)), _react.default.createElement("button", {
+        variant: "primary",
+        classname: "back-button",
+        onClick: function onClick() {
+          return window.location.href = '../main-view/main-view.jsx';
+        }
+      }, "Back"));
     }
   }]);
 
@@ -30308,7 +30314,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             return _this3.onMovieClick(movie);
           }
         });
-      }), _react.default.createElement("button", null, "Back"));
+      }));
     }
   }]);
 

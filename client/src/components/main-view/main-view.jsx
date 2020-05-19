@@ -49,7 +49,6 @@ export class MainView extends React.Component {
             onClick={movie => this.onMovieClick(movie)}/>
          ))
       }
-      <button>Back</button>
       </div>
      );
    }
