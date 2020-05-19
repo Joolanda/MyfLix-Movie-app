@@ -14,7 +14,7 @@ export class MainView extends React.Component {
   }
 
   componentDidMount() {
-    /* axios.get('https://myflix-movie.herokuapp.com/movies')
+     axios.get('https://myflix-movie.herokuapp.com/movies')
       .then(response => {
         // Assign the result to the state
         this.setState({
@@ -23,7 +23,7 @@ export class MainView extends React.Component {
       })
       .catch(function (error) {
         console.log(error);
-      }); */
+      }); 
   }
 
   onMovieClick(movie) {

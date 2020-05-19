@@ -30279,16 +30279,16 @@ var MainView = /*#__PURE__*/function (_React$Component) {
   _createClass(MainView, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      /* axios.get('https://myflix-movie.herokuapp.com/movies')
-        .then(response => {
-          // Assign the result to the state
-          this.setState({
-            movies: response.data
-          });
-        })
-        .catch(function (error) {
-          console.log(error);
-        }); */
+      var _this2 = this;
+
+      _axios.default.get('https://myflix-movie.herokuapp.com/movies').then(function (response) {
+        // Assign the result to the state
+        _this2.setState({
+          movies: response.data
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   }, {
     key: "onMovieClick",
@@ -30300,7 +30300,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var _this$state = this.state,
           movies = _this$state.movies,
@@ -30318,7 +30318,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           key: movie._id,
           movie: movie,
           onClick: function onClick(movie) {
-            return _this2.onMovieClick(movie);
+            return _this3.onMovieClick(movie);
           }
         });
       }));
