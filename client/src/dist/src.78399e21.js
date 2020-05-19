@@ -30310,7 +30310,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         className: "main-view"
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
         movie: selectedMovie
-      }) : movies.map(function (mov) {
+      }) : movies.map(function (movie) {
         return _react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
           movie: movie,
