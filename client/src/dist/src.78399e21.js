@@ -30161,11 +30161,14 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this);
     _this.state = {};
     return _this;
-  }
+  } //onResetSelectedMovie = () => this.props.onClick()
+
 
   _createClass(MovieView, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var movie = this.props.movie;
       if (!movie) return null;
       return _react.default.createElement("div", {
@@ -30201,7 +30204,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         variant: "primary",
         classname: "back-button",
         onClick: function onClick() {
-          return window.location.href = '../main-view/main-view.jsx';
+          return _this2.onResetSelectedMovie;
         }
       }, "Back"));
     }
@@ -30315,6 +30318,13 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           }
         });
       }));
+    }
+  }, {
+    key: "onResetSelectedMovie",
+    value: function onResetSelectedMovie() {
+      this.setState({
+        selectedMovie: null
+      });
     }
   }]);
 
@@ -30483,7 +30493,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65191" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49784" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
