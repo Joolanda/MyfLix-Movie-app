@@ -31,11 +31,7 @@ export class MainView extends React.Component {
       selectedMovie: movie
     });
   }
-  onResetSelectedMovie() {
-    this.setState({
-      selectedMovie: null
-    });
-  }
+  
 
   render() {
     const { movies, selectedMovie } = this.state;
@@ -56,6 +52,11 @@ export class MainView extends React.Component {
       } 
       </div>
      );  
+     onResetSelectedMovie() {
+      this.setState({
+        selectedMovie: null
+      });
     }
-   }
+  }
+ }
   

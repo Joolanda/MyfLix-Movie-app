@@ -30298,13 +30298,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "onResetSelectedMovie",
-    value: function onResetSelectedMovie() {
-      this.setState({
-        selectedMovie: null
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
