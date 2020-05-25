@@ -30209,6 +30209,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, "Director: "), _react.default.createElement("span", {
         className: "value"
       }, movie.Director.Name)), _react.default.createElement("button", {
+        className: "reset-button",
         onClick: function onClick() {
           return _this2.onResetSelectedMovie();
         }

@@ -38,7 +38,7 @@ onResetSelectedMovie() {
           <span className="label">Director: </span>
           <span className="value">{movie.Director.Name}</span>
         </div>
-       <button onClick={() => this.onResetSelectedMovie()}>Back</button>
+       <button className="reset-button" onClick={() => this.onResetSelectedMovie()}>Back</button>
      </div>
     );
   }
