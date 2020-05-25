@@ -48,7 +48,10 @@ export class MainView extends React.Component {
             key={movie._id}
             movie={movie}
             onClick={movie => this.onMovieClick(movie)}/>
-
+            onResetSelectedMovie() {
+              this.setState({
+                selectedMovie: null
+              });
          ))
       } 
       </div>
