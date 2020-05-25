@@ -30175,7 +30175,9 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var movie = this.props.movie;
+      var _this$props = this.props,
+          movie = _this$props.movie,
+          selectedMovie = _this$props.selectedMovie;
       if (!movie) return null;
       return _react.default.createElement("div", {
         className: "movie-view"

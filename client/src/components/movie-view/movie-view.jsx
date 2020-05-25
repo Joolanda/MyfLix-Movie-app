@@ -14,7 +14,7 @@ onResetSelectedMovie() {
   });
 }
   render() {
-   const { movie } = this.props;
+   const { movie, selectedMovie } = this.props;
 
     if (!movie) return null;
 
