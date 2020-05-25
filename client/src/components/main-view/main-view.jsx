@@ -52,11 +52,6 @@ export class MainView extends React.Component {
       } 
       </div>
      );  
-     onResetSelectedMovie() {
-      this.setState({
-        selectedMovie: null
-      });
-    }
   }
  }
   
