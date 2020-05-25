@@ -5,12 +5,16 @@ export class MovieView extends React.Component {
   constructor() {
     super();  
 
-    this.state = {
-    };
-  }
+    this.state = {};
+}
 
+onResetSelectedMovie() {
+  this.setState({
+    selectedMovie: null
+  });
+}
   render() {
-   const { movie, onClick } = this.props;
+   const { movie } = this.props;
 
     if (!movie) return null;
 
@@ -34,7 +38,7 @@ export class MovieView extends React.Component {
           <span className="label">Director: </span>
           <span className="value">{movie.Director.Name}</span>
         </div>
-       <button variant="primary" className="back-button" onClick={() => this.onResetSelectedMovie()}>Back</button>
+       <button onClick={() => this.onResetSelectedMovie()}>Back</button>
      </div>
     );
   }
