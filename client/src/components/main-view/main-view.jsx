@@ -31,7 +31,7 @@ export class MainView extends React.Component {
       selectedMovie: movie
     });
   }
-  
+
 
   render() {
     const { movies, selectedMovie } = this.state;
@@ -48,6 +48,7 @@ export class MainView extends React.Component {
             key={movie._id}
             movie={movie}
             onClick={movie => this.onMovieClick(movie)}/>
+
          ))
       } 
       </div>
