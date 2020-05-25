@@ -3,16 +3,15 @@ import React, { useCallback } from 'react';
 export class MovieView extends React.Component {
 
   constructor() {
-    super();
-  
+    super();  
 
-    this.state = {};
+    this.state = {
+    };
   }
-  //onResetSelectedMovie = () => this.props.onClick()
 
   render() {
-   const { movie } = this.props;
-  
+   const { movie, onClick } = this.props;
+
     if (!movie) return null;
 
     return (
@@ -22,7 +21,7 @@ export class MovieView extends React.Component {
          <span className="label">Title: </span>
          <span className="value">{movie.Title}</span>
         </div>
-        <div className="movie-desription">
+        <div className="movie-description">
            <span className="label">Decription: </span>
           <span className="value">{movie.Description} </span>
         </div>
@@ -35,7 +34,7 @@ export class MovieView extends React.Component {
           <span className="label">Director: </span>
           <span className="value">{movie.Director.Name}</span>
         </div>
-       <button variant="primary" classname="back-button" onClick={() => this.onResetSelectedMovie}>Back</button>
+       <button variant="primary" className="back-button" onClick={() => this.onResetSelectedMovie()}>Back</button>
      </div>
     );
   }

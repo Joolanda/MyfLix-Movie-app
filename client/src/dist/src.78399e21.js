@@ -30161,15 +30161,16 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this);
     _this.state = {};
     return _this;
-  } //onResetSelectedMovie = () => this.props.onClick()
-
+  }
 
   _createClass(MovieView, [{
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      var movie = this.props.movie;
+      var _this$props = this.props,
+          movie = _this$props.movie,
+          onClick = _this$props.onClick;
       if (!movie) return null;
       return _react.default.createElement("div", {
         className: "movie-view"
@@ -30183,7 +30184,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, "Title: "), _react.default.createElement("span", {
         className: "value"
       }, movie.Title)), _react.default.createElement("div", {
-        className: "movie-desription"
+        className: "movie-description"
       }, _react.default.createElement("span", {
         className: "label"
       }, "Decription: "), _react.default.createElement("span", {
@@ -30202,9 +30203,9 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "value"
       }, movie.Director.Name)), _react.default.createElement("button", {
         variant: "primary",
-        classname: "back-button",
+        className: "back-button",
         onClick: function onClick() {
-          return _this2.onResetSelectedMovie;
+          return _this2.onResetSelectedMovie();
         }
       }, "Back"));
     }
@@ -30294,6 +30295,13 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "onResetSelectedMovie",
+    value: function onResetSelectedMovie() {
+      this.setState({
+        selectedMovie: null
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -30318,13 +30326,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           }
         });
       }));
-    }
-  }, {
-    key: "onResetSelectedMovie",
-    value: function onResetSelectedMovie() {
-      this.setState({
-        selectedMovie: null
-      });
     }
   }]);
 
@@ -30493,7 +30494,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49784" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49702" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
