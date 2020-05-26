@@ -30159,10 +30159,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, MovieView);
 
     _this = _super.call(this);
-    _this.state = {
-      movie: null,
-      selectedMovie: null
-    };
+    _this.state = {};
     return _this;
   }
 
@@ -30214,7 +30211,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, movie.Director.Name)), "under construction..", _react.default.createElement("button", {
         className: "reset-button",
         onClick: function onClick() {
-          return _this2.onResetSelectedMovie();
+          return _this2.props.onResetSelectedMovie();
         }
       }, "Back"), "...Button to go back to MainView's original state?!");
     }
@@ -30327,7 +30324,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       return _react.default.createElement("div", {
         className: "main-view"
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
-        movie: selectedMovie
+        movie: selectedMovie,
+        onResetSelectedMovie: this.onResetSelectedMovie
       }) : movies.map(function (movie) {
         return _react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
@@ -30505,7 +30503,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51375" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52563" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

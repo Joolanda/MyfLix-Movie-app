@@ -38,7 +38,7 @@ onResetSelectedMovie() {
           <span className="label">Director: </span>
           <span className="value">{movie.Director.Name}</span>
         </div>under construction.. 
-       <button className="reset-button" onClick={() => this.onResetSelectedMovie()}>Back</button>
+       <button className="reset-button" onClick={() => this.props.onResetSelectedMovie()}>Back</button>
         ...Button to go back to MainView's original state?!
      </div>
     );
