@@ -34,7 +34,7 @@ export class MainView extends React.Component {
 
   onResetSelectedMovie() {
     this.setState({
-      selectedMovie: null
+      selectedMovie: null,
     });
   }
 
@@ -47,18 +47,21 @@ export class MainView extends React.Component {
     return (
      <div className="main-view">
       {selectedMovie
-         ? <MovieView movie={selectedMovie}
-            onResetSelectedMovie={this.onResetSelectedMovie}
+         ? <MovieView
+         movie={selectedMovie}
+         onResetSelectedMovie={this.onResetSelectedMovie}
+           />
+            : movies.map(movie => (
+             <MovieCard 
+              key={movie._id} 
+              movie={movie} 
+              onClick={movie => this.onMovieClick(movie)}
             />
-         : movies.map(movie => (
-           <MovieCard 
-            key={movie._id} 
-            movie={movie} 
-            onClick={movie => this.onMovieClick(movie)}
-            />
+
          ))
       }
      </div>
     );
   }
 }
+// test
