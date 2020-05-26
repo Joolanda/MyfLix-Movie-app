@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { MainView } from '../main-view/main-view';
 
 export class MovieView extends React.Component {
 

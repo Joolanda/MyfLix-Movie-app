@@ -30122,6 +30122,8 @@ exports.MovieView = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _mainView = require("../main-view/main-view");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -30212,7 +30214,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.MovieView = MovieView;
-},{"react":"../../node_modules/react/index.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","../main-view/main-view":"components/main-view/main-view.jsx"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30313,8 +30315,11 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       return _react.default.createElement("div", {
         className: "main-view"
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
-        movie: selectedMovie,
-        onResetSelectedMovie: this.onResetSelectedMovie
+        movie: selectedMovie //onClick={() => this.onMovieClick(null)}
+        ,
+        onResetSelectedMovie: function onResetSelectedMovie() {
+          return _this3.onResetSelectedMovie();
+        }
       }) : movies.map(function (movie) {
         return _react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
@@ -30493,7 +30498,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52563" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57257" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
