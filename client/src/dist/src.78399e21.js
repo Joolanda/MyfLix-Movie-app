@@ -30164,13 +30164,6 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(MovieView, [{
-    key: "onResetSelectedMovie",
-    value: function onResetSelectedMovie() {
-      this.setState({
-        selectedMovie: null
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this2 = this;

@@ -8,11 +8,6 @@ export class MovieView extends React.Component {
     this.state = {};
 }
 
-onResetSelectedMovie() {
-  this.setState({
-    selectedMovie: null
-  });
-}
   render() {
    const { movie, selectedMovie } = this.props;
 
