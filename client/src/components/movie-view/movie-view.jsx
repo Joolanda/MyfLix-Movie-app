@@ -5,10 +5,7 @@ export class MovieView extends React.Component {
   constructor() {
     super();  
 
-    this.state = {
-      movie: null,
-      selectedMovie: null
-    };
+    this.state = {};
 }
 
 onResetSelectedMovie() {
