@@ -30211,9 +30211,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return MovieView;
-}(_react.default.Component); // return <MainView/>
-//  if (!movies) return <div className="main-view"/>;
-
+}(_react.default.Component);
 
 exports.MovieView = MovieView;
 },{"react":"../../node_modules/react/index.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {

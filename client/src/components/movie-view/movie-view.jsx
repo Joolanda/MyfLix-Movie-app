@@ -38,6 +38,3 @@ export class MovieView extends React.Component {
     );
   }
   }
-
-  // return <MainView/>
-  //  if (!movies) return <div className="main-view"/>;
