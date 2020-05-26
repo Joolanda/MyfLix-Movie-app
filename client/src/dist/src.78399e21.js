@@ -30206,7 +30206,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           return _this2.props.onResetSelectedMovie();
         }
-      }, "Back"), "...Button to go back to MainView's original state?!");
+      }, "Back"));
     }
   }]);
 

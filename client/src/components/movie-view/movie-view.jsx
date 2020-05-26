@@ -34,7 +34,6 @@ export class MovieView extends React.Component {
           <span className="value">{movie.Director.Name}</span>
         </div>under construction.. 
        <button className="reset-button" onClick={() => this.props.onResetSelectedMovie()}>Back</button>
-        ...Button to go back to MainView's original state?!
      </div>
     );
   }
