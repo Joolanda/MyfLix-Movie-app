@@ -30074,24 +30074,43 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+//import Axios from 'axios';
 function LoginView(props) {
-  var _usestate = usestate(''),
-      _usestate2 = _slicedToArray(_usestate, 2),
-      username = _usestate2[0],
-      setUsername = _usestate2[1];
-
   var _useState = (0, _react.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
-      password = _useState2[0],
-      setPassword = _useState2[1];
+      username = _useState2[0],
+      setUsername = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      password = _useState4[0],
+      setPassword = _useState4[1];
 
   var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
     console.log(username, password);
-    /* Send a request to the sever fo authentication */
+    /* Send a request to the server for authentication */
 
-    /* then call this.props.onLoggedIn(username) */
-  };
+    /* then call props.onLoggedIn(username) */
+
+    props.onLoggedIn(username);
+  }; //const handleSubmit = (e) => {
+  //  e.preventDefault();
+  // Send a request to the server for authentication
+  //  axios.post('https://myflix-movie.herokuapp.com/login', {
+  //    Username: username,
+  //    Password: password
+  //  })
+  //  .then((response) => {
+  //  const data = response.data;
+  //    props.onLoggedIn(data);
+  //  })
+  //  .catch((e) => { 
+  //  console.log('no such user');
+  //  });
+  // Send a request to the server for authentication then call props.onLoggedIn(username)
+  // props.onLoggedIn(username);
+  //};
+
 
   return _react.default.createElement("form", null, _react.default.createElement("label", null, "Username:", _react.default.createElement("input", {
     type: "text",
@@ -30365,16 +30384,13 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         user: user
       });
     }
-    /* onResetSelectedMovie() { */
-
-    /*  this.setState({ */
-
-    /*    selectedMovie: null, */
-
-    /*  }); */
-
-    /*} */
-
+  }, {
+    key: "onResetSelectedMovie",
+    value: function onResetSelectedMovie() {
+      this.setState({
+        selectedMovie: null
+      });
+    }
   }, {
     key: "render",
     value: function render() {
@@ -30396,9 +30412,10 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       return _react.default.createElement("div", {
         className: "main-view"
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
-        movie: selectedMovie
-        /*  onResetSelectedMovie={() => this.onResetSelectedMovie()} */
-
+        movie: selectedMovie,
+        onResetSelectedMovie: function onResetSelectedMovie() {
+          return _this3.onResetSelectedMovie();
+        }
       }) : movies.map(function (movie) {
         return _react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
@@ -30576,7 +30593,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64751" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65132" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

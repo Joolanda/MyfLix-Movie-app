@@ -1,16 +1,34 @@
 import React, { useState } from 'react';
+//import Axios from 'axios';
 
 export function LoginView (props) {
-const [ username, setUsername ] = usestate('');
+const [ username, setUsername ] = useState('');
 const [ password, setPassword ] = useState('');
 
-
 const handleSubmit = (e) => {
-  e.preventDefault();
   console.log(username, password);
-  /* Send a request to the sever fo authentication */
-  /* then call this.props.onLoggedIn(username) */
+  /* Send a request to the server for authentication */
+  /* then call props.onLoggedIn(username) */
+  props.onLoggedIn(username);
   };
+
+//const handleSubmit = (e) => {
+//  e.preventDefault();
+  // Send a request to the server for authentication
+//  axios.post('https://myflix-movie.herokuapp.com/login', {
+//    Username: username,
+//    Password: password
+//  })
+//  .then((response) => {
+//  const data = response.data;
+//    props.onLoggedIn(data);
+//  })
+//  .catch((e) => { 
+//  console.log('no such user');
+//  });
+// Send a request to the server for authentication then call props.onLoggedIn(username)
+// props.onLoggedIn(username);
+//};
 
 
     return (
@@ -26,5 +44,4 @@ const handleSubmit = (e) => {
         <button type="button" onClick={handleSubmit}>Submit</button>
       </form>
     );
-    }
-  
+   }
