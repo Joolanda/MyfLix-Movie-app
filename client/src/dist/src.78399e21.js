@@ -30315,8 +30315,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       return _react.default.createElement("div", {
         className: "main-view"
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
-        movie: selectedMovie //onClick={() => this.onMovieClick(null)}
-        ,
+        movie: selectedMovie,
         onResetSelectedMovie: function onResetSelectedMovie() {
           return _this3.onResetSelectedMovie();
         }

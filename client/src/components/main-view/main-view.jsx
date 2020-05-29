@@ -50,7 +50,6 @@ export class MainView extends React.Component {
       {selectedMovie
          ? <MovieView
          movie={selectedMovie} 
-         //onClick={() => this.onMovieClick(null)}
          onResetSelectedMovie={() => this.onResetSelectedMovie()}
            />
             : movies.map(movie => (
