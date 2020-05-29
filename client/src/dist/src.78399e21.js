@@ -30085,24 +30085,29 @@ function LoginView(props) {
       password = _useState2[0],
       setPassword = _useState2[1];
 
-  var handleSubmit = function handleSubmit() {
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
     console.log(username, password);
-    /*send a request to the sever fo authentication */
+    /* Send a request to the sever fo authentication */
 
     /* then call this.props.onLoggedIn(username) */
   };
 
   return _react.default.createElement("form", null, _react.default.createElement("label", null, "Username:", _react.default.createElement("input", {
     type: "text",
-    value: this.state.username,
-    onChange: this.onUsernameChange
+    value: username,
+    onChange: function onChange(e) {
+      return setUsername(e.target.value);
+    }
   })), _react.default.createElement("label", null, "Password:", _react.default.createElement("input", {
     type: "password",
-    value: this.state.password,
-    onChange: this.onPasswordchange
+    value: password,
+    onChange: function onChange(e) {
+      return setPassword(e.target.value);
+    }
   })), _react.default.createElement("button", {
     type: "button",
-    onClick: this.handleSubmit
+    onClick: handleSubmit
   }, "Submit"));
 }
 },{"react":"../../node_modules/react/index.js"}],"components/movie-card/movie-card.jsx":[function(require,module,exports) {
@@ -30326,7 +30331,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this);
     _this.state = {
       movies: null,
-      selectedMovie: null
+      selectedMovie: null,
+      user: null
     };
     return _this;
   }
@@ -30353,12 +30359,22 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "onResetSelectedMovie",
-    value: function onResetSelectedMovie() {
+    key: "onLoggedIn",
+    value: function onLoggedIn(user) {
       this.setState({
-        selectedMovie: null
+        user: user
       });
     }
+    /* onResetSelectedMovie() { */
+
+    /*  this.setState({ */
+
+    /*    selectedMovie: null, */
+
+    /*  }); */
+
+    /*} */
+
   }, {
     key: "render",
     value: function render() {
@@ -30366,7 +30382,13 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
       var _this$state = this.state,
           movies = _this$state.movies,
-          selectedMovie = _this$state.selectedMovie; // Before the movies have been loaded
+          selectedMovie = _this$state.selectedMovie,
+          user = _this$state.user;
+      if (!user) return _react.default.createElement(_loginView.LoginView, {
+        onLoggedIn: function onLoggedIn(user) {
+          return _this3.onLoggedIn(user);
+        }
+      }); // Before the movies have been loaded
 
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
@@ -30374,10 +30396,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       return _react.default.createElement("div", {
         className: "main-view"
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
-        movie: selectedMovie,
-        onResetSelectedMovie: function onResetSelectedMovie() {
-          return _this3.onResetSelectedMovie();
-        }
+        movie: selectedMovie
+        /*  onResetSelectedMovie={() => this.onResetSelectedMovie()} */
+
       }) : movies.map(function (movie) {
         return _react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
@@ -30391,8 +30412,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return MainView;
-}(_react.default.Component); // test
-
+}(_react.default.Component);
 
 exports.MainView = MainView;
 },{"react":"../../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../login-view/login-view":"components/login-view/login-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {

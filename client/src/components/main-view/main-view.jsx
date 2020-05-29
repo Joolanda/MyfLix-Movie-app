@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import { LoginView } from '../login-view/login-view';
+
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
@@ -11,7 +12,7 @@ export class MainView extends React.Component {
 
     this.state = {
       movies: null,
-      selectedMovie: null
+      selectedMovie: null,
       user: null
     };
   }
@@ -40,11 +41,11 @@ export class MainView extends React.Component {
     });
   }
 
-  onResetSelectedMovie() {
-    this.setState({
-      selectedMovie: null,
-    });
-  }
+  /* onResetSelectedMovie() { */
+  /*  this.setState({ */
+  /*    selectedMovie: null, */
+  /*  }); */
+  /*} */
 
   render() {
     const { movies, selectedMovie, user } = this.state;
@@ -56,11 +57,9 @@ export class MainView extends React.Component {
 
     return (
      <div className="main-view">
-
       {selectedMovie
-         ? <MovieView
-         movie={selectedMovie} 
-         onResetSelectedMovie={() => this.onResetSelectedMovie()}
+         ? <MovieView movie={selectedMovie} 
+       /*  onResetSelectedMovie={() => this.onResetSelectedMovie()} */
            />
             : movies.map(movie => (
              <MovieCard 

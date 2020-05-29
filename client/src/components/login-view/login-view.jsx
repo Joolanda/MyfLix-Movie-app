@@ -5,9 +5,10 @@ const [ username, setUsername ] = usestate('');
 const [ password, setPassword ] = useState('');
 
 
-const handleSubmit = () => {
+const handleSubmit = (e) => {
+  e.preventDefault();
   console.log(username, password);
-  /*send a request to the sever fo authentication */
+  /* Send a request to the sever fo authentication */
   /* then call this.props.onLoggedIn(username) */
   };
 
@@ -16,13 +17,13 @@ const handleSubmit = () => {
       <form>
         <label>
           Username:
-          <input type="text" value={this.state.username} onChange={this.onUsernameChange}/>
+          <input type="text" value={username} onChange={e => setUsername(e.target.value)}/>
         </label>
         <label>
           Password:
-          <input type="password" value={this.state.password} onChange={this.onPasswordchange}/>
+          <input type="password" value={password} onChange={e => setPassword(e.target.value)}/>
         </label>
-        <button type="button" onClick={this.handleSubmit}>Submit</button>
+        <button type="button" onClick={handleSubmit}>Submit</button>
       </form>
     );
     }
