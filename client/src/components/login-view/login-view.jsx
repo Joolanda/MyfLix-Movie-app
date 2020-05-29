@@ -1,39 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export class LoginView extends React.Component {
-  constructor(props) {
-    super(props);
+export function LoginView (props) {
+const [ username, setUsername ] = usestate('');
+const [ password, setPassword ] = useState('');
 
-  this.state = { 
-    username: '',
-    password: ''
-  };
 
-  this.onUsernameChange = this.onUsernameChange.bind(this);
-  this.onPasswordChange = this.onPasswordChange.bind(this);
-  this.handleSumbit = this.handleSubmit.bind(this);
-}
-
-onUsernameChange(event) {
-  this.setState({
-    username: event.target.value
-  });
-}
-
-onPasswordChange(event) {
-  this.setState({
-    password: event.target.value
-  });
-}
-
-handleSubmit() {
-  const { username, password } = this.state;
+const handleSubmit = () => {
   console.log(username, password);
   /*send a request to the sever fo authentication */
   /* then call this.props.onLoggedIn(username) */
-  }
+  };
 
-  render() {
+
     return (
       <form>
         <label>
@@ -48,4 +26,4 @@ handleSubmit() {
       </form>
     );
     }
-  }
+  
