@@ -31356,7 +31356,12 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
 exports.MovieCard = MovieCard;
 MovieCard.propTypes = {
   movie: _propTypes.default.shape({
-    Title: _propTypes.default.string
+    Title: _propTypes.default.string.isRequired,
+    Description: _propTypes.default.string.isRequired,
+    ImagePath: _propTypes.default.string.isRequired,
+    Director: _propTypes.default.shape({
+      Name: _propTypes.default.string.isRequired
+    }).isRequired
   }).isRequired,
   onClick: _propTypes.default.func.isRequired
 };
