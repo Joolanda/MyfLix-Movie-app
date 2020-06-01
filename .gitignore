@@ -6,7 +6,6 @@ npm-debug.log
 *.map
 .env
 .env
-*.scss
 client/src/.cache/*
 client/src/.cache/fb/3f0188985d0e6bf6e3acac87bd6652.json
 client/src/.cache/eb/ec2d2cf168d65e7f09f6fbdf6dc95d.json
