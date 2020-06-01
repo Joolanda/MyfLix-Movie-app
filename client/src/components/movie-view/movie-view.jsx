@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { MainView } from '../main-view/main-view';
+import Button from 'react-bootstrap/Button';
 
 export class MovieView extends React.Component {
 
@@ -34,7 +35,7 @@ export class MovieView extends React.Component {
           <span className="label">Director: </span>
           <span className="value">{movie.Director.Name}</span>
         </div>
-       <button className="reset-button" onClick={() => this.props.onResetSelectedMovie()}>Back</button>
+       <Button className="reset-button" variant="secondary" onClick={() => this.props.onResetSelectedMovie()}>Back</Button>
      </div>
     );
   }
