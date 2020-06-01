@@ -7,14 +7,14 @@ const [ password, createPassword ] = useState('');
 const [ email, createEmail ] = useState('');
 const [ birthday, createBirthday] = useState('');
 
-const handleRegistration = (e) => {
+const handleSubmit= (e) => {
   console.log(username, password);
   /* Send a request to the server for authentication */
   /* then call props.onLoggedIn(username) */
   props.onLoggedIn(username);
   };
 
-//const handleRegister = (e) => {
+//const handleSubmit = (e) => {
 //  e.preventDefault();
 //  axios.post('https://myflix-movie.herokuapp.com/login', {
 //    Username: username,
@@ -46,7 +46,7 @@ const handleRegistration = (e) => {
         Password:
         <input type="password" value={password} onChange={e => createPassword(e.target.value)}/>
        </Form.Label> 
-      <Button variant="success" type="submit" size="sm"  onClick={handleRegister}>Register</Button>
+      <Button variant="success" type="submit" size="sm"  onClick={handleSubmit}>Register</Button>
       </Form.Group>  
     </Form>
     </Container>
