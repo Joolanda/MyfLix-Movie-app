@@ -46048,22 +46048,30 @@ function RegistrationView(props) {
   //};
 
 
-  return _react.default.createElement("form", null, _react.default.createElement("label", null, "Username:", _react.default.createElement("input", {
+  return _react.default.createElement(Container, {
+    classname: "login-container"
+  }, _react.default.createElement(Form, null, _react.default.createElement(Form.Group, {
+    controlId: "formBasicUsername"
+  }, _react.default.createElement(Form.Label, null, "Username:", _react.default.createElement("input", {
     type: "text",
     value: username,
     onChange: function onChange(e) {
       return createUsername(e.target.value);
     }
-  })), _react.default.createElement("label", null, "Password:", _react.default.createElement("input", {
+  }))), _react.default.createElement(Form.Group, {
+    controlId: "formBasicPassword"
+  }, _react.default.createElement(Form.Label, null, "Password:", _react.default.createElement("input", {
     type: "password",
     value: password,
     onChange: function onChange(e) {
       return createPassword(e.target.value);
     }
-  })), _react.default.createElement("button", {
-    type: "button",
-    onClick: handleSRegister
-  }, "Register"));
+  })), _react.default.createElement(Button, {
+    variant: "success",
+    type: "submit",
+    size: "sm",
+    onClick: handleRegister
+  }, "Register"))));
 }
 },{"react":"../../node_modules/react/index.js"}],"components/movie-card/movie-card.jsx":[function(require,module,exports) {
 "use strict";

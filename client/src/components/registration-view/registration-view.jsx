@@ -33,18 +33,22 @@ const handleRegistration = (e) => {
 // props.onLoggedIn(username);
 //};
 
-
-    return (
-      <form>
-        <label>
-          Username:
-          <input type="text" value={username} onChange={e => createUsername(e.target.value)}/>
-        </label>                    
-        <label>
-          Password:
-          <input type="password" value={password} onChange={e => createPassword(e.target.value)}/>
-        </label>
-        <button type="button" onClick={handleSRegister}>Register</button>
-      </form>
-    );
-   }
+   return (
+    <Container classname="login-container">
+    <Form>
+      <Form.Group controlId="formBasicUsername">
+        <Form.Label>Username:
+         <input type="text" value={username} onChange={e => createUsername(e.target.value)}/>
+        </Form.Label>  
+        </Form.Group>   
+      <Form.Group controlId="formBasicPassword">              
+      <Form.Label>
+        Password:
+        <input type="password" value={password} onChange={e => createPassword(e.target.value)}/>
+       </Form.Label> 
+      <Button variant="success" type="submit" size="sm"  onClick={handleRegister}>Register</Button>
+      </Form.Group>  
+    </Form>
+    </Container>
+  );
+ }
