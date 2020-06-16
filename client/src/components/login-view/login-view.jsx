@@ -40,14 +40,14 @@ const handleSubmit = (e) => {
       <Form className="login-container">
         <Form.Group controlId="formBasicUsername">
           <Form.Label>Username:</Form.Label>  
-          <Form.Control type="text" placeholder="username" value={username} onChange={e => setUsername(e.target.value)}/>
+          <Form.Control size="sm" type="text" placeholder="username" value={username} onChange={e => setUsername(e.target.value)}/>
           <Form.Text className="text-muted"></Form.Text>
           </Form.Group>   
         <Form.Group controlId="formBasicPassword">              
         <Form.Label>Password:</Form.Label> 
-        <Form.Control type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}/>
+        <Form.Control size="sm" type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}/>
         </Form.Group>  
-        <Button variant="success" type="submit" size="sm"  onClick={handleSubmit}>Login</Button> 
+        <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>Login</Button> 
       </Form>
     );
    }

@@ -41,31 +41,27 @@ const handleSubmit= (e) => {
   
     <Form classname="register-container">>
       <Form.Group controlId="formBasicUsername">
-        <Form.Label>Username:
-         <input type="text" value={username} onChange={e => createUsername(e.target.value)}/>
-        </Form.Label>  
-        </Form.Group>   
+        <Form.Label>Username:</Form.Label>
+        <Form.Control size="sm" type="text" placeholder="username" value={username} onChange={e => createUsername(e.target.value)}/>
+        <Form.Text className="text-muted"></Form.Text>
+      </Form.Group>   
       <Form.Group controlId="formBasicPassword">              
-      <Form.Label>
-        Password:
-        <input type="password" value={password} onChange={e => createPassword(e.target.value)}/>
-       </Form.Label> 
-      </Form.Group>  
+        <Form.Label>Password:</Form.Label> 
+        <Form.Control size="sm" type="password" placeholder="password" value={password} onChange={e => createPassword(e.target.value)}/>
+        </Form.Group>  
       <Form.Group controlId="formBasicEmail">              
-      <Form.Label> Email: </Form.Label>
-        <input type="email" value={email} onChange={e => createPassword(e.target.value)}/>
-       <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => createPassword(e.target.value)} />
+        <Form.Label> Email: </Form.Label>
+        <Form.Control size="sm" type="email" placeholder="name@example.com" value={email} onChange={e => createPassword(e.target.value)} />
         <Form-Text className="text-muted">
           We'll never share your email with anyone else.
         </Form-Text>
       </Form.Group>  
       <Form.Group controlId="formBasicBirthday">              
-      <Form.Label>
-        Birthday:
-        <input type="birthday" value={birthday} onChange={e => createBirthday(e.target.value)}/>
-       </Form.Label> 
+        <Form.Label>Birthday:</Form.Label> 
+        <Form.Control size="sm" type="birthday" placeholder="1990-05-12" value={birthday} onChange={e => createBirthday(e.target.value)}/>
       </Form.Group>  
       <Button variant="success" type="submit" size="sm"  onClick={handleSubmit}>Register</Button>
     </Form>
   );
  }
+
