@@ -51,6 +51,18 @@ const handleSubmit= (e) => {
         <input type="password" value={password} onChange={e => createPassword(e.target.value)}/>
        </Form.Label> 
       </Form.Group>  
+      <Form.Group controlId="formBasicEmail">              
+      <Form.Label>
+        Email:
+        <input type="email" value={email} onChange={e => createPassword(e.target.value)}/>
+       </Form.Label> 
+      </Form.Group>  
+      <Form.Group controlId="formBasicBirthday">              
+      <Form.Label>
+        Birthday:
+        <input type="birthday" value={birthday} onChange={e => createBirthday(e.target.value)}/>
+       </Form.Label> 
+      </Form.Group>  
       <Button variant="success" type="submit" size="sm"  onClick={handleSubmit}>Register</Button>
     </Form>
   );

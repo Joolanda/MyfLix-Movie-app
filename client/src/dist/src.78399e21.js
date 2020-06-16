@@ -45870,6 +45870,22 @@ function RegistrationView(props) {
     onChange: function onChange(e) {
       return createPassword(e.target.value);
     }
+  }))), _react.default.createElement(_reactBootstrap.Form.Group, {
+    controlId: "formBasicEmail"
+  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email:", _react.default.createElement("input", {
+    type: "email",
+    value: email,
+    onChange: function onChange(e) {
+      return createPassword(e.target.value);
+    }
+  }))), _react.default.createElement(_reactBootstrap.Form.Group, {
+    controlId: "formBasicBirthday"
+  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Birthday:", _react.default.createElement("input", {
+    type: "birthday",
+    value: birthday,
+    onChange: function onChange(e) {
+      return createBirthday(e.target.value);
+    }
   }))), _react.default.createElement(_reactBootstrap.Button, {
     variant: "success",
     type: "submit",
