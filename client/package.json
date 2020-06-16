@@ -7,6 +7,8 @@
     "axios": "0.19.2",
     "prop": "0.1.1",
     "prop-types": "15.7.2",
-    "react-bootstrap": "1.0.1"
+    "react": "16.13.1",
+    "react-bootstrap": "1.0.1",
+    "react-dom": "16.13.1"
   }
 }
