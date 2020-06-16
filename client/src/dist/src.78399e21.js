@@ -45717,30 +45717,32 @@ function LoginView(props) {
   var _useState3 = (0, _react.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       password = _useState4[0],
-      setPassword = _useState4[1]; //const handleSubmit = (e) => {
-  //  console.log(username, password);
-
-  /* Send a request to the server for authentication */
-
-  /* then call props.onLoggedIn(username) */
-  //  props.onLoggedIn(username);
-  //  };
-
+      setPassword = _useState4[1];
 
   var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
+    console.log(username, password);
     /* Send a request to the server for authentication */
 
-    _axios.default.post('https://myflix-movie.herokuapp.com/login', {
-      Username: username,
-      Password: password
-    }).then(function (response) {
-      var data = response.data;
-      props.onLoggedIn(data);
-    }).catch(function (e) {
-      console.log('no such user');
-    });
-  };
+    /* then call props.onLoggedIn(username) */
+
+    props.onLoggedIn(username);
+  }; // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   /* Send a request to the server for authentication */
+  //   axios.
+  //     post('https://myflix-movie.herokuapp.com/login', {
+  //       Username: username,
+  //       Password: password
+  //     })
+  //     .then((response) => {
+  //     const data = response.data;
+  //       props.onLoggedIn(data);
+  //     })
+  //     .catch((e) => { 
+  //     console.log('no such user');
+  //     });
+  //   }; 
+
 
   return _react.default.createElement(_reactBootstrap.Form, {
     className: "login-container"
@@ -45760,12 +45762,12 @@ function LoginView(props) {
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
-  })), _react.default.createElement(_reactBootstrap.Button, {
+  }))), _react.default.createElement(_reactBootstrap.Button, {
     variant: "success",
     type: "submit",
     size: "sm",
     onClick: handleSubmit
-  }, "Login")));
+  }, "Login"));
 }
 },{"react":"../node_modules/react/index.js","./login-view.scss":"components/login-view/login-view.scss","axios":"../node_modules/axios/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -45868,12 +45870,12 @@ function RegistrationView(props) {
     onChange: function onChange(e) {
       return createPassword(e.target.value);
     }
-  })), _react.default.createElement(_reactBootstrap.Button, {
+  }))), _react.default.createElement(_reactBootstrap.Button, {
     variant: "success",
     type: "submit",
     size: "sm",
     onClick: handleSubmit
-  }, "Register")));
+  }, "Register"));
 }
 },{"react":"../node_modules/react/index.js","./registration-view.scss":"components/registration-view/registration-view.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/movie-card/movie-card.jsx":[function(require,module,exports) {
 "use strict";

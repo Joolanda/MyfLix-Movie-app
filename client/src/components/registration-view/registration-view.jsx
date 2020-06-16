@@ -50,8 +50,8 @@ const handleSubmit= (e) => {
         Password:
         <input type="password" value={password} onChange={e => createPassword(e.target.value)}/>
        </Form.Label> 
-      <Button variant="success" type="submit" size="sm"  onClick={handleSubmit}>Register</Button>
       </Form.Group>  
+      <Button variant="success" type="submit" size="sm"  onClick={handleSubmit}>Register</Button>
     </Form>
   );
  }
