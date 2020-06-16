@@ -52,10 +52,12 @@ const handleSubmit= (e) => {
        </Form.Label> 
       </Form.Group>  
       <Form.Group controlId="formBasicEmail">              
-      <Form.Label>
-        Email:
+      <Form.Label> Email: </Form.Label>
         <input type="email" value={email} onChange={e => createPassword(e.target.value)}/>
-       </Form.Label> 
+       <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => createPassword(e.target.value)} />
+        <Form-Text className="text-muted">
+          We'll never share your email with anyone else.
+        </Form-Text>
       </Form.Group>  
       <Form.Group controlId="formBasicBirthday">              
       <Form.Label>

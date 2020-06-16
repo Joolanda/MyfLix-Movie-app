@@ -45748,21 +45748,25 @@ function LoginView(props) {
     className: "login-container"
   }, _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formBasicUsername"
-  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username:", _react.default.createElement("input", {
+  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "text",
+    placeholder: "username",
     value: username,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     }
-  }))), _react.default.createElement(_reactBootstrap.Form.Group, {
+  }), _react.default.createElement(_reactBootstrap.Form.Text, {
+    className: "text-muted"
+  })), _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formBasicPassword"
-  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password:", _react.default.createElement("input", {
+  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password:"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "password",
+    placeholder: "password",
     value: password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
-  }))), _react.default.createElement(_reactBootstrap.Button, {
+  })), _react.default.createElement(_reactBootstrap.Button, {
     variant: "success",
     type: "submit",
     size: "sm",
@@ -45872,13 +45876,22 @@ function RegistrationView(props) {
     }
   }))), _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formBasicEmail"
-  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email:", _react.default.createElement("input", {
+  }, _react.default.createElement(_reactBootstrap.Form.Label, null, " Email: "), _react.default.createElement("input", {
     type: "email",
     value: email,
     onChange: function onChange(e) {
       return createPassword(e.target.value);
     }
-  }))), _react.default.createElement(_reactBootstrap.Form.Group, {
+  }), _react.default.createElement(_reactBootstrap.Form.Control, {
+    type: "email",
+    placeholder: "Enter email",
+    value: email,
+    onChange: function onChange(e) {
+      return createPassword(e.target.value);
+    }
+  }), _react.default.createElement("Form-Text", {
+    className: "text-muted"
+  }, "We'll never share your email with anyone else.")), _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formBasicBirthday"
   }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Birthday:", _react.default.createElement("input", {
     type: "birthday",
