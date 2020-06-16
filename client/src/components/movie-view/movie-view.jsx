@@ -19,10 +19,9 @@ export class MovieView extends React.Component {
     return (
       <div className="movie-view">
        <div className="movie-title">
-         <h2 className="value">{movie.Title}</h2>
+         <h2 className="d-flex flex-column flex-md-row align-items-center">{movie.Title}</h2>
        </div>
-        <img className="movie-poster" src={movie.ImagePath} />
-
+    
         <div className="movie-description">
            <span className="label">Description: </span>
           <span className="value">{movie.Description} </span>
@@ -36,7 +35,9 @@ export class MovieView extends React.Component {
           <span className="label">Director: </span>
           <span className="value">{movie.Director.Name}</span>
         </div>
-       <Button className="reset-button" variant="secondary" onClick={() => this.props.onResetSelectedMovie()}>Back</Button>
+        <img className="d-flex flex-column flex-md-row align-items-center" src={movie.ImagePath} />
+
+       <Button className="reset-button" variant="secondary" onClick={() => this.props.onResetSelectedMovie()}>Back to Movies</Button>
      </div>
     );
   }

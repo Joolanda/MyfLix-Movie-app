@@ -46080,11 +46080,8 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement("div", {
         className: "movie-title"
       }, _react.default.createElement("h2", {
-        className: "value"
-      }, movie.Title)), _react.default.createElement("img", {
-        className: "movie-poster",
-        src: movie.ImagePath
-      }), _react.default.createElement("div", {
+        className: "d-flex flex-column flex-md-row align-items-center"
+      }, movie.Title)), _react.default.createElement("div", {
         className: "movie-description"
       }, _react.default.createElement("span", {
         className: "label"
@@ -46102,13 +46099,16 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "label"
       }, "Director: "), _react.default.createElement("span", {
         className: "value"
-      }, movie.Director.Name)), _react.default.createElement(_Button.default, {
+      }, movie.Director.Name)), _react.default.createElement("img", {
+        className: "d-flex flex-column flex-md-row align-items-center",
+        src: movie.ImagePath
+      }), _react.default.createElement(_Button.default, {
         className: "reset-button",
         variant: "secondary",
         onClick: function onClick() {
           return _this2.props.onResetSelectedMovie();
         }
-      }, "Back"));
+      }, "Back to Movies"));
     }
   }]);
 
