@@ -5,6 +5,13 @@
   margin: auto;
   height: 100%;
 }
+.registration-container {
+  width: 100%;
+  max-width: 330px;
+  padding: 20px;
+  margin: auto;
+  height: 100%;
+}
 .app-container {
   font-family: "Roboto", sans-serif;
 }

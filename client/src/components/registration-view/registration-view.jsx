@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-//import Axios from 'axios';
+import './registration-view.scss';
+//import axios from 'axios';
+import { Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 export function RegistrationView (props) {
 const [ username, createUsername ] = useState('');
@@ -34,8 +38,8 @@ const handleSubmit= (e) => {
 //};
 
    return (
-    <Container classname="login-container">
-    <Form>
+  
+    <Form classname="register-container">>
       <Form.Group controlId="formBasicUsername">
         <Form.Label>Username:
          <input type="text" value={username} onChange={e => createUsername(e.target.value)}/>
@@ -49,6 +53,5 @@ const handleSubmit= (e) => {
       <Button variant="success" type="submit" size="sm"  onClick={handleSubmit}>Register</Button>
       </Form.Group>  
     </Form>
-    </Container>
   );
  }
