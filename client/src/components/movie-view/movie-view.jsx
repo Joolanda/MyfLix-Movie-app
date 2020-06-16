@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import "./movie-view.scss";
 import PropTypes from 'prop-types';
 import { MainView } from '../main-view/main-view';
 import Button from 'react-bootstrap/Button';
@@ -19,7 +20,7 @@ export class MovieView extends React.Component {
     return (
       <div className="movie-view">
        <div className="movie-title">
-         <h2 className="d-flex flex-column flex-md-row align-items-center">{movie.Title}</h2>
+         <h2 className="d-flex flex-column flex-md-row align-items-center flex-wrap">{movie.Title}</h2>
        </div>
     
         <div className="movie-description">
@@ -35,9 +36,10 @@ export class MovieView extends React.Component {
           <span className="label">Director: </span>
           <span className="value">{movie.Director.Name}</span>
         </div>
-        <img className="d-flex flex-column flex-md-row align-items-center" src={movie.ImagePath} />
-
+        <img className="movie-view-image" src={movie.ImagePath} />
+        <div class="col-auto"> 
        <Button className="reset-button" variant="secondary" onClick={() => this.props.onResetSelectedMovie()}>Back to Movies</Button>
+       </div>
      </div>
     );
   }

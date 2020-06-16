@@ -62,7 +62,7 @@ export class MainView extends React.Component {
     if (!movies) return <div className="main-view"/>;
 
     return (
-     <div className="main-view">
+     <div className="d-flex align-content-end flex-wrap">
       {selectedMovie
          ? <MovieView movie={selectedMovie} 
             onResetSelectedMovie={() => this.onResetSelectedMovie()}
