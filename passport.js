@@ -31,8 +31,8 @@ passport.use(
         console.log("finished");
         return callback(null, user);
       });
-    },
-  ),
+    }
+  )
 );
 
 passport.use(
@@ -49,6 +49,6 @@ passport.use(
         .catch((error) => {
           return callback(error);
         });
-    },
-  ),
+    }
+  )
 );

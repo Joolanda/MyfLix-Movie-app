@@ -51,7 +51,7 @@ app.use(
 let allowedOrigins = ["http://localhost:1234","*"];
 
 // CORS sites use all origins
-//app.use(cors());
+app.use(cors());
 
 // default textual response when request hits the root folder
 app.get("/", function (req, res) {
