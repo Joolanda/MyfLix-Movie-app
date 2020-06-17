@@ -45887,7 +45887,7 @@ function RegistrationView(props) {
   }, _react.default.createElement(_reactBootstrap.Form.Label, null, " Email: "), _react.default.createElement(_reactBootstrap.Form.Control, {
     size: "sm",
     type: "email",
-    placeholder: "name@example.com",
+    placeholder: "watch out for typos",
     value: email,
     onChange: function onChange(e) {
       return createPassword(e.target.value);
@@ -46375,7 +46375,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54949" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52635" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

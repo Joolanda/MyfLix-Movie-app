@@ -22,7 +22,6 @@ export class MovieView extends React.Component {
        <div className="movie-title">
          <h2 className="d-flex flex-column flex-md-row align-items-center flex-wrap">{movie.Title}</h2>
        </div>
-    
         <div className="movie-description">
            <span className="label">Description: </span>
           <span className="value">{movie.Description} </span>
