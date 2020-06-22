@@ -42,7 +42,7 @@ const handleSubmit = (e) => {
     return (
       <div classname="login-view">
         <Row className="justify-content-center">
-          <Col xs={11} sm={8} md={6} className="form-container">
+          <Col xs={12} sm={10} md={8} className="form-container">
             <Form className="login-container">
               <Form.Group controlId="formBasicUsername">
                 <Form.Label>Username:</Form.Label>  

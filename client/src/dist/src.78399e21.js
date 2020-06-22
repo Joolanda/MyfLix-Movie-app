@@ -45753,9 +45753,9 @@ function LoginView(props) {
   }, _react.default.createElement(_Row.default, {
     className: "justify-content-center"
   }, _react.default.createElement(_Col.default, {
-    xs: 11,
-    sm: 8,
-    md: 6,
+    xs: 12,
+    sm: 10,
+    md: 8,
     className: "form-container"
   }, _react.default.createElement(_reactBootstrap.Form, {
     className: "login-container"
