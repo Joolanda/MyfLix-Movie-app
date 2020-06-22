@@ -45717,28 +45717,32 @@ function LoginView(props) {
   var _useState3 = (0, _react.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       password = _useState4[0],
-      setPassword = _useState4[1]; // const handleSubmit = (e) => {
-  //   console.log(username, password);
-  //   /* Send a request to the server for authentication */
-  //   /* then call props.onLoggedIn(username) */
-  //   props.onLoggedIn(username);
-  //   };
-
+      setPassword = _useState4[1];
 
   var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
+    console.log(username, password);
     /* Send a request to the server for authentication */
 
-    _axios.default.post('https://myflix-movie.herokuapp.com/login', {
-      Username: username,
-      Password: password
-    }).then(function (response) {
-      var data = response.data;
-      props.onLoggedIn(data);
-    }).catch(function (e) {
-      console.log('no such user here');
-    });
-  };
+    /* then call props.onLoggedIn(username) */
+
+    props.onLoggedIn(username);
+  }; // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   /* Send a request to the server for authentication */
+  //   axios.
+  //     post('https://myflix-movie.herokuapp.com/login', {
+  //       Username: username,
+  //       Password: password
+  //     })
+  //     .then((response) => {
+  //     const data = response.data;
+  //       props.onLoggedIn(data);
+  //     })
+  //     .catch((e) => { 
+  //     console.log('no such user here');
+  //     });
+  //   }; 
+
 
   return _react.default.createElement(_reactBootstrap.Form, {
     className: "login-container"
@@ -45770,7 +45774,9 @@ function LoginView(props) {
     size: "sm",
     onClick: handleSubmit
   }, "Login"));
-}
+} //LoginView.propTypes = {
+// onLoggedIn: PropTypes.func.isRequired
+//};
 },{"react":"../node_modules/react/index.js","./login-view.scss":"components/login-view/login-view.scss","axios":"../node_modules/axios/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -45907,6 +45913,9 @@ function RegistrationView(props) {
     onClick: handleSubmit
   }, "Register"));
 }
+
+RegistrationView.propTypes = {// no props so far
+};
 },{"react":"../node_modules/react/index.js","./registration-view.scss":"components/registration-view/registration-view.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -45998,10 +46007,7 @@ MovieCard.propTypes = {
   movie: _propTypes.default.shape({
     Title: _propTypes.default.string.isRequired,
     Description: _propTypes.default.string.isRequired,
-    ImagePath: _propTypes.default.string.isRequired,
-    Director: _propTypes.default.shape({
-      Name: _propTypes.default.string.isRequired
-    }).isRequired
+    ImagePath: _propTypes.default.string.isRequired
   }).isRequired,
   onClick: _propTypes.default.func.isRequired
 };
@@ -46371,7 +46377,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52635" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50351" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

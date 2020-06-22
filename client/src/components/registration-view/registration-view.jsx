@@ -65,3 +65,6 @@ const handleSubmit= (e) => {
   );
  }
 
+ RegistrationView.propTypes = {
+  // no props so far
+};
