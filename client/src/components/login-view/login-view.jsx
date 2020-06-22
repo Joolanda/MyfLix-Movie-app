@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import './login-view.scss';
 import axios from 'axios';
+
+// bootstrap imports
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { Button } from 'react-bootstrap';
 import { Form } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
@@ -36,18 +40,33 @@ const handleSubmit = (e) => {
 
 
     return (
-      <Form className="login-container">
-        <Form.Group controlId="formBasicUsername">
-          <Form.Label>Username:</Form.Label>  
-          <Form.Control size="sm" type="text" placeholder="username" value={username} onChange={e => setUsername(e.target.value)}/>
-          <Form.Text className="text-muted"></Form.Text>
-          </Form.Group>   
-        <Form.Group controlId="formBasicPassword">              
-        <Form.Label>Password:</Form.Label> 
-        <Form.Control size="sm" type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}/>
-        </Form.Group>  
-        <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>Login</Button> 
-      </Form>
+      <div classname="login-view">
+        <Row className="justify-content-center">
+          <Col xs={11} sm={8} md={6} className="form-container">
+            <Form className="login-container">
+              <Form.Group controlId="formBasicUsername">
+                <Form.Label>Username:</Form.Label>  
+                <Form.Control 
+                  size="sm" 
+                  type="text" 
+                  placeholder="enter your login userID" 
+                  value={username} 
+                  onChange={e => setUsername(e.target.value)}/>
+              <Form.Text className="text-muted"></Form.Text>
+             </Form.Group>   
+
+             <Form.Group controlId="formBasicPassword">              
+              <Form.Label>Password:</Form.Label> 
+              <Form.Control size="sm" type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}/>
+            </Form.Group>  
+
+            <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>
+              Login
+            </Button> 
+            </Form>
+          </Col>
+        </Row>
+      </div>
     );
    }
 

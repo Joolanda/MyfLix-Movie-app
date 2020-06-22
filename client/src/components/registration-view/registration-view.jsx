@@ -65,6 +65,6 @@ const handleSubmit= (e) => {
   );
  }
 
- RegistrationView.propTypes = {
+ //RegistrationView.propTypes = {
   // no props so far
-};
+//};
