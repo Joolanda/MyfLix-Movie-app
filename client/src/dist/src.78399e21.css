@@ -12,17 +12,6 @@
   margin: auto;
   height: 100%;
 }
-.movie-view {
-  width: 100%;
-  min-width: 330;
-  padding: 20px;
-  margin: auto;
-  height: 100%;
-}
-
-.movie-view-image {
-  padding: 20px;
-}
 .app-container {
   font-family: "Roboto", sans-serif;
 }

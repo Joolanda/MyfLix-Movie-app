@@ -2,7 +2,13 @@ import React, { useCallback } from 'react';
 import "./movie-view.scss";
 import PropTypes from 'prop-types';
 import { MainView } from '../main-view/main-view';
-import Button from 'react-bootstrap/Button';
+
+// bootstrap import
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Button } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+
 
 export class MovieView extends React.Component {
 
@@ -17,29 +23,40 @@ export class MovieView extends React.Component {
 
     if (!movie) return null;
 
-    return (
+    return (      
       <div className="movie-view">
-       <div className="movie-title">
-         <h2 className="d-flex flex-column flex-md-row align-items-center flex-wrap">{movie.Title}</h2>
-       </div>
-        <div className="movie-description">
-           <span className="label">Description: </span>
-          <span className="value">{movie.Description} </span>
-        </div>
+       <Card className="border-dark text-white bg-success mb-3" style={{width:'540px'}}>
+          <Row className="no-gutter">
+            <Col className="md-4"> 
+              <img className="movie-view-image" src={movie.ImagePath} />
+            </Col>
+          </Row>
+        
+        <Card.Body>
+          <Col className="md-8">
+              <div className="movie-title">
+                 <h2>{movie.Title}</h2>
+               </div>
+
+               <div className="movie-description">
+                   <span className="label">Description: </span>
+                   <span className="value">{movie.Description} </span>
+               </div>
   
-        <div className="movie-genre">
-         <span className="label">Genre: </span>
-          <span className="value">{movie.Genre.Name}</span>
-        </div>
-        <div className="movie-director">
-          <span className="label">Director: </span>
-          <span className="value">{movie.Director.Name}</span>
-        </div>
-        <img className="movie-view-image" src={movie.ImagePath} />
-        <div class="col-auto"> 
-       <Button className="reset-button" variant="secondary" onClick={() => this.props.onResetSelectedMovie()}>Back to Movies</Button>
-       </div>
-     </div>
+               <div className="movie-genre">
+                  <span className="label">Genre: </span>
+                  <span className="value">{movie.Genre.Name}</span>
+               </div>
+
+               <div className="movie-director">
+                   <span className="label">Director: </span>
+                   <span className="value">{movie.Director.Name}</span>
+               </div>
+          </Col>
+       </Card.Body>
+            <Button className="reset-button" variant="secondary" onClick={() => this.props.onResetSelectedMovie()}>Back to Movies</Button>
+        </Card>
+      </div>
     );
   }
   }
