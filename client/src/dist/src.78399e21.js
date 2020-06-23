@@ -46193,6 +46193,8 @@ var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
 
 var _reactBootstrap = require("react-bootstrap");
 
+var _CardDeck = _interopRequireDefault(require("react-bootstrap/CardDeck"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -46290,8 +46292,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         className: "main-view"
       });
       return _react.default.createElement("div", {
-        className: "d-flex align-content-end flex-wrap"
-      }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
+        className: "main-view"
+      }, _react.default.createElement(_CardDeck.default, null, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
         movie: selectedMovie,
         onResetSelectedMovie: function onResetSelectedMovie() {
           return _this3.onResetSelectedMovie();
@@ -46304,7 +46306,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             return _this3.onMovieClick(movie);
           }
         });
-      }));
+      })));
     }
   }]);
 
@@ -46312,7 +46314,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.MainView = MainView;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"index.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-bootstrap/CardDeck":"../node_modules/react-bootstrap/esm/CardDeck.js"}],"index.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);

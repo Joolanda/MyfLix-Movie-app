@@ -11,6 +11,8 @@ import { MovieView } from '../movie-view/movie-view';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Button } from 'react-bootstrap';
+import CardDeck from 'react-bootstrap/CardDeck';
+
 
 export class MainView extends React.Component {
 
@@ -63,7 +65,8 @@ export class MainView extends React.Component {
     if (!movies) return <div className="main-view"/>;
 
     return (
-     <div className="d-flex align-content-end flex-wrap">
+      <div className="main-view">
+      <CardDeck>
       {selectedMovie
          ? <MovieView movie={selectedMovie} 
             onResetSelectedMovie={() => this.onResetSelectedMovie()}
@@ -76,6 +79,7 @@ export class MainView extends React.Component {
             />
          ))
       }
+      </CardDeck>
       </div>
     );
   }
