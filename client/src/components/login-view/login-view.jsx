@@ -54,12 +54,10 @@ const handleSubmit = (e) => {
                   onChange={e => setUsername(e.target.value)}/>
               <Form.Text className="text-muted"></Form.Text>
              </Form.Group>   
-
              <Form.Group controlId="formBasicPassword">              
               <Form.Label>Password:</Form.Label> 
               <Form.Control size="sm" type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}/>
-            </Form.Group>  
-
+            </Form.Group> 
             <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>
               Login
             </Button> 
