@@ -45945,11 +45945,17 @@ var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
+require("./movie-card.scss");
+
+var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
+
+var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
+
+var _reactBootstrap = require("react-bootstrap");
 
 var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
 
-require("./movie-card.scss");
+var _CardDeck = _interopRequireDefault(require("react-bootstrap/CardDeck"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45992,21 +45998,24 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           movie = _this$props.movie,
           _onClick = _this$props.onClick;
-      return _react.default.createElement(_Card.default, {
+      return _react.default.createElement("div", {
+        className: "movie-card"
+      }, _react.default.createElement(_CardDeck.default, null, _react.default.createElement(_Card.default, {
         className: "border-success text-white bg-dark mb-3",
         style: {
-          width: '18rem'
+          width: '20rem'
         }
       }, _react.default.createElement(_Card.default.Img, {
         variant: "top",
         src: movie.ImagePath
-      }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Header, null, _react.default.createElement("h2", null, movie.Title)), _react.default.createElement(_Card.default.Text, null, movie.Description)), _react.default.createElement(_Button.default, {
+      }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Header, null, " ", _react.default.createElement("h2", null, movie.Title)), _react.default.createElement(_Card.default.Text, null, movie.Description)), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_reactBootstrap.Button, {
         onClick: function onClick() {
           return _onClick(movie);
         },
-        variant: "success"
-      }, "Tell me more")) //      <div 
-      //      onClick={() => onClick(movie)} 
+        variant: "success",
+        size: "lg",
+        block: true
+      }, "Tell me more"))))) //      onClick={() => onClick(movie)} 
       //      className="movie-card">{movie.Title}</div>
       ;
     }
@@ -46024,7 +46033,7 @@ MovieCard.propTypes = {
   }).isRequired,
   onClick: _propTypes.default.func.isRequired
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./movie-card.scss":"components/movie-card/movie-card.scss","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/CardDeck":"../node_modules/react-bootstrap/esm/CardDeck.js"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -46106,46 +46115,40 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       return _react.default.createElement("div", {
         className: "movie-view"
       }, _react.default.createElement(_Card.default, {
-        className: "border-dark text-white bg-success mb-3",
+        className: "text-center",
+        border: "dark",
+        text: "white",
+        bg: "success mb-3",
         style: {
-          width: '540px'
+          width: '20rem'
         }
-      }, _react.default.createElement(_Row.default, {
-        className: "no-gutter"
-      }, _react.default.createElement(_Col.default, {
-        className: "md-4"
-      }, _react.default.createElement("img", {
+      }, _react.default.createElement(_Card.default.Header, null, _react.default.createElement(_Card.default.Img, {
+        variant: "top",
         className: "movie-view-image",
         src: movie.ImagePath
-      }))), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Col.default, {
-        className: "md-8"
-      }, _react.default.createElement("div", {
+      })), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
         className: "movie-title"
-      }, _react.default.createElement("h2", null, movie.Title)), _react.default.createElement("div", {
-        className: "movie-description"
-      }, _react.default.createElement("span", {
-        className: "label"
+      }, _react.default.createElement("h5", null, movie.Title)), _react.default.createElement(_Card.default.Text, null, _react.default.createElement(_Card.default.Subtitle, {
+        className: "mb-2 text-muted movie-description"
       }, "Description: "), _react.default.createElement("span", {
         className: "value"
-      }, movie.Description, " ")), _react.default.createElement("div", {
-        className: "movie-genre"
-      }, _react.default.createElement("span", {
-        className: "label"
+      }, movie.Description, " "), _react.default.createElement(_Card.default.Subtitle, {
+        className: "mb-2 text-muted movie-genre"
       }, "Genre: "), _react.default.createElement("span", {
         className: "value"
-      }, movie.Genre.Name)), _react.default.createElement("div", {
-        className: "movie-director"
-      }, _react.default.createElement("span", {
-        className: "label"
+      }, movie.Genre.Name), _react.default.createElement(_Card.default.Subtitle, {
+        className: "mb-2 text-muted movie-director"
       }, "Director: "), _react.default.createElement("span", {
         className: "value"
-      }, movie.Director.Name)))), _react.default.createElement(_reactBootstrap.Button, {
+      }, movie.Director.Name))), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_reactBootstrap.Button, {
         className: "reset-button",
         variant: "secondary",
+        size: "lg",
+        block: true,
         onClick: function onClick() {
           return _this2.props.onResetSelectedMovie();
         }
-      }, "Back to Movies")));
+      }, "Back to Movies"))));
     }
   }]);
 
@@ -46403,7 +46406,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50351" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56960" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

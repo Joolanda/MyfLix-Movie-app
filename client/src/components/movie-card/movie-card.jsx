@@ -1,28 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import './movie-card.scss';
 
+// bootstrap import
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Button }from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+import CardDeck from 'react-bootstrap/CardDeck';
 export class MovieCard extends React.Component {
   render() {
     const { movie, onClick } = this.props;
 
     return (
-        <Card className="border-success text-white bg-dark mb-3" style={{ width: '18rem'}}>
-          <Card.Img variant="top" src={movie.ImagePath} />
-          <Card.Body>
-            <Card.Header>
-              <h2>{movie.Title}</h2></Card.Header>
+      <div className="movie-card">
+        <CardDeck>
+          <Card className="border-success text-white bg-dark mb-3" style={{ width: '20rem'}}>
+            <Card.Img variant="top" src={movie.ImagePath} />
+           <Card.Body>
+             <Card.Header> <h2>{movie.Title}</h2></Card.Header>
              <Card.Text>{movie.Description}</Card.Text>
             </Card.Body>
-              <Button onClick={() => onClick(movie)} variant="success">
+            <Card.Body>
+              <Button onClick={() => onClick(movie)} variant="success" size="lg" block>
                 Tell me more
                </Button>
-        </Card>
-
-
-//      <div 
+             </Card.Body>
+          </Card>
+         </CardDeck>
+       </div> 
 //      onClick={() => onClick(movie)} 
 //      className="movie-card">{movie.Title}</div>
     );

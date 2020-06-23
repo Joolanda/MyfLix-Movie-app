@@ -23,38 +23,29 @@ export class MovieView extends React.Component {
 
     if (!movie) return null;
 
+
     return (      
       <div className="movie-view">
-       <Card className="border-dark text-white bg-success mb-3" style={{width:'540px'}}>
-          <Row className="no-gutter">
-            <Col className="md-4"> 
-              <img className="movie-view-image" src={movie.ImagePath} />
-            </Col>
-          </Row>
-        
-        <Card.Body>
-          <Col className="md-8">
-              <div className="movie-title">
-                 <h2>{movie.Title}</h2>
-               </div>
-
-               <div className="movie-description">
-                   <span className="label">Description: </span>
+       <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
+         <Card.Header>
+          <Card.Img variant="top" className="movie-view-image" src={movie.ImagePath} />
+          </Card.Header>
+           <Card.Body>
+              <Card.Title className="movie-title">
+                 <h5>{movie.Title}</h5>
+               </Card.Title>
+               <Card.Text>
+               <Card.Subtitle className="mb-2 text-muted movie-description">Description: </Card.Subtitle>
                    <span className="value">{movie.Description} </span>
-               </div>
-  
-               <div className="movie-genre">
-                  <span className="label">Genre: </span>
+               <Card.Subtitle className="mb-2 text-muted movie-genre">Genre: </Card.Subtitle>
                   <span className="value">{movie.Genre.Name}</span>
-               </div>
-
-               <div className="movie-director">
-                   <span className="label">Director: </span>
+               <Card.Subtitle className="mb-2 text-muted movie-director">Director: </Card.Subtitle>
                    <span className="value">{movie.Director.Name}</span>
-               </div>
-          </Col>
-       </Card.Body>
-            <Button className="reset-button" variant="secondary" onClick={() => this.props.onResetSelectedMovie()}>Back to Movies</Button>
+               </Card.Text>
+            </Card.Body>
+            <Card.Body>
+            <Button className="reset-button" variant="secondary" size="lg" block onClick={() => this.props.onResetSelectedMovie()}>Back to Movies</Button>
+            </Card.Body>
         </Card>
       </div>
     );
