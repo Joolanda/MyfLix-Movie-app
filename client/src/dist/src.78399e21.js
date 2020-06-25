@@ -45721,32 +45721,28 @@ function LoginView(props) {
   var _useState3 = (0, _react.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       password = _useState4[0],
-      setPassword = _useState4[1];
+      setPassword = _useState4[1]; // const handleSubmit = (e) => {
+  //   console.log(username, password);
+  //   /* Send a request to the server for authentication */
+  //   /* then call props.onLoggedIn(username) */
+  //   props.onLoggedIn(username);
+  //   };
+
 
   var handleSubmit = function handleSubmit(e) {
-    console.log(username, password);
+    e.preventDefault();
     /* Send a request to the server for authentication */
 
-    /* then call props.onLoggedIn(username) */
-
-    props.onLoggedIn(username);
-  }; // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   /* Send a request to the server for authentication */
-  //   axios.
-  //     post('https://myflix-movie.herokuapp.com/login', {
-  //       Username: username,
-  //       Password: password
-  //     })
-  //     .then((response) => {
-  //     const data = response.data;
-  //       props.onLoggedIn(data);
-  //     })
-  //     .catch((e) => { 
-  //     console.log('no such user here');
-  //     });
-  //   }; 
-
+    _axios.default.post('https://myflix-movie.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    }).then(function (response) {
+      var data = response.data;
+      props.onLoggedIn(data);
+    }).catch(function (e) {
+      console.log('no such user here');
+    });
+  };
 
   return _react.default.createElement("div", {
     classname: "login-view"
