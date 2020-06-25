@@ -8,11 +8,7 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
 // bootstrap import
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Button } from 'react-bootstrap';
-import CardDeck from 'react-bootstrap/CardDeck';
-
+import { Row, Col, Card, CardDeck } from 'react-bootstrap';
 
 export class MainView extends React.Component {
 

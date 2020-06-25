@@ -46187,13 +46187,7 @@ var _movieCard = require("../movie-card/movie-card");
 
 var _movieView = require("../movie-view/movie-view");
 
-var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
-
-var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
-
 var _reactBootstrap = require("react-bootstrap");
-
-var _CardDeck = _interopRequireDefault(require("react-bootstrap/CardDeck"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46293,7 +46287,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
       return _react.default.createElement("div", {
         className: "main-view"
-      }, _react.default.createElement(_CardDeck.default, null, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
+      }, _react.default.createElement(_reactBootstrap.CardDeck, null, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
         movie: selectedMovie,
         onResetSelectedMovie: function onResetSelectedMovie() {
           return _this3.onResetSelectedMovie();
@@ -46314,7 +46308,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.MainView = MainView;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-bootstrap/CardDeck":"../node_modules/react-bootstrap/esm/CardDeck.js"}],"index.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"index.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -46408,7 +46402,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56960" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53168" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
