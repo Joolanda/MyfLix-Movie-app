@@ -46230,14 +46230,45 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       user: null
     };
     return _this;
-  }
+  } // old code from task 34 and before
+  // componentDidMount() {
+  //    axios.get('https://myflix-movie.herokuapp.com/movies')
+  //     .then(response => {
+  //       // Assign the result to the state
+  //       this.setState({
+  //         movies: response.data
+  //       });
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     }); 
+  // }
+  // new code added with task 35
+
 
   _createClass(MainView, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var accessToken = localStorage.getItem('token');
+
+      if (accessToken !== null) {
+        this.setState({
+          user: localStorage.getItem('user')
+        });
+        this.getMovies(accessToken);
+      }
+    } // get movies method, new code task 35, make a request to the movies endpoint
+
+  }, {
+    key: "getMovies",
+    value: function getMovies(token) {
       var _this2 = this;
 
-      _axios.default.get('https://myflix-movie.herokuapp.com/movies').then(function (response) {
+      _axios.default.get('https://myflix-movie.herokuapp.com/movies', {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
         // Assign the result to the state
         _this2.setState({
           movies: response.data
@@ -46255,10 +46286,14 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "onLoggedIn",
-    value: function onLoggedIn(user) {
+    value: function onLoggedIn(authData) {
+      console.log(authData);
       this.setState({
-        user: user
+        user: authData.user.Username
       });
+      localStorage.setItem('token', authData.token);
+      localStorage.setItem('user', authData.user.Username);
+      this.getMovies(authData.token);
     }
   }, {
     key: "onResetSelectedMovie",
@@ -46402,7 +46437,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53168" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49345" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
