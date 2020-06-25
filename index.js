@@ -10,6 +10,14 @@ app.use(bodyParser.json()); // JSON Parsing
 app.use(morgan("common")); // logging with Morgan
 app.use(express.static("public")); //retrieves files from public folder
 
+// routes all requests for the client to 'dist' folder..next lines are for handlesubmit loginview task 3.5
+// app.use('/client', express.static(path.join(__dirname, 'client', 'dist'))); 
+// all routes to the React client
+// app.get('/client/*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+// });
+
+
 // install validator
 const { check, validationResult } = require("express-validator");
 
@@ -233,33 +241,52 @@ app.get(
 }*/
 app.put(
   "/users/:Username",
+  // validation logic here for request
+  [
+    check("Username", "Username is required").isLength({ min: 4 }),
+    check(
+      "Username",
+      "Username contains non alphanummeric characters - not allowed."
+    ).isAlphanumeric(),
+    check("Password", "Password is required").not().isEmpty(),
+    check("Email", "Email does not appear to be valid").isEmail(),
+  ],
   passport.authenticate("jwt", {
     session: false,
-  }),
-  (req, res) => {
-    Users.findOneAndUpdate(
-      // allows users to update their info
-      { Username: req.params.Username },
-      {
-        $set: {
-          Username: req.body.Username,
-          Password: req.body.Password,
-          Email: req.body.Email,
+  }),(req, res) => {
+    //check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
+    let hashedPassword = Users.hashPassword(req.body.Password);
+
+  Users.findOneAndUpdate(
+    { Username: req.params.Username },
+    {
+       $set: {
+         Username: req.body.Username,
+         Password: hashedPassword,
+         Email: req.body.Email,
           Birthday: req.body.Birthday,
         },
-      },
-      { new: true }, // This line makes sure that the updated document is returned
-      (err, updatedUser) => {
+     },
+     { new: true }, //Makes sure updated document is returned
+      function (err, updatedUser) {
         if (err) {
           console.error(err);
-          res.status(500).send("Error: " + err);
-        } else {
-          res.json(updatedUser);
-        }
-      }
-    );
+          res.status(500).send('Error: ' + err);
+       } else {
+         res.json(updatedUser);
+       }
+     }
+   );
   }
 );
+
+
 //REMOVE existing users by username
 app.delete(
   "/users/:Username",

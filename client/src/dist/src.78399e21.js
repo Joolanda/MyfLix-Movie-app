@@ -45745,7 +45745,7 @@ function LoginView(props) {
   };
 
   return _react.default.createElement("div", {
-    classname: "login-view"
+    className: "login-view"
   }, _react.default.createElement(_Row.default, {
     className: "justify-content-center"
   }, _react.default.createElement(_Col.default, {
@@ -46384,7 +46384,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53168" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50364" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

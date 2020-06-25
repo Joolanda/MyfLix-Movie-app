@@ -40,7 +40,7 @@ const handleSubmit = (e) => {
 
 
     return (
-      <div classname="login-view">
+      <div className="login-view">
         <Row className="justify-content-center">
           <Col xs={12} sm={10} md={8} className="form-container">
             <Form className="login-container">
