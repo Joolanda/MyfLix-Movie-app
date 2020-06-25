@@ -11,10 +11,10 @@ app.use(morgan("common")); // logging with Morgan
 app.use(express.static("public")); //retrieves files from public folder
 
 // routes all requests for the client to 'dist' folder..next lines are for handlesubmit loginview task 3.5
-// app.use('/client', express.static(path.join(__dirname, 'client', 'dist'))); 
+ app.use('/client', express.static(path.join(__dirname, 'client', 'dist'))); 
 // all routes to the React client
-// app.get('/client/*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+ app.get('/client/*', (req, res) => {
+   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 // });
 
 
@@ -37,6 +37,9 @@ console.log(process.env)
 //mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true})..then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
 mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
 
+// CORS origin sites to be given access:
+let allowedOrigins = ["http://localhost:1234","*"];
+
 // CORS implementation
 const cors = require("cors");
 app.use(
@@ -55,9 +58,6 @@ app.use(
   })
 );
 
-// CORS origin sites to be given access:
-let allowedOrigins = ["http://localhost:1234","*"];
-
 // CORS sites use all origins
 app.use(cors());
 
@@ -69,7 +69,11 @@ app.get("/", function (req, res) {
 
 // Movies //
 // GETs the list of data about All movies
-app.get("/movies", (req, res) => {
+app.get("/movies", 
+passport.authenticate('jwt', { 
+  session: false,
+   }),
+   (req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(201).json(movies);
