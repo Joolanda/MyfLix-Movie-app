@@ -45947,15 +45947,7 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 require("./movie-card.scss");
 
-var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
-
-var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
-
 var _reactBootstrap = require("react-bootstrap");
-
-var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
-
-var _CardDeck = _interopRequireDefault(require("react-bootstrap/CardDeck"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46000,15 +45992,15 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
           _onClick = _this$props.onClick;
       return _react.default.createElement("div", {
         className: "movie-card"
-      }, _react.default.createElement(_CardDeck.default, null, _react.default.createElement(_Card.default, {
+      }, _react.default.createElement(_reactBootstrap.CardDeck, null, _react.default.createElement(_reactBootstrap.Card, {
         className: "border-success text-white bg-dark mb-3",
         style: {
           width: '20rem'
         }
-      }, _react.default.createElement(_Card.default.Img, {
+      }, _react.default.createElement(_reactBootstrap.Card.Img, {
         variant: "top",
         src: movie.ImagePath
-      }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Header, null, " ", _react.default.createElement("h2", null, movie.Title)), _react.default.createElement(_Card.default.Text, null, movie.Description)), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_reactBootstrap.Button, {
+      }), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Header, null, " ", _react.default.createElement("h2", null, movie.Title)), _react.default.createElement(_reactBootstrap.Card.Text, null, movie.Description)), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Button, {
         onClick: function onClick() {
           return _onClick(movie);
         },
@@ -46033,7 +46025,7 @@ MovieCard.propTypes = {
   }).isRequired,
   onClick: _propTypes.default.func.isRequired
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./movie-card.scss":"components/movie-card/movie-card.scss","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/CardDeck":"../node_modules/react-bootstrap/esm/CardDeck.js"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./movie-card.scss":"components/movie-card/movie-card.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -46054,13 +46046,7 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _mainView = require("../main-view/main-view");
 
-var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
-
-var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
-
 var _reactBootstrap = require("react-bootstrap");
-
-var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46114,7 +46100,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       if (!movie) return null;
       return _react.default.createElement("div", {
         className: "movie-view"
-      }, _react.default.createElement(_Card.default, {
+      }, _react.default.createElement(_reactBootstrap.Card, {
         className: "text-center",
         border: "dark",
         text: "white",
@@ -46122,25 +46108,25 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         style: {
           width: '20rem'
         }
-      }, _react.default.createElement(_Card.default.Header, null, _react.default.createElement(_Card.default.Img, {
+      }, _react.default.createElement(_reactBootstrap.Card.Header, null, _react.default.createElement(_reactBootstrap.Card.Img, {
         variant: "top",
         className: "movie-view-image",
         src: movie.ImagePath
-      })), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
+      })), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, {
         className: "movie-title"
-      }, _react.default.createElement("h5", null, movie.Title)), _react.default.createElement(_Card.default.Text, null, _react.default.createElement(_Card.default.Subtitle, {
+      }, _react.default.createElement("h5", null, movie.Title)), _react.default.createElement(_reactBootstrap.Card.Text, null, _react.default.createElement(_reactBootstrap.Card.Subtitle, {
         className: "mb-2 text-muted movie-description"
       }, "Description: "), _react.default.createElement("span", {
         className: "value"
-      }, movie.Description, " "), _react.default.createElement(_Card.default.Subtitle, {
+      }, movie.Description, " "), _react.default.createElement(_reactBootstrap.Card.Subtitle, {
         className: "mb-2 text-muted movie-genre"
       }, "Genre: "), _react.default.createElement("span", {
         className: "value"
-      }, movie.Genre.Name), _react.default.createElement(_Card.default.Subtitle, {
+      }, movie.Genre.Name), _react.default.createElement(_reactBootstrap.Card.Subtitle, {
         className: "mb-2 text-muted movie-director"
       }, "Director: "), _react.default.createElement("span", {
         className: "value"
-      }, movie.Director.Name))), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_reactBootstrap.Button, {
+      }, movie.Director.Name))), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Button, {
         className: "reset-button",
         variant: "secondary",
         size: "lg",
@@ -46167,7 +46153,7 @@ MovieView.propTypes = {
   }).isRequired,
   onClick: _propTypes.default.func.isRequired
 };
-},{"react":"../node_modules/react/index.js","./movie-view.scss":"components/movie-view/movie-view.scss","prop-types":"../node_modules/prop-types/index.js","../main-view/main-view":"components/main-view/main-view.jsx","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./movie-view.scss":"components/movie-view/movie-view.scss","prop-types":"../node_modules/prop-types/index.js","../main-view/main-view":"components/main-view/main-view.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

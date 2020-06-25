@@ -4,11 +4,7 @@ import PropTypes from 'prop-types';
 import { MainView } from '../main-view/main-view';
 
 // bootstrap import
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Button } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
-
+import { Row, Col, Card, Button } from 'react-bootstrap';
 
 export class MovieView extends React.Component {
 
