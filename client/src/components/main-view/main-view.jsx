@@ -49,16 +49,16 @@ export class MainView extends React.Component {
   getMovies(token) {
     axios.get('https://myflix-movie.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}`}
-     })
+    })
     .then(response => {
-       // Assign the result to the state
-       this.setState({
-       movies: response.data
+      // Assign the result to the state
+      this.setState({
+        movies: response.data
       });
-   })
-   .catch(function (error) {
-   console.log(error);
-   });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   onMovieClick(movie) {
