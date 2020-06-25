@@ -21,18 +21,29 @@ export class MainView extends React.Component {
       user: null
     };
   }
+  // old code from task 34 and before
+  // componentDidMount() {
+  //    axios.get('https://myflix-movie.herokuapp.com/movies')
+  //     .then(response => {
+  //       // Assign the result to the state
+  //       this.setState({
+  //         movies: response.data
+  //       });
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     }); 
+  // }
 
+  // new code added with task 35
   componentDidMount() {
-     axios.get('https://myflix-movie.herokuapp.com/movies')
-      .then(response => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      }); 
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+    }
   }
   // get movies method, new code task 35, make a request to the movies endpoint
   getMovies(token) {
