@@ -22,44 +22,45 @@ export class MainView extends React.Component {
     };
   }
   // old code from task 34 and before
+  componentDidMount() {
+     axios.get('https://myflix-movie.herokuapp.com/movies')
+      .then(response => {
+        // Assign the result to the state
+        this.setState({
+          movies: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      }); 
+  }
+
+  // // new code added with task 35
   // componentDidMount() {
-  //    axios.get('https://myflix-movie.herokuapp.com/movies')
-  //     .then(response => {
-  //       // Assign the result to the state
-  //       this.setState({
-  //         movies: response.data
-  //       });
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     }); 
+  //   let accessToken = localStorage.getItem('token');
+  //   if (accessToken !== null) {
+  //     this.setState({
+  //       user: localStorage.getItem('user')
+  //     });
+  //     this.getMovies(accessToken);
+  //   }
   // }
 
-  // new code added with task 35
-  componentDidMount() {
-    let accessToken = localStorage.getItem('token');
-    if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user')
-      });
-      this.getMovies(accessToken);
-    }
-  }
-  // get movies method, new code task 35, make a request to the movies endpoint
-  getMovies(token) {
-    axios.get('https://myflix-movie.herokuapp.com/movies', {
-      headers: { Authorization: `Bearer ${token}`}
-     })
-    .then(response => {
-       // Assign the result to the state
-       this.setState({
-       movies: response.data
-      });
-   })
-   .catch(function (error) {
-   console.log(error);
-   });
-  }
+  // // new method get movies, new code task 35, make a request to the movies endpoint
+  // getMovies(token) {
+  //   axios.get('https://myflix-movie.herokuapp.com/movies', {
+  //     headers: { Authorization: `Bearer ${token}`}
+  //    })
+  //   .then(response => {
+  //      // Assign the result to the state
+  //      this.setState({
+  //      movies: response.data
+  //     });
+  //  })
+  //  .catch(function (error) {
+  //  console.log(error);
+  //  });
+  // }
 
   onMovieClick(movie) {
     this.setState({
@@ -73,7 +74,7 @@ export class MainView extends React.Component {
     });
   }
 
-  // consider update code acording to Task 3.5
+  // new code consider update code acording to Task 3.5
   // onLoggedIn(authData) {
   //   console.log(authData);
   //   this.setState({

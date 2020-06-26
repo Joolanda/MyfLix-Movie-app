@@ -46207,44 +46207,14 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     };
     return _this;
   } // old code from task 34 and before
-  // componentDidMount() {
-  //    axios.get('https://myflix-movie.herokuapp.com/movies')
-  //     .then(response => {
-  //       // Assign the result to the state
-  //       this.setState({
-  //         movies: response.data
-  //       });
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     }); 
-  // }
-  // new code added with task 35
 
 
   _createClass(MainView, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var accessToken = localStorage.getItem('token');
-
-      if (accessToken !== null) {
-        this.setState({
-          user: localStorage.getItem('user')
-        });
-        this.getMovies(accessToken);
-      }
-    } // get movies method, new code task 35, make a request to the movies endpoint
-
-  }, {
-    key: "getMovies",
-    value: function getMovies(token) {
       var _this2 = this;
 
-      _axios.default.get('https://myflix-movie.herokuapp.com/movies', {
-        headers: {
-          Authorization: "Bearer ".concat(token)
-        }
-      }).then(function (response) {
+      _axios.default.get('https://myflix-movie.herokuapp.com/movies').then(function (response) {
         // Assign the result to the state
         _this2.setState({
           movies: response.data
@@ -46252,7 +46222,32 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }).catch(function (error) {
         console.log(error);
       });
-    }
+    } // // new code added with task 35
+    // componentDidMount() {
+    //   let accessToken = localStorage.getItem('token');
+    //   if (accessToken !== null) {
+    //     this.setState({
+    //       user: localStorage.getItem('user')
+    //     });
+    //     this.getMovies(accessToken);
+    //   }
+    // }
+    // // new method get movies, new code task 35, make a request to the movies endpoint
+    // getMovies(token) {
+    //   axios.get('https://myflix-movie.herokuapp.com/movies', {
+    //     headers: { Authorization: `Bearer ${token}`}
+    //    })
+    //   .then(response => {
+    //      // Assign the result to the state
+    //      this.setState({
+    //      movies: response.data
+    //     });
+    //  })
+    //  .catch(function (error) {
+    //  console.log(error);
+    //  });
+    // }
+
   }, {
     key: "onMovieClick",
     value: function onMovieClick(movie) {
@@ -46266,7 +46261,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       this.setState({
         user: user
       });
-    } // consider update code acording to Task 3.5
+    } // new code consider update code acording to Task 3.5
     // onLoggedIn(authData) {
     //   console.log(authData);
     //   this.setState({
