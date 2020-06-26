@@ -66,15 +66,23 @@ export class MainView extends React.Component {
       selectedMovie: movie
     });
   }
-  onLoggedIn(authData) {
-    console.log(authData);
+
+  onLoggedIn(user) {
     this.setState({
-      user: authData.user.Username
+      user
     });
-    localStorage.setItem('token', authData.token);
-    localStorage.setItem('user', authData.user.Username);
-    this.getMovies(authData.token);
   }
+
+  // consider update code acording to Task 3.5
+  // onLoggedIn(authData) {
+  //   console.log(authData);
+  //   this.setState({
+  //     user: authData.user.Username
+  //   });
+  //   localStorage.setItem('token', authData.token);
+  //   localStorage.setItem('user', authData.user.Username);
+  //   this.getMovies(authData.token);
+  // }
 
   onResetSelectedMovie() { 
   this.setState({ 

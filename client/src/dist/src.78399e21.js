@@ -46262,15 +46262,21 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "onLoggedIn",
-    value: function onLoggedIn(authData) {
-      console.log(authData);
+    value: function onLoggedIn(user) {
       this.setState({
-        user: authData.user.Username
+        user: user
       });
-      localStorage.setItem('token', authData.token);
-      localStorage.setItem('user', authData.user.Username);
-      this.getMovies(authData.token);
-    }
+    } // consider update code acording to Task 3.5
+    // onLoggedIn(authData) {
+    //   console.log(authData);
+    //   this.setState({
+    //     user: authData.user.Username
+    //   });
+    //   localStorage.setItem('token', authData.token);
+    //   localStorage.setItem('user', authData.user.Username);
+    //   this.getMovies(authData.token);
+    // }
+
   }, {
     key: "onResetSelectedMovie",
     value: function onResetSelectedMovie() {
