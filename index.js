@@ -10,12 +10,12 @@ app.use(bodyParser.json()); // JSON Parsing
 app.use(morgan("common")); // logging with Morgan
 app.use(express.static("public")); //retrieves files from public folder
 
-// routes all requests for the client to 'dist' folder..next lines are for handlesubmit loginview task 3.5
- app.use('/client', express.static(path.join(__dirname, 'client', 'dist'))); 
-// all routes to the React client
- app.get('/client/*', (req, res) => {
-   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-// });
+// // routes all requests for the client to 'dist' folder..next lines are for handlesubmit loginview task 3.5
+//  app.use('/client', express.static(path.join(__dirname, 'client', 'dist'))); 
+// // all routes to the React client
+//  app.get('/client/*', (req, res) => {
+//    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+//  });
 
 
 // install validator

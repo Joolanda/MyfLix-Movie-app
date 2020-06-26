@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import "./movie-view.scss";
 import PropTypes from 'prop-types';
-import { MainView } from '../main-view/main-view';
 
 // bootstrap import
 import { Row, Col, Card, Button } from 'react-bootstrap';
