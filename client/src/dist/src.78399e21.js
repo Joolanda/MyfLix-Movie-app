@@ -45847,7 +45847,7 @@ function RegistrationView(props) {
     props.onLoggedIn(username);
   }; //const handleSubmit = (e) => {
   //  e.preventDefault();
-  //  axios.post('https://myflix-movie.herokuapp.com/login', {
+  //  axios.post('https://myflix-movie.herokuapp.com/users', {
   //    Username: username,
   //    Password: password,
   //    Email: email,
@@ -46222,7 +46222,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }).catch(function (error) {
         console.log(error);
       });
-    } // // new code added with task 35
+    } // // new code added with Task 3.5
     // componentDidMount() {
     //   let accessToken = localStorage.getItem('token');
     //   if (accessToken !== null) {
@@ -46232,7 +46232,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     //     this.getMovies(accessToken);
     //   }
     // }
-    // // new method get movies, new code task 35, make a request to the movies endpoint
+    // // new method get movies, new code Task 3.5, make a request to the movies endpoint
     // getMovies(token) {
     //   axios.get('https://myflix-movie.herokuapp.com/movies', {
     //     headers: { Authorization: `Bearer ${token}`}
@@ -46414,7 +46414,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50048" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55006" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -68,12 +68,8 @@ app.get("/", function (req, res) {
 });
 
 // Movies //
-// GETs the list of data about All movies
-app.get("/movies", 
-passport.authenticate('jwt', { 
-  session: false,
-   }),
-   (req, res) => {
+// GETs the list of data about All movies, in Task 3.5 add jwt auth to this endpoint
+app.get("/movies", (req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(201).json(movies);
@@ -245,7 +241,9 @@ app.get(
 }*/
 app.put(
   "/users/:Username",
-  // validation logic here for request
+  passport.authenticate("jwt", {
+    session: false,
+  }),
   [
     check("Username", "Username is required").isLength({ min: 4 }),
     check(
@@ -255,9 +253,7 @@ app.put(
     check("Password", "Password is required").not().isEmpty(),
     check("Email", "Email does not appear to be valid").isEmail(),
   ],
-  passport.authenticate("jwt", {
-    session: false,
-  }),(req, res) => {
+  (req, res) => {
     //check the validation object for errors
     let errors = validationResult(req);
 
@@ -267,18 +263,18 @@ app.put(
 
     let hashedPassword = Users.hashPassword(req.body.Password);
 
-  Users.findOneAndUpdate(
-    { Username: req.params.Username },
-    {
+    Users.findOneAndUpdate(
+     { Username: req.params.Username },
+     {
        $set: {
          Username: req.body.Username,
          Password: hashedPassword,
          Email: req.body.Email,
           Birthday: req.body.Birthday,
-        },
+        }
      },
      { new: true }, //Makes sure updated document is returned
-      function (err, updatedUser) {
+      (err, updatedUser) => {
         if (err) {
           console.error(err);
           res.status(500).send('Error: ' + err);

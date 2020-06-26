@@ -35,7 +35,7 @@ export class MainView extends React.Component {
       }); 
   }
 
-  // // new code added with task 35
+  // // new code added with Task 3.5
   // componentDidMount() {
   //   let accessToken = localStorage.getItem('token');
   //   if (accessToken !== null) {
@@ -46,7 +46,7 @@ export class MainView extends React.Component {
   //   }
   // }
 
-  // // new method get movies, new code task 35, make a request to the movies endpoint
+  // // new method get movies, new code Task 3.5, make a request to the movies endpoint
   // getMovies(token) {
   //   axios.get('https://myflix-movie.herokuapp.com/movies', {
   //     headers: { Authorization: `Bearer ${token}`}

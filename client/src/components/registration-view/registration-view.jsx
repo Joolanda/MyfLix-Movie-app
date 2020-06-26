@@ -20,7 +20,7 @@ const handleSubmit= (e) => {
 
 //const handleSubmit = (e) => {
 //  e.preventDefault();
-//  axios.post('https://myflix-movie.herokuapp.com/login', {
+//  axios.post('https://myflix-movie.herokuapp.com/users', {
 //    Username: username,
 //    Password: password,
 //    Email: email,
