@@ -3,12 +3,7 @@ import './login-view.scss';
 import axios from 'axios';
 
 // bootstrap imports
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Button } from 'react-bootstrap';
-import { Form } from 'react-bootstrap';
-import { Container } from 'react-bootstrap';
-
+import { Row, Col, Button, Form, Container} from 'react-bootstrap';
 
 export function LoginView (props) {
 const [ username, setUsername ] = useState('');
