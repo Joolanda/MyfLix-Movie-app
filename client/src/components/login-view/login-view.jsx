@@ -43,7 +43,7 @@ const handleSubmit = (e) => {
                 <Form.Label>Username:</Form.Label>  
                 <Form.Control 
                   size="sm" 
-                  type="text" 
+                  type="username" 
                   placeholder="enter your login userID" 
                   value={username} 
                   onChange={e => setUsername(e.target.value)}/>
