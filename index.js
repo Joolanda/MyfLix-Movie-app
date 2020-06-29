@@ -64,7 +64,11 @@ app.get("/", function (req, res) {
 
 // Movies //
 // GETs the list of data about All movies, in Task 3.5 add jwt auth to this endpoint
-app.get("/movies", (req, res) => {
+app.get("/movies", 
+passport.authenticate('jwt', { 
+  session: false,
+ }),
+(req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(201).json(movies);
