@@ -1,14 +1,18 @@
 require('dotenv').config({ debug: process.env.DEBUG })
 const express = require("express");
-bodyParser = require("body-parser");
-uuid = require("uuid");
+  bodyParser = require("body-parser");
+  uuid = require("uuid");
+const cors = require("cors");
 const morgan = require("morgan");
 const app = express();
+const { check, validationResult } = require("express-validator");
+let allowedOrigins = ["http://localhost:1234", "*"]; // CORS origin sites to be given access
 
 // Middleware //
 app.use(bodyParser.json()); // JSON Parsing
 app.use(morgan("common")); // logging with Morgan
 app.use(express.static("public")); //retrieves files from public folder
+app.use(cors());
 
 // // routes all requests for the client to 'dist' folder..next lines are for handlesubmit loginview task 3.5
 //  app.use('/client', express.static(path.join(__dirname, 'client', 'dist'))); 
@@ -17,31 +21,18 @@ app.use(express.static("public")); //retrieves files from public folder
 //    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 //  });
 
-
-// install validator
-const { check, validationResult } = require("express-validator");
-
-// Authentication(passport) and Authorization(auth)
-const passport = require("passport");
-require("./passport");
-const auth = require("./auth")(app);
-
 // Integrating mongoose with a REST API
 const mongoose = require("mongoose");
 const Models = require("./models.js");
-Movies = Models.Movie;
-Users = Models.User;
+  Movies = Models.Movie;
+  Users = Models.User;
 
 console.log(process.env)
 //MongoDB connections
 //mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true})..then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
 mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
 
-// CORS origin sites to be given access:
-let allowedOrigins = ["http://localhost:1234","*"];
-
 // CORS implementation
-const cors = require("cors");
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -58,8 +49,12 @@ app.use(
   })
 );
 
-// CORS sites use all origins
-app.use(cors());
+var auth = require("./auth")(app);
+
+// Authentication(passport) and Authorization(auth)
+const passport = require("passport");
+require("./passport");
+
 
 // default textual response when request hits the root folder
 app.get("/", function (req, res) {

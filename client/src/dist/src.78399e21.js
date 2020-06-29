@@ -45717,32 +45717,28 @@ function LoginView(props) {
   var _useState3 = (0, _react.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       password = _useState4[0],
-      setPassword = _useState4[1];
+      setPassword = _useState4[1]; // const handleSubmit = (e) => {
+  //   console.log(username, password);
+  //   /* Send a request to the server for authentication */
+  //   /* then call props.onLoggedIn(username) */
+  //   props.onLoggedIn(username);
+  //   };
+
 
   var handleSubmit = function handleSubmit(e) {
-    console.log(username, password);
+    e.preventDefault();
     /* Send a request to the server for authentication */
 
-    /* then call props.onLoggedIn(username) */
-
-    props.onLoggedIn(username);
-  }; // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   /* Send a request to the server for authentication */
-  //   axios.
-  //     post('https://myflix-movie.herokuapp.com/login', {
-  //       Username: username,
-  //       Password: password
-  //     })
-  //     .then((response) => {
-  //     const data = response.data;
-  //       props.onLoggedIn(data);
-  //     })
-  //     .catch((e) => { 
-  //     console.log('no such user here');
-  //     });
-  //   }; 
-
+    _axios.default.post('https://myflix-movie.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    }).then(function (response) {
+      var data = response.data;
+      props.onLoggedIn(data);
+    }).catch(function (e) {
+      console.log('no such user here');
+    });
+  };
 
   return _react.default.createElement(_reactBootstrap.Container, {
     className: "login-view"
@@ -46147,7 +46143,13 @@ MovieView.propTypes = {
   }).isRequired,
   onClick: _propTypes.default.func.isRequired
 };
-},{"react":"../node_modules/react/index.js","./movie-view.scss":"components/movie-view/movie-view.scss","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./movie-view.scss":"components/movie-view/movie-view.scss","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/director-view/director-view.jsx":[function(require,module,exports) {
+
+},{}],"components/genre-view/genre-view.jsx":[function(require,module,exports) {
+
+},{}],"components/profile-view/profile-view.jsx":[function(require,module,exports) {
+
+},{}],"components/main-view/main-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46166,6 +46168,12 @@ var _registrationView = require("../registration-view/registration-view");
 var _movieCard = require("../movie-card/movie-card");
 
 var _movieView = require("../movie-view/movie-view");
+
+var _directorView = require("../director-view/director-view");
+
+var _genreView = require("../genre-view/genre-view");
+
+var _profileView = require("../profile-view/profile-view");
 
 var _reactBootstrap = require("react-bootstrap");
 
@@ -46263,19 +46271,21 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     key: "onLoggedIn",
     value: function onLoggedIn(user) {
       this.setState({
-        user: user
+        userh: userh
       });
-    } // new code consider update code acording to Task 3.5
-    // onLoggedIn(authData) {
-    //   console.log(authData);
-    //   this.setState({
-    //     user: authData.user.Username
-    //   });
-    //   localStorage.setItem('token', authData.token);
-    //   localStorage.setItem('user', authData.user.Username);
-    //   this.getMovies(authData.token);
-    // }
+    } //new code consider update code acording to Task 3.5
 
+  }, {
+    key: "onLoggedIn",
+    value: function onLoggedIn(authData) {
+      console.log(authData);
+      this.setState({
+        user: authData.user.Username
+      });
+      localStorage.setItem('token', authData.token);
+      localStorage.setItem('user', authData.user.Username);
+      this.getMovies(authData.token);
+    }
   }, {
     key: "onResetSelectedMovie",
     value: function onResetSelectedMovie() {
@@ -46324,7 +46334,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.MainView = MainView;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"index.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"index.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);

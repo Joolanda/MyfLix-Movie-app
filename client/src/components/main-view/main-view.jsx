@@ -6,6 +6,9 @@ import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { DirectorView } from '../director-view/director-view';
+import { GenreView } from '../genre-view/genre-view';
+import { ProfileView } from '../profile-view/profile-view';
 
 // bootstrap import
 import { Row, Col, Card, CardDeck } from 'react-bootstrap';
@@ -70,20 +73,20 @@ export class MainView extends React.Component {
 
   onLoggedIn(user) {
     this.setState({
-      user
+      userh
     });
   }
 
-  // new code consider update code acording to Task 3.5
-  // onLoggedIn(authData) {
-  //   console.log(authData);
-  //   this.setState({
-  //     user: authData.user.Username
-  //   });
-  //   localStorage.setItem('token', authData.token);
-  //   localStorage.setItem('user', authData.user.Username);
-  //   this.getMovies(authData.token);
-  // }
+  //new code consider update code acording to Task 3.5
+  onLoggedIn(authData) {
+    console.log(authData);
+    this.setState({
+      user: authData.user.Username
+    });
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);
+  }
 
   onResetSelectedMovie() { 
   this.setState({ 
