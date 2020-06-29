@@ -88,6 +88,14 @@ export class MainView extends React.Component {
     this.getMovies(authData.token);
   }
 
+  onLoggedOut(user) {
+    this.setState({
+      user: null
+    });
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  }
+  
   onResetSelectedMovie() { 
   this.setState({ 
   selectedMovie: null, 
@@ -104,7 +112,9 @@ export class MainView extends React.Component {
 
     return (
       <div className="main-view">
-      <CardDeck>
+      <CardDeck>=
+      <Button onClick={() => this.onloggedOut()} variant="outline-warning" size="sm">x
+      </Button>
       {selectedMovie
          ? <MovieView movie={selectedMovie} 
             onResetSelectedMovie={() => this.onResetSelectedMovie()}

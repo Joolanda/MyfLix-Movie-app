@@ -46292,6 +46292,15 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       this.getMovies(authData.token);
     }
   }, {
+    key: "onLoggedOut",
+    value: function onLoggedOut(user) {
+      this.setState({
+        user: null
+      });
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+    }
+  }, {
     key: "onResetSelectedMovie",
     value: function onResetSelectedMovie() {
       this.setState({
@@ -46318,7 +46327,13 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
       return _react.default.createElement("div", {
         className: "main-view"
-      }, _react.default.createElement(_reactBootstrap.CardDeck, null, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
+      }, _react.default.createElement(_reactBootstrap.CardDeck, null, "=", _react.default.createElement(Button, {
+        onClick: function onClick() {
+          return _this3.onloggedOut();
+        },
+        variant: "outline-warning",
+        size: "sm"
+      }, "x"), selectedMovie ? _react.default.createElement(_movieView.MovieView, {
         movie: selectedMovie,
         onResetSelectedMovie: function onResetSelectedMovie() {
           return _this3.onResetSelectedMovie();
