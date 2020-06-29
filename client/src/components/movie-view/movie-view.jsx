@@ -3,7 +3,7 @@ import "./movie-view.scss";
 import PropTypes from 'prop-types';
 
 // bootstrap import
-import { Row, Col, Card, Button } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
 export class MovieView extends React.Component {
 

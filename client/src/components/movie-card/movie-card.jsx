@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './movie-card.scss';
 
 // bootstrap import
-import { Row, Col, Button,Card, CardDeck } from 'react-bootstrap';
+import { Button,Card, CardDeck } from 'react-bootstrap';
 
 export class MovieCard extends React.Component {
   render() {
