@@ -35,9 +35,9 @@ export class GenreView extends React.Component {
   }
 }
 
-DirectorView.propTypes = {
-  director: PropTypes.shape({
+GenreView.propTypes = {
+  genre: PropTypes.shape({
     Name: PropTypes.string,
-    Bio: PropTypes.string
+    Description: PropTypes.string
   })
 };
