@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import "./movie-view.scss";
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
 // bootstrap import
 import { Card, Button } from 'react-bootstrap';

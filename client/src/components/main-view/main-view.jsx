@@ -14,7 +14,7 @@ import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
 
 // bootstrap import
-import { Row, Col, Card, CardDeck } from 'react-bootstrap';
+import { Row, Col, Card, CardDeck, Nav, Navbar } from 'react-bootstrap';
 
 export class MainView extends React.Component {
 
@@ -151,12 +151,17 @@ render() {
         <Route exact path="/" 
           render={() => movies.map(m => <MovieCard key={m._id} movie={m}/>)}/>
         <Route path="/movies/:_id" 
-          render={({match}) => <MovieView movie={movies.find(m => m._id === match.params._id)}/>}/>
-        <Route exact path="/Genre/:Name" render={/* genre view*/}/>
-        <Route exact path="/Director/:Name" render={/* director view */}/>
+          render={({match}) => <MovieView movie={movies.find(m => m._id === match.params._id)}/>
+        <Route exact path="/Genre/:Name" render={({ match }) => {
+          if (!movies) return <div className="main-view"/>;
+          return <GenreView genre={movies.find(m => m.Genre.Name === match.params.Name).Genre}/>}
+          } />
+        <Route path="/Director/:Name" render={({ match }) => {
+          if (!movies) return <div className="main-view"/>;
+          return <DirectorView director={movies.find(m => m.Director.Name === match.params.Name).Director}/>}
+        } />
        </CardDeck>
        </div>
     </Router>
   );
-}
 }

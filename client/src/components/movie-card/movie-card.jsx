@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './movie-card.scss';
+import { Link } from "react-router-dom";
 
 // bootstrap import
 import { Row, Col, Button,Card, CardDeck } from 'react-bootstrap';
@@ -18,13 +19,10 @@ export class MovieCard extends React.Component {
            <Card.Body>
              <Card.Header> <h2>{movie.Title}</h2></Card.Header>
              <Card.Text>{movie.Description}</Card.Text>
+             <Link to={`/movies/${movie._id}`}>
+            <Button variant="link">Open</Button>
+          </Link>
             </Card.Body>
-            <Card.Body>
-              <Button onClick={() => onClick(movie)} variant="success" size="lg" block>
-                Tell me more
-               </Button>
-               <Button className="sign_out-button" variant="secondary" size="sm" onClick={() => this.onLoggedOut()}>Sign out</Button>
-             </Card.Body>
           </Card>
          </CardDeck>
        </div> 
@@ -33,6 +31,13 @@ export class MovieCard extends React.Component {
     );
   }
 }
+// old code return(), before router Task 3.5
+/* <Card.Body>
+<Button onClick={() => onClick(movie)} variant="success" size="lg" block>
+  Tell me more
+ </Button>
+ <Button className="sign_out-button" variant="secondary" size="sm" onClick={() => this.onLoggedOut()}>Sign out</Button> 
+</Card.Body> */
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
