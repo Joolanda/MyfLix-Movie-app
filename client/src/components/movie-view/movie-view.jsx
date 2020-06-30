@@ -23,17 +23,23 @@ export class MovieView extends React.Component {
     return (      
       <div className="movie-view">
        <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
-         <Card.Header>
+        <Card.Header>
           <Card.Img variant="top" className="movie-view-image" src={movie.ImagePath} />
-          </Card.Header>
-             <Card.Body>
-             <Card.Title>{movie.Title}</Card.Title>
-               <Card.Text>Description: {movie.Description}</Card.Text>
-              <Card.Text>Genre: {movie.Genre.Name}</Card.Text>
-              <Card.Text>Director: {movie.Director.Name}</Card.Text>
-              <Card.Text>Director Bio: {movie.Director.Bio}</Card.Text>
+        </Card.Header>
+        <Card.Body>
+            <Card.Title>{movie.Title}</Card.Title>
+            <Card.Text>Description: {movie.Description}</Card.Text>
+            <Card.Text>Genre: {movie.Genre.Name}</Card.Text>
+            <Card.Text>Director: {movie.Director.Name}</Card.Text>
+            <Card.Text>Director Bio: {movie.Director.Bio}</Card.Text>
             <Link to={`/`}>
               <Button variant="link">Back to Movies</Button>
+            </Link>
+            <Link to={`/directors/${movie.Director.Name}`}>
+              <Button variant="link">Director</Button>
+            </Link>
+            <Link to={`/genres/${movie.Genre.Name}`}>
+              <Button variant="link">Genre</Button>
             </Link>
           </Card.Body>
         </Card>
