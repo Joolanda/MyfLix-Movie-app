@@ -9,7 +9,7 @@ import { Row, Col, Button,Card, CardDeck } from 'react-bootstrap';
 
 export class MovieCard extends React.Component {
   render() {
-    const { movie, onClick } = this.props;
+    const { movie } = this.props;
 
     return (
       <div className="movie-card">
@@ -20,7 +20,7 @@ export class MovieCard extends React.Component {
              <Card.Header> <h2>{movie.Title}</h2></Card.Header>
              <Card.Text>{movie.Description}</Card.Text>
              <Link to={`/movies/${movie._id}`}>
-            <Button variant="link">Open</Button>
+            <Button variant="link">Tell me more</Button>
           </Link>
             </Card.Body>
           </Card>
