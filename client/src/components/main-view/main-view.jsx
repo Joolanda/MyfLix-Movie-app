@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import { BrowserRouter as Router, Route} from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 import { LoginView } from '../login-view/login-view';
 //import { RegistrationView } from '../registration-view/registration-view';
@@ -22,7 +23,7 @@ export class MainView extends React.Component {
 
     this.state = {
       movies: null,
-      selectedMovie: null,
+  //    selectedMovie: null,
       user: null
     };
   }
@@ -68,17 +69,29 @@ export class MainView extends React.Component {
    });
   }
 
-  onMovieClick(movie) {
+  // onMovieClick(movie) {
+  //   this.setState({
+  //     selectedMovie: movie
+  //   });
+  // }
+
+  // onLoggedIn(user) {
+  //   this.setState({
+  //     user
+  //   });
+  // }
+
+  onLoggedIn(authData) {
+    console.log(authData);
     this.setState({
-      selectedMovie: movie
+      user: authData.user.Username
     });
+  
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);
   }
 
-  onLoggedIn(user) {
-    this.setState({
-      user
-    });
-  }
 // new method for siging out, button mainview
   onLoggedOut() {
     this.setState({
@@ -94,32 +107,56 @@ export class MainView extends React.Component {
   selectedMovie: null, 
   });
   }
+// old render-code, before implementing state routing
+//   render() {
+//     const { movies, selectedMovie, user } = this.state;
 
-  render() {
-    const { movies, selectedMovie, user } = this.state;
+//     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>;
 
-    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>;
+//     // Before the movies have been loaded
+//     if (!movies) return <div className="main-view"/>;
 
-    // Before the movies have been loaded
-    if (!movies) return <div className="main-view"/>;
+//     return (
+//       <div className="main-view">
+//       <CardDeck>
+//       {selectedMovie
+//          ? <MovieView movie={selectedMovie} 
+//             onResetSelectedMovie={() => this.onResetSelectedMovie()}
+//            />
+//             : movies.map(movie => (
+//              <MovieCard 
+//               key={movie._id} 
+//               movie={movie} 
+//               onClick={movie => this.onMovieClick(movie)}
+//             />
+//          ))
+//       }
+//       </CardDeck>
+//       </div>
+//     );
+//   }
+// }
 
-    return (
-      <div className="main-view">
-      <CardDeck>
-      {selectedMovie
-         ? <MovieView movie={selectedMovie} 
-            onResetSelectedMovie={() => this.onResetSelectedMovie()}
-           />
-            : movies.map(movie => (
-             <MovieCard 
-              key={movie._id} 
-              movie={movie} 
-              onClick={movie => this.onMovieClick(movie)}
-            />
-         ))
-      }
-      </CardDeck>
-      </div>
-    );
-  }
+render() {
+  const { movies, user } = this.state;
+
+
+  if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+  if (!movies) return <div className="main-view"/>;
+
+  return (
+    <Router>
+       <div className="main-view">
+       <CardDeck>
+        <Route exact path="/" 
+          render={() => movies.map(m => <MovieCard key={m._id} movie={m}/>)}/>
+        <Route path="/movies/:_id" 
+          render={({match}) => <MovieView movie={movies.find(m => m._id === match.params._id)}/>}/>
+        <Route exact path="/Genre/:Name" render={/* genre view*/}/>
+        <Route exact path="/Director/:Name" render={/* director view */}/>
+       </CardDeck>
+       </div>
+    </Router>
+  );
+}
 }

@@ -49275,7 +49275,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this);
     _this.state = {
       movies: null,
-      selectedMovie: null,
+      //    selectedMovie: null,
       user: null
     };
     return _this;
@@ -49325,20 +49325,27 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }).catch(function (error) {
         console.log(error);
       });
-    }
-  }, {
-    key: "onMovieClick",
-    value: function onMovieClick(movie) {
-      this.setState({
-        selectedMovie: movie
-      });
-    }
+    } // onMovieClick(movie) {
+    //   this.setState({
+    //     selectedMovie: movie
+    //   });
+    // }
+    // onLoggedIn(user) {
+    //   this.setState({
+    //     user
+    //   });
+    // }
+
   }, {
     key: "onLoggedIn",
-    value: function onLoggedIn(user) {
+    value: function onLoggedIn(authData) {
+      console.log(authData);
       this.setState({
-        user: user
+        user: authData.user.Username
       });
+      localStorage.setItem('token', authData.token);
+      localStorage.setItem('user', authData.user.Username);
+      this.getMovies(authData.token);
     } // new method for siging out, button mainview
 
   }, {
@@ -49356,7 +49363,33 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       this.setState({
         selectedMovie: null
       });
-    }
+    } // old render-code, before implementing state routing
+    //   render() {
+    //     const { movies, selectedMovie, user } = this.state;
+    //     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>;
+    //     // Before the movies have been loaded
+    //     if (!movies) return <div className="main-view"/>;
+    //     return (
+    //       <div className="main-view">
+    //       <CardDeck>
+    //       {selectedMovie
+    //          ? <MovieView movie={selectedMovie} 
+    //             onResetSelectedMovie={() => this.onResetSelectedMovie()}
+    //            />
+    //             : movies.map(movie => (
+    //              <MovieCard 
+    //               key={movie._id} 
+    //               movie={movie} 
+    //               onClick={movie => this.onMovieClick(movie)}
+    //             />
+    //          ))
+    //       }
+    //       </CardDeck>
+    //       </div>
+    //     );
+    //   }
+    // }
+
   }, {
     key: "render",
     value: function render() {
@@ -49364,33 +49397,39 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
       var _this$state = this.state,
           movies = _this$state.movies,
-          selectedMovie = _this$state.selectedMovie,
           user = _this$state.user;
       if (!user) return _react.default.createElement(_loginView.LoginView, {
         onLoggedIn: function onLoggedIn(user) {
           return _this3.onLoggedIn(user);
         }
-      }); // Before the movies have been loaded
-
+      });
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
       });
-      return _react.default.createElement("div", {
+      return _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement("div", {
         className: "main-view"
-      }, _react.default.createElement(_reactBootstrap.CardDeck, null, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
-        movie: selectedMovie,
-        onResetSelectedMovie: function onResetSelectedMovie() {
-          return _this3.onResetSelectedMovie();
+      }, _react.default.createElement(_reactBootstrap.CardDeck, null, _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
+        path: "/",
+        render: function render() {
+          return movies.map(function (m) {
+            return _react.default.createElement(_movieCard.MovieCard, {
+              key: m._id,
+              movie: m
+            });
+          });
         }
-      }) : movies.map(function (movie) {
-        return _react.default.createElement(_movieCard.MovieCard, {
-          key: movie._id,
-          movie: movie,
-          onClick: function onClick(movie) {
-            return _this3.onMovieClick(movie);
-          }
-        });
-      })));
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/movies/:_id",
+        render: function render(_ref) {
+          var match = _ref.match;
+          return _react.default.createElement(_movieView.MovieView, {
+            movie: movies.find(function (m) {
+              return m._id === match.params._id;
+            })
+          });
+        }
+      }))));
     }
   }]);
 
