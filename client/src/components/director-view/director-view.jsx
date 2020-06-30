@@ -15,7 +15,7 @@ export class DirectorView extends React.Component {
   render() {
     const { movies, director } = this.props;
 
-    if(!director) return null;
+    if (!director) return null;
 
     return (
       <div className="director-view">

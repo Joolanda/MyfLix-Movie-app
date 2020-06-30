@@ -4,7 +4,7 @@ import './movie-card.scss';
 import { Link } from "react-router-dom";
 
 // bootstrap import
-import { Row, Col, Button,Card, CardDeck } from 'react-bootstrap';
+import { Button,Card, CardDeck } from 'react-bootstrap';
 
 
 export class MovieCard extends React.Component {

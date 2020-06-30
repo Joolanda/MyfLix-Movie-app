@@ -137,31 +137,31 @@ export class MainView extends React.Component {
 //   }
 // }
 
-render() {
-  const { movies, user } = this.state;
+  render() {
+    const { movies, user } = this.state;
 
 
-  if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-  if (!movies) return <div className="main-view"/>;
+   if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+    if (!movies) return <div className="main-view"/>;
 
-  return (
-    <Router>
-       <div className="main-view">
-       <CardDeck>
-        <Route exact path="/" 
-          render={() => movies.map(m => <MovieCard key={m._id} movie={m}/>)}/>
-        <Route path="/movies/:_id" 
-          render={({match}) => <MovieView movie={movies.find(m => m._id === match.params._id)}/>
-        <Route exact path="/Genre/:Name" render={({ match }) => {
-          if (!movies) return <div className="main-view"/>;
-          return <GenreView genre={movies.find(m => m.Genre.Name === match.params.Name).Genre}/>}
-          } />
-        <Route path="/Director/:Name" render={({ match }) => {
-          if (!movies) return <div className="main-view"/>;
-          return <DirectorView director={movies.find(m => m.Director.Name === match.params.Name).Director}/>}
-        } />
-       </CardDeck>
-       </div>
-    </Router>
-  );
-}
+    return (
+      <Router>
+         <div className="main-view">
+        <CardDeck>
+         <Route exact path="/" 
+            render={() => movies.map(m => <MovieCard key={m._id} movie={m}/>)}/>
+         <Route path="/movies/:_id" render={({match}) => <MovieView movie={movies.find(m => m._id === match.params._id)}/>}/>
+         <Route path="/Genre/:Name" render={({ match }) => {
+            if (!movies) return <div className="main-view"/>;
+            return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>}
+           } />
+           <Route path="/Directors/:Name" render={({ match }) => {
+              if (!movies) return <div className="main-view"/>;
+             return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director}/>}
+           } />
+        </CardDeck>
+        </div>
+      </Router>
+    );
+  }
+ }
