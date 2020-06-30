@@ -5,6 +5,7 @@ import './movie-card.scss';
 // bootstrap import
 import { Row, Col, Button,Card, CardDeck } from 'react-bootstrap';
 
+
 export class MovieCard extends React.Component {
   render() {
     const { movie, onClick } = this.props;
@@ -22,6 +23,7 @@ export class MovieCard extends React.Component {
               <Button onClick={() => onClick(movie)} variant="success" size="lg" block>
                 Tell me more
                </Button>
+               <Button className="sign_out-button" variant="secondary" size="sm" onClick={() => this.onLoggedOut()}>Sign out</Button>
              </Card.Body>
           </Card>
          </CardDeck>

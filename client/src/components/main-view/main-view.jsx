@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import { BrowserRouter as Router, Route} from "react-router-dom";
+
 import { LoginView } from '../login-view/login-view';
 //import { RegistrationView } from '../registration-view/registration-view';
 import { RegistrationView } from '../registration-view/registration-view';
@@ -49,6 +51,7 @@ export class MainView extends React.Component {
     }
   }
 
+  
   // // new method get movies, new code Task 3.5, make a request to the movies endpoint
   getMovies(token) {
     axios.get('https://myflix-movie.herokuapp.com/movies', {
@@ -76,26 +79,16 @@ export class MainView extends React.Component {
       user
     });
   }
-
-  //new code consider update code acording to Task 3.5
-  onLoggedIn(authData) {
-    console.log(authData);
-    this.setState({
-      user: authData.user.Username
-    });
-    localStorage.setItem('token', authData.token);
-    localStorage.setItem('user', authData.user.Username);
-    this.getMovies(authData.token);
-  }
-
-  onLoggedOut(user) {
+// new method for siging out, button mainview
+  onLoggedOut() {
     this.setState({
       user: null
     });
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+  //  window.open('/', '_self');
   }
-  
+
   onResetSelectedMovie() { 
   this.setState({ 
   selectedMovie: null, 
@@ -112,9 +105,7 @@ export class MainView extends React.Component {
 
     return (
       <div className="main-view">
-      <CardDeck>=
-      <Button onClick={() => this.onloggedOut()} variant="outline-warning" size="sm">x
-      </Button>
+      <CardDeck>
       {selectedMovie
          ? <MovieView movie={selectedMovie} 
             onResetSelectedMovie={() => this.onResetSelectedMovie()}
