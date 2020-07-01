@@ -27,7 +27,7 @@ constructor(props) {
 
   getUser(token) {
     letusername = localStorage.getItem('token')
-    axios.('https://myflix-movie.herokuapp.com/users/${username}', {
+    axios.get('https://myflix-movie.herokuapp.com/users/${username}', {
       headers: { Authorization: `Bearer ${token}` },
     })
     then(response => {
