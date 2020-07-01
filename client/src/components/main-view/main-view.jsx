@@ -15,6 +15,8 @@ import { GenreView } from '../genre-view/genre-view';
 // bootstrap import
 import { Row, Col, Card, CardDeck, Nav, Navbar } from 'react-bootstrap';
 
+import './main-view.scss';
+
 export class MainView extends React.Component {
 
   constructor() {
@@ -98,7 +100,7 @@ export class MainView extends React.Component {
     });
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-  //  window.open('/', '_self');
+    window.open('/', '_self');
   }
 
   // onResetSelectedMovie() { 
@@ -152,16 +154,19 @@ export class MainView extends React.Component {
            return movies.map(m => <MovieCard key={m._id} movie={m}/>)
            }
            }/>
-           <Route path="/register" render={() => <RegistrationView />} />
-           <Route path="/movies/:_id" render={({match}) => <MovieView movie={movies.find(m => m._id === match.params._id)}/>}/>
-          <Route path="/Genre/:Name" render={({ match }) => {
+           <Route exact path="/register" render={() => <RegistrationView />} />
+           <Route exact path="/movies/:_id" render={({match}) => <MovieView movie={movies.find(m => m._id === match.params._id)}/>}/>
+          <Route exact path="/Genre/:Name" render={({ match }) => {
             if (!movies) return <div className="main-view"/>;
             return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>}
            } />
-           <Route path="/Director/:Name" render={({ match }) => {
+           <Route exact path="/Director/:Name" render={({ match }) => {
               if (!movies) return <div className="main-view"/>;
              return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director}/>}
            } />
+           <Route exact path="/users/:Username" render={() => {
+            return <ProfileView movies={movies} />}
+            } />
         </CardDeck>
         </div>
       </Router>

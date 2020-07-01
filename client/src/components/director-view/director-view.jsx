@@ -21,7 +21,7 @@ export class DirectorView extends React.Component {
     return (
       <div className="director-view">
       <Container>
-        <Card style={{ width: '20rem' }}>
+        <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
           <Card.Body>
             <Card.Title>{director.Name}</Card.Title>
             <Card.Text>Director Bio: {director.Bio}</Card.Text>
@@ -29,6 +29,9 @@ export class DirectorView extends React.Component {
             <Link to={`/`}>
               <Button variant="link">Back to movies</Button>
             </Link>
+            <Link to={`/genres/${movie.Genre.Name}`}>
+            <Button variant="link">Genres</Button>
+          </Link>
           </Card.Body>
         </Card>
       </Container>

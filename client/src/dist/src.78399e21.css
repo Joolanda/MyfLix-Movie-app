@@ -16,6 +16,20 @@
 .movie-view-image {
   padding: 20px;
 }
+.director-view {
+  width: 100%;
+  min-width: 330;
+  padding: 20px;
+  margin: auto;
+  height: 100%;
+}
+.genre-view {
+  width: 100%;
+  min-width: 330;
+  padding: 20px;
+  margin: auto;
+  height: 100%;
+}
 .app-container {
   font-family: "Roboto", sans-serif;
 }

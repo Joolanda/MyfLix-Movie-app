@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './login-view.scss';
 import axios from 'axios';
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // bootstrap imports
 import { Row, Col, Button, Form, Container} from 'react-bootstrap';

@@ -30,6 +30,7 @@ export class MovieView extends React.Component {
             <Card.Title>{movie.Title}</Card.Title>
             <Card.Text>Description: {movie.Description}</Card.Text>
             <Card.Text>Genre: {movie.Genre.Name}</Card.Text>
+            <Card.Text>{movie.Genre.Description}</Card.Text>
             <Card.Text>Director: {movie.Director.Name}</Card.Text>
             <Card.Text>Director Bio: {movie.Director.Bio}</Card.Text>
             <Link to={`/`}>
