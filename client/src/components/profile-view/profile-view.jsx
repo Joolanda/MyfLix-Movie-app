@@ -96,9 +96,7 @@ handleDeregister(e, user) {
                 <br/>
                 <br/>
                 <Link>
-                  <Button classname="remove-user" onClick={(e) => 
-                      this.handleDeregister(e)}> Delete Profile
-                  </Button>
+                  <Button classname="remove-user" onClick={(e) => this.handleDeregister(e)}> Delete Profile </Button>
                 </Link>
              </Card.Body>
            </Card>
