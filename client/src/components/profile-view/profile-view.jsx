@@ -5,7 +5,7 @@ import "./profile-view.scss";
 // bootstrap import
 import { Card, Button, Container, Form } from 'react-bootstrap';
 
-export class Profileview extends React.Component {
+export class ProfileView extends React.Component {
 
 constructor(props) {
   super(props);
@@ -40,16 +40,43 @@ constructor(props) {
         });
 
       })
-       .catch(function (error) {
+       .catch(e => {
        console.log(error);
      });
    }
 // Task: 
 // Authenticated users of myFlix:
-// will also want to make GET for viewing their profile,
+// will also want to make GET for viewing their profile:
+
 // and PUT requests for updating their profile, 
+
 //POST requests for registering new users, and 
+
 //DELETE requests for deregistering
+handleDeregister(e, user) {
+  e.preventdefault();
+
+  const username = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
+
+  axios.
+    delete('https://myflix-movie.herokuapp.com/users/${username}', {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    then((response) => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      console.log(`${username} was deleted`);
+      alert('your profile is successfully deleted');
+      window.open('/', '_self');
+      })
+       .catch(e => {
+       console.log('Error deleting User profile');
+     });
+   }
+
+}
+
    render() {
      const { username, password, email, birthday, favoriteMovies } =this.state
      const { movies } = this.props;
@@ -67,10 +94,14 @@ constructor(props) {
                <Card.Text>Birthday: {birthday}</Card.Text>
                <Card.Text>Favorite Movies: {birthday}</Card.Text>
                 <div className="my-favorites"></div>
-                <div className="buttons-back-deluser"></div>
+                <div className="buttons-back-remove"></div>
                 <br/>
                 <br/>
-                <Link to={/users}
+                <Link>
+                  <Button classname="remove-user" onClick={(e) => 
+                      this.handleDeregister(e)}> Delete Profile
+                  </Button>
+                </Link>
              </Card.Body>
            </Card>
          </Container>
