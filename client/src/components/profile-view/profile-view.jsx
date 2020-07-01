@@ -75,8 +75,6 @@ handleDeregister(e, user) {
      });
    }
 
-}
-
    render() {
      const { username, password, email, birthday, favoriteMovies } =this.state
      const { movies } = this.props;
@@ -106,8 +104,7 @@ handleDeregister(e, user) {
            </Card>
          </Container>
        </div>
-     )
+     );
    }
-
   }
-}
+
