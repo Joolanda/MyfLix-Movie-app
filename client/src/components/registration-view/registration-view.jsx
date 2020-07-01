@@ -11,31 +11,31 @@ const [ password, createPassword ] = useState('');
 const [ email, createEmail ] = useState('');
 const [ birthday, createBirthday] = useState('');
 
-const handleSubmit= (e) => {
-  console.log(username, password);
-  /* Send a request to the server for authentication */
-  /* then call props.onLoggedIn(username) */
-  props.onLoggedIn(username);
-  };
+//  const handleSubmit= (e) => {
+//    console.log(username, password);
+// //   /* Send a request to the server for authentication */
+// //   /* then call props.onLoggedIn(username) */
+//    props.onLoggedIn(username);
+//    };
 
-//const handleSubmit = (e) => {
-//  e.preventDefault();
-//  axios.post('https://myflix-movie.herokuapp.com/users', {
-//    Username: username,
-//    Password: password,
-//    Email: email,
-//    Birthday: birthday
-//  })
-//  .then((response) => {
-//  const data = response.data;
-//   console.log(data);
-//  })
-//  .catch((e) => { 
-//  console.log('error user registration');
-//  });
-// Send a request to the server for authentication then call props.onLoggedIn(username)
-// props.onLoggedIn(username);
-//};
+const handleSubmit = (e) => {
+ e.preventDefault();
+ axios.post('https://myflix-movie.herokuapp.com/users', {
+   Username: username,
+   Password: password,
+   Email: email,
+   Birthday: birthday
+ })
+ .then((response) => {
+ const data = response.data;
+  console.log(data);
+ })
+ .catch((e) => { 
+ console.log('error user registration');
+ });
+Send a request to the server for authentication then call props.onLoggedIn(username)
+props.onLoggedIn(username);
+};
 
    return (
   

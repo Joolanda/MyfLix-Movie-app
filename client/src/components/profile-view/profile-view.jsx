@@ -11,6 +11,7 @@ constructor(props) {
   super(props);
     this.state = {
       username: null,
+      password: null,
       email: null,
       birthday: null,
       favoriteMovies: []
@@ -31,10 +32,11 @@ constructor(props) {
     })
     then(response => {
       this.setState({
-          username: response.data.Username,
-          email: response.data.Email,
-          birthdate: response.data.BirthDate,
-          favoriteMovies: response.data.FavoriteMovies
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthdate: response.data.BirthDate,
+          FavoriteMovies: response.data.FavoriteMovies
         });
 
       })
@@ -48,7 +50,33 @@ constructor(props) {
 // and PUT requests for updating their profile, 
 //POST requests for registering new users, and 
 //DELETE requests for deregistering
-   render()
+   render() {
+     const { username, password, email, birthday, favoriteMovies } =this.state
+     const { movies } = this.props;
+     
+     return (
+       <div>
+         <Container className="profile-view">
+           <h1>My Flix Profile</h1>
+           <br/>
+           <Card>
+             <Card.Body>
+               <Card.Text>Username: {username}</Card.Text>
+               <Card.Text>Password: xxxxxx </Card.Text>
+               <Card.Text>Email: {email}</Card.Text>
+               <Card.Text>Birthday: {birthday}</Card.Text>
+               <Card.Text>Favorite Movies: {birthday}</Card.Text>
+                <div className="my-favorites"></div>
+                <div className="buttons-back-deluser"></div>
+                <br/>
+                <br/>
+                <Link to={/users}
+             </Card.Body>
+           </Card>
+         </Container>
+       </div>
+     )
+   }
 
   }
 }

@@ -11,7 +11,7 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
-import { ProfileView } from '../profile-view/profile-view';
+//import { ProfileView } from '../profile-view/profile-view';
 
 // bootstrap import
 import { Row, Col, Card, CardDeck, Nav, Navbar } from 'react-bootstrap';
@@ -102,11 +102,11 @@ export class MainView extends React.Component {
   //  window.open('/', '_self');
   }
 
-  onResetSelectedMovie() { 
-  this.setState({ 
-  selectedMovie: null, 
-  });
-  }
+  // onResetSelectedMovie() { 
+  // this.setState({ 
+  // selectedMovie: null, 
+  // });
+  // }
 // old render-code, before implementing state routing
 //   render() {
 //     const { movies, selectedMovie, user } = this.state;
