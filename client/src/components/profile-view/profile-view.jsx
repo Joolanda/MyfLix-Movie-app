@@ -129,13 +129,13 @@ handleDeregister(e, user) {
                <Card.Text>Password: xxxxxx </Card.Text>
                <Card.Text>Email: {email}</Card.Text>
                <Card.Text>Birthday: {birthday}</Card.Text>
-               <Card.Text>Favorite Movies: {birthday}</Card.Text>
+               <Card.Text>Favorite Movies: {favoriteMovies }</Card.Text>
                 <div className="my-favorites"></div>
                 <div className="buttons-back-remove"></div>
                 <br/>
                 <br/>
                 <Link>
-                  <Button classname="remove-user" onClick={(e) => this.handleDeregister(e)}> Delete Profile </Button>
+                  <Button variant="success" type="submit" size="sm"  className="remove-user" onClick={handleDeregister}> Delete Profile </Button>
                 </Link>
              </Card.Body>
            </Card>

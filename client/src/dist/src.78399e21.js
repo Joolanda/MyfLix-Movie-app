@@ -49506,7 +49506,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           return _react.default.createElement(RegistrationView, null);
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        exact: true,
         path: "/movies/:_id",
         render: function render(_ref) {
           var match = _ref.match;
@@ -49517,7 +49516,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        exact: true,
         path: "/Genre/:Name",
         render: function render(_ref2) {
           var match = _ref2.match;
@@ -49531,7 +49529,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        exact: true,
         path: "/Director/:Name",
         render: function render(_ref3) {
           var match = _ref3.match;
