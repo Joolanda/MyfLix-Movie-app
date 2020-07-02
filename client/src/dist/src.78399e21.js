@@ -49145,12 +49145,12 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          movie = _this$props.movie,
+          movies = _this$props.movies,
           director = _this$props.director;
       if (!director) return null;
       return _react.default.createElement("div", {
         className: "director-view"
-      }, _react.default.createElement(_reactBootstrap.Container, null, _react.default.createElement(_reactBootstrap.Card, {
+      }, _react.default.createElement(_reactBootstrap.Card, {
         className: "text-center",
         border: "dark",
         text: "white",
@@ -49166,20 +49166,20 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
         to: "/genres/".concat(movie.Genre.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "link"
-      }, "Genres"))))));
+      }, "Genres")))));
     }
   }]);
 
   return DirectorView;
-}(_react.default.Component); // DirectorView.propTypes = {
-//   director: PropTypes.shape({
-//     Name: PropTypes.string,
-//     Bio: PropTypes.string
-//   })
-// };
-
+}(_react.default.Component);
 
 exports.DirectorView = DirectorView;
+DirectorView.propTypes = {
+  director: _propTypes.default.shape({
+    Name: _propTypes.default.string,
+    Bio: _propTypes.default.string
+  })
+};
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./director-view.scss":"components/director-view/director-view.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/genre-view/genre-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -49245,7 +49245,9 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
   _createClass(GenreView, [{
     key: "render",
     value: function render() {
-      var movie = this.props.movie;
+      var _this$props = this.props,
+          movie = _this$props.movie,
+          genre = _this$props.genre;
       if (!movie) return null;
       return _react.default.createElement("div", {
         className: "genre-view"
@@ -49257,7 +49259,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
         style: {
           width: '20rem'
         }
-      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, movie.Genre.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "All movies with this genre: ", movie.Director.Name), _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, movie.Genre.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "All movies with this genre: "), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "link"
@@ -49271,7 +49273,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
 
   return GenreView;
 }(_react.default.Component); // GenreView.propTypes = {
-//   genres: PropTypes.shape({
+//   genre: PropTypes.shape({
 //     Name: PropTypes.string,
 //     Description: PropTypes.string
 //   })
@@ -49481,7 +49483,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
       return _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement("div", {
         className: "main-view"
-      }, _react.default.createElement(_reactBootstrap.CardDeck, null, _react.default.createElement(_reactRouterDom.Route, {
+      }, _react.default.createElement(_reactBootstrap.CardGroup, null, _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/",
         render: function render() {

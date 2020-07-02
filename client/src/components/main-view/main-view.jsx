@@ -13,7 +13,7 @@ import { GenreView } from '../genre-view/genre-view';
 //import { ProfileView } from '../profile-view/profile-view';
 
 // bootstrap import
-import { Row, Col, Card, CardDeck, Nav, Navbar } from 'react-bootstrap';
+import { Row, Col, Card, CardGroup, Nav, Navbar } from 'react-bootstrap';
 
 import './main-view.scss';
 
@@ -148,7 +148,7 @@ export class MainView extends React.Component {
     return (
       <Router>
          <div className="main-view">
-        <CardDeck>
+        <CardGroup>
          <Route exact path="/" render={() => {
            if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
            return movies.map(m => <MovieCard key={m._id} movie={m}/>)
@@ -167,7 +167,7 @@ export class MainView extends React.Component {
            <Route exact path="/users/:Username" render={() => {
             return <ProfileView movies={movies} />}
             } />
-        </CardDeck>
+        </CardGroup>
         </div>
       </Router>
     );

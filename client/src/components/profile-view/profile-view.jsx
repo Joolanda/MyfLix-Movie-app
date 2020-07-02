@@ -48,13 +48,52 @@ constructor(props) {
 // Authenticated users of myFlix:
 // will also want to make GET for viewing their profile:
 
-// and PUT requests for updating their profile, 
+// and PUT requests for updating their profile
+handleProfileUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
+  e.preventDefault();
 
-//POST requests for registering new users, and 
+  const username = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
+
+  axios.put('https://myflix-movie.herokuapp.com/users/${username}', {
+    headers: { Authorization: `Bearer ${token}` },
+    data: {
+      Username: newUsername ? newUsername : this.state.Username
+      Password: newPassword ? newPassword : this.state.Password
+      Email: newEmail ? newEmail : this.state.Email
+      Birthday: newBirthday ? this.state.Birthday
+    },
+  })
+  then((response) => {
+    localStorage.setItem('user', this.Username);
+    console.log(`${username} was updated`);
+    alert('your profile is successfully updated');
+      window.open('/', '_self');
+      })
+       .catch(e => {
+       console.log('Error Updating User profile');
+     });
+   }
+   setUsername(input) {
+    this.Username = input;
+  }
+
+  setPassword(input) {
+    this.Password = input;
+  }
+
+  setEmail(input) {
+    this.Email = input;
+  }
+
+  setBirthday(input) {
+    this.Birthday = input;
+  }
+}
 
 //DELETE requests for deregistering
 handleDeregister(e, user) {
-  e.preventdefault();
+  e.preventDefault();
 
   const username = localStorage.getItem('user');
   const token = localStorage.getItem('token');

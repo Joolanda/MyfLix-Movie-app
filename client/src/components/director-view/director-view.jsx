@@ -14,13 +14,12 @@ export class DirectorView extends React.Component {
   }
 
   render() {
-    const { movie, director } = this.props;
+    const { movies, director } = this.props;
 
     if (!director) return null;
 
     return (
       <div className="director-view">
-      <Container>
         <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
           <Card.Body>
             <Card.Title>{director.Name}</Card.Title>
@@ -34,15 +33,14 @@ export class DirectorView extends React.Component {
           </Link>
           </Card.Body>
         </Card>
-      </Container>
     </div>
     );   
   }
 }
 
-// DirectorView.propTypes = {
-//   director: PropTypes.shape({
-//     Name: PropTypes.string,
-//     Bio: PropTypes.string
-//   })
-// };
+DirectorView.propTypes = {
+  director: PropTypes.shape({
+    Name: PropTypes.string,
+    Bio: PropTypes.string
+  })
+};
