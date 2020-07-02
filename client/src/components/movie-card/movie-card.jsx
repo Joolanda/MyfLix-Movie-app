@@ -4,7 +4,7 @@ import './movie-card.scss';
 import { Link } from "react-router-dom";
 
 // bootstrap import
-import { Button,Card, CardDeck } from 'react-bootstrap';
+import { Button,Card, CardGroup } from 'react-bootstrap';
 
 
 export class MovieCard extends React.Component {
@@ -13,7 +13,7 @@ export class MovieCard extends React.Component {
 
     return (
       <div className="movie-card">
-        <CardDeck>
+        <CardGroup>
           <Card className="border-success text-white bg-dark mb-3" style={{ width: '20rem'}}>
             <Card.Img variant="top" src={movie.ImagePath} />
            <Card.Body>
@@ -24,7 +24,7 @@ export class MovieCard extends React.Component {
           </Link>
             </Card.Body>
           </Card>
-         </CardDeck>
+         </CardGroup>
        </div> 
 //      onClick={() => onClick(movie)} 
 //      className="movie-card">{movie.Title}</div>

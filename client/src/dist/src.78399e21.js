@@ -48898,7 +48898,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
       var movie = this.props.movie;
       return _react.default.createElement("div", {
         className: "movie-card"
-      }, _react.default.createElement(_reactBootstrap.CardDeck, null, _react.default.createElement(_reactBootstrap.Card, {
+      }, _react.default.createElement(_reactBootstrap.CardGroup, null, _react.default.createElement(_reactBootstrap.Card, {
         className: "border-success text-white bg-dark mb-3",
         style: {
           width: '20rem'
