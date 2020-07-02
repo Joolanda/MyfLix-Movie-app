@@ -58,10 +58,10 @@ handleProfileUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
   axios.put('https://myflix-movie.herokuapp.com/users/${username}', {
     headers: { Authorization: `Bearer ${token}` },
     data: {
-      Username: newUsername ? newUsername : this.state.Username
-      Password: newPassword ? newPassword : this.state.Password
-      Email: newEmail ? newEmail : this.state.Email
-      Birthday: newBirthday ? this.state.Birthday
+      Username: newUsername ? newUsername : this.state.Username,
+      Password: newPassword ? newPassword : this.state.Password,
+      Email: newEmail ? newEmail : this.state.Email,
+      Birthday: newBirthday ? newBirthday : this.state.Birthday
     },
   })
   then((response) => {
@@ -135,7 +135,7 @@ handleDeregister(e, user) {
                 <br/>
                 <br/>
                 <Link>
-                  <Button variant="success" type="submit" size="sm"  className="remove-user" onClick={handleDeregister}> Delete Profile </Button>
+                  <Button variant="success" type="submit" size="sm"  classame="remove-user" onClick={handleDeregister}> Delete Profile </Button>
                 </Link>
              </Card.Body>
            </Card>

@@ -4,7 +4,7 @@ import './movie-card.scss';
 import { Link } from "react-router-dom";
 
 // bootstrap import
-import { Button,Card, CardGroup, Nav } from 'react-bootstrap';
+import { Button,Card, CardGroup, Nav, NavBar } from 'react-bootstrap';
 
 
 export class MovieCard extends React.Component {
@@ -31,6 +31,8 @@ export class MovieCard extends React.Component {
     );
   }
 }
+
+
 // old code return(), before router Task 3.5
 /* <Card.Body>
 <Button onClick={() => onClick(movie)} variant="success" size="lg" block>

@@ -49474,7 +49474,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
       var _this$state = this.state,
           movies = _this$state.movies,
-          user = _this$state.user;
+          user = _this$state.user,
+          username = _this$state.username;
       if (!user) return _react.default.createElement(_loginView.LoginView, {
         onLoggedIn: function onLoggedIn(user) {
           return _this3.onLoggedIn(user);
@@ -49485,7 +49486,28 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
       return _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement("div", {
         className: "main-view"
-      }, _react.default.createElement(_reactBootstrap.CardGroup, null, _react.default.createElement(_reactRouterDom.Route, {
+      }, _react.default.createElement(_reactBootstrap.Navbar, {
+        bg: "success",
+        variant: "dark"
+      }, _react.default.createElement(_reactBootstrap.Navbar.Brand, {
+        as: _reactRouterDom.Link,
+        to: "/"
+      }, "MyFlix Movie"), _react.default.createElement(_reactBootstrap.Nav, {
+        className: "mr-auto"
+      }, _react.default.createElement(_reactBootstrap.Nav.Link, {
+        as: _reactRouterDom.Link,
+        to: "/"
+      }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
+        as: _reactRouterDom.Link,
+        to: "/users/".concat(username)
+      }, "Account"), _react.default.createElement(_reactBootstrap.Nav.Link, {
+        onClick: function onClick(user) {
+          return _this3.onLoggedOut();
+        },
+        href: "/client/"
+      }, "Logout"), _react.default.createElement(_reactBootstrap.Nav.Link, {
+        href: "#pricing"
+      }, "Pricing"))), _react.default.createElement(_reactBootstrap.CardGroup, null, _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/",
         render: function render() {
