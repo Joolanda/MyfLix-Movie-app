@@ -49026,11 +49026,11 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "link"
       }, "Back to Movies")), _react.default.createElement(_reactRouterDom.Link, {
-        to: "/Director/".concat(movie.Director.Name)
+        to: "/directors/".concat(movie.Director.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "link"
       }, "Director")), _react.default.createElement(_reactRouterDom.Link, {
-        to: "/Genre/".concat(movie.Genre.Name)
+        to: "/genres/".concat(movie.Genre.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "link"
       }, "Genre")))));
