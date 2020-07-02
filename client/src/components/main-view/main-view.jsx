@@ -151,10 +151,7 @@ export class MainView extends React.Component {
          <Navbar.Brand as={Link} to="/">MyFlix Movie</Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link as={Link} to="/">Home</Nav.Link>
-                <Nav.Link as={Link} to={`/users/${username}`}>Account</Nav.Link>
-                <Nav.Link onClick={(user) => this.onLoggedOut()} href="/client/">
-										Logout
-									</Nav.Link>
+                <Nav.Link as={Link} to={`/users/${username}`}>Profile</Nav.Link>
                 <Nav.Link href="#pricing">Pricing</Nav.Link>
             </Nav>
           </Navbar>

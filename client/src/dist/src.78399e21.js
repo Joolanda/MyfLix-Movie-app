@@ -49500,12 +49500,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
         as: _reactRouterDom.Link,
         to: "/users/".concat(username)
-      }, "Account"), _react.default.createElement(_reactBootstrap.Nav.Link, {
-        onClick: function onClick(user) {
-          return _this3.onLoggedOut();
-        },
-        href: "/client/"
-      }, "Logout"), _react.default.createElement(_reactBootstrap.Nav.Link, {
+      }, "Profile"), _react.default.createElement(_reactBootstrap.Nav.Link, {
         href: "#pricing"
       }, "Pricing"))), _react.default.createElement(_reactBootstrap.CardGroup, null, _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
@@ -49675,7 +49670,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60764" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54973" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
