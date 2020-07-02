@@ -49026,11 +49026,11 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "link"
       }, "Back to Movies")), _react.default.createElement(_reactRouterDom.Link, {
-        to: "/directors/".concat(movie.Director.Name)
+        to: "/Director/".concat(movie.Director.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "link"
       }, "Director")), _react.default.createElement(_reactRouterDom.Link, {
-        to: "/genres/".concat(movie.Genre.Name)
+        to: "/Genre/".concat(movie.Genre.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "link"
       }, "Genre")))));
@@ -49038,7 +49038,8 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return MovieView;
-}(_react.default.Component); // Old code, with subtitles, before router
+}(_react.default.Component); // <Link to={`/movies/${movie._id}`}>
+// Old code, with subtitles, before router
 //   return (      
 //     <div className="movie-view">
 //      <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
@@ -49272,7 +49273,8 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return GenreView;
-}(_react.default.Component); // GenreView.propTypes = {
+}(_react.default.Component); // <Link to={`/movies/${movie._id}`}>
+// GenreView.propTypes = {
 //   genre: PropTypes.shape({
 //     Name: PropTypes.string,
 //     Description: PropTypes.string
@@ -49516,7 +49518,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        path: "/Genre/:Name",
+        path: "/genres/:Name",
         render: function render(_ref2) {
           var match = _ref2.match;
           if (!movies) return _react.default.createElement("div", {
@@ -49529,7 +49531,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        path: "/Director/:Name",
+        path: "/directors/:Name",
         render: function render(_ref3) {
           var match = _ref3.match;
           if (!movies) return _react.default.createElement("div", {

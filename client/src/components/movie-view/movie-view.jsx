@@ -36,10 +36,10 @@ export class MovieView extends React.Component {
             <Link to={`/`}>
               <Button variant="link">Back to Movies</Button>
             </Link>
-            <Link to={`/directors/${movie.Director.Name}`}>
+            <Link to={`/Director/${movie.Director.Name}`}>
               <Button variant="link">Director</Button>
             </Link>
-            <Link to={`/genres/${movie.Genre.Name}`}>
+            <Link to={`/Genre/${movie.Genre.Name}`}>
               <Button variant="link">Genre</Button>
             </Link>
           </Card.Body>
@@ -48,6 +48,9 @@ export class MovieView extends React.Component {
     );
   }
   }
+
+
+  // <Link to={`/movies/${movie._id}`}>
  // Old code, with subtitles, before router
 //   return (      
 //     <div className="movie-view">
