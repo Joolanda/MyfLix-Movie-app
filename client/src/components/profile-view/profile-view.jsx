@@ -89,7 +89,7 @@ handleProfileUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
   setBirthday(input) {
     this.Birthday = input;
   }
-}
+
 
 //DELETE requests for deregistering
 handleDeregister(e, user) {
@@ -115,7 +115,7 @@ handleDeregister(e, user) {
    }
 
    render() {
-     const { username, password, email, birthday, favoriteMovies } =this.state
+     const { username, password, email, birthday, favoriteMovies } = this.state
      const { movies } = this.props;
      
      return (
@@ -144,4 +144,5 @@ handleDeregister(e, user) {
      );
    }
   }
+
 

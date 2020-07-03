@@ -15,15 +15,15 @@ export class GenreView extends React.Component {
   render() {
     const { movie, genre } = this.props;
 
-    if (!movie) return null;
+    if (!genre) return null;
 
     return (
       <div className="genre-view">
-
+        <Container className="genre-view">
         <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
         <Card.Body>
-          <Card.Title>{movie.Genre.Name}</Card.Title>
-          <Card.Text>{movie.Genre.Description}</Card.Text>
+          <Card.Title>{genre.Name}</Card.Title>
+          <Card.Text>{genre.Description}</Card.Text>
           <Card.Text>All movies with this genre: </Card.Text>
           <Link to={`/`}>
             <Button variant="link">Back to Movies</Button>
@@ -33,6 +33,7 @@ export class GenreView extends React.Component {
           </Link>
         </Card.Body>
       </Card>
+      </Container>
     </div>
   );
 }

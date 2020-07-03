@@ -48909,7 +48909,9 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
       }), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Header, null, " ", _react.default.createElement("h2", null, movie.Title)), _react.default.createElement(_reactBootstrap.Card.Text, null, movie.Description), _react.default.createElement(_reactRouterDom.Link, {
         to: "/movies/".concat(movie._id)
       }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "link"
+        variant: "success",
+        size: "lg",
+        block: true
       }, "Tell me more")))))) //      onClick={() => onClick(movie)} 
       //      className="movie-card">{movie.Title}</div>
       ;
@@ -49021,19 +49023,21 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         variant: "top",
         className: "movie-view-image",
         src: movie.ImagePath
-      })), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Title), _react.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", movie.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "Genre: ", movie.Genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, movie.Genre.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director: ", movie.Director.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director Bio: ", movie.Director.Bio), _react.default.createElement(_reactRouterDom.Link, {
+      })), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Title), _react.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", movie.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "Genre: ", movie.Genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, movie.Genre.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director: ", movie.Director.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director Bio: ", movie.Director.Bio), _react.default.createElement(_reactBootstrap.ButtonGroup, {
+        vertical: true
+      }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "link"
-      }, "Back to Movies")), _react.default.createElement(_reactRouterDom.Link, {
+        variant: "secondary"
+      }, "Back to Movies")), _react.default.createElement(_reactBootstrap.Button, {
+        variant: "secondary"
+      }, "Show more of ", movie.Director.Name), _react.default.createElement(_reactRouterDom.Link, {
         to: "/directors/".concat(movie.Director.Name)
-      }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "link"
-      }, "Director")), _react.default.createElement(_reactRouterDom.Link, {
+      }), _react.default.createElement(_reactRouterDom.Link, {
         to: "/genres/".concat(movie.Genre.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "link"
-      }, "Genre")))));
+        variant: "secondary"
+      }, "More of ", movie.Genre.Name, " genre"))))));
     }
   }]);
 
@@ -49249,8 +49253,10 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           movie = _this$props.movie,
           genre = _this$props.genre;
-      if (!movie) return null;
+      if (!genre) return null;
       return _react.default.createElement("div", {
+        className: "genre-view"
+      }, _react.default.createElement(_reactBootstrap.Container, {
         className: "genre-view"
       }, _react.default.createElement(_reactBootstrap.Card, {
         className: "text-center",
@@ -49260,7 +49266,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
         style: {
           width: '20rem'
         }
-      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, movie.Genre.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "All movies with this genre: "), _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, genre.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "All movies with this genre: "), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "link"
@@ -49268,7 +49274,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
         to: "/directors/".concat(movie.Director.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "link"
-      }, "Director")))));
+      }, "Director"))))));
     }
   }]);
 
@@ -49488,7 +49494,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         className: "main-view"
       }, _react.default.createElement(_reactBootstrap.Navbar, {
         bg: "success",
-        variant: "dark"
+        variant: "dark",
+        fixed: "top"
       }, _react.default.createElement(_reactBootstrap.Navbar.Brand, {
         as: _reactRouterDom.Link,
         to: "/"
@@ -49500,9 +49507,12 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
         as: _reactRouterDom.Link,
         to: "/users/".concat(username)
-      }, "Profile"), _react.default.createElement(_reactBootstrap.Nav.Link, {
-        href: "#pricing"
-      }, "Pricing"))), _react.default.createElement(_reactBootstrap.CardGroup, null, _react.default.createElement(_reactRouterDom.Route, {
+      }, "Account"), _react.default.createElement(_reactBootstrap.Nav.Link, {
+        onClick: function onClick(user) {
+          return _this3.onLoggedOut();
+        },
+        href: "/client/"
+      }, "Logout"))), _react.default.createElement(_reactBootstrap.CardGroup, null, _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/",
         render: function render() {
@@ -49670,7 +49680,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54973" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55325" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

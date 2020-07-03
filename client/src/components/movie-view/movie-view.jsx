@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
 // bootstrap import
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, ButtonGroup } from 'react-bootstrap';
 
 export class MovieView extends React.Component {
 
@@ -33,15 +33,17 @@ export class MovieView extends React.Component {
             <Card.Text>{movie.Genre.Description}</Card.Text>
             <Card.Text>Director: {movie.Director.Name}</Card.Text>
             <Card.Text>Director Bio: {movie.Director.Bio}</Card.Text>
+            <ButtonGroup vertical>
             <Link to={`/`}>
-              <Button variant="link">Back to Movies</Button>
+              <Button variant="secondary">Back to Movies</Button>
             </Link>
+            <Button variant="secondary">Show more of {movie.Director.Name}</Button>
             <Link to={`/directors/${movie.Director.Name}`}>
-              <Button variant="link">Director</Button>
             </Link>
             <Link to={`/genres/${movie.Genre.Name}`}>
-              <Button variant="link">Genre</Button>
+              <Button variant="secondary">More of {movie.Genre.Name} genre</Button>
             </Link>
+            </ButtonGroup>
           </Card.Body>
         </Card>
       </div>
