@@ -139,7 +139,8 @@ export class MainView extends React.Component {
 // }
 
   render() {
-    const { movies, user, username } = this.state;
+    const { movies, user } = this.state;
+    const username = localStorage.getItem('user');
 
    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
     if (!movies) return <div className="main-view"/>;
@@ -163,8 +164,9 @@ export class MainView extends React.Component {
            return movies.map(m => <MovieCard key={m._id} movie={m}/>)
            }
            }/>
-           <Route exact path="/register" render={() => <RegistrationView />} />
-           <Route path="/movies/:_id" render={({match}) => <MovieView movie={movies.find(m => m._id === match.params._id)}/>}/>
+           <Route path="/register" render={() => <RegistrationView />} />
+           <Route exact path="/movies/:_id" 
+              render={({match}) => <MovieView movie={movies.find(m => m._id === match.params._id)}/>}/>
           <Route path="/genres/:Name" render={({ match }) => {
             if (!movies) return <div className="main-view"/>;
             return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>}

@@ -49279,16 +49279,15 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return GenreView;
-}(_react.default.Component); // <Link to={`/movies/${movie._id}`}>
-// GenreView.propTypes = {
-//   genre: PropTypes.shape({
-//     Name: PropTypes.string,
-//     Description: PropTypes.string
-//   })
-// };
-
+}(_react.default.Component);
 
 exports.GenreView = GenreView;
+GenreView.propTypes = {
+  genre: _propTypes.default.shape({
+    Name: _propTypes.default.string,
+    Description: _propTypes.default.string
+  })
+};
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./genre-view.scss":"components/genre-view/genre-view.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -49480,8 +49479,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
       var _this$state = this.state,
           movies = _this$state.movies,
-          user = _this$state.user,
-          username = _this$state.username;
+          user = _this$state.user;
+      var username = localStorage.getItem('user');
       if (!user) return _react.default.createElement(_loginView.LoginView, {
         onLoggedIn: function onLoggedIn(user) {
           return _this3.onLoggedIn(user);
@@ -49529,12 +49528,12 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        exact: true,
         path: "/register",
         render: function render() {
           return _react.default.createElement(RegistrationView, null);
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
         path: "/movies/:_id",
         render: function render(_ref) {
           var match = _ref.match;

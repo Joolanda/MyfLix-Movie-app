@@ -39,10 +39,9 @@ export class GenreView extends React.Component {
 }
 }
 
-// <Link to={`/movies/${movie._id}`}>
-// GenreView.propTypes = {
-//   genre: PropTypes.shape({
-//     Name: PropTypes.string,
-//     Description: PropTypes.string
-//   })
-// };
+GenreView.propTypes = {
+  genre: PropTypes.shape({
+    Name: PropTypes.string,
+    Description: PropTypes.string
+  })
+};

@@ -64,7 +64,7 @@ handleProfileUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
       Birthday: newBirthday ? newBirthday : this.state.Birthday
     },
   })
-  then((response) => {
+  then(response => {
     localStorage.setItem('user', this.Username);
     console.log(`${username} was updated`);
     alert('your profile is successfully updated');
@@ -92,7 +92,7 @@ handleProfileUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
 
 
 //DELETE requests for deregistering
-handleDeregister(e, user) {
+handleDeregister(e) {
   e.preventDefault();
 
   const username = localStorage.getItem('user');
@@ -100,7 +100,7 @@ handleDeregister(e, user) {
 
   axios.
     delete('https://myflix-movie.herokuapp.com/users/${username}', {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` }
     })
     then((response) => {
       localStorage.removeItem('token');
