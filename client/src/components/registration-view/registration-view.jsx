@@ -26,13 +26,13 @@ const handleSubmit = (e) => {
    Email: email,
    Birthday: birthday
  })
- .then((response) => {
+ .then(response => {
  const data = response.data;
   console.log(data);
   window.open('/', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
  })
- .catch((e) => { 
- console.log('error user registration');
+ .catch(e => { 
+ console.log('error user registration')
  });
 //Send a request to the server for authentication then call props.onLoggedIn(username)
 props.onLoggedIn(username);

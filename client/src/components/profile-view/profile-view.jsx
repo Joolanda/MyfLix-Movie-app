@@ -58,9 +58,9 @@ handleProfileUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
   axios.put('https://myflix-movie.herokuapp.com/users/${username}', {
     headers: { Authorization: `Bearer ${token}` },
     data: {
-      Username: newUsername ? newUsername : this.state.Username
-      Password: newPassword ? newPassword : this.state.Password
-      Email: newEmail ? newEmail : this.state.Email
+      Username: newUsername ? newUsername : this.state.Username,
+      Password: newPassword ? newPassword : this.state.Password,
+      Email: newEmail ? newEmail : this.state.Email,
       Birthday: newBirthday ? newBirthday : this.state.Birthday
     },
   })

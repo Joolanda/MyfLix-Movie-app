@@ -15,11 +15,13 @@ export class DirectorView extends React.Component {
 
   render() {
     const { movies, director } = this.props;
+    console.log(movies); 
+    console.log(director); 
 
     if (!director) return null;
 
     return (
-      <div className="director-view">
+      <Container className="director-view">
         <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
           <Card.Body>
             <Card.Title>{director.Name}</Card.Title>
@@ -33,7 +35,7 @@ export class DirectorView extends React.Component {
           </Link>
           </Card.Body>
         </Card>
-    </div>
+    </Container>
     );   
   }
 }

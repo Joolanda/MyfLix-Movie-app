@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import "./movie-view.scss";
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
@@ -30,15 +30,13 @@ export class MovieView extends React.Component {
             <Card.Title>{movie.Title}</Card.Title>
             <Card.Text>Description: {movie.Description}</Card.Text>
             <Card.Text>Genre: {movie.Genre.Name}</Card.Text>
-            <Card.Text>{movie.Genre.Description}</Card.Text>
             <Card.Text>Director: {movie.Director.Name}</Card.Text>
-            <Card.Text>Director Bio: {movie.Director.Bio}</Card.Text>
             <ButtonGroup vertical>
             <Link to={`/`}>
               <Button variant="secondary">Back to Movies</Button>
             </Link>
-            <Button variant="secondary">Show more of {movie.Director.Name}</Button>
             <Link to={`/directors/${movie.Director.Name}`}>
+              <Button variant="secondary">Show more of {movie.Director.Name}</Button>
             </Link>
             <Link to={`/genres/${movie.Genre.Name}`}>
               <Button variant="secondary">More of {movie.Genre.Name} genre</Button>
@@ -52,7 +50,10 @@ export class MovieView extends React.Component {
   }
 
 
-  // <Link to={`/movies/${movie._id}`}>
+  // path="/genres/:Name"
+//   <Link to={`/genres/${movie.Genre.Name}`}>
+//   <Button variant="secondary">More of {movie.Genre.Name} genre</Button>
+// </Link>
  // Old code, with subtitles, before router
 //   return (      
 //     <div className="movie-view">

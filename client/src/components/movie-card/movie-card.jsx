@@ -26,26 +26,15 @@ export class MovieCard extends React.Component {
           </Card>
          </CardGroup>
        </div> 
-//      onClick={() => onClick(movie)} 
-//      className="movie-card">{movie.Title}</div>
     );
   }
 }
 
 
-// old code return(), before router Task 3.5
-/* <Card.Body>
-<Button onClick={() => onClick(movie)} variant="success" size="lg" block>
-  Tell me more
- </Button>
- <Button className="sign_out-button" variant="secondary" size="sm" onClick={() => this.onLoggedOut()}>Sign out</Button> 
-</Card.Body> */
-
-// MovieCard.propTypes = {
-//   movie: PropTypes.shape({
-//     Title: PropTypes.string.isRequired,
-//     Description: PropTypes.string.isRequired,
-//     ImagePath: PropTypes.string.isRequired,
-//   }).isRequired,
-//   onClick: PropTypes.func.isRequired,
-// };
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
+  }).isRequired,
+};

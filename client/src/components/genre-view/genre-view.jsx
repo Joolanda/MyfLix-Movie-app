@@ -18,7 +18,6 @@ export class GenreView extends React.Component {
     if (!genre) return null;
 
     return (
-      <div className="genre-view">
         <Container className="genre-view">
         <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
         <Card.Body>
@@ -34,7 +33,6 @@ export class GenreView extends React.Component {
         </Card.Body>
       </Card>
       </Container>
-    </div>
   );
 }
 }

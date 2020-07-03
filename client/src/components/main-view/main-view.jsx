@@ -13,7 +13,7 @@ import { GenreView } from '../genre-view/genre-view';
 //import { ProfileView } from '../profile-view/profile-view';
 
 // bootstrap import
-import { Row, Col, Card, CardGroup, Nav, Navbar } from 'react-bootstrap';
+import { Row, Col, Card, CardGroup, Nav, Navbar, Container } from 'react-bootstrap';
 
 import './main-view.scss';
 
@@ -24,6 +24,7 @@ export class MainView extends React.Component {
 
     this.state = {
       movies: [],
+      movie: null,
   //    selectedMovie: null,
       user: null
     };
@@ -147,7 +148,7 @@ export class MainView extends React.Component {
 
     return (
       <Router>
-         <div className="main-view">
+       <CardGroup className="main-view">
          <Navbar bg="success" variant="dark" fixed="top">
          <Navbar.Brand as={Link} to="/">MyFlix Movie</Navbar.Brand>
             <Nav className="mr-auto">
@@ -158,20 +159,19 @@ export class MainView extends React.Component {
 									</Nav.Link>
             </Nav>
           </Navbar>
-        <CardGroup>
          <Route exact path="/" render={() => {
            if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
            return movies.map(m => <MovieCard key={m._id} movie={m}/>)
            }
            }/>
            <Route path="/register" render={() => <RegistrationView />} />
-           <Route exact path="/movies/:_id" 
-              render={({match}) => <MovieView movie={movies.find(m => m._id === match.params._id)}/>}/>
-          <Route path="/genres/:Name" render={({ match }) => {
+           <Route path="/movies/:movieId" 
+              render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>
+          <Route path="/genres/:name" render={({ match }) => {
             if (!movies) return <div className="main-view"/>;
             return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>}
            } />
-           <Route path="/directors/:Name" render={({ match }) => {
+           <Route path="/directors/:name" render={({ match }) => {
               if (!movies) return <div className="main-view"/>;
              return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director}/>}
            } />
@@ -179,7 +179,6 @@ export class MainView extends React.Component {
             return <ProfileView movies={movies} />}
             } />
         </CardGroup>
-        </div>
       </Router>
     );
   }
