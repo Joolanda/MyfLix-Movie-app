@@ -38,7 +38,7 @@ const handleSubmit= (e) => {
 //};
 
    return (
-  
+  <Container style={{ width: "22rem" }}>
     <Form classname="register-container">>
       <Form.Group controlId="formBasicUsername">
         <Form.Label>Username:</Form.Label>
@@ -60,8 +60,12 @@ const handleSubmit= (e) => {
         <Form.Label>Birthday:</Form.Label> 
         <Form.Control size="sm" type="birthday" placeholder="1990-05-12" value={birthday} onChange={e => createBirthday(e.target.value)}/>
       </Form.Group>  
-      <Button variant="success" type="submit" size="sm"  onClick={handleSubmit}>Register</Button>
+          <Button variant="success" type="submit" size="sm"  onClick={handleSubmit}>
+              Register
+          </Button>
+				</Link>
     </Form>
+    </Container>
   );
  }
 

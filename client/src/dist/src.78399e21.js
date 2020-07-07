@@ -46018,10 +46018,16 @@ MovieCard.propTypes = {
     Title: _propTypes.default.string.isRequired,
     Description: _propTypes.default.string.isRequired,
     ImagePath: _propTypes.default.string.isRequired
+<<<<<<< Updated upstream
   }).isRequired,
   onClick: _propTypes.default.func.isRequired
 };
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./movie-card.scss":"components/movie-card/movie-card.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+=======
+  }).isRequired
+}; // MovieCard is a low level component without a state. This component is responsible for listening for click events on the single movie view and transmitting this as props to the parent component, the MainView.
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./movie-card.scss":"components/movie-card/movie-card.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+>>>>>>> Stashed changes
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -46207,8 +46213,13 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this);
     _this.state = {
+<<<<<<< Updated upstream
       movies: null,
       selectedMovie: null,
+=======
+      movies: [],
+      //    selectedMovie: null,
+>>>>>>> Stashed changes
       user: null
     };
     return _this;
@@ -46304,6 +46315,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
       return _react.default.createElement("div", {
         className: "main-view"
+<<<<<<< Updated upstream
       }, _react.default.createElement(_reactBootstrap.CardDeck, null, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
         movie: selectedMovie,
         onResetSelectedMovie: function onResetSelectedMovie() {
@@ -46317,6 +46329,94 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             return _this3.onMovieClick(movie);
           }
         });
+=======
+      }, _react.default.createElement(_reactBootstrap.Navbar, {
+        bg: "success",
+        variant: "dark",
+        fixed: "top"
+      }, _react.default.createElement(_reactBootstrap.Navbar.Brand, {
+        as: _reactRouterDom.Link,
+        to: "/"
+      }, "MyFlix Movie"), _react.default.createElement(_reactBootstrap.Nav, {
+        className: "mr-auto"
+      }, _react.default.createElement(_reactBootstrap.Nav.Link, {
+        as: _reactRouterDom.Link,
+        to: "/"
+      }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
+        as: _reactRouterDom.Link,
+        to: "/users/".concat(username)
+      }, "Account"), _react.default.createElement(_reactBootstrap.Nav.Link, {
+        onClick: function onClick(user) {
+          return _this3.onLoggedOut();
+        },
+        href: "/client/"
+      }, "Logout"))), _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
+        path: "/",
+        render: function render() {
+          if (!user) return _react.default.createElement(_loginView.LoginView, {
+            onLoggedIn: function onLoggedIn(user) {
+              return _this3.onLoggedIn(user);
+            }
+          });
+          return movies.map(function (m) {
+            return _react.default.createElement(_movieCard.MovieCard, {
+              key: m._id,
+              movie: m
+            });
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/register",
+        render: function render() {
+          return _react.default.createElement(RegistrationView, null);
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
+        path: "/movies/:_id",
+        render: function render(_ref) {
+          var match = _ref.match;
+          return _react.default.createElement(_movieView.MovieView, {
+            movie: movies.find(function (m) {
+              return m._id === match.params._id;
+            })
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/genres/:name",
+        render: function render(_ref2) {
+          var match = _ref2.match;
+          if (!movies) return _react.default.createElement("div", {
+            className: "main-view"
+          });
+          return _react.default.createElement(_genreView.GenreView, {
+            genre: movies.find(function (m) {
+              return m.Genre.Name === match.params.name;
+            }).Genre
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/directors/:name",
+        render: function render(_ref3) {
+          var match = _ref3.match;
+          if (!movies) return _react.default.createElement("div", {
+            className: "main-view"
+          });
+          return _react.default.createElement(_directorView.DirectorView, {
+            director: movies.find(function (m) {
+              return m.Director.Name === match.params.name;
+            }).Director
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
+        path: "/users/:Username",
+        render: function render() {
+          return _react.default.createElement(ProfileView, {
+            movies: movies
+          });
+        }
+>>>>>>> Stashed changes
       })));
     }
   }]);
@@ -46419,11 +46519,15 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+<<<<<<< Updated upstream
 <<<<<<< HEAD
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "53112" + '/');
 =======
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "49345" + '/');
 >>>>>>> master
+=======
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65024" + '/');
+>>>>>>> Stashed changes
 
   ws.onmessage = function (event) {
     checkedAssets = {};

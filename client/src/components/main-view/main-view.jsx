@@ -16,8 +16,13 @@ export class MainView extends React.Component {
     super();
 
     this.state = {
+<<<<<<< Updated upstream
       movies: null,
       selectedMovie: null,
+=======
+      movies: [],
+  //    selectedMovie: null,
+>>>>>>> Stashed changes
       user: null
     };
   }
@@ -75,6 +80,7 @@ export class MainView extends React.Component {
     localStorage.setItem('user', authData.user.Username);
     this.getMovies(authData.token);
   }
+<<<<<<< Updated upstream
 
   onResetSelectedMovie() { 
   this.setState({ 
@@ -82,6 +88,55 @@ export class MainView extends React.Component {
   });
   }
 
+=======
+  
+// new method for siging out, button mainview
+  onLoggedOut() {
+    this.setState({
+      user: null
+    });
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.open('/', '_self');
+  }
+
+  // onResetSelectedMovie() { 
+  // this.setState({ 
+  // selectedMovie: null, 
+  // });
+  // }
+// old render-code, before implementing state routing
+//   render() {
+//     const { movies, selectedMovie, user } = this.state;
+
+//     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>;
+
+//     // Before the movies have been loaded
+//     if (!movies) return <div className="main-view"/>;
+
+//     return (
+//       <div className="main-view">
+//       <CardDeck>
+//       {selectedMovie
+//          ? <MovieView movie={selectedMovie} 
+//             onResetSelectedMovie={() => this.onResetSelectedMovie()}
+//            />
+//             : movies.map(movie => (
+//              <MovieCard 
+//               key={movie._id} 
+//               movie={movie} 
+//               onClick={movie => this.onMovieClick(movie)}
+//             />
+//          ))
+//       }
+//       </CardDeck>
+//       </div>
+//     );
+//   }
+// }
+
+
+>>>>>>> Stashed changes
   render() {
     const { movies, selectedMovie, user } = this.state;
 
@@ -91,6 +146,7 @@ export class MainView extends React.Component {
     if (!movies) return <div className="main-view"/>;
 
     return (
+<<<<<<< Updated upstream
       <div className="main-view">
       <CardDeck>
       {selectedMovie
@@ -107,6 +163,41 @@ export class MainView extends React.Component {
       }
       </CardDeck>
       </div>
+=======
+      <Router>
+       <CardGroup className="main-view">
+         <Navbar bg="success" variant="dark" fixed="top">
+         <Navbar.Brand as={Link} to="/">MyFlix Movie</Navbar.Brand>
+            <Nav className="mr-auto">
+                <Nav.Link as={Link} to="/">Home</Nav.Link>
+                <Nav.Link as={Link} to={`/users/${username}`}>Account</Nav.Link>
+                <Nav.Link onClick={(user) => this.onLoggedOut()} href="/client/">
+										Logout
+									</Nav.Link>
+            </Nav>
+          </Navbar>
+         <Route exact path="/" render={() => {
+           if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+           return movies.map(m => <MovieCard key={m._id} movie={m}/>)
+           }
+           }/>
+           <Route path="/register" render={() => <RegistrationView />} />
+           <Route exact path="/movies/:_id" 
+              render={({match}) => <MovieView movie={movies.find(m => m._id === match.params._id)}/>}/>
+          <Route path="/genres/:name" render={({ match }) => {
+            if (!movies) return <div className="main-view"/>;
+            return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>}
+           } />
+           <Route path="/directors/:name" render={({ match }) => {
+              if (!movies) return <div className="main-view"/>;
+             return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director}/>}
+           } />
+           <Route exact path="/users/:Username" render={() => {
+            return <ProfileView movies={movies} />}
+            } />
+        </CardGroup>
+      </Router>
+>>>>>>> Stashed changes
     );
   }
 }

@@ -38,5 +38,11 @@ MovieCard.propTypes = {
     Description: PropTypes.string.isRequired,
     ImagePath: PropTypes.string.isRequired,
   }).isRequired,
+<<<<<<< Updated upstream
   onClick: PropTypes.func.isRequired,
 };
+=======
+};
+
+// MovieCard is a low level component without a state. This component is responsible for listening for click events on the single movie view and transmitting this as props to the parent component, the MainView.
+>>>>>>> Stashed changes
