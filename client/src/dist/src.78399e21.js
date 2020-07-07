@@ -49137,11 +49137,7 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
   _createClass(DirectorView, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          movies = _this$props.movies,
-          director = _this$props.director;
-      console.log(movies);
-      console.log(director);
+      var director = this.props.director;
       if (!director) return null;
       return _react.default.createElement(_reactBootstrap.Container, {
         className: "director-view"
@@ -49171,9 +49167,9 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
 exports.DirectorView = DirectorView;
 DirectorView.propTypes = {
   director: _propTypes.default.shape({
-    Name: _propTypes.default.string,
-    Bio: _propTypes.default.string
-  })
+    Name: _propTypes.default.string.isRequired,
+    Bio: _propTypes.default.string.isRequired
+  }).isRequired
 };
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./director-view.scss":"components/director-view/director-view.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/genre-view/genre-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -49667,7 +49663,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55325" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65024" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
