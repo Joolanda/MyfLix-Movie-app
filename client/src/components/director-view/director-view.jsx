@@ -14,17 +14,17 @@ export class DirectorView extends React.Component {
   }
 
   render() {
-    const { director } = this.props;
+    const { movie, Director } = this.props;
 
-    if (!director) return null;
+    if (!Director) return null;
 
     return (
-      <Container className="director-view">
-        <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
-          <Card.Body>
-            <Card.Title>{director.Name}</Card.Title>
-            <Card.Text>Director Bio: {director.Bio}</Card.Text>
-            <Card.Text>Birth Year: {director.Birth}</Card.Text>
+      <div className="director-view">
+        <Card className="director-card">
+          <Card.Body classname="director-body">
+            <Card.Title className="director-name">{movie.Director.Name}</Card.Title>
+            <Card.Text>Director Bio: {movie.Director.Bio}</Card.Text>
+            <Card.Text>Birth Year: {movie.Director.Birth}</Card.Text>
             <Link to={`/`}>
               <Button variant="link">Back to movies</Button>
             </Link>
@@ -33,14 +33,14 @@ export class DirectorView extends React.Component {
           </Link>
           </Card.Body>
         </Card>
-    </Container>
+    </div>
     );   
   }
 }
 
-DirectorView.propTypes = {
-  director: PropTypes.shape({
-    Name: PropTypes.string.isRequired,
-    Bio: PropTypes.string.isRequired
-  }).isRequired
-};
+// DirectorView.propTypes = {
+//   Director: PropTypes.shape({
+//     Name: PropTypes.string.isRequired,
+//     Bio: PropTypes.string.isRequired
+//   }).isRequired
+// };

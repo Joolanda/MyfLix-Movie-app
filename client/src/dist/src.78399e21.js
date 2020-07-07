@@ -49018,7 +49018,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         to: "/directors/".concat(movie.Director.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "secondary"
-      }, "Show more of ", movie.Director.Name)), _react.default.createElement(_reactRouterDom.Link, {
+      }, "Show more of ", movie.Director.Name, ' ')), _react.default.createElement(_reactRouterDom.Link, {
         to: "/genres/".concat(movie.Genre.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "secondary"
@@ -49027,51 +49027,19 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return MovieView;
-}(_react.default.Component); // path="/genres/:Name"
-//   <Link to={`/genres/${movie.Genre.Name}`}>
-//   <Button variant="secondary">More of {movie.Genre.Name} genre</Button>
-// </Link>
-// Old code, with subtitles, before router
-//   return (      
-//     <div className="movie-view">
-//      <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
-//        <Card.Header>
-//         <Card.Img variant="top" className="movie-view-image" src={movie.ImagePath} />
-//         </Card.Header>
-//          <Card.Body>
-//             <Card.Title className="movie-title">
-//                <h5>{movie.Title}</h5>
-//              </Card.Title>
-//              <Card.Text>
-//              <Card.Subtitle className="mb-2 text-muted movie-description">Description: </Card.Subtitle>
-//                  <span className="value">{movie.Description} </span>               
-//              <Card.Subtitle className="mb-2 text-muted movie-genre">Genre: </Card.Subtitle>
-//                 <span className="value">{movie.Genre.Name}</span>
-//              <Card.Subtitle className="mb-2 text-muted movie-director">Director: </Card.Subtitle>
-//                  <span className="value">{movie.Director.Name}</span>
-//              </Card.Text>
-//           </Card.Body>
-//           <Card.Body>
-//           <Button className="reset-button" variant="secondary" size="lg" block onClick={() => this.props.onResetSelectedMovie()}>Back to Movies</Button>
-//           </Card.Body>
-//       </Card>
-//     </div>
-//   );
-// }
-// }
-// MovieView.propTypes = {
-//   movie: PropTypes.shape({
-//     Title: PropTypes.string.isRequired,
-//     Description: PropTypes.string.isRequired,
-//     ImagePath: PropTypes.string.isRequired,
-//     Director: PropTypes.shape({
-//       Name: PropTypes.string.isRequired,}).isRequired, 
-//   }).isRequired,
-//   onClick: PropTypes.func.isRequired,
-// };
-
+}(_react.default.Component);
 
 exports.MovieView = MovieView;
+MovieView.propTypes = {
+  movie: _propTypes.default.shape({
+    Title: _propTypes.default.string.isRequired,
+    Description: _propTypes.default.string.isRequired,
+    ImagePath: _propTypes.default.string.isRequired,
+    Director: _propTypes.default.shape({
+      Name: _propTypes.default.string.isRequired
+    }).isRequired
+  }).isRequired
+};
 },{"react":"../node_modules/react/index.js","./movie-view.scss":"components/movie-view/movie-view.scss","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -49137,19 +49105,19 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
   _createClass(DirectorView, [{
     key: "render",
     value: function render() {
-      var director = this.props.director;
-      if (!director) return null;
-      return _react.default.createElement(_reactBootstrap.Container, {
+      var _this$props = this.props,
+          movie = _this$props.movie,
+          Director = _this$props.Director;
+      if (!Director) return null;
+      return _react.default.createElement("div", {
         className: "director-view"
       }, _react.default.createElement(_reactBootstrap.Card, {
-        className: "text-center",
-        border: "dark",
-        text: "white",
-        bg: "success mb-3",
-        style: {
-          width: '20rem'
-        }
-      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, director.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director Bio: ", director.Bio), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birth Year: ", director.Birth), _react.default.createElement(_reactRouterDom.Link, {
+        className: "director-card"
+      }, _react.default.createElement(_reactBootstrap.Card.Body, {
+        classname: "director-body"
+      }, _react.default.createElement(_reactBootstrap.Card.Title, {
+        className: "director-name"
+      }, movie.Director.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director Bio: ", movie.Director.Bio), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birth Year: ", movie.Director.Birth), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "link"
@@ -49162,15 +49130,15 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return DirectorView;
-}(_react.default.Component);
+}(_react.default.Component); // DirectorView.propTypes = {
+//   Director: PropTypes.shape({
+//     Name: PropTypes.string.isRequired,
+//     Bio: PropTypes.string.isRequired
+//   }).isRequired
+// };
+
 
 exports.DirectorView = DirectorView;
-DirectorView.propTypes = {
-  director: _propTypes.default.shape({
-    Name: _propTypes.default.string.isRequired,
-    Bio: _propTypes.default.string.isRequired
-  }).isRequired
-};
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./director-view.scss":"components/director-view/director-view.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/genre-view/genre-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -49238,8 +49206,8 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           movie = _this$props.movie,
-          genre = _this$props.genre;
-      if (!genre) return null;
+          Genre = _this$props.Genre;
+      if (!movie) return null;
       return _react.default.createElement(_reactBootstrap.Container, {
         className: "genre-view"
       }, _react.default.createElement(_reactBootstrap.Card, {
@@ -49250,7 +49218,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
         style: {
           width: '20rem'
         }
-      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, genre.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "All movies with this genre: "), _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, Genre.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "All movies with this genre: "), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "link"
@@ -49267,7 +49235,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
 
 exports.GenreView = GenreView;
 GenreView.propTypes = {
-  genre: _propTypes.default.shape({
+  Genre: _propTypes.default.shape({
     Name: _propTypes.default.string,
     Description: _propTypes.default.string
   })
