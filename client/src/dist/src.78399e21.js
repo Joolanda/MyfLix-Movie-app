@@ -49252,8 +49252,10 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
   _createClass(DirectorView, [{
     key: "render",
     value: function render() {
-      var movie = this.props.movie;
-      if (!movie) return null; // const { movie, Director } = this.props;
+      var _this$props = this.props,
+          movie = _this$props.movie,
+          Director = _this$props.Director;
+      if (!Director) return null; // const { movie, Director } = this.props;
       // if(!Director) return null;
 
       return _react.default.createElement("div", {
@@ -49359,19 +49361,19 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           movie = _this$props.movie,
-          genre = _this$props.genre;
-      if (!genre) return null;
+          Genre = _this$props.Genre;
+      if (!Genre) return null;
       return _react.default.createElement("div", {
         className: "genre-view"
       }, _react.default.createElement(_reactBootstrap.Card, {
-        className: "genre-card",
+        className: "text-center",
         border: "dark",
         text: "white",
         bg: "success mb-3",
         style: {
           width: '20rem'
         }
-      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, movie.Genre.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "All movies with this genre: "), _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_reactBootstrap.Card.Header, null), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, movie.Genre.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "All movies with this genre: "), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "link"
@@ -49384,7 +49386,36 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return GenreView;
-}(_react.default.Component);
+}(_react.default.Component); // return (      
+//   <div className="movie-view">
+//    <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
+//     <Card.Header>
+//       <Card.Img variant="top" className="movie-view-image" src={movie.ImagePath} />
+//     </Card.Header>
+//     <Card.Body>
+//         <Card.Title>{movie.Title}</Card.Title>
+//         <Card.Text>Description: {movie.Description}</Card.Text>
+//         <Card.Text>Genre: {movie.Genre.Name}</Card.Text>
+//         <Card.Text>Director: {movie.Director.Name}</Card.Text>
+//         <ButtonGroup vertical>
+//         <Link to={`/`}>
+//           <Button variant="secondary">Back to Movies</Button>
+//         </Link>
+//         <Link to={`/directors/${movie.Director.Name}`}>
+//           <Button variant="secondary">Show more of {movie.Director.Name}
+//             {' '}</Button>
+//         </Link>
+//         <Link to={`/genres/${movie.Genre.Name}`}>
+//           <Button variant="secondary">More of {movie.Genre.Name} genre</Button>
+//         </Link>
+//         </ButtonGroup>
+//       </Card.Body>
+//     </Card>
+//   </div>
+// );
+// }
+// }
+
 
 exports.GenreView = GenreView;
 GenreView.propTypes = {
