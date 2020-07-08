@@ -48832,7 +48832,7 @@ function LoginView(props) {
     size: "sm",
     onClick: handleSubmit
   }, "Login"), _react.default.createElement("br", null), _react.default.createElement("a", {
-    href: "/register"
+    href: "/client/register"
   }, _react.default.createElement(_reactBootstrap.Button, {
     variant: "btn-lg btn-success btn-block",
     type: "submit",
@@ -49164,12 +49164,14 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, "Back to Movies")), _react.default.createElement(_reactRouterDom.Link, {
         to: "/directors/".concat(movie.Director.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "secondary"
+        variant: "secondary",
+        onClick: _react.default.createElement("directorView", null)
       }, "Show more of ", movie.Director.Name, ' ')), _react.default.createElement(_reactRouterDom.Link, {
         to: "/genres/".concat(movie.Genre.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "secondary"
-      }, "More of ", movie.Genre.Name, " genre"))))));
+        variant: "secondary",
+        onClick: _react.default.createElement("genreView", null)
+      }, " More of ", movie.Genre.Name, " genre"))))));
     }
   }]);
 
@@ -49594,7 +49596,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        exact: true,
         path: "/client/register",
         render: function render() {
           return _react.default.createElement(_registrationView.RegistrationView, null);

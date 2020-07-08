@@ -52,7 +52,7 @@ const handleSubmit = (e) => {
                  Login
                 </Button> 
                 <br></br>
-                <a href={`/register`}>
+                <a href={`/client/register`}>
 					       <Button variant="btn-lg btn-success btn-block" type="submit" size="sm" onClick={handleSubmit}>
 					        You don't have an acount? Click here
 					      </Button>
