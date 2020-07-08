@@ -49364,7 +49364,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
       return _react.default.createElement("div", {
         className: "genre-view"
       }, _react.default.createElement(_reactBootstrap.Card, {
-        className: "director-card",
+        className: "genre-card",
         border: "dark",
         text: "white",
         bg: "success mb-3",
