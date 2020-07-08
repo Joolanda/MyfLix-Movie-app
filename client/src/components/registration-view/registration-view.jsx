@@ -13,8 +13,6 @@ const [ newUsername, setNewUsername ] = useState('');
 const [ newPassword, setNewPassword ] = useState('');
 const [ newEmail, setNewEmail ] = useState('');
 
-if (user) return null;
-
 const handleRegister = (e) => {
   e.preventDefault();
 
@@ -41,16 +39,16 @@ const handleRegister = (e) => {
     <Form classname="register-container">>
       <Form.Group controlId="formBasicUsername">
         <Form.Label>Username:</Form.Label>
-        <Form.Control size="sm" type="text" placeholder="username" value={username} onChange={e => setNewUsername(e.target.value)}/>
+        <Form.Control size="sm" type="text" placeholder="username" value={newUsername} onChange={e => setNewUsername(e.target.value)}/>
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>   
       <Form.Group controlId="formBasicPassword">              
         <Form.Label>Password:</Form.Label> 
-        <Form.Control size="sm" type="password" placeholder="password" value={password} onChange={e => setNewPassword(e.target.value)}/>
+        <Form.Control size="sm" type="password" placeholder="password" value={newPassword} onChange={e => setNewPassword(e.target.value)}/>
         </Form.Group>  
       <Form.Group controlId="formBasicEmail">              
         <Form.Label> Email: </Form.Label>
-        <Form.Control size="sm" type="email" placeholder="watch out for typos" value={email} onChange={e => setNewEmail(e.target.value)} />
+        <Form.Control size="sm" type="email" placeholder="watch out for typos" value={newEmail} onChange={e => setNewEmail(e.target.value)} />
         <Form-Text className="text-muted">
           We'll never share your email with anyone else.
         </Form-Text>

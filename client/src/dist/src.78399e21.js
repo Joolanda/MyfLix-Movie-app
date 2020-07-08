@@ -48901,8 +48901,6 @@ function RegistrationView(props) {
       newEmail = _useState6[0],
       setNewEmail = _useState6[1];
 
-  if (user) return null;
-
   var handleRegister = function handleRegister(e) {
     e.preventDefault();
 
@@ -48930,7 +48928,7 @@ function RegistrationView(props) {
     size: "sm",
     type: "text",
     placeholder: "username",
-    value: username,
+    value: newUsername,
     onChange: function onChange(e) {
       return setNewUsername(e.target.value);
     }
@@ -48942,7 +48940,7 @@ function RegistrationView(props) {
     size: "sm",
     type: "password",
     placeholder: "password",
-    value: password,
+    value: newPassword,
     onChange: function onChange(e) {
       return setNewPassword(e.target.value);
     }
@@ -48952,7 +48950,7 @@ function RegistrationView(props) {
     size: "sm",
     type: "email",
     placeholder: "watch out for typos",
-    value: email,
+    value: newEmail,
     onChange: function onChange(e) {
       return setNewEmail(e.target.value);
     }
@@ -49605,8 +49603,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         as: _reactRouterDom.Link,
         to: "/"
       }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
-        href: "/client/register"
-      }, "Register"), _react.default.createElement(_reactBootstrap.Nav.Link, {
         href: "/client/profile/".concat(user)
       }, "Account"), _react.default.createElement(_reactBootstrap.Nav.Link, {
         onClick: function onClick(user) {
@@ -49630,7 +49626,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        path: "/register",
+        path: "/client/register",
         render: function render() {
           return _react.default.createElement(_registrationView.RegistrationView, null);
         }
