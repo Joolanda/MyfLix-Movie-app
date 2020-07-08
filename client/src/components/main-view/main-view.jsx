@@ -104,40 +104,6 @@ export class MainView extends React.Component {
     window.open('/', '_self');
   }
 
-  // onResetSelectedMovie() { 
-  // this.setState({ 
-  // selectedMovie: null, 
-  // });
-  // }
-// old render-code, before implementing state routing
-//   render() {
-//     const { movies, selectedMovie, user } = this.state;
-
-//     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>;
-
-//     // Before the movies have been loaded
-//     if (!movies) return <div className="main-view"/>;
-
-//     return (
-//       <div className="main-view">
-//       <CardDeck>
-//       {selectedMovie
-//          ? <MovieView movie={selectedMovie} 
-//             onResetSelectedMovie={() => this.onResetSelectedMovie()}
-//            />
-//             : movies.map(movie => (
-//              <MovieCard 
-//               key={movie._id} 
-//               movie={movie} 
-//               onClick={movie => this.onMovieClick(movie)}
-//             />
-//          ))
-//       }
-//       </CardDeck>
-//       </div>
-//     );
-//   }
-// }
 
   render() {
     const { movies, user } = this.state;

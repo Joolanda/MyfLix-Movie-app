@@ -49254,10 +49254,8 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           movie = _this$props.movie,
-          Director = _this$props.Director;
-      if (!Director) return null; // const { movie, Director } = this.props;
-      // if(!Director) return null;
-
+          director = _this$props.director;
+      if (!director) return null;
       return _react.default.createElement("div", {
         className: "director-view"
       }, _react.default.createElement(_reactBootstrap.Card, {
@@ -49361,8 +49359,8 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           movie = _this$props.movie,
-          Genre = _this$props.Genre;
-      if (!Genre) return null;
+          genre = _this$props.genre;
+      if (!genre) return null;
       return _react.default.createElement("div", {
         className: "genre-view"
       }, _react.default.createElement(_reactBootstrap.Card, {
@@ -49386,36 +49384,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return GenreView;
-}(_react.default.Component); // return (      
-//   <div className="movie-view">
-//    <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
-//     <Card.Header>
-//       <Card.Img variant="top" className="movie-view-image" src={movie.ImagePath} />
-//     </Card.Header>
-//     <Card.Body>
-//         <Card.Title>{movie.Title}</Card.Title>
-//         <Card.Text>Description: {movie.Description}</Card.Text>
-//         <Card.Text>Genre: {movie.Genre.Name}</Card.Text>
-//         <Card.Text>Director: {movie.Director.Name}</Card.Text>
-//         <ButtonGroup vertical>
-//         <Link to={`/`}>
-//           <Button variant="secondary">Back to Movies</Button>
-//         </Link>
-//         <Link to={`/directors/${movie.Director.Name}`}>
-//           <Button variant="secondary">Show more of {movie.Director.Name}
-//             {' '}</Button>
-//         </Link>
-//         <Link to={`/genres/${movie.Genre.Name}`}>
-//           <Button variant="secondary">More of {movie.Genre.Name} genre</Button>
-//         </Link>
-//         </ButtonGroup>
-//       </Card.Body>
-//     </Card>
-//   </div>
-// );
-// }
-// }
-
+}(_react.default.Component);
 
 exports.GenreView = GenreView;
 GenreView.propTypes = {
@@ -49579,38 +49548,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       window.open('/', '_self');
-    } // onResetSelectedMovie() { 
-    // this.setState({ 
-    // selectedMovie: null, 
-    // });
-    // }
-    // old render-code, before implementing state routing
-    //   render() {
-    //     const { movies, selectedMovie, user } = this.state;
-    //     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>;
-    //     // Before the movies have been loaded
-    //     if (!movies) return <div className="main-view"/>;
-    //     return (
-    //       <div className="main-view">
-    //       <CardDeck>
-    //       {selectedMovie
-    //          ? <MovieView movie={selectedMovie} 
-    //             onResetSelectedMovie={() => this.onResetSelectedMovie()}
-    //            />
-    //             : movies.map(movie => (
-    //              <MovieCard 
-    //               key={movie._id} 
-    //               movie={movie} 
-    //               onClick={movie => this.onMovieClick(movie)}
-    //             />
-    //          ))
-    //       }
-    //       </CardDeck>
-    //       </div>
-    //     );
-    //   }
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
