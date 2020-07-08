@@ -11,29 +11,6 @@ const [ username, setUsername ] = useState('');
 const [ password, setPassword ] = useState('');
 const [ email, setEmail ] = useState('');
 
-// const handleSubmit = (e) => {
-//   console.log(username, password);
-//   /* Send a request to the server for authentication */
-//   /* then call props.onLoggedIn(username) */
-//   props.onLoggedIn(username);
-//   };
-const handleRegister = (e) => {
-  e.preventDefault();
-
-  axios.post('https://myflix-movie.herokuapp.com/users', {
-    Username: username,
-    Password: password,
-    Email: email,
-  })
-  .then(response => {
-  const data = response.data;
-   console.log(data);
-   window.open('/client', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
-  })
-  .catch(e => { 
-  console.log('error user registration');
-  });
-};
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -74,7 +51,7 @@ const handleSubmit = (e) => {
                <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>
                  Login
                 </Button> 
-					       <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleRegister}>
+					       <Button variant="btn-lg btn-success btn-block" type="submit" size="sm">
 					        You don't have an acount? Click here
 					      </Button>
             </Form>

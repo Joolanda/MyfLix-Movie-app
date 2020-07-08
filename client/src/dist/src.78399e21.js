@@ -48774,29 +48774,7 @@ function LoginView(props) {
   var _useState5 = (0, _react.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
       email = _useState6[0],
-      setEmail = _useState6[1]; // const handleSubmit = (e) => {
-  //   console.log(username, password);
-  //   /* Send a request to the server for authentication */
-  //   /* then call props.onLoggedIn(username) */
-  //   props.onLoggedIn(username);
-  //   };
-
-
-  var handleRegister = function handleRegister(e) {
-    e.preventDefault();
-
-    _axios.default.post('https://myflix-movie.herokuapp.com/users', {
-      Username: username,
-      Password: password,
-      Email: email
-    }).then(function (response) {
-      var data = response.data;
-      console.log(data);
-      window.open('/client', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
-    }).catch(function (e) {
-      console.log('error user registration');
-    });
-  };
+      setEmail = _useState6[1];
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
@@ -48854,8 +48832,7 @@ function LoginView(props) {
   }, "Login"), _react.default.createElement(_reactBootstrap.Button, {
     variant: "btn-lg btn-success btn-block",
     type: "submit",
-    size: "sm",
-    onClick: handleRegister
+    size: "sm"
   }, "You don't have an acount? Click here")))));
 } //LoginView.propTypes = {
 // onLoggedIn: PropTypes.func.isRequired
@@ -48877,7 +48854,11 @@ var _react = _interopRequireWildcard(require("react"));
 
 require("./registration-view.scss");
 
+var _axios = _interopRequireDefault(require("axios"));
+
 var _reactBootstrap = require("react-bootstrap");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -48898,27 +48879,28 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function RegistrationView(props) {
   var _useState = (0, _react.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
-      username = _useState2[0],
-      createUsername = _useState2[1];
+      newUsername = _useState2[0],
+      setNewUsername = _useState2[1];
 
   var _useState3 = (0, _react.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
-      password = _useState4[0],
-      createPassword = _useState4[1];
+      newPassword = _useState4[0],
+      setNewPassword = _useState4[1];
 
   var _useState5 = (0, _react.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
-      email = _useState6[0],
-      createEmail = _useState6[1];
+      newEmail = _useState6[0],
+      setNewEmail = _useState6[1];
 
   if (user) return null;
 
   var handleRegister = function handleRegister(e) {
     e.preventDefault();
-    axios.post('https://myflix-movie.herokuapp.com/users', {
-      Username: username,
-      Password: password,
-      Email: email
+
+    _axios.default.post('https://myflix-movie.herokuapp.com/users', {
+      Username: newUsername,
+      Password: newPassword,
+      Email: newEmail
     }).then(function (response) {
       var data = response.data;
       console.log(data);
@@ -48938,7 +48920,7 @@ function RegistrationView(props) {
     placeholder: "username",
     value: username,
     onChange: function onChange(e) {
-      return createUsername(e.target.value);
+      return setNewUsername(e.target.value);
     }
   }), _react.default.createElement(_reactBootstrap.Form.Text, {
     className: "text-muted"
@@ -48950,7 +48932,7 @@ function RegistrationView(props) {
     placeholder: "password",
     value: password,
     onChange: function onChange(e) {
-      return createPassword(e.target.value);
+      return setNewPassword(e.target.value);
     }
   })), _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formBasicEmail"
@@ -48960,7 +48942,7 @@ function RegistrationView(props) {
     placeholder: "watch out for typos",
     value: email,
     onChange: function onChange(e) {
-      return createEmail(e.target.value);
+      return setNewEmail(e.target.value);
     }
   }), _react.default.createElement("Form-Text", {
     className: "text-muted"
@@ -48973,7 +48955,7 @@ function RegistrationView(props) {
 } //RegistrationView.propTypes = {
 // no props so far
 //};
-},{"react":"../node_modules/react/index.js","./registration-view.scss":"components/registration-view/registration-view.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./registration-view.scss":"components/registration-view/registration-view.scss","axios":"../node_modules/axios/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
