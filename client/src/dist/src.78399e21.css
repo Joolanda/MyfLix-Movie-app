@@ -12,6 +12,10 @@
   margin: auto;
   height: 100%;
 }
+
+.form-group {
+  margin-top: 40px;
+}
 .movie-card {
   width: 100%;
   min-width: 330;

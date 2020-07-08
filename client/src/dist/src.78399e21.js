@@ -48920,8 +48920,17 @@ function RegistrationView(props) {
   // };
 
 
-  return _react.default.createElement(_reactBootstrap.Form, {
-    classname: "register-container"
+  return _react.default.createElement(_reactBootstrap.Container, {
+    className: "login-view"
+  }, _react.default.createElement(_reactBootstrap.Row, {
+    className: "justify-content-center"
+  }, _react.default.createElement(_reactBootstrap.Col, {
+    xs: 12,
+    sm: 10,
+    md: 8,
+    className: "form-container"
+  }, _react.default.createElement(_reactBootstrap.Form, {
+    className: "registration-container"
   }, ">", _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formBasicUsername"
   }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), _react.default.createElement(_reactBootstrap.Form.Control, {
@@ -48961,7 +48970,7 @@ function RegistrationView(props) {
     type: "submit",
     size: "sm",
     onClick: handleRegister
-  }, "Register"), _react.default.createElement("br", null));
+  }, "Register"), _react.default.createElement("br", null)))));
 } //RegistrationView.propTypes = {
 // no props so far
 //};
@@ -49626,6 +49635,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
         path: "/client/register",
         render: function render() {
           return _react.default.createElement(_registrationView.RegistrationView, null);

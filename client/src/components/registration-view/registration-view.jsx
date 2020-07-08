@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 
 // bootstrap imports
-import { Button, Form, Container} from 'react-bootstrap';
+import { Row, Col, Button, Form, Container} from 'react-bootstrap';
 
 export function RegistrationView (props) {
 const [ newUsername, setNewUsername ] = useState('');
@@ -35,27 +35,32 @@ const handleRegister = (e) => {
 //   window.open('/client', '_self');
 // };
    return (
-  
-    <Form classname="register-container">>
-      <Form.Group controlId="formBasicUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control size="sm" type="text" placeholder="username" value={newUsername} onChange={e => setNewUsername(e.target.value)}/>
-        <Form.Text className="text-muted"></Form.Text>
-      </Form.Group>   
-      <Form.Group controlId="formBasicPassword">              
-        <Form.Label>Password:</Form.Label> 
-        <Form.Control size="sm" type="password" placeholder="password" value={newPassword} onChange={e => setNewPassword(e.target.value)}/>
-        </Form.Group>  
-      <Form.Group controlId="formBasicEmail">              
-        <Form.Label> Email: </Form.Label>
-        <Form.Control size="sm" type="email" placeholder="watch out for typos" value={newEmail} onChange={e => setNewEmail(e.target.value)} />
-        <Form-Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form-Text>
-      </Form.Group>  
-      <Button variant="success" type="submit" size="sm" onClick={handleRegister}>Register</Button>
-      <br></br>
-    </Form>
+    <Container className="login-view">
+      <Row className="justify-content-center">
+        <Col xs={12} sm={10} md={8} className="form-container">
+          <Form className="registration-container">>
+           <Form.Group controlId="formBasicUsername">
+              <Form.Label>Username:</Form.Label>
+              <Form.Control size="sm" type="text" placeholder="username" value={newUsername} onChange={e => setNewUsername(e.target.value)}/>
+              <Form.Text className="text-muted"></Form.Text>
+            </Form.Group>   
+              <Form.Group controlId="formBasicPassword">              
+              <Form.Label>Password:</Form.Label> 
+              <Form.Control size="sm" type="password" placeholder="password" value={newPassword} onChange={e => setNewPassword(e.target.value)}/>
+            </Form.Group>  
+            <Form.Group controlId="formBasicEmail">              
+              <Form.Label> Email: </Form.Label>
+              <Form.Control size="sm" type="email" placeholder="watch out for typos" value={newEmail} onChange={e => setNewEmail(e.target.value)} />
+              <Form-Text className="text-muted">
+                 We'll never share your email with anyone else.
+              </Form-Text>
+            </Form.Group>  
+              <Button variant="success" type="submit" size="sm" onClick={handleRegister}>Register</Button>
+                <br></br>
+            </Form>
+        </Col>
+      </Row>
+    </Container>
   );
  }
 
