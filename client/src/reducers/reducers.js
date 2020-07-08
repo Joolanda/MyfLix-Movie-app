@@ -19,12 +19,17 @@ function movies(state = [], action) {
       return state;
   }
 }
+// Redux comes with a built-in function to split into smaller reducers
+const moviesApp = combineReducers({
+  visibilityFilter,
+  movies
+});
 
-function moviesApp(state = {}, action) {
-  return {
-    visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-    movies: movies(state.movies, action)
-  }
-}
+// function moviesApp(state = {}, action) {
+//   return {
+//     visibilityFilter: visibilityFilter(state.visibilityFilter, action),
+//     movies: movies(state.movies, action)
+//   }
+// }
 
 export default moviesApp;
