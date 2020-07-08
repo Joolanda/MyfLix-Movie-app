@@ -9,34 +9,27 @@ export function RegistrationView (props) {
 const [ username, createUsername ] = useState('');
 const [ password, createPassword ] = useState('');
 const [ email, createEmail ] = useState('');
-const [ birthday, createBirthday] = useState('');
 
-//  const handleSubmit= (e) => {
-//    console.log(username, password);
-// //   /* Send a request to the server for authentication */
-// //   /* then call props.onLoggedIn(username) */
-//    props.onLoggedIn(username);
-//    };
+if (user) return null;
 
-const handleSubmit = (e) => {
- e.preventDefault();
- axios.post('https://myflix-movie.herokuapp.com/users', {
-   Username: username,
-   Password: password,
-   Email: email,
-   Birthday: birthday
- })
- .then(response => {
- const data = response.data;
-  console.log(data);
-  window.open('/', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
- })
- .catch(e => { 
- console.log('error user registration')
- });
-//Send a request to the server for authentication then call props.onLoggedIn(username)
-props.onLoggedIn(username);
+const handleRegister = (e) => {
+  e.preventDefault();
+
+  axios.post('https://myflix-movie.herokuapp.com/users', {
+    Username: username,
+    Password: password,
+    Email: email,
+  })
+  .then(response => {
+  const data = response.data;
+   console.log(data);
+   window.open('/client', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
+  })
+  .catch(e => { 
+  console.log('error user registration');
+  });
 };
+
 
    return (
   
@@ -52,16 +45,12 @@ props.onLoggedIn(username);
         </Form.Group>  
       <Form.Group controlId="formBasicEmail">              
         <Form.Label> Email: </Form.Label>
-        <Form.Control size="sm" type="email" placeholder="watch out for typos" value={email} onChange={e => createPassword(e.target.value)} />
+        <Form.Control size="sm" type="email" placeholder="watch out for typos" value={email} onChange={e => createEmail(e.target.value)} />
         <Form-Text className="text-muted">
           We'll never share your email with anyone else.
         </Form-Text>
       </Form.Group>  
-      <Form.Group controlId="formBasicBirthday">              
-        <Form.Label>Birthday:</Form.Label> 
-        <Form.Control size="sm" type="birthday" placeholder="1990-05-12" value={birthday} onChange={e => createBirthday(e.target.value)}/>
-      </Form.Group>  
-      <Button variant="success" type="submit" size="sm"  onClick={handleSubmit}>Register</Button>
+      <Button variant="success" type="submit" size="sm"  onClick={handleRegister}>Register</Button>
     </Form>
   );
  }

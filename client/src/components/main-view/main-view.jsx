@@ -5,12 +5,12 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 import { LoginView } from '../login-view/login-view';
-//import { RegistrationView } from '../registration-view/registration-view';
+import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
-//import { ProfileView } from '../profile-view/profile-view';
+import { ProfileView } from '../profile-view/profile-view';
 
 // bootstrap import
 import { Row, Col, Card, CardGroup, Nav, Navbar, Container } from 'react-bootstrap';
@@ -152,8 +152,8 @@ export class MainView extends React.Component {
          <Navbar bg="success" variant="dark" fixed="top">
          <Navbar.Brand as={Link} to="/">MyFlix Movie</Navbar.Brand>
             <Nav className="mr-auto">
-                <Nav.Link as={Link} to="/">Home</Nav.Link>
-                <Nav.Link as={Link} to={`/users/${username}`}>Account</Nav.Link>
+                <Nav.Link href={`/client/register`}>Register</Nav.Link>
+                <Nav.Link href={`/client/profile/${user}`}>Account</Nav.Link>
                 <Nav.Link onClick={(user) => this.onLoggedOut()} href="/client/">
 										Logout
 									</Nav.Link>
@@ -164,17 +164,18 @@ export class MainView extends React.Component {
            return movies.map(m => <MovieCard key={m._id} movie={m}/>)
            }
            }/>
-           <Route path="/register" render={() => <RegistrationView />} />
+           <Route path="/register" render={() => 
+               <RegistrationView />} />;
            <Route path="/movies/:movieId" 
               render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>
 
           <Route path="/movies/genres/:name" render={({ match }) => {
             if (!movies) return <CardGroup className="main-view"/>;
-            return <GenreView Genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>}
+            return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>}
            } />
            <Route path="/movies/directors/:name" render={({ match }) => {
               if (!movies) return <CardGroup className="main-view"/>;
-             return <DirectorView Director={movies.find(m => m.Director.Name === match.params.name).Director}/>}
+             return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director}/>}
            } />
            <Route exact path="/users/:Username" render={() => {
             return <ProfileView movies={movies} />}
@@ -184,3 +185,5 @@ export class MainView extends React.Component {
     );
   }
  }
+
+ // home link: <Nav.Link as={Link} to="/">Home</Nav.Link>

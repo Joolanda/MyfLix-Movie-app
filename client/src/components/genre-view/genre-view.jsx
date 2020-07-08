@@ -13,13 +13,13 @@ export class GenreView extends React.Component {
     this.state = {};
   }
   render() {
-    const { movie, Genre } = this.props;
+    const { movie, genre } = this.props;
 
-    if (!Genre) return null;
+    if (!genre) return null;
 
     return (
         <div className="genre-view">
-        <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
+        <Card lassName="director-card" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
         <Card.Body>
           <Card.Title>{movie.Genre.Name}</Card.Title>
           <Card.Text>{movie.Genre.Description}</Card.Text>

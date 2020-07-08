@@ -9,6 +9,7 @@ import { Row, Col, Button, Form, Container} from 'react-bootstrap';
 export function LoginView (props) {
 const [ username, setUsername ] = useState('');
 const [ password, setPassword ] = useState('');
+const [ email, setEmail ] = useState('');
 
 // const handleSubmit = (e) => {
 //   console.log(username, password);
@@ -16,6 +17,23 @@ const [ password, setPassword ] = useState('');
 //   /* then call props.onLoggedIn(username) */
 //   props.onLoggedIn(username);
 //   };
+const handleRegister = (e) => {
+  e.preventDefault();
+
+  axios.post('https://myflix-movie.herokuapp.com/users', {
+    Username: username,
+    Password: password,
+    Email: email,
+  })
+  .then(response => {
+  const data = response.data;
+   console.log(data);
+   window.open('/client', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
+  })
+  .catch(e => { 
+  console.log('error user registration');
+  });
+};
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -33,7 +51,6 @@ const handleSubmit = (e) => {
     console.log('no such user here');
     });
   }; 
-
 
     return (
       <Container className="login-view">
@@ -54,9 +71,12 @@ const handleSubmit = (e) => {
               <Form.Label>Password:</Form.Label> 
               <Form.Control size="sm" type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}/>
             </Form.Group> 
-            <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>
-              Login
-            </Button> 
+               <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>
+                 Login
+                </Button> 
+					       <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleRegister}>
+					        You don't have an acount? Click here
+					      </Button>
             </Form>
           </Col>
         </Row>
