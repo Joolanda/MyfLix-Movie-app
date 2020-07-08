@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './registration-view.scss';
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
-import { Form } from 'react-bootstrap';
-import { Container } from 'react-bootstrap';
+import { Link } from "react-router-dom";
+
+
+// bootstrap imports
+import { Button, Form, Container} from 'react-bootstrap';
 
 export function RegistrationView (props) {
 const [ newUsername, setNewUsername ] = useState('');
@@ -30,7 +33,9 @@ const handleRegister = (e) => {
   });
 };
 
-
+// const cancelRegister = () => {
+//   window.open('/client', '_self');
+// };
    return (
   
     <Form classname="register-container">>
@@ -51,6 +56,7 @@ const handleRegister = (e) => {
         </Form-Text>
       </Form.Group>  
       <Button variant="success" type="submit" size="sm"  onClick={handleRegister}>Register</Button>
+      <br></br>
     </Form>
   );
  }
@@ -58,3 +64,10 @@ const handleRegister = (e) => {
  //RegistrationView.propTypes = {
   // no props so far
 //};
+// RegistrationView.propTypes = {
+// 	setNewUsername: PropTypes.string,
+//   setNewPassword: PropTypes.string,
+//   setNewEmail: PropTypes.string,
+// };
+//
+//    <Button variant="success" type="submit" size="sm"  onClick={cancelRegister}>You already have an account? Click here</Button>
