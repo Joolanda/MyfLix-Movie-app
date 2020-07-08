@@ -48829,11 +48829,13 @@ function LoginView(props) {
     type: "submit",
     size: "sm",
     onClick: handleSubmit
-  }, "Login"), _react.default.createElement(_reactBootstrap.Button, {
+  }, "Login"), _react.default.createElement("br", null), _react.default.createElement("a", {
+    href: "/register"
+  }, _react.default.createElement(_reactBootstrap.Button, {
     variant: "btn-lg btn-success btn-block",
     type: "submit",
     size: "sm"
-  }, "You don't have an acount? Click here")))));
+  }, "You don't have an acount? Click here"))))));
 } //LoginView.propTypes = {
 // onLoggedIn: PropTypes.func.isRequired
 //};

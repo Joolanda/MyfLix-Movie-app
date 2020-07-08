@@ -51,9 +51,12 @@ const handleSubmit = (e) => {
                <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>
                  Login
                 </Button> 
+                <br></br>
+                <a href="/register">
 					       <Button variant="btn-lg btn-success btn-block" type="submit" size="sm">
 					        You don't have an acount? Click here
 					      </Button>
+                </a>
             </Form>
           </Col>
         </Row>
