@@ -152,6 +152,7 @@ export class MainView extends React.Component {
          <Navbar bg="success" variant="dark" fixed="top">
          <Navbar.Brand as={Link} to="/">MyFlix Movie</Navbar.Brand>
             <Nav className="mr-auto">
+              <Nav.Link as={Link} to="/">Home</Nav.Link>
                 <Nav.Link href={`/client/register`}>Register</Nav.Link>
                 <Nav.Link href={`/client/profile/${user}`}>Account</Nav.Link>
                 <Nav.Link onClick={(user) => this.onLoggedOut()} href="/client/">

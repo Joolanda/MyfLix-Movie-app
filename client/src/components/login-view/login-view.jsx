@@ -4,7 +4,6 @@ import './login-view.scss';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 
-
 // bootstrap imports
 import { Row, Col, Button, Form, Container} from 'react-bootstrap';
 
@@ -53,11 +52,11 @@ const handleSubmit = (e) => {
                  Login
                 </Button> 
                 <br></br>
-                <Link to={`/register`}>
+                <a href={`/register`}>
 					       <Button variant="btn-lg btn-success btn-block" type="submit" size="sm" onClick={handleSubmit}>
 					        You don't have an acount? Click here
 					      </Button>
-                </Link>
+                </a>
             </Form>
           </Col>
         </Row>

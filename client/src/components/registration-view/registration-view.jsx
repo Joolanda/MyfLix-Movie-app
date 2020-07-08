@@ -55,7 +55,7 @@ const handleRegister = (e) => {
           We'll never share your email with anyone else.
         </Form-Text>
       </Form.Group>  
-      <Button variant="success" type="submit" size="sm"  onClick={handleRegister}>Register</Button>
+      <Button variant="success" type="submit" size="sm" onClick={handleRegister}>Register</Button>
       <br></br>
     </Form>
   );

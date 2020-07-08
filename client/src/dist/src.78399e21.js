@@ -48831,8 +48831,8 @@ function LoginView(props) {
     type: "submit",
     size: "sm",
     onClick: handleSubmit
-  }, "Login"), _react.default.createElement("br", null), _react.default.createElement(_reactRouterDom.Link, {
-    to: "/register"
+  }, "Login"), _react.default.createElement("br", null), _react.default.createElement("a", {
+    href: "/register"
   }, _react.default.createElement(_reactBootstrap.Button, {
     variant: "btn-lg btn-success btn-block",
     type: "submit",
@@ -49602,6 +49602,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, "MyFlix Movie"), _react.default.createElement(_reactBootstrap.Nav, {
         className: "mr-auto"
       }, _react.default.createElement(_reactBootstrap.Nav.Link, {
+        as: _reactRouterDom.Link,
+        to: "/"
+      }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
         href: "/client/register"
       }, "Register"), _react.default.createElement(_reactBootstrap.Nav.Link, {
         href: "/client/profile/".concat(user)
