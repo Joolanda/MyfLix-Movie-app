@@ -49267,7 +49267,7 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
           width: '20rem'
         }
       }, _react.default.createElement(_reactBootstrap.Card.Body, {
-        classname: "director-body"
+        className: "director-body"
       }, _react.default.createElement(_reactBootstrap.Card.Title, {
         className: "director-name"
       }, movie.Director.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director Bio: ", movie.Director.Bio), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birth Year: ", movie.Director.Birth), _react.default.createElement(_reactRouterDom.Link, {
@@ -49364,7 +49364,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
       return _react.default.createElement("div", {
         className: "genre-view"
       }, _react.default.createElement(_reactBootstrap.Card, {
-        lassName: "director-card",
+        className: "director-card",
         border: "dark",
         text: "white",
         bg: "success mb-3",

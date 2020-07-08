@@ -25,7 +25,7 @@ export class DirectorView extends React.Component {
     return (
       <div className="director-view">
         <Card className="director-card" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
-          <Card.Body classname="director-body">
+          <Card.Body className="director-body">
             <Card.Title className="director-name">{movie.Director.Name}</Card.Title>
             <Card.Text>Director Bio: {movie.Director.Bio}</Card.Text>
             <Card.Text>Birth Year: {movie.Director.Birth}</Card.Text>
