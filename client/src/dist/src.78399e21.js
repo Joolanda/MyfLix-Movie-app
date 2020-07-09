@@ -51514,11 +51514,8 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         variant: "top",
         className: "movie-view-image",
         src: movie.ImagePath
-      })), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Title), _react.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", movie.Description), _react.default.createElement(_reactBootstrap.Card.Text, {
-        className: "text-genre-view",
-        href: "/genres/${movie.Genre.Name"
-      }, "Genre: ", movie.Genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director: ", movie.Director.Name), _react.default.createElement(_reactBootstrap.ButtonGroup, {
-        vertical: true
+      })), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Title), _react.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", movie.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "Genre: ", movie.Genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director: ", movie.Director.Name), _react.default.createElement(_reactBootstrap.ButtonGroup, {
+        size: "lg"
       }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
@@ -51526,12 +51523,12 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, "Back to Movies")), _react.default.createElement(_reactRouterDom.Link, {
         to: "/directors/".concat(movie.Director.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "secondary",
+        variant: "info",
         href: "/directors/${movie.Director.Name"
       }, " Show more of ", movie.Director.Name)), _react.default.createElement(_reactRouterDom.Link, {
         to: "/genres/".concat(movie.Genre.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "secondary",
+        variant: "info",
         href: "/genres/${movie.Genre.Name"
       }, " More of ", movie.Genre.Name, " genre"))))));
     }
@@ -51635,7 +51632,7 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
       }, director.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director Bio: ", director.Bio), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birth Year: ", director.Birth), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "link"
+        variant: "secondary"
       }, "Back to movies")))));
     }
   }]);
@@ -51729,7 +51726,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
         }
       }, _react.default.createElement(_reactBootstrap.Card.Header, null), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, {
         className: "genre-name"
-      }, ">", genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, genre.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "All movies with this genre: "), _react.default.createElement(_reactRouterDom.Link, {
+      }, genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, genre.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "All movies with this genre: "), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "link"

@@ -27,7 +27,7 @@ export class DirectorView extends React.Component {
             <Card.Text>Director Bio: {director.Bio}</Card.Text>
             <Card.Text>Birth Year: {director.Birth}</Card.Text>
             <Link to={`/`}>
-              <Button variant="link">Back to movies</Button>
+              <Button variant="secondary">Back to movies</Button>
             </Link>
           </Card.Body>
         </Card>
