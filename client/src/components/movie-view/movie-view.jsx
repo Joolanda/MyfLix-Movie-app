@@ -42,7 +42,6 @@ export class MovieView extends React.Component {
               <Button variant="info" href="/directors/${movie.Director.Name"> Bio of {movie.Director.Name}
                </Button>
             </Link>
-
             </ButtonGroup>
           </Card.Body>
         </Card>

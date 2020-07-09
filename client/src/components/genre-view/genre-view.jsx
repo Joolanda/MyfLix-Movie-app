@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import "./genre-view.scss";
 
 // bootstrap import
-import { Card, Button, Container } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
 export class GenreView extends React.Component {
   constructor() {

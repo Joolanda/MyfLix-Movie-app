@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import "./profile-view.scss";
 // bootstrap import
-import { Card, Button, Container, Form } from 'react-bootstrap';
+import { Card, Button, Container, ButtonGroup } from 'react-bootstrap';
 
 export class ProfileView extends React.Component {
 
@@ -46,6 +46,7 @@ constructor(props) {
      });
    }
   }
+}
 
 // UPDATE or PUT requests for User profile
 handleProfileUpdate = (e, newUsername, newPassword, newEmail, newBirthday) => {
@@ -85,7 +86,7 @@ handleProfileUpdate = (e, newUsername, newPassword, newEmail, newBirthday) => {
   setBirthday(input) {
     this.Birthday = input;
   }
-  
+}
 
 //DELETE requests for deregistering
 handleDeleteUser = (e) => {
@@ -134,32 +135,31 @@ handleRemoveFavorite = (e, movie) => {
      const { movies } = this.props;
      
      return (
-       <div>
-         <Container className="profile-view">
-           <h1>My Flix Profile</h1>
-           <br/>
-           <Card>
-             <Card.Body>
-               <Card.Text>Username: {username}</Card.Text>
-               <Card.Text>Password: xxxxxx </Card.Text>
-               <Card.Text>Email: {email}</Card.Text>
-               <Card.Text>Birthday: {birthday}</Card.Text>
-               <Card.Text>Favorite Movies: {favoriteMovies }</Card.Text>
-                <div className="my-favorites"></div>
-                <div className="buttons-back-remove"></div>
-                <br/>
-                <br/>
-                <Link>
-                  <Button variant="success" type="submit" size="sm"  className="remove-user" onClick={handleDeleteUser}> Delete Profile </Button>
-                </Link>
-             </Card.Body>
-           </Card>
-         </Container>
-       </div>
-     );
-   }
+       <div className="profile-view">
+           <Card className="border-success text-white bg-secondary mb-3" style={{ width: '20rem'}}>
+              <Card.Header> My Flix Profile </Card.Header>
+                <Card.Body>
+                  <Card.Text>Username: {username}</Card.Text>
+                  <Card.Text>Password: xxxxxx </Card.Text>
+                  <Card.Text>Email: {email}</Card.Text>
+                  <Card.Text>Birthday: {birthday}</Card.Text>
+                  <Card.Text>Favorite Movies: {favoriteMovies }</Card.Text>
+                     <div className="my-favorites"></div>
+                     <div className="buttons-back-remove"></div>
+                     <br/>
+                     <ButtonGroup size="lg">
+                         <Link to={`/`}>
+                             <Button variant="dark">Back to Movies</Button>
+                          </Link>
+                          <Link to={`/user/update`}>
+                             <Button variant="success"  className="update-user" onClick={handleProfileUpdate}>Update Profile</Button>
+                         </Link>
+                             <Button variant="success" type="submit" className="delete-user" onClick={handleDeleteUser}> Delete Profile </Button>
+                          </Link>
+                     </ButtonGroup>
+                </Card.Body>
+              </Card>
+          </div>
+      );
   }
-
-
-
-
+  }

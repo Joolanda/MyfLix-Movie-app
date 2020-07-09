@@ -51624,7 +51624,7 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
         }
       }, _react.default.createElement(_reactBootstrap.Card.Header, null), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, {
         className: "director-name"
-      }, director.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director Bio: ", director.Bio), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birth Year: ", director.Birth), _react.default.createElement(_reactRouterDom.Link, {
+      }, director.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director Bio: ", _react.default.createElement("br", null), director.Bio), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birth Year: ", director.Birth), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "dark"
@@ -51975,7 +51975,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        path: "/directors/:name",
+        path: "/movies/directors/:name",
         render: function render(_ref3) {
           var match = _ref3.match;
           if (!movies) return _react.default.createElement(_reactBootstrap.CardGroup, {
