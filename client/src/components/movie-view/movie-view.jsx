@@ -19,6 +19,7 @@ export class MovieView extends React.Component {
 
     if (!movie) return null;
 
+
     return (      
       <div className="movie-view">
        <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
@@ -28,18 +29,18 @@ export class MovieView extends React.Component {
         <Card.Body>
             <Card.Title>{movie.Title}</Card.Title>
             <Card.Text>Description: {movie.Description}</Card.Text>
-            <Card.Text>Genre: {movie.Genre.Name}</Card.Text>
+            <Card.Text className="text-genre-view" href="/genres/${movie.Genre.Name">Genre: {movie.Genre.Name}</Card.Text>
             <Card.Text>Director: {movie.Director.Name}</Card.Text>
             <ButtonGroup vertical>
             <Link to={`/`}>
               <Button variant="secondary">Back to Movies</Button>
             </Link>
             <Link to={`/directors/${movie.Director.Name}`}>
-              <Button variant="secondary" onClick={<directorView />}>Show more of {movie.Director.Name}
-                {' '}</Button>
+              <Button variant="secondary" href="/directors/${movie.Director.Name"> Show more of {movie.Director.Name}
+               </Button>
             </Link>
             <Link to={`/genres/${movie.Genre.Name}`}>
-              <Button variant="secondary" onClick={<genreView />}> More of {movie.Genre.Name} genre</Button>
+              <Button variant="secondary" href="/genres/${movie.Genre.Name"> More of {movie.Genre.Name} genre</Button>
             </Link>
             </ButtonGroup>
           </Card.Body>

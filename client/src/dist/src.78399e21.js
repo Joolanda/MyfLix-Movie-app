@@ -51514,7 +51514,10 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         variant: "top",
         className: "movie-view-image",
         src: movie.ImagePath
-      })), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Title), _react.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", movie.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "Genre: ", movie.Genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director: ", movie.Director.Name), _react.default.createElement(_reactBootstrap.ButtonGroup, {
+      })), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Title), _react.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", movie.Description), _react.default.createElement(_reactBootstrap.Card.Text, {
+        className: "text-genre-view",
+        href: "/genres/${movie.Genre.Name"
+      }, "Genre: ", movie.Genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director: ", movie.Director.Name), _react.default.createElement(_reactBootstrap.ButtonGroup, {
         vertical: true
       }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
@@ -51524,12 +51527,12 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         to: "/directors/".concat(movie.Director.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "secondary",
-        onClick: _react.default.createElement("directorView", null)
-      }, "Show more of ", movie.Director.Name, ' ')), _react.default.createElement(_reactRouterDom.Link, {
+        href: "/directors/${movie.Director.Name"
+      }, " Show more of ", movie.Director.Name)), _react.default.createElement(_reactRouterDom.Link, {
         to: "/genres/".concat(movie.Genre.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "secondary",
-        onClick: _react.default.createElement("genreView", null)
+        href: "/genres/${movie.Genre.Name"
       }, " More of ", movie.Genre.Name, " genre"))))));
     }
   }]);
