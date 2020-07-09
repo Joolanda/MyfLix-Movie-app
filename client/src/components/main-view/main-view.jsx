@@ -139,7 +139,7 @@ export class MainView extends React.Component {
             if (!movies) return <CardGroup className="main-view"/>;
             return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>}
            } />
-           <Route path="/movies/directors/:name" render={({ match }) => {
+           <Route path="/directors/:name" render={({ match }) => {
               if (!movies) return <CardGroup className="main-view"/>;
              return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director}/>}
            } />
