@@ -33,15 +33,16 @@ export class MovieView extends React.Component {
             <Card.Text>Director: {movie.Director.Name}</Card.Text>
             <ButtonGroup size="lg">
             <Link to={`/`}>
-              <Button variant="secondary">Back to Movies</Button>
-            </Link>
-            <Link to={`/directors/${movie.Director.Name}`}>
-              <Button variant="info" href="/directors/${movie.Director.Name"> Show more of {movie.Director.Name}
-               </Button>
+              <Button variant="dark">Back to Movies</Button>
             </Link>
             <Link to={`/genres/${movie.Genre.Name}`}>
-              <Button variant="info" href="/genres/${movie.Genre.Name"> More of {movie.Genre.Name} genre</Button>
+              <Button variant="info" href="/genres/${movie.Genre.Name"> More {movie.Genre.Name}</Button>
             </Link>
+            <Link to={`/directors/${movie.Director.Name}`}>
+              <Button variant="info" href="/directors/${movie.Director.Name"> Bio of {movie.Director.Name}
+               </Button>
+            </Link>
+
             </ButtonGroup>
           </Card.Body>
         </Card>

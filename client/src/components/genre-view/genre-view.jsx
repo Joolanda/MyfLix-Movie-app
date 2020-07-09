@@ -21,14 +21,14 @@ export class GenreView extends React.Component {
 
     return (
         <div className="genre-view">
-        <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
+        <Card className="border-success text-white bg-info mb-3" style={{ width: '20rem'}}>
         <Card.Header></Card.Header>
         <Card.Body>
           <Card.Title className="genre-name">{genre.Name}</Card.Title>
           <Card.Text>{genre.Description}</Card.Text>
           <Card.Text>All movies with this genre: <br/>. . . coming soon . . .</Card.Text>
           <Link to={`/`}>
-            <Button variant="secondary">Back to Movies</Button>
+            <Button variant="dark">Back to Movies</Button>
           </Link>
         </Card.Body>
       </Card>

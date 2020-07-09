@@ -21,14 +21,14 @@ export class DirectorView extends React.Component {
 
     return (
       <div className="director-view">
-        <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
+        <Card className="border-success text-white bg-info mb-3" style={{ width: '20rem'}}>
         <Card.Header></Card.Header>
           <Card.Body>
             <Card.Title className="director-name">{director.Name}</Card.Title>
             <Card.Text>Director Bio: {director.Bio}</Card.Text>
             <Card.Text>Birth Year: {director.Birth}</Card.Text>
             <Link to={`/`}>
-              <Button variant="secondary">Back to movies</Button>
+              <Button variant="dark">Back to movies</Button>
             </Link>
           </Card.Body>
         </Card>

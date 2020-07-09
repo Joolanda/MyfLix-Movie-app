@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import "./profile-view.scss";
@@ -9,12 +10,14 @@ export class ProfileView extends React.Component {
 
 constructor(props) {
   super(props);
+
     this.state = {
       username: null,
       password: null,
       email: null,
       birthday: null,
-      favoriteMovies: []
+      favoriteMovies: [],
+      movies: []
     }
   }
   componentDidMount() {
@@ -26,30 +29,26 @@ constructor(props) {
   }
 
   getUser(token) {
-    letusername = localStorage.getItem('token')
+    letusername = localStorage.getItem('user')
     axios.get('https://myflix-movie.herokuapp.com/users/${username}', {
       headers: { Authorization: `Bearer ${token}` },
     })
-    then(response => {
+    .then((response) => {
       this.setState({
           Username: response.data.Username,
           Password: response.data.Password,
           Email: response.data.Email,
-          Birthdate: response.data.BirthDate,
+          Birthday: response.data.BirthDay,
           FavoriteMovies: response.data.FavoriteMovies
-        });
-
-      })
-       .catch(e => {
-       console.log(error);
+        })
+      .catch((err) => { 
+       console.log(err);
      });
    }
-// Task: 
-// Authenticated users of myFlix:
-// will also want to make GET for viewing their profile:
+  }
 
-// and PUT requests for updating their profile
-handleProfileUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
+// UPDATE or PUT requests for User profile
+handleProfileUpdate = (e, newUsername, newPassword, newEmail, newBirthday) => {
   e.preventDefault();
 
   const username = localStorage.getItem('user');
@@ -64,55 +63,71 @@ handleProfileUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
       Birthday: newBirthday ? newBirthday : this.state.Birthday
     },
   })
-  then(response => {
+  .then((response) => {
     localStorage.setItem('user', this.Username);
     console.log(`${username} was updated`);
     alert('your profile is successfully updated');
       window.open('/', '_self');
       })
-       .catch(e => {
+      .catch((e) => { 
        console.log('Error Updating User profile');
-     });
-   }
+      });
+   }; 
    setUsername(input) {
     this.Username = input;
   }
-
   setPassword(input) {
     this.Password = input;
   }
-
   setEmail(input) {
     this.Email = input;
   }
-
   setBirthday(input) {
     this.Birthday = input;
   }
-
+  
 
 //DELETE requests for deregistering
-handleDeregister(e) {
+handleDeleteUser = (e) => {
   e.preventDefault();
 
   const username = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
-  axios.
-    delete('https://myflix-movie.herokuapp.com/users/${username}', {
+  axios.delete('https://myflix-movie.herokuapp.com/users/${username}', {
       headers: { Authorization: `Bearer ${token}` }
     })
-    then((response) => {
+    .then((response) => {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       console.log(`${username} was deleted`);
       alert('your profile is successfully deleted');
       window.open('/', '_self');
       })
-       .catch(e => {
+      .catch((e) => { 
        console.log('Error deleting User profile');
      });
-   }
+   };
+
+
+// REMOVE favorite movie from User profile
+handleRemoveFavorite = (e, movie) => {
+  e.preventDefault();
+
+  const username = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
+  axios.delete('https://myflix-movie.herokuapp.com/users/${username}', {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+    .then((response) => {
+      console.log(`${movie.Title} was removed from Favorites`);
+      window.open('_self');
+    })
+    .catch((e) => { 
+      console.log(err)
+    });
+  }; 
+
 
    render() {
      const { username, password, email, birthday, favoriteMovies } = this.state
@@ -135,7 +150,7 @@ handleDeregister(e) {
                 <br/>
                 <br/>
                 <Link>
-                  <Button variant="success" type="submit" size="sm"  classame="remove-user" onClick={handleDeregister}> Delete Profile </Button>
+                  <Button variant="success" type="submit" size="sm"  className="remove-user" onClick={handleDeleteUser}> Delete Profile </Button>
                 </Link>
              </Card.Body>
            </Card>
@@ -144,5 +159,7 @@ handleDeregister(e) {
      );
    }
   }
+
+
 
 
