@@ -26,9 +26,9 @@ export class GenreView extends React.Component {
         <Card.Body>
           <Card.Title className="genre-name">{genre.Name}</Card.Title>
           <Card.Text>{genre.Description}</Card.Text>
-          <Card.Text>All movies with this genre: </Card.Text>
+          <Card.Text>All movies with this genre: <br/>. . . coming soon . . .</Card.Text>
           <Link to={`/`}>
-            <Button variant="link">Back to Movies</Button>
+            <Button variant="secondary">Back to Movies</Button>
           </Link>
         </Card.Body>
       </Card>

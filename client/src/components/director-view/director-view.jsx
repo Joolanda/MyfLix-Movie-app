@@ -21,8 +21,9 @@ export class DirectorView extends React.Component {
 
     return (
       <div className="director-view">
-        <Card className="director-card" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
-          <Card.Body className="director-body">
+        <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{width:'20rem'}}>
+        <Card.Header></Card.Header>
+          <Card.Body>
             <Card.Title className="director-name">{director.Name}</Card.Title>
             <Card.Text>Director Bio: {director.Bio}</Card.Text>
             <Card.Text>Birth Year: {director.Birth}</Card.Text>
@@ -35,6 +36,7 @@ export class DirectorView extends React.Component {
     );   
   }
 }
+
 
 DirectorView.propTypes = {
   Director: PropTypes.shape({

@@ -51618,16 +51618,14 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
       return _react.default.createElement("div", {
         className: "director-view"
       }, _react.default.createElement(_reactBootstrap.Card, {
-        className: "director-card",
+        className: "text-center",
         border: "dark",
         text: "white",
         bg: "success mb-3",
         style: {
           width: '20rem'
         }
-      }, _react.default.createElement(_reactBootstrap.Card.Body, {
-        className: "director-body"
-      }, _react.default.createElement(_reactBootstrap.Card.Title, {
+      }, _react.default.createElement(_reactBootstrap.Card.Header, null), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, {
         className: "director-name"
       }, director.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director Bio: ", director.Bio), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birth Year: ", director.Birth), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
@@ -51726,10 +51724,10 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
         }
       }, _react.default.createElement(_reactBootstrap.Card.Header, null), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, {
         className: "genre-name"
-      }, genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, genre.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "All movies with this genre: "), _react.default.createElement(_reactRouterDom.Link, {
+      }, genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, genre.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "All movies with this genre: ", _react.default.createElement("br", null), ". . . coming soon . . ."), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "link"
+        variant: "secondary"
       }, "Back to Movies")))));
     }
   }]);
