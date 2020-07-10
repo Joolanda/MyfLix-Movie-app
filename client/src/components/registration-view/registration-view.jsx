@@ -24,7 +24,7 @@ const handleRegister = (e) => {
   .then(response => {
   const data = response.data;
    console.log(data);
-   window.open('/client', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
+   window.open('/', '_self'); // if backend validation is successful, th data will be logged in the console and the user will be redirected to the main view. 
   })
   .catch(e => { 
   console.log('error user registration');
@@ -35,7 +35,7 @@ const handleRegister = (e) => {
 //   window.open('/client', '_self');
 // };
    return (
-    <Container className="login-view">
+    <Container className="registration-view">
       <Row className="justify-content-center">
         <Col xs={12} sm={10} md={8} className="form-container">
           <Form className="registration-container">>

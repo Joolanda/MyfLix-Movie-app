@@ -51190,14 +51190,14 @@ function LoginView(props) {
     type: "submit",
     size: "sm",
     onClick: handleSubmit
-  }, "Login"), _react.default.createElement("br", null), _react.default.createElement("a", {
-    href: "/client/register"
-  }, _react.default.createElement(_reactBootstrap.Button, {
+  }, "Login"), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
     variant: "btn-lg btn-success btn-block",
+    href: "/register",
+    "btn-block": true,
     type: "submit",
     size: "sm",
     onClick: handleSubmit
-  }, "You don't have an acount? Click here"))))));
+  }, "You don't have an acount? Click here")))));
 } //LoginView.propTypes = {
 // onLoggedIn: PropTypes.func.isRequired
 //};
@@ -51270,7 +51270,7 @@ function RegistrationView(props) {
     }).then(function (response) {
       var data = response.data;
       console.log(data);
-      window.open('/client', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
+      window.open('/', '_self'); // if backend validation is successful, th data will be logged in the console and the user will be redirected to the main view. 
     }).catch(function (e) {
       console.log('error user registration');
     });
@@ -51280,7 +51280,7 @@ function RegistrationView(props) {
 
 
   return _react.default.createElement(_reactBootstrap.Container, {
-    className: "login-view"
+    className: "registration-view"
   }, _react.default.createElement(_reactBootstrap.Row, {
     className: "justify-content-center"
   }, _react.default.createElement(_reactBootstrap.Col, {
@@ -51524,12 +51524,12 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         to: "/genres/".concat(movie.Genre.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "info",
-        href: "/genres/${movie.Genre.Name"
+        href: "/genres/${movie.Genre.Name}"
       }, " More ", movie.Genre.Name)), _react.default.createElement(_reactRouterDom.Link, {
         to: "/directors/".concat(movie.Director.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "info",
-        href: "/directors/${movie.Director.Name"
+        href: "/directors/${movie.Director.Name}"
       }, " Bio of ", movie.Director.Name))))));
     }
   }]);
@@ -51930,7 +51930,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           return _this3.onLoggedOut();
         },
         href: "/client/"
-      }, "Logout"))), _react.default.createElement(_reactRouterDom.Route, {
+      }, "Logout"))), _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/",
         render: function render() {
@@ -51947,11 +51947,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        path: "/client/register",
-        render: function render() {
-          return _react.default.createElement(_registrationView.RegistrationView, null);
-        }
-      }), ";", _react.default.createElement(_reactRouterDom.Route, {
+        path: "/",
+        exact: true
+      }, _react.default.createElement(RegistrationForm, null))), _react.default.createElement(_reactRouterDom.Route, {
         path: "/movies/:movieId",
         render: function render(_ref) {
           var match = _ref.match;
@@ -51975,7 +51973,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        path: "/movies/directors/:name",
+        path: "/directors/:name",
         render: function render(_ref3) {
           var match = _ref3.match;
           if (!movies) return _react.default.createElement(_reactBootstrap.CardGroup, {
@@ -52102,7 +52100,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65024" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51235" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

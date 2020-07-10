@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 import { LoginView } from '../login-view/login-view';
@@ -125,13 +125,16 @@ export class MainView extends React.Component {
 									</Nav.Link>
             </Nav>
           </Navbar>
+          <Switch>
          <Route exact path="/" render={() => {
            if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
            return movies.map(m => <MovieCard key={m._id} movie={m}/>)
            }
            }/>
-           <Route path="/client/register" render={() => 
-               <RegistrationView/>} />;
+            <Route path="/" exact={true}>
+              <RegistrationForm />
+            </Route>
+          </Switch>
            <Route path="/movies/:movieId" 
               render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>
 

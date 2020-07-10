@@ -29,6 +29,7 @@ const handleSubmit = (e) => {
     });
   }; 
 
+  
     return (
       <Container className="login-view">
         <Row className="justify-content-center">
@@ -52,11 +53,9 @@ const handleSubmit = (e) => {
                  Login
                 </Button> 
                 <br></br>
-                <a href={`/client/register`}>
-					       <Button variant="btn-lg btn-success btn-block" type="submit" size="sm" onClick={handleSubmit}>
+					       <Button variant="btn-lg btn-success btn-block" href="/register" btn-block type="submit" size="sm" onClick={handleSubmit}>
 					        You don't have an acount? Click here
 					      </Button>
-                </a>
             </Form>
           </Col>
         </Row>
