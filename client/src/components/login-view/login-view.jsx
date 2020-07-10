@@ -12,7 +12,7 @@ const [ username, setUsername ] = useState('');
 const [ password, setPassword ] = useState('');
 const [ email, setEmail ] = useState('');
 
-handleSubmit = (e) => {
+const handleSubmit = (e) => {
   e.preventDefault();
   /* Send a request to the server for authentication */
   axios.
@@ -29,10 +29,10 @@ handleSubmit = (e) => {
     });
   }; 
 
-handleFirstRegistration = (e) => {
-    e.preventDefault();
-// new code comes here to handle click event to open registration view
-  }
+//   handleNewUser = (e) => {
+//     e.preventDefault();
+// // new code comes here to handle click event to open registration view
+//   }
 
     return (
       <Container className="login-view">
@@ -53,13 +53,14 @@ handleFirstRegistration = (e) => {
               <Form.Label>Password:</Form.Label> 
               <Form.Control size="sm" type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}/>
             </Form.Group> 
-               <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={this.handleSubmit}>
+               <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>
                  Login
                 </Button> 
-                <br></br>
-					       <Button variant="btn-lg btn-success btn-block" href="/register" btn-block type="link" >
+                <Link to={`/register`}>
+					       <Button variant="btn-lg btn-success btn-block" href="/register" btn-block type="link" size="sm" >
 					        You don't have an acount? Click here
 					      </Button>
+                </Link>
             </Form>
           </Col>
         </Row>
@@ -67,6 +68,8 @@ handleFirstRegistration = (e) => {
     );
    }
 
-   //LoginView.propTypes = {
-  // onLoggedIn: PropTypes.func.isRequired
-  //};
+  LoginView.propTypes = {
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
+  };

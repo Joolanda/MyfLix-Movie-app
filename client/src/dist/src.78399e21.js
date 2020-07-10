@@ -51137,7 +51137,7 @@ function LoginView(props) {
       email = _useState6[0],
       setEmail = _useState6[1];
 
-  handleSubmit = function handleSubmit(e) {
+  var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     /* Send a request to the server for authentication */
 
@@ -51150,11 +51150,11 @@ function LoginView(props) {
     }).catch(function (e) {
       console.log('no such user here');
     });
-  };
+  }; //   handleNewUser = (e) => {
+  //     e.preventDefault();
+  // // new code comes here to handle click event to open registration view
+  //   }
 
-  handleFirstRegistration = function handleFirstRegistration(e) {
-    e.preventDefault(); // new code comes here to handle click event to open registration view
-  };
 
   return _react.default.createElement(_reactBootstrap.Container, {
     className: "login-view"
@@ -51193,16 +51193,23 @@ function LoginView(props) {
     variant: "btn-lg btn-success btn-block",
     type: "submit",
     size: "sm",
-    onClick: this.handleSubmit
-  }, "Login"), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
+    onClick: handleSubmit
+  }, "Login"), _react.default.createElement(_reactRouterDom.Link, {
+    to: "/register"
+  }, _react.default.createElement(_reactBootstrap.Button, {
     variant: "btn-lg btn-success btn-block",
     href: "/register",
     "btn-block": true,
-    type: "link"
-  }, "You don't have an acount? Click here")))));
-} //LoginView.propTypes = {
-// onLoggedIn: PropTypes.func.isRequired
-//};
+    type: "link",
+    size: "sm"
+  }, "You don't have an acount? Click here"))))));
+}
+
+LoginView.propTypes = {
+  username: _propTypes.default.string.isRequired,
+  password: _propTypes.default.string.isRequired,
+  onClick: _propTypes.default.func.isRequired
+};
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./login-view.scss":"components/login-view/login-view.scss","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -51219,6 +51226,8 @@ exports.RegistrationView = RegistrationView;
 var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _loginView = require("../login-view/login-view");
 
 require("./registration-view.scss");
 
@@ -51342,7 +51351,7 @@ function RegistrationView(props) {
 // };
 //
 //    <Button variant="success" type="submit" size="sm"  onClick={cancelRegister}>You already have an account? Click here</Button>
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./registration-view.scss":"components/registration-view/registration-view.scss","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","../login-view/login-view":"components/login-view/login-view.jsx","./registration-view.scss":"components/registration-view/registration-view.scss","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
