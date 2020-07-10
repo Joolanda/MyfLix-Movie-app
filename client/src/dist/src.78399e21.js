@@ -51137,7 +51137,7 @@ function LoginView(props) {
       email = _useState6[0],
       setEmail = _useState6[1];
 
-  var handleSubmit = function handleSubmit(e) {
+  handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     /* Send a request to the server for authentication */
 
@@ -51150,6 +51150,10 @@ function LoginView(props) {
     }).catch(function (e) {
       console.log('no such user here');
     });
+  };
+
+  handleFirstRegistration = function handleFirstRegistration(e) {
+    e.preventDefault(); // new code comes here to handle click event to open registration view
   };
 
   return _react.default.createElement(_reactBootstrap.Container, {
@@ -51189,14 +51193,12 @@ function LoginView(props) {
     variant: "btn-lg btn-success btn-block",
     type: "submit",
     size: "sm",
-    onClick: handleSubmit
+    onClick: this.handleSubmit
   }, "Login"), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
     variant: "btn-lg btn-success btn-block",
     href: "/register",
     "btn-block": true,
-    type: "submit",
-    size: "sm",
-    onClick: handleSubmit
+    type: "link"
   }, "You don't have an acount? Click here")))));
 } //LoginView.propTypes = {
 // onLoggedIn: PropTypes.func.isRequired
@@ -51270,7 +51272,7 @@ function RegistrationView(props) {
     }).then(function (response) {
       var data = response.data;
       console.log(data);
-      window.open('/', '_self'); // if backend validation is successful, th data will be logged in the console and the user will be redirected to the main view. 
+      window.open('/', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
     }).catch(function (e) {
       console.log('error user registration');
     });
@@ -51859,17 +51861,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }).catch(function (error) {
         console.log(error);
       });
-    } // onMovieClick(movie) {
-    //   this.setState({
-    //     selectedMovie: movie
-    //   });
-    // }
-    // onLoggedIn(user) {
-    //   this.setState({
-    //     user
-    //   });
-    // }
-
+    }
   }, {
     key: "onLoggedIn",
     value: function onLoggedIn(authData) {
@@ -51880,7 +51872,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       localStorage.setItem('token', authData.token);
       localStorage.setItem('user', authData.user.Username);
       this.getMovies(authData.token);
-    } // new method for siging out, button mainview
+    } // new method for signing out, button mainview
 
   }, {
     key: "onLoggedOut",
@@ -51930,7 +51922,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           return _this3.onLoggedOut();
         },
         href: "/client/"
-      }, "Logout"))), _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
+      }, "Logout"))), _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/",
         render: function render() {
@@ -51947,9 +51939,11 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
-        path: "/",
-        exact: true
-      }, _react.default.createElement(RegistrationForm, null))), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/register",
+        render: function render() {
+          return _react.default.createElement(_registrationView.RegistrationView, null);
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/movies/:movieId",
         render: function render(_ref) {
           var match = _ref.match;
@@ -51998,7 +51992,18 @@ var MainView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return MainView;
-}(_react.default.Component); // home link: <Nav.Link as={Link} to="/">Home</Nav.Link>
+}(_react.default.Component); // using 
+//  <Switch>
+//  <Route exact path="/" render={() => {
+//    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+//    return movies.map(m => <MovieCard key={m._id} movie={m}/>)
+//    }
+//    }/>
+//     <Route path="/" exact={true}>
+//       <RegistrationForm />
+//     </Route>
+//   </Switch>
+// home link: <Nav.Link as={Link} to="/">Home</Nav.Link>
 
 
 exports.MainView = MainView;
@@ -52100,7 +52105,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51235" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54985" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -71,18 +71,6 @@ export class MainView extends React.Component {
    });
   }
 
-  // onMovieClick(movie) {
-  //   this.setState({
-  //     selectedMovie: movie
-  //   });
-  // }
-
-  // onLoggedIn(user) {
-  //   this.setState({
-  //     user
-  //   });
-  // }
-
   onLoggedIn(authData) {
     console.log(authData);
     this.setState({
@@ -94,7 +82,7 @@ export class MainView extends React.Component {
     this.getMovies(authData.token);
   }
 
-// new method for siging out, button mainview
+// new method for signing out, button mainview
   onLoggedOut() {
     this.setState({
       user: null
@@ -125,16 +113,12 @@ export class MainView extends React.Component {
 									</Nav.Link>
             </Nav>
           </Navbar>
-          <Switch>
          <Route exact path="/" render={() => {
            if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
            return movies.map(m => <MovieCard key={m._id} movie={m}/>)
            }
            }/>
-            <Route path="/" exact={true}>
-              <RegistrationForm />
-            </Route>
-          </Switch>
+            <Route path="/register" render={() => <RegistrationView />} />
            <Route path="/movies/:movieId" 
               render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>
 
@@ -154,5 +138,17 @@ export class MainView extends React.Component {
     );
   }
  }
+
+// using 
+//  <Switch>
+//  <Route exact path="/" render={() => {
+//    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+//    return movies.map(m => <MovieCard key={m._id} movie={m}/>)
+//    }
+//    }/>
+//     <Route path="/" exact={true}>
+//       <RegistrationForm />
+//     </Route>
+//   </Switch>
 
  // home link: <Nav.Link as={Link} to="/">Home</Nav.Link>

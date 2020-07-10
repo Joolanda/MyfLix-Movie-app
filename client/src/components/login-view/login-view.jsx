@@ -12,7 +12,7 @@ const [ username, setUsername ] = useState('');
 const [ password, setPassword ] = useState('');
 const [ email, setEmail ] = useState('');
 
-const handleSubmit = (e) => {
+handleSubmit = (e) => {
   e.preventDefault();
   /* Send a request to the server for authentication */
   axios.
@@ -29,7 +29,11 @@ const handleSubmit = (e) => {
     });
   }; 
 
-  
+handleFirstRegistration = (e) => {
+    e.preventDefault();
+// new code comes here to handle click event to open registration view
+  }
+
     return (
       <Container className="login-view">
         <Row className="justify-content-center">
@@ -49,11 +53,11 @@ const handleSubmit = (e) => {
               <Form.Label>Password:</Form.Label> 
               <Form.Control size="sm" type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}/>
             </Form.Group> 
-               <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>
+               <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={this.handleSubmit}>
                  Login
                 </Button> 
                 <br></br>
-					       <Button variant="btn-lg btn-success btn-block" href="/register" btn-block type="submit" size="sm" onClick={handleSubmit}>
+					       <Button variant="btn-lg btn-success btn-block" href="/register" btn-block type="link" >
 					        You don't have an acount? Click here
 					      </Button>
             </Form>
