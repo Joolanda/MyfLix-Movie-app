@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { LoginView } from '../login-view/login-view';
 import './registration-view.scss';
 import axios from 'axios';
 import { Link } from "react-router-dom";

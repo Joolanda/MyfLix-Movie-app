@@ -55,12 +55,10 @@ const handleSubmit = (e) => {
             </Form.Group> 
                <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>
                  Login
-                </Button> 
-                <Link to={`/register`}>
-					       <Button variant="btn-lg btn-success btn-block" href="/register" btn-block type="link" size="sm" >
+                </Button>
+					       <Button variant="btn-lg btn-success btn-block" btn-block thref="/register" btn-block type="link" >
 					        You don't have an acount? Click here
 					      </Button>
-                </Link>
             </Form>
           </Col>
         </Row>
@@ -68,8 +66,14 @@ const handleSubmit = (e) => {
     );
    }
 
-  LoginView.propTypes = {
-    username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired
-  };
+  //  <a href={`/register`}>
+  //  <Button variant="btn-lg btn-success btn-block" btn-block type="link" size="sm" >
+  //   You don't have an acount? Click here
+  // </Button>
+  // </a>
+
+  // LoginView.propTypes = {
+  //   username: PropTypes.string.isRequired,
+  //   password: PropTypes.string.isRequired,
+  //   onClick: PropTypes.func.isRequired
+  // };

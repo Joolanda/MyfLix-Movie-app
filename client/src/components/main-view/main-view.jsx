@@ -110,7 +110,7 @@ export class MainView extends React.Component {
                 <Nav.Link href={`/client/profile/${user}`}>Account</Nav.Link>
                 <Nav.Link onClick={(user) => this.onLoggedOut()} href="/client/">
 										Logout
-									</Nav.Link>
+								</Nav.Link>
             </Nav>
           </Navbar>
          <Route exact path="/" render={() => {
@@ -118,7 +118,7 @@ export class MainView extends React.Component {
            return movies.map(m => <MovieCard key={m._id} movie={m}/>)
            }
            }/>
-            <Route path="/register" render={() => <RegistrationView />} />
+          <Route path="/register" render={() => <RegistrationView />} />
            <Route path="/movies/:movieId" 
               render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>
 
