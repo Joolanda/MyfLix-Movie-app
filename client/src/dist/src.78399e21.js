@@ -51198,11 +51198,18 @@ function LoginView(props) {
     type: "submit",
     size: "sm",
     onClick: handleSubmit
-  }, "Login"), _react.default.createElement(_reactBootstrap.Button, (_React$createElement = {
+  }, "Login"), _react.default.createElement(_reactBootstrap.Form.Group, {
+    className: "registration",
+    controlId: "formRegistration"
+  }, _react.default.createElement(_reactBootstrap.Form.Text, {
+    className: "text-muted"
+  }, "You don't have an acount? Click on Register "), _react.default.createElement(_reactRouterDom.Link, {
+    to: "/register"
+  }, _react.default.createElement(_reactBootstrap.Button, (_React$createElement = {
     variant: "btn-lg btn-success btn-block",
     "btn-block": true,
-    thref: "/register"
-  }, _defineProperty(_React$createElement, "btn-block", true), _defineProperty(_React$createElement, "type", "link"), _React$createElement), "You don't have an acount? Click here")))));
+    href: "/register"
+  }, _defineProperty(_React$createElement, "btn-block", true), _defineProperty(_React$createElement, "type", "link"), _React$createElement), "Register now")))))));
 } //  <a href={`/register`}>
 //  <Button variant="btn-lg btn-success btn-block" btn-block type="link" size="sm" >
 //   You don't have an acount? Click here
@@ -51429,7 +51436,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "success",
         size: "lg",
-        block: true
+        "btn-block": "true"
       }, "Tell me more"))))));
     }
   }]);
@@ -52115,7 +52122,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49390" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53595" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

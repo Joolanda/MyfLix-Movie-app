@@ -113,15 +113,14 @@ export class MainView extends React.Component {
 								</Nav.Link>
             </Nav>
           </Navbar>
-         <Route exact path="/" render={() => {
-           if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-           return movies.map(m => <MovieCard key={m._id} movie={m}/>)
+          <Route exact path="/" render={() => {
+            if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+            return movies.map(m => <MovieCard key={m._id} movie={m}/>)
            }
-           }/>
+          }/>
           <Route path="/register" render={() => <RegistrationView />} />
            <Route path="/movies/:movieId" 
               render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>
-
           <Route path="/genres/:name" render={({ match }) => {
             if (!movies) return <CardGroup className="main-view"/>;
             return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>}
