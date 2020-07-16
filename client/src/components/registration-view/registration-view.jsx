@@ -24,7 +24,7 @@ const handleRegister = (e) => {
   .then(response => {
   const data = response.data;
    console.log(data);
-   window.open('/', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
+   window.open('/client', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
   })
   .catch(e => { 
   console.log('error user registration');
