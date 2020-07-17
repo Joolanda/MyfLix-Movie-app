@@ -51272,9 +51272,10 @@ function RegistrationView(props) {
   var _useState5 = (0, _react.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
       email = _useState6[0],
-      createEmail = _useState6[1];
+      createEmail = _useState6[1]; //if (user) return null;  
+  // Does this new code fix the following issue? See login view: new users who want to register, should not have to login first. 
+  //Answer is: no
 
-  if (user) return null; // Does this new code fix the following issue?(login view..) New users who want to register, should not have to login first.  
 
   var handleRegister = function handleRegister(e) {
     e.preventDefault();

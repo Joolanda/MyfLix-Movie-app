@@ -13,7 +13,10 @@ const [ username, createUsername ] = useState('');
 const [ password, createPassword ] = useState('');
 const [ email, createEmail ] = useState('');
 
-if (user) return null;  // Does this new code fix the following issue?(login view..) New users who want to register, should not have to login first.  
+//if (user) return null;  
+// Does this new code fix the following issue? See login view: new users who want to register, should not have to login first. 
+//Answer is: no
+
 
 const handleRegister = (e) => {
   e.preventDefault();
