@@ -48,6 +48,13 @@
   margin: auto;
   height: 100%;
 }
+.profile-view {
+  width: 100%;
+  max-width: 330px;
+  padding: 20px;
+  margin: auto;
+  height: 100%;
+}
 .app-container {
   font-family: "Roboto", sans-serif;
 }

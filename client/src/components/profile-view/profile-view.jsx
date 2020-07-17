@@ -18,7 +18,7 @@ constructor(props) {
       birthday: null,
       favoriteMovies: [],
       movies: []
-    }
+    };
   }
   componentDidMount() {
     //authentication
@@ -29,64 +29,64 @@ constructor(props) {
   }
 
   getUser(token) {
-    letusername = localStorage.getItem('user')
-    axios.get('https://myflix-movie.herokuapp.com/users/${username}', {
+    letusername = localStorage.getItem('user');
+    axios.get(`https://myflix-movie.herokuapp.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
+
     .then((response) => {
       this.setState({
-          Username: response.data.Username,
-          Password: response.data.Password,
-          Email: response.data.Email,
-          Birthday: response.data.BirthDay,
-          FavoriteMovies: response.data.FavoriteMovies
-        })
-      .catch((err) => { 
-       console.log(err);
-     });
-   }
-  }
-}
-
-// UPDATE or PUT requests for User profile
-handleProfileUpdate = (e, newUsername, newPassword, newEmail, newBirthday) => {
-  e.preventDefault();
-
-  const username = localStorage.getItem('user');
-  const token = localStorage.getItem('token');
-
-  axios.put('https://myflix-movie.herokuapp.com/users/${username}', {
-    headers: { Authorization: `Bearer ${token}` },
-    data: {
-      Username: newUsername ? newUsername : this.state.Username,
-      Password: newPassword ? newPassword : this.state.Password,
-      Email: newEmail ? newEmail : this.state.Email,
-      Birthday: newBirthday ? newBirthday : this.state.Birthday
-    },
-  })
-  .then((response) => {
-    localStorage.setItem('user', this.Username);
-    console.log(`${username} was updated`);
-    alert('your profile is successfully updated');
-      window.open('/', '_self');
-      })
-      .catch((e) => { 
-       console.log('Error Updating User profile');
+        Username: response.data.Username,
+        Password: response.data.Password,
+        Email: response.data.Email,
+        Birthday: response.data.Birthday,
+      //  FavoriteMovies: response.data.FavoriteMovies,
       });
-   }; 
-   setUsername(input) {
-    this.Username = input;
-  }
-  setPassword(input) {
-    this.Password = input;
-  }
-  setEmail(input) {
-    this.Email = input;
-  }
-  setBirthday(input) {
-    this.Birthday = input;
-  }
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
 }
+
+// // UPDATE or PUT requests for User profile
+// handleProfileUpdate = (e, createUsername, createPassword, createEmail, createBirthday) => {
+//   e.preventDefault();
+
+//   const username = localStorage.getItem('user');
+//   const token = localStorage.getItem('token');
+
+//   axios.put(`https://myflix-movie.herokuapp.com/users/${username}`, {
+//     headers: { Authorization: `Bearer ${token}` },
+//     data: {
+//       Username: createUsername ? createwUsername : this.state.Username,
+//       Password: createPassword ? createPassword : this.state.Password,
+//       Email: createEmail ? createEmail : this.state.Email,
+//       Birthday: createwBirthday ? createBirthday : this.state.Birthday
+//     },
+//   })
+//   .then((response) => {
+//     localStorage.setItem('user', this.state.Username);
+//     console.log(`${username} was updated`);
+//     alert('your profile is successfully updated');
+//       window.open(`/client/users/${username}`, '_self');
+//       })
+//       .catch((e) => { 
+//        console.log('Error Updating User profile');
+//       })
+//    } 
+//    setUsername(input) {
+//     this.Username = input;
+//   }
+//   setPassword(input) {
+//     this.Password = input;
+//   }
+//   setEmail(input) {
+//     this.Email = input;
+//   }
+//   setBirthday(input) {
+//     this.Birthday = input;
+//   }
+
 
 //DELETE requests for deregistering
 handleDeleteUser = (e) => {
@@ -95,7 +95,7 @@ handleDeleteUser = (e) => {
   const username = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
-  axios.delete('https://myflix-movie.herokuapp.com/users/${username}', {
+  axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then((response) => {
@@ -111,38 +111,22 @@ handleDeleteUser = (e) => {
    };
 
 
-// REMOVE favorite movie from User profile
-handleRemoveFavorite = (e, movie) => {
-  e.preventDefault();
-
-  const username = localStorage.getItem('user');
-  const token = localStorage.getItem('token');
-  axios.delete('https://myflix-movie.herokuapp.com/users/${username}', {
-    headers: { Authorization: `Bearer ${token}` }
-  })
-    .then((response) => {
-      console.log(`${movie.Title} was removed from Favorites`);
-      window.open('_self');
-    })
-    .catch((e) => { 
-      console.log(err)
-    });
-  }; 
-
 
    render() {
-     const { username, password, email, birthday, favoriteMovies } = this.state
+     const { username, email, birthday, favoriteMovies } = this.state
      const { movies } = this.props;
-     
+   
      return (
-       <div className="profile-view">
+      <div className="profile-view"> 
+       <Container className="profile-container">
+         <h1> My Profile</h1>
            <Card className="border-success text-white bg-secondary mb-3" style={{ width: '20rem'}}>
               <Card.Header> My Flix Profile </Card.Header>
                 <Card.Body>
-                  <Card.Text>Username: {username}</Card.Text>
+                  <Card.Text>Username: {this.state.Username}</Card.Text>
                   <Card.Text>Password: xxxxxx </Card.Text>
-                  <Card.Text>Email: {email}</Card.Text>
-                  <Card.Text>Birthday: {birthday}</Card.Text>
+                  <Card.Text>Email: {this.state.Email}</Card.Text>
+                  <Card.Text>Birthday: {this.state.Birthday}</Card.Text>
                   <Card.Text>Favorite Movies: {favoriteMovies }</Card.Text>
                      <div className="my-favorites"></div>
                      <div className="buttons-back-remove"></div>
@@ -152,14 +136,107 @@ handleRemoveFavorite = (e, movie) => {
                              <Button variant="dark">Back to Movies</Button>
                           </Link>
                           <Link to={`/user/update`}>
-                             <Button variant="success"  className="update-user" onClick={handleProfileUpdate}>Update Profile</Button>
-                         </Link>
-                             <Button variant="success" type="submit" className="delete-user" onClick={handleDeleteUser}> Delete Profile </Button>
+                             <Button variant="success"  className="update-user" >Update Profile</Button>
+                       
+                             <Button variant="success" type="submit" className="delete-user" > Delete Profile </Button>
                           </Link>
                      </ButtonGroup>
                 </Card.Body>
               </Card>
+          </Container>
           </div>
       );
+   }
   }
-  }
+
+
+
+
+//   <Link to={`/user/update`}>
+//   <Button variant="success"  className="update-user" onClick={handleProfileUpdate}>Update Profile</Button>
+
+//   <Button variant="success" type="submit" className="delete-user" onClick={handleDeleteUser}> Delete Profile </Button>
+// </Link>
+// </ButtonGroup>
+
+
+  // // UPDATE or PUT requests for User profile
+// handleProfileUpdate = (e, createUsername, createPassword, createEmail, createBirthday) => {
+//   e.preventDefault();
+
+//   const username = localStorage.getItem('user');
+//   const token = localStorage.getItem('token');
+
+//   axios.put(`https://myflix-movie.herokuapp.com/users/${username}`, {
+//     headers: { Authorization: `Bearer ${token}` },
+//     data: {
+//       Username: createUsername ? createwUsername : this.state.Username,
+//       Password: createPassword ? createPassword : this.state.Password,
+//       Email: createEmail ? createEmail : this.state.Email,
+//       Birthday: createwBirthday ? createBirthday : this.state.Birthday
+//     },
+//   })
+//   .then((response) => {
+//     localStorage.setItem('user', this.state.Username);
+//     console.log(`${username} was updated`);
+//     alert('your profile is successfully updated');
+//       window.open(`/client/users/${username}`, '_self');
+//       })
+//       .catch((e) => { 
+//        console.log('Error Updating User profile');
+//       })
+//    } 
+//    setUsername(input) {
+//     this.Username = input;
+//   }
+//   setPassword(input) {
+//     this.Password = input;
+//   }
+//   setEmail(input) {
+//     this.Email = input;
+//   }
+//   setBirthday(input) {
+//     this.Birthday = input;
+//   }
+
+
+// //DELETE requests for deregistering
+// handleDeleteUser = (e) => {
+//   e.preventDefault();
+
+//   const username = localStorage.getItem('user');
+//   const token = localStorage.getItem('token');
+
+//   axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
+//       headers: { Authorization: `Bearer ${token}` }
+//     })
+//     .then((response) => {
+//       localStorage.removeItem('token');
+//       localStorage.removeItem('user');
+//       console.log(`${username} was deleted`);
+//       alert('your profile is successfully deleted');
+//       window.open('/', '_self');
+//       })
+//       .catch((e) => { 
+//        console.log('Error deleting User profile');
+//      });
+//    };
+
+
+// // // REMOVE favorite movie from User profile
+// // handleRemoveFavorite = (e, movie) => {
+// //   e.preventDefault();
+
+// //   const username = localStorage.getItem('user');
+// //   const token = localStorage.getItem('token');
+// //   axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
+// //     headers: { Authorization: `Bearer ${token}` }
+// //   })
+// //     .then((response) => {
+// //       console.log(`${movie.Title} was removed from Favorites`);
+// //       window.open('_self');
+// //     })
+// //     .catch((e) => { 
+// //       console.log(err)
+// //     });
+// //   }; 

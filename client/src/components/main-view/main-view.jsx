@@ -10,7 +10,7 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
-//import { ProfileView } from '../profile-view/profile-view';
+import { ProfileView } from '../profile-view/profile-view';
 
 // bootstrap import
 import { Row, Col, Card, CardGroup, Nav, Navbar, Container } from 'react-bootstrap';
@@ -97,7 +97,6 @@ export class MainView extends React.Component {
     const { movies, user } = this.state;
     const username = localStorage.getItem('user');
 
-   if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
     if (!movies) return <div className="main-view"/>;
 
     return (
@@ -107,7 +106,7 @@ export class MainView extends React.Component {
          <Navbar.Brand as={Link} to="/">MyFlix Movie</Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link as={Link} to="/">Home</Nav.Link>
-                <Nav.Link href={`/client/profile/${user}`}>Account</Nav.Link>
+                <Nav.Link as={Link} to={`/users/${user}`}>Account</Nav.Link>
                 <Nav.Link onClick={(user) => this.onLoggedOut()} href="/client/">
 										Logout
 								</Nav.Link>
@@ -118,7 +117,8 @@ export class MainView extends React.Component {
             return movies.map(m => <MovieCard key={m._id} movie={m}/>)
            }
           }/>
-          <Route path="/register" render={() => <RegistrationView />} />
+          <Route path="/register" render={() => {
+            if (!user) return <RegistrationView/>}}/>
            <Route path="/movies/:movieId" 
               render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>
           <Route path="/genres/:name" render={({ match }) => {
@@ -129,8 +129,8 @@ export class MainView extends React.Component {
               if (!movies) return <CardGroup className="main-view"/>;
              return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director}/>}
            } />
-           <Route exact path="/users/:Username" render={() => {
-            return <ProfileView movies={movies} />}
+           <Route path="/users/:Username" render={() => {
+            <ProfileView movies={movies} />}
             } />
         </CardGroup>
       </Router>

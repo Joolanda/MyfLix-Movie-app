@@ -29,10 +29,10 @@ const handleSubmit = (e) => {
     });
   }; 
 
-const handleNewUser = (e) => {
-     e.preventDefault();
- // new code comes here to handle click event to open registration view
-   }
+//   handleNewUser = (e) => {
+//     e.preventDefault();
+// // new code comes here to handle click event to open registration view
+//   }
 
     return (
       <Container className="login-view">
@@ -56,11 +56,9 @@ const handleNewUser = (e) => {
                <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>
                  Login
                 </Button>
-                <Link to={`/register`}>
-					       <Button variant="btn-lg btn-success btn-block" btn-block type="link" onClick={handleNewUser}>
+					       <Button variant="btn-lg btn-success btn-block" btn-block thref="/register" btn-block type="link" >
 					        You don't have an acount? Click here
 					      </Button>
-                </Link>
             </Form>
           </Col>
         </Row>

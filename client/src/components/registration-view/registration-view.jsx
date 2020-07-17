@@ -9,22 +9,23 @@ import { Link } from "react-router-dom";
 import { Row, Col, Button, Form, Container} from 'react-bootstrap';
 
 export function RegistrationView (props) {
-const [ newUsername, setNewUsername ] = useState('');
-const [ newPassword, setNewPassword ] = useState('');
-const [ newEmail, setNewEmail ] = useState('');
+const [ username, createUsername ] = useState('');
+const [ password, createPassword ] = useState('');
+const [ email, createEmail ] = useState('');
 
 const handleRegister = (e) => {
   e.preventDefault();
 
   axios.post('https://myflix-movie.herokuapp.com/users', {
-    Username: newUsername,
-    Password: newPassword,
-    Email: newEmail,
+    Username: username,
+    Password: password,
+    Email: email,
   })
   .then(response => {
-  const data = response.data;
-   console.log(data);
-   window.open('/client', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
+    const data = response.data;
+    alert('Your account has been created! Please login');
+    console.log(data);
+    window.open('/client', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
   })
   .catch(e => { 
   console.log('error user registration');
@@ -35,22 +36,22 @@ const handleRegister = (e) => {
 //   window.open('/client', '_self');
 // };
    return (
-    <Container className="registration-view">
+    <Container className="registration-container">
       <Row className="justify-content-center">
         <Col xs={12} sm={10} md={8} className="form-container">
-          <Form className="registration-container">>
+          <Form className="registration-form">>
            <Form.Group controlId="formBasicUsername">
               <Form.Label>Username:</Form.Label>
-              <Form.Control size="sm" type="text" placeholder="username" value={newUsername} onChange={e => setNewUsername(e.target.value)}/>
+              <Form.Control size="sm" type="text" placeholder="username" value={username} onChange={e => createUsername(e.target.value)}/>
               <Form.Text className="text-muted"></Form.Text>
             </Form.Group>   
               <Form.Group controlId="formBasicPassword">              
               <Form.Label>Password:</Form.Label> 
-              <Form.Control size="sm" type="password" placeholder="password" value={newPassword} onChange={e => setNewPassword(e.target.value)}/>
+              <Form.Control size="sm" type="password" placeholder="password" value={password} onChange={e => createPassword(e.target.value)}/>
             </Form.Group>  
             <Form.Group controlId="formBasicEmail">              
               <Form.Label> Email: </Form.Label>
-              <Form.Control size="sm" type="email" placeholder="watch out for typos" value={newEmail} onChange={e => setNewEmail(e.target.value)} />
+              <Form.Control size="sm" type="email" placeholder="watch out for typos" value={email} onChange={e => createEmail(e.target.value)} />
               <Form-Text className="text-muted">
                  We'll never share your email with anyone else.
               </Form-Text>
