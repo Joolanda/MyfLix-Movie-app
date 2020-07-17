@@ -88,27 +88,27 @@ constructor(props) {
 //   }
 
 
-//DELETE requests for deregistering
-handleDeleteUser = (e) => {
-  e.preventDefault();
+// //DELETE requests for deregistering
+// handleDeleteUser = (e) => {
+//   e.preventDefault();
 
-  const username = localStorage.getItem('user');
-  const token = localStorage.getItem('token');
+//   const username = localStorage.getItem('user');
+//   const token = localStorage.getItem('token');
 
-  axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then((response) => {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      console.log(`${username} was deleted`);
-      alert('your profile is successfully deleted');
-      window.open('/', '_self');
-      })
-      .catch((e) => { 
-       console.log('Error deleting User profile');
-     });
-   };
+//   axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
+//       headers: { Authorization: `Bearer ${token}` }
+//     })
+//     .then((response) => {
+//       localStorage.removeItem('token');
+//       localStorage.removeItem('user');
+//       console.log(`${username} was deleted`);
+//       alert('your profile is successfully deleted');
+//       window.open('/', '_self');
+//       })
+//       .catch((e) => { 
+//        console.log('Error deleting User profile');
+//      });
+//    };
 
 
 
@@ -118,7 +118,6 @@ handleDeleteUser = (e) => {
    
      return (
        <Container className="profile-container">
-         <h1> My Profile</h1>
            <Card className="border-success text-white bg-secondary mb-3" style={{ width: '20rem'}}>
               <Card.Header> My Flix Profile </Card.Header>
                 <Card.Body>
@@ -130,16 +129,9 @@ handleDeleteUser = (e) => {
                      <div className="my-favorites"></div>
                      <div className="buttons-back-remove"></div>
                      <br/>
-                     <ButtonGroup size="lg">
                          <Link to={`/`}>
-                             <Button variant="dark">Back to Movies</Button>
+                             <Button variant="warning">Back to Movies</Button>
                           </Link>
-                          <Link to={`/user/update`}>
-                             <Button variant="success"  className="update-user" >Update Profile</Button>
-                       
-                             <Button variant="success" type="submit" className="delete-user" > Delete Profile </Button>
-                          </Link>
-                     </ButtonGroup>
                 </Card.Body>
               </Card>
           </Container>
@@ -149,7 +141,7 @@ handleDeleteUser = (e) => {
 
 
 
-
+//  <ButtonGroup size="lg">
 //   <Link to={`/user/update`}>
 //   <Button variant="success"  className="update-user" onClick={handleProfileUpdate}>Update Profile</Button>
 

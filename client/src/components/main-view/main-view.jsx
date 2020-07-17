@@ -89,16 +89,19 @@ export class MainView extends React.Component {
     });
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.open('/', '_self');
+  //  window.open('/', '_self');
   }
+
+  const 
 
 
   render() {
     const { movies, user } = this.state;
     const username = localStorage.getItem('user');
 
-    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-    // replace this with new code? In order to fix issue of redirecting all logged out users to login view, even if they land on registration view
+    // if (!user) return <MainView /> />;
+    // "Next, you need to move this line of the render method"and place it inside the route path (path="/")
+    
     if (!movies) return <div className="main-view"/>;
 
     return (
@@ -116,16 +119,16 @@ export class MainView extends React.Component {
           </Navbar>
           
           <Route exact path="/" render={() => {
-                  if (!user) 
-                  return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-                  return movies.map(m => <MovieCard key={m._id} movie={m}/>
-                  )
-                 }
-                }
+                    if (!user) 
+                    return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+                    return movies.map(m => <MovieCard key={m._id} movie={m}/>
+                    )
+                  }
+                  }
           />
-          
+
           <Route path="/register" render={() => <RegistrationView />} />
-          
+  
           <Route 
                   path="/movies/:movieId" 
                   render={({match}) => 
@@ -143,7 +146,7 @@ export class MainView extends React.Component {
                       return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director}/>}
            } />
            
-           <Route path="/users/:Username" render={() => {
+           <Route exact path="/users/:Username" render={() => {
             <ProfileView movies={movies} />}
             } />
 
@@ -161,8 +164,28 @@ export class MainView extends React.Component {
 //    }
 //    }/>
 //     <Route path="/" exact={true}>
-//       <RegistrationForm />
+//       <RegistrationView />
 //     </Route>
 //   </Switch>
 
+// not using Switch
+// <Route exact path="/" render={() => {
+//   if (!user) 
+//   return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+//   return movies.map(m => <MovieCard key={m._id} movie={m}/>
+//   )
+//  }
+// }
+// />
+
+// <Route path="/register" render={() => <RegistrationView />} />
+
  // home link: <Nav.Link as={Link} to="/">Home</Nav.Link>
+
+ // as={Link} or href?
+ // <Nav.Link as={Link} to={`/users/${user}`}>Profile</Nav.Link>
+  // href={`/client/profile/${user}`}
+
+//   <Nav.Link as={Link} to="/">Home</Nav.Link>
+//  href="/client/
+

@@ -51273,8 +51273,6 @@ function RegistrationView(props) {
       _useState6 = _slicedToArray(_useState5, 2),
       email = _useState6[0],
       createEmail = _useState6[1]; //if (user) return null;  
-  // Does this new code fix the following issue? See login view: new users who want to register, should not have to login first. 
-  //Answer is: no
 
 
   var handleRegister = function handleRegister(e) {
@@ -51288,7 +51286,7 @@ function RegistrationView(props) {
       var data = response.data;
       alert('Your account has been created! Please login with your new username and password.');
       console.log(data);
-      window.open('/client', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
+      window.open('/', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
     }).catch(function (e) {
       console.log('error user registration');
     });
@@ -51344,7 +51342,6 @@ function RegistrationView(props) {
   }, "We'll never share your email with anyone else.")), _react.default.createElement(_reactBootstrap.Button, {
     variant: "success",
     type: "submit",
-    size: "sm",
     onClick: handleRegister
   }, "Register"), _react.default.createElement("br", null))))));
 } //RegistrationView.propTypes = {
@@ -51813,27 +51810,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, ProfileView);
 
     _this = _super.call(this, props);
-
-    _this.handleDeleteUser = function (e) {
-      e.preventDefault();
-      var username = localStorage.getItem('user');
-      var token = localStorage.getItem('token');
-
-      _axios.default.delete("https://myflix-movie.herokuapp.com/users/".concat(username), {
-        headers: {
-          Authorization: "Bearer ".concat(token)
-        }
-      }).then(function (response) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        console.log("".concat(username, " was deleted"));
-        alert('your profile is successfully deleted');
-        window.open('/', '_self');
-      }).catch(function (e) {
-        console.log('Error deleting User profile');
-      });
-    };
-
     _this.state = {
       username: null,
       password: null,
@@ -51913,7 +51889,25 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     //   setBirthday(input) {
     //     this.Birthday = input;
     //   }
-    //DELETE requests for deregistering
+    // //DELETE requests for deregistering
+    // handleDeleteUser = (e) => {
+    //   e.preventDefault();
+    //   const username = localStorage.getItem('user');
+    //   const token = localStorage.getItem('token');
+    //   axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
+    //       headers: { Authorization: `Bearer ${token}` }
+    //     })
+    //     .then((response) => {
+    //       localStorage.removeItem('token');
+    //       localStorage.removeItem('user');
+    //       console.log(`${username} was deleted`);
+    //       alert('your profile is successfully deleted');
+    //       window.open('/', '_self');
+    //       })
+    //       .catch((e) => { 
+    //        console.log('Error deleting User profile');
+    //      });
+    //    };
 
   }, {
     key: "render",
@@ -51926,7 +51920,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       var movies = this.props.movies;
       return _react.default.createElement(_reactBootstrap.Container, {
         className: "profile-container"
-      }, _react.default.createElement("h1", null, " My Profile"), _react.default.createElement(_reactBootstrap.Card, {
+      }, _react.default.createElement(_reactBootstrap.Card, {
         className: "border-success text-white bg-secondary mb-3",
         style: {
           width: '20rem'
@@ -51935,27 +51929,17 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "my-favorites"
       }), _react.default.createElement("div", {
         className: "buttons-back-remove"
-      }), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.ButtonGroup, {
-        size: "lg"
-      }, _react.default.createElement(_reactRouterDom.Link, {
+      }), _react.default.createElement("br", null), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "dark"
-      }, "Back to Movies")), _react.default.createElement(_reactRouterDom.Link, {
-        to: "/user/update"
-      }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "success",
-        className: "update-user"
-      }, "Update Profile"), _react.default.createElement(_reactBootstrap.Button, {
-        variant: "success",
-        type: "submit",
-        className: "delete-user"
-      }, " Delete Profile "))))));
+        variant: "warning"
+      }, "Back to Movies")))));
     }
   }]);
 
   return ProfileView;
-}(_react.default.Component); //   <Link to={`/user/update`}>
+}(_react.default.Component); //  <ButtonGroup size="lg">
+//   <Link to={`/user/update`}>
 //   <Button variant="success"  className="update-user" onClick={handleProfileUpdate}>Update Profile</Button>
 //   <Button variant="success" type="submit" className="delete-user" onClick={handleDeleteUser}> Delete Profile </Button>
 // </Link>
@@ -52179,8 +52163,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         user: null
       });
       localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      window.open('/', '_self');
+      localStorage.removeItem("user"); //  window.open('/', '_self');
     }
   }, {
     key: "render",
@@ -52190,12 +52173,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           movies = _this$state.movies,
           user = _this$state.user;
-      var username = localStorage.getItem('user');
-      if (!user) return _react.default.createElement(_loginView.LoginView, {
-        onLoggedIn: function onLoggedIn(user) {
-          return _this3.onLoggedIn(user);
-        }
-      }); // replace this with new code? In order to fix issue of redirecting all logged out users to login view, even if they land on registration view
+      var username = localStorage.getItem('user'); // if (!user) return <MainView /> />;
+      // "Next, you need to move this line of the render method"and place it inside the route path (path="/")
 
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
@@ -52282,6 +52261,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
         path: "/users/:Username",
         render: function render() {
           _react.default.createElement(_profileView.ProfileView, {
@@ -52301,10 +52281,25 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 //    }
 //    }/>
 //     <Route path="/" exact={true}>
-//       <RegistrationForm />
+//       <RegistrationView />
 //     </Route>
 //   </Switch>
+// not using Switch
+// <Route exact path="/" render={() => {
+//   if (!user) 
+//   return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+//   return movies.map(m => <MovieCard key={m._id} movie={m}/>
+//   )
+//  }
+// }
+// />
+// <Route path="/register" render={() => <RegistrationView />} />
 // home link: <Nav.Link as={Link} to="/">Home</Nav.Link>
+// as={Link} or href?
+// <Nav.Link as={Link} to={`/users/${user}`}>Profile</Nav.Link>
+// href={`/client/profile/${user}`}
+//   <Nav.Link as={Link} to="/">Home</Nav.Link>
+//  href="/client/
 
 
 exports.MainView = MainView;

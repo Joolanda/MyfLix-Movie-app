@@ -14,9 +14,6 @@ const [ password, createPassword ] = useState('');
 const [ email, createEmail ] = useState('');
 
 //if (user) return null;  
-// Does this new code fix the following issue? See login view: new users who want to register, should not have to login first. 
-//Answer is: no
-
 
 const handleRegister = (e) => {
   e.preventDefault();
@@ -30,7 +27,7 @@ const handleRegister = (e) => {
     const data = response.data;
     alert('Your account has been created! Please login with your new username and password.');
     console.log(data);
-    window.open('/client', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
+    window.open('/', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
   })
   .catch(e => { 
   console.log('error user registration');
@@ -60,7 +57,7 @@ const handleRegister = (e) => {
                  We'll never share your email with anyone else.
               </Form-Text>
             </Form.Group>  
-              <Button variant="success" type="submit" size="sm" onClick={handleRegister}>Register</Button>
+              <Button variant="success" type="submit" onClick={handleRegister}>Register</Button>
                 <br></br>
             </Form>
         </Col>
