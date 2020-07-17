@@ -51274,6 +51274,8 @@ function RegistrationView(props) {
       email = _useState6[0],
       createEmail = _useState6[1];
 
+  if (user) return null; // Does this new code fix the following issue?(login view..) New users who want to register, should not have to login first.  
+
   var handleRegister = function handleRegister(e) {
     e.preventDefault();
 
@@ -51283,9 +51285,9 @@ function RegistrationView(props) {
       Email: email
     }).then(function (response) {
       var data = response.data;
-      alert('Your account has been created! Please login');
+      alert('Your account has been created! Please login with your new username and password.');
       console.log(data);
-      window.open('/', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
+      window.open('/client', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
     }).catch(function (e) {
       console.log('error user registration');
     });

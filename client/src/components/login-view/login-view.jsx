@@ -35,7 +35,7 @@ const handleNewUser = (e) => {
   // new users who want to register, should not have to login first..add or rewrite code to fix this issue 
    e.preventDefault();
   window.open('/register', '_self');
-  
+
   };
  
 
