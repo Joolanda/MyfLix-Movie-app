@@ -117,7 +117,6 @@ handleDeleteUser = (e) => {
      const { movies } = this.props;
    
      return (
-      <div className="profile-view"> 
        <Container className="profile-container">
          <h1> My Profile</h1>
            <Card className="border-success text-white bg-secondary mb-3" style={{ width: '20rem'}}>
@@ -144,7 +143,6 @@ handleDeleteUser = (e) => {
                 </Card.Body>
               </Card>
           </Container>
-          </div>
       );
    }
   }

@@ -29,10 +29,15 @@ const handleSubmit = (e) => {
     });
   }; 
 
-//   handleNewUser = (e) => {
-//     e.preventDefault();
-// // new code comes here to handle click event to open registration view
-//   }
+ 
+const handleNewUser = (e) => {
+  // check this new code to handle click event for new users to open registration view.
+  // new users who want to register, should not have to login first..add or rewrite code to fix this issue 
+   e.preventDefault();
+  window.open('/register', '_self');
+  
+  };
+ 
 
     return (
       <Container className="login-container">
@@ -55,8 +60,8 @@ const handleSubmit = (e) => {
             </Form.Group> 
                <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>
                  Login
-                </Button>
-					       <Button variant="btn-lg btn-success btn-block" btn-block href="/register" btn-block type="link" >
+                </Button>					       
+                <Button variant="btn-lg btn-success btn-block" btn-block btn-block type="submit"  size="sm" onClick={handleNewUser}>
 					        You don't have an acount? Click here
 					      </Button>
             </Form>

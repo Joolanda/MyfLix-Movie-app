@@ -25,16 +25,14 @@ const handleRegister = (e) => {
     const data = response.data;
     alert('Your account has been created! Please login');
     console.log(data);
-    window.open('/client', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
+    window.open('/', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
   })
   .catch(e => { 
   console.log('error user registration');
   });
 };
 
- const cancelRegister = () => {
-   window.open('/client', '_self');
- };
+
    return (
      <div className="registration-view">
     <Container className="registration-container">

@@ -89,7 +89,7 @@ export class MainView extends React.Component {
     });
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.open('/client', '_self');
+    window.open('/', '_self');
   }
 
 
@@ -98,41 +98,55 @@ export class MainView extends React.Component {
     const username = localStorage.getItem('user');
 
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+    // replace this with new code? In order to fix issue of redirecting all logged out users to login view, even if they land on registration view
     if (!movies) return <div className="main-view"/>;
 
     return (
-      <Router>
+      <Router basename="/client">
        <CardGroup className="main-view">
          <Navbar bg="success" variant="dark" fixed="top">
          <Navbar.Brand as={Link} to="/">MyFlix Movie</Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link as={Link} to="/">Home</Nav.Link>
                 <Nav.Link as={Link} to={`/users/${user}`}>Profile</Nav.Link>
-                <Nav.Link onClick={(user) => this.onLoggedOut()} href="/client/">
+                <Nav.Link onClick={(user) => this.onLoggedOut()} href="/login">
 										Logout
 								</Nav.Link>
             </Nav>
           </Navbar>
+          
           <Route exact path="/" render={() => {
-            if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-            return movies.map(m => <MovieCard key={m._id} movie={m}/>)
-           }
-          }/>
-          <Route path="/register" render={() => {
-            if (!user) return <RegistrationView/>}}/>
-           <Route path="/movies/:movieId" 
-              render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>
-          <Route path="/genres/:name" render={({ match }) => {
-            if (!movies) return <CardGroup className="main-view"/>;
-            return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>}
-           } />
+                  if (!user) 
+                  return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+                  return movies.map(m => <MovieCard key={m._id} movie={m}/>
+                  )
+                 }
+                }
+          />
+          
+          <Route path="/register" render={() => <RegistrationView />} />
+          
+          <Route 
+                  path="/movies/:movieId" 
+                  render={({match}) => 
+                    <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>
+                  }
+          />
+          <Route 
+                  path="/genres/:name" render={({ match }) => {
+                     if (!movies) return <CardGroup className="main-view"/>;
+                    return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>}
+                  } 
+          />
            <Route path="/directors/:name" render={({ match }) => {
-              if (!movies) return <CardGroup className="main-view"/>;
-             return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director}/>}
+                      if (!movies) return <CardGroup className="main-view"/>;
+                      return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director}/>}
            } />
+           
            <Route path="/users/:Username" render={() => {
             <ProfileView movies={movies} />}
             } />
+
         </CardGroup>
       </Router>
     );

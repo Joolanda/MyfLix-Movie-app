@@ -51154,11 +51154,14 @@ function LoginView(props) {
     }).catch(function (e) {
       console.log('no such user here');
     });
-  }; //   handleNewUser = (e) => {
-  //     e.preventDefault();
-  // // new code comes here to handle click event to open registration view
-  //   }
+  };
 
+  var handleNewUser = function handleNewUser(e) {
+    // check this new code to handle click event for new users to open registration view.
+    // new users who want to register, should not have to login first..add or rewrite code to fix this issue 
+    e.preventDefault();
+    window.open('/register', '_self');
+  };
 
   return _react.default.createElement(_reactBootstrap.Container, {
     className: "login-container"
@@ -51200,9 +51203,8 @@ function LoginView(props) {
     onClick: handleSubmit
   }, "Login"), _react.default.createElement(_reactBootstrap.Button, (_React$createElement = {
     variant: "btn-lg btn-success btn-block",
-    "btn-block": true,
-    href: "/register"
-  }, _defineProperty(_React$createElement, "btn-block", true), _defineProperty(_React$createElement, "type", "link"), _React$createElement), "You don't have an acount? Click here")))));
+    "btn-block": true
+  }, _defineProperty(_React$createElement, "btn-block", true), _defineProperty(_React$createElement, "type", "submit"), _defineProperty(_React$createElement, "size", "sm"), _defineProperty(_React$createElement, "onClick", handleNewUser), _React$createElement), "You don't have an acount? Click here")))));
 } //  <a href={`/register`}>
 //  <Button variant="btn-lg btn-success btn-block" btn-block type="link" size="sm" >
 //   You don't have an acount? Click here
@@ -51283,14 +51285,10 @@ function RegistrationView(props) {
       var data = response.data;
       alert('Your account has been created! Please login');
       console.log(data);
-      window.open('/client', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
+      window.open('/', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
     }).catch(function (e) {
       console.log('error user registration');
     });
-  };
-
-  var cancelRegister = function cancelRegister() {
-    window.open('/client', '_self');
   };
 
   return _react.default.createElement("div", {
@@ -51923,9 +51921,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           birthday = _this$state.birthday,
           favoriteMovies = _this$state.favoriteMovies;
       var movies = this.props.movies;
-      return _react.default.createElement("div", {
-        className: "profile-view"
-      }, _react.default.createElement(_reactBootstrap.Container, {
+      return _react.default.createElement(_reactBootstrap.Container, {
         className: "profile-container"
       }, _react.default.createElement("h1", null, " My Profile"), _react.default.createElement(_reactBootstrap.Card, {
         className: "border-success text-white bg-secondary mb-3",
@@ -51951,7 +51947,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         variant: "success",
         type: "submit",
         className: "delete-user"
-      }, " Delete Profile ")))))));
+      }, " Delete Profile "))))));
     }
   }]);
 
@@ -52181,7 +52177,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
       localStorage.removeItem("token");
       localStorage.removeItem("user");
-      window.open('/client', '_self');
+      window.open('/', '_self');
     }
   }, {
     key: "render",
@@ -52196,11 +52192,14 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         onLoggedIn: function onLoggedIn(user) {
           return _this3.onLoggedIn(user);
         }
-      });
+      }); // replace this with new code? In order to fix issue of redirecting all logged out users to login view, even if they land on registration view
+
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
       });
-      return _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_reactBootstrap.CardGroup, {
+      return _react.default.createElement(_reactRouterDom.BrowserRouter, {
+        basename: "/client"
+      }, _react.default.createElement(_reactBootstrap.CardGroup, {
         className: "main-view"
       }, _react.default.createElement(_reactBootstrap.Navbar, {
         bg: "success",
@@ -52221,7 +52220,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick(user) {
           return _this3.onLoggedOut();
         },
-        href: "/client/"
+        href: "/login"
       }, "Logout"))), _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/",
@@ -52241,7 +52240,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/register",
         render: function render() {
-          if (!user) return _react.default.createElement(_registrationView.RegistrationView, null);
+          return _react.default.createElement(_registrationView.RegistrationView, null);
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/movies/:movieId",
