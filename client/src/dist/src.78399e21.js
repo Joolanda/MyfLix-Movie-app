@@ -51161,7 +51161,7 @@ function LoginView(props) {
 
 
   return _react.default.createElement(_reactBootstrap.Container, {
-    className: "login-view"
+    className: "login-container"
   }, _react.default.createElement(_reactBootstrap.Row, {
     className: "justify-content-center"
   }, _react.default.createElement(_reactBootstrap.Col, {
@@ -51170,7 +51170,7 @@ function LoginView(props) {
     md: 8,
     className: "form-container"
   }, _react.default.createElement(_reactBootstrap.Form, {
-    className: "login-container"
+    className: "login-form"
   }, _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formBasicUsername"
   }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), _react.default.createElement(_reactBootstrap.Form.Control, {
@@ -51201,7 +51201,7 @@ function LoginView(props) {
   }, "Login"), _react.default.createElement(_reactBootstrap.Button, (_React$createElement = {
     variant: "btn-lg btn-success btn-block",
     "btn-block": true,
-    thref: "/register"
+    href: "/register"
   }, _defineProperty(_React$createElement, "btn-block", true), _defineProperty(_React$createElement, "type", "link"), _React$createElement), "You don't have an acount? Click here")))));
 } //  <a href={`/register`}>
 //  <Button variant="btn-lg btn-success btn-block" btn-block type="link" size="sm" >
@@ -51287,12 +51287,15 @@ function RegistrationView(props) {
     }).catch(function (e) {
       console.log('error user registration');
     });
-  }; // const cancelRegister = () => {
-  //   window.open('/client', '_self');
-  // };
+  };
 
+  var cancelRegister = function cancelRegister() {
+    window.open('/client', '_self');
+  };
 
-  return _react.default.createElement(_reactBootstrap.Container, {
+  return _react.default.createElement("div", {
+    className: "registration-view"
+  }, _react.default.createElement(_reactBootstrap.Container, {
     className: "registration-container"
   }, _react.default.createElement(_reactBootstrap.Row, {
     className: "justify-content-center"
@@ -51342,7 +51345,7 @@ function RegistrationView(props) {
     type: "submit",
     size: "sm",
     onClick: handleRegister
-  }, "Register"), _react.default.createElement("br", null)))));
+  }, "Register"), _react.default.createElement("br", null))))));
 } //RegistrationView.propTypes = {
 // no props so far
 //};
@@ -52178,7 +52181,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
       localStorage.removeItem("token");
       localStorage.removeItem("user");
-      window.open('/', '_self');
+      window.open('/client', '_self');
     }
   }, {
     key: "render",
@@ -52189,6 +52192,11 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           movies = _this$state.movies,
           user = _this$state.user;
       var username = localStorage.getItem('user');
+      if (!user) return _react.default.createElement(_loginView.LoginView, {
+        onLoggedIn: function onLoggedIn(user) {
+          return _this3.onLoggedIn(user);
+        }
+      });
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
       });
@@ -52209,7 +52217,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
         as: _reactRouterDom.Link,
         to: "/users/".concat(user)
-      }, "Account"), _react.default.createElement(_reactBootstrap.Nav.Link, {
+      }, "Profile"), _react.default.createElement(_reactBootstrap.Nav.Link, {
         onClick: function onClick(user) {
           return _this3.onLoggedOut();
         },

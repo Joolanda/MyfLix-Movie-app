@@ -89,7 +89,7 @@ export class MainView extends React.Component {
     });
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.open('/', '_self');
+    window.open('/client', '_self');
   }
 
 
@@ -97,6 +97,7 @@ export class MainView extends React.Component {
     const { movies, user } = this.state;
     const username = localStorage.getItem('user');
 
+    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
     if (!movies) return <div className="main-view"/>;
 
     return (
@@ -106,7 +107,7 @@ export class MainView extends React.Component {
          <Navbar.Brand as={Link} to="/">MyFlix Movie</Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link as={Link} to="/">Home</Nav.Link>
-                <Nav.Link as={Link} to={`/users/${user}`}>Account</Nav.Link>
+                <Nav.Link as={Link} to={`/users/${user}`}>Profile</Nav.Link>
                 <Nav.Link onClick={(user) => this.onLoggedOut()} href="/client/">
 										Logout
 								</Nav.Link>

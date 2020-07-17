@@ -35,10 +35,10 @@ const handleSubmit = (e) => {
 //   }
 
     return (
-      <Container className="login-view">
+      <Container className="login-container">
         <Row className="justify-content-center">
           <Col xs={12} sm={10} md={8} className="form-container">
-            <Form className="login-container">
+            <Form className="login-form">
               <Form.Group controlId="formBasicUsername">
                 <Form.Label>Username:</Form.Label>  
                 <Form.Control 
@@ -56,7 +56,7 @@ const handleSubmit = (e) => {
                <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>
                  Login
                 </Button>
-					       <Button variant="btn-lg btn-success btn-block" btn-block thref="/register" btn-block type="link" >
+					       <Button variant="btn-lg btn-success btn-block" btn-block href="/register" btn-block type="link" >
 					        You don't have an acount? Click here
 					      </Button>
             </Form>

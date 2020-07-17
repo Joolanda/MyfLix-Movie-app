@@ -32,10 +32,11 @@ const handleRegister = (e) => {
   });
 };
 
-// const cancelRegister = () => {
-//   window.open('/client', '_self');
-// };
+ const cancelRegister = () => {
+   window.open('/client', '_self');
+ };
    return (
+     <div className="registration-view">
     <Container className="registration-container">
       <Row className="justify-content-center">
         <Col xs={12} sm={10} md={8} className="form-container">
@@ -62,6 +63,7 @@ const handleRegister = (e) => {
         </Col>
       </Row>
     </Container>
+    </div>
   );
  }
 
