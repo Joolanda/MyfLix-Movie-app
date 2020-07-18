@@ -52199,7 +52199,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         as: _reactRouterDom.Link,
         to: "/users/".concat(user)
       }, "Profile"), _react.default.createElement(_reactBootstrap.Nav.Link, {
-        onClick: function onClick(user) {
+        onClick: function onClick() {
           return _this3.onLoggedOut();
         },
         href: "/login"
