@@ -129,14 +129,6 @@ constructor(props) {
                      <div className="my-favorites"></div>
                      <div className="buttons-back-remove"></div>
                      <br/>
-                   <ButtonGroup size="lg">
-                      <Link to={`/user/update`}>
-                        <Button variant="success"  className="update-user" onClick={handleProfileUpdate}>Update Profile</Button>
-                      </Link>
-                      <Link to={`/user/delete`}>
-                         <Button variant="success" type="submit" className="delete-user" onClick={handleDeleteUser}> Delete Profile </Button>
-                      </Link>
-                    </ButtonGroup>
                          <Link to={`/`}>
                              <Button variant="warning">Back to Movies</Button>
                           </Link>
