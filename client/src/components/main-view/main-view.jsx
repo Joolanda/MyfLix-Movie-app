@@ -157,36 +157,6 @@ export class MainView extends React.Component {
   }
  }
 
-// using 
-//  <Switch>
-//  <Route exact path="/" render={() => {
-//    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-//    return movies.map(m => <MovieCard key={m._id} movie={m}/>)
-//    }
-//    }/>
-//     <Route path="/" exact={true}>
-//       <RegistrationView />
-//     </Route>
-//   </Switch>
+// feedback on 
 
-// not using Switch
-// <Route exact path="/" render={() => {
-//   if (!user) 
-//   return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-//   return movies.map(m => <MovieCard key={m._id} movie={m}/>
-//   )
-//  }
-// }
-// />
-
-// <Route path="/register" render={() => <RegistrationView />} />
-
- // home link: <Nav.Link as={Link} to="/">Home</Nav.Link>
-
- // as={Link} or href?
- // <Nav.Link as={Link} to={`/users/${user}`}>Profile</Nav.Link>
-  // href={`/client/profile/${user}`}
-
-//   <Nav.Link as={Link} to="/">Home</Nav.Link>
-//  href="/client/
 

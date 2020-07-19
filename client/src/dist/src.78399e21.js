@@ -51918,7 +51918,10 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var movies = this.props.movies;
+      var movies = this.props.movies; //  const favoritesList = movies.filter((movie) =>
+      //     this.state.Favorites.includes(_id)
+      //     );
+
       return _react.default.createElement(_reactBootstrap.Container, {
         className: "profile-container"
       }, _react.default.createElement(_reactBootstrap.Card, {
@@ -51926,9 +51929,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         style: {
           width: '20rem'
         }
-      }, _react.default.createElement(_reactBootstrap.Card.Header, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", this.state.Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", this.state.Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies: ", this.state.Favorites), _react.default.createElement("div", {
-        className: "my-favorites"
-      }, " "), _react.default.createElement("div", {
+      }, _react.default.createElement(_reactBootstrap.Card.Header, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", this.state.Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", this.state.Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies id: ", this.state.Favorites), _react.default.createElement("div", {
         className: "buttons-back-remove"
       }), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
         variant: "success",
@@ -51946,6 +51947,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 
   return ProfileView;
 }(_react.default.Component); // find out how to display fav movies title instead of movie _id 
+// path="/movies/:movieId
 //  {this.state.Favorites.length === 0 && <div>No favorite movies so far</div>}
 
 
@@ -52278,33 +52280,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return MainView;
-}(_react.default.Component); // using 
-//  <Switch>
-//  <Route exact path="/" render={() => {
-//    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-//    return movies.map(m => <MovieCard key={m._id} movie={m}/>)
-//    }
-//    }/>
-//     <Route path="/" exact={true}>
-//       <RegistrationView />
-//     </Route>
-//   </Switch>
-// not using Switch
-// <Route exact path="/" render={() => {
-//   if (!user) 
-//   return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-//   return movies.map(m => <MovieCard key={m._id} movie={m}/>
-//   )
-//  }
-// }
-// />
-// <Route path="/register" render={() => <RegistrationView />} />
-// home link: <Nav.Link as={Link} to="/">Home</Nav.Link>
-// as={Link} or href?
-// <Nav.Link as={Link} to={`/users/${user}`}>Profile</Nav.Link>
-// href={`/client/profile/${user}`}
-//   <Nav.Link as={Link} to="/">Home</Nav.Link>
-//  href="/client/
+}(_react.default.Component); // feedback on 
 
 
 exports.MainView = MainView;

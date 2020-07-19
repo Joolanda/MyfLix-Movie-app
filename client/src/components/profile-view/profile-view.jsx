@@ -114,7 +114,9 @@ handleDeleteUser = (e) => {
 
    render() {
      const { movies } = this.props;
-
+    //  const favoritesList = movies.filter((movie) =>
+    //     this.state.Favorites.includes(_id)
+    //     );
 
      return (
        <Container className="profile-container">
@@ -125,8 +127,16 @@ handleDeleteUser = (e) => {
                   <Card.Text>Password: xxxxxx </Card.Text>
                   <Card.Text>Email: {this.state.Email}</Card.Text>
                   <Card.Text>Birthday: {this.state.Birthday}</Card.Text>
-                  <Card.Text>Favorite Movies: {this.state.Favorites }</Card.Text> 
-                     <div className="my-favorites"> </div>
+                  <Card.Text>Favorite Movies id: {this.state.Favorites }</Card.Text> 
+
+                     {/* <div className="my-favorites"> </div>
+                       {favoritesList.map((movie) => (
+                       <div key={movie._id} className="favorites-button">
+                       <Link to={`/movies/:${movie._id}`}>
+                          <Button variant="link">{movie.Title}</Button>
+                        </Link> 
+                       </div>
+                     ))} */}
 
                      <div className="buttons-back-remove"></div>
                      <br/>
@@ -142,6 +152,7 @@ handleDeleteUser = (e) => {
   }
 
 // find out how to display fav movies title instead of movie _id 
+// path="/movies/:movieId
 //  {this.state.Favorites.length === 0 && <div>No favorite movies so far</div>}
 {/* 
 //  <ButtonGroup size="lg">
