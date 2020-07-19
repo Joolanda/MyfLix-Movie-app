@@ -115,6 +115,7 @@ handleDeleteUser = (e) => {
    render() {
      const { movies } = this.props;
 
+
      return (
        <Container className="profile-container">
            <Card className="border-success text-white bg-secondary mb-3" style={{ width: '20rem'}}>
@@ -125,7 +126,8 @@ handleDeleteUser = (e) => {
                   <Card.Text>Email: {this.state.Email}</Card.Text>
                   <Card.Text>Birthday: {this.state.Birthday}</Card.Text>
                   <Card.Text>Favorite Movies: {this.state.Favorites }</Card.Text> 
-                     <div className="my-favorites"></div>
+                     <div className="my-favorites"> </div>
+
                      <div className="buttons-back-remove"></div>
                      <br/>
                      <Button variant="success" className="delete-user" onClick={(e) => this.handleDeleteUser(e)}> Delete Profile </Button>
@@ -139,7 +141,8 @@ handleDeleteUser = (e) => {
    }
   }
 
-
+// find out how to display fav movies title instead of movie _id 
+//  {this.state.Favorites.length === 0 && <div>No favorite movies so far</div>}
 {/* 
 //  <ButtonGroup size="lg">
 //   <Link to={`/user/update`}>
@@ -188,29 +191,6 @@ handleDeleteUser = (e) => {
 //   setBirthday(input) {
 //     this.Birthday = input;
 //   }
-
-
-// //DELETE requests for deregistering
-// handleDeleteUser = (e) => {
-//   e.preventDefault();
-
-//   const username = localStorage.getItem('user');
-//   const token = localStorage.getItem('token');
-
-//   axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
-//       headers: { Authorization: `Bearer ${token}` }
-//     })
-//     .then((response) => {
-//       localStorage.removeItem('token');
-//       localStorage.removeItem('user');
-//       console.log(`${username} was deleted`);
-//       alert('your profile is successfully deleted');
-//       window.open('/', '_self');
-//       })
-//       .catch((e) => { 
-//        console.log('Error deleting User profile');
-//      });
-//    };
 
 
 // // // REMOVE favorite movie from User profile
