@@ -51931,9 +51931,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }), _react.default.createElement("div", {
         className: "buttons-back-remove"
       }), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
-        variant: "danger",
+        variant: "success",
         className: "delete-user",
-        size: "sm",
         onClick: function onClick(e) {
           return _this3.handleDeleteUser(e);
         }
@@ -51995,6 +51994,25 @@ exports.ProfileView = ProfileView;
 //   setBirthday(input) {
 //     this.Birthday = input;
 //   }
+// //DELETE requests for deregistering
+// handleDeleteUser = (e) => {
+//   e.preventDefault();
+//   const username = localStorage.getItem('user');
+//   const token = localStorage.getItem('token');
+//   axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
+//       headers: { Authorization: `Bearer ${token}` }
+//     })
+//     .then((response) => {
+//       localStorage.removeItem('token');
+//       localStorage.removeItem('user');
+//       console.log(`${username} was deleted`);
+//       alert('your profile is successfully deleted');
+//       window.open('/', '_self');
+//       })
+//       .catch((e) => { 
+//        console.log('Error deleting User profile');
+//      });
+//    };
 // // // REMOVE favorite movie from User profile
 // // handleRemoveFavorite = (e, movie) => {
 // //   e.preventDefault();
@@ -52405,7 +52423,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56279" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57895" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
