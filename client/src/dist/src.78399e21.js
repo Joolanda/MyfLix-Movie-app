@@ -51832,6 +51832,23 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       });
     };
 
+    _this.handleRemoveFavorite = function (e, movie) {
+      e.preventDefault();
+      var username = localStorage.getItem('user');
+      var token = localStorage.getItem('token');
+
+      _axios.default.delete("https://myflix-movie.herokuapp.com/users/".concat(username), {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        console.log("".concat(movie.Title, " was removed from Favorites"));
+        window.open('_self');
+      }).catch(function (e) {
+        console.log(err);
+      });
+    };
+
     _this.state = {
       username: null,
       password: null,
@@ -51912,6 +51929,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     //     this.Birthday = input;
     //   }
     //DELETE requests for deregistering
+    // REMOVE favorite movie from User profile
 
   }, {
     key: "render",
@@ -51929,7 +51947,11 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         style: {
           width: '20rem'
         }
-      }, _react.default.createElement(_reactBootstrap.Card.Header, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", this.state.Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", this.state.Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies id: ", this.state.Favorites), _react.default.createElement("div", {
+      }, _react.default.createElement(_reactBootstrap.Card.Header, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", this.state.Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", this.state.Email), _react.default.createElement(_reactBootstrap.Card.Text, {
+        format: "DD/MM/YYYY"
+      }, "Birthday: ", this.state.Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies id: ", this.state.Favorites), _react.default.createElement(_reactBootstrap.Card.Text, {
+        className: "profile-item"
+      }, "Favorite Movies:"), _react.default.createElement("div", {
         className: "buttons-back-remove"
       }), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
         variant: "success",
@@ -51946,74 +51968,19 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return ProfileView;
-}(_react.default.Component); // find out how to display fav movies title instead of movie _id 
-// path="/movies/:movieId
-//  {this.state.Favorites.length === 0 && <div>No favorite movies so far</div>}
-
+}(_react.default.Component);
 
 exports.ProfileView = ProfileView;
-{}
-/* 
-//  <ButtonGroup size="lg">
-//   <Link to={`/user/update`}>
-//   <Button variant="success"  className="update-user" onClick={handleProfileUpdate}>Update Profile</Button>
-// onClick={(e) => this.handleDeleteUser(e)}
-//   <Button variant="success" type="submit" className="delete-user" onClick={handleDeleteUser}> Delete Profile </Button>
-// </Link>
-// </ButtonGroup>
- */
-// // UPDATE or PUT requests for User profile
-// handleProfileUpdate = (e, createUsername, createPassword, createEmail, createBirthday) => {
-//   e.preventDefault();
-//   const username = localStorage.getItem('user');
-//   const token = localStorage.getItem('token');
-//   axios.put(`https://myflix-movie.herokuapp.com/users/${username}`, {
-//     headers: { Authorization: `Bearer ${token}` },
-//     data: {
-//       Username: createUsername ? createwUsername : this.state.Username,
-//       Password: createPassword ? createPassword : this.state.Password,
-//       Email: createEmail ? createEmail : this.state.Email,
-//       Birthday: createwBirthday ? createBirthday : this.state.Birthday
-//     },
-//   })
-//   .then((response) => {
-//     localStorage.setItem('user', this.state.Username);
-//     console.log(`${username} was updated`);
-//     alert('your profile is successfully updated');
-//       window.open(`/client/users/${username}`, '_self');
-//       })
-//       .catch((e) => { 
-//        console.log('Error Updating User profile');
-//       })
-//    } 
-//    setUsername(input) {
-//     this.Username = input;
-//   }
-//   setPassword(input) {
-//     this.Password = input;
-//   }
-//   setEmail(input) {
-//     this.Email = input;
-//   }
-//   setBirthday(input) {
-//     this.Birthday = input;
-//   }
-// // // REMOVE favorite movie from User profile
-// // handleRemoveFavorite = (e, movie) => {
-// //   e.preventDefault();
-// //   const username = localStorage.getItem('user');
-// //   const token = localStorage.getItem('token');
-// //   axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
-// //     headers: { Authorization: `Bearer ${token}` }
-// //   })
-// //     .then((response) => {
-// //       console.log(`${movie.Title} was removed from Favorites`);
-// //       window.open('_self');
-// //     })
-// //     .catch((e) => { 
-// //       console.log(err)
-// //     });
-// //   };
+{
+  /* <div className="my-favorites"> </div>
+   {favoritesList.map((movie) => (
+   <div key={movie._id} className="favorites-button">
+   <Link to={`/movies/:${movie._id}`}>
+      <Button variant="link">{movie.Title}</Button>
+    </Link> 
+   </div>
+  ))} */
+}
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./profile-view.scss":"components/profile-view/profile-view.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 

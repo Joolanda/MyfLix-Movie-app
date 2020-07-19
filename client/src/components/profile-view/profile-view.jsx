@@ -110,10 +110,31 @@ handleDeleteUser = (e) => {
      });
    };
 
+// REMOVE favorite movie from User profile
+handleRemoveFavorite = (e, movie) => {
+  e.preventDefault();
+  
+  const username = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
 
+  axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
+     headers: { Authorization: `Bearer ${token}` }
+   })
+    .then((response) => {
+      console.log(`${movie.Title} was removed from Favorites`);
+      window.open('_self');
+   })
+    .catch((e) => { 
+    console.log(err)
+    });
+  }; 
+  
+ 
 
    render() {
      const { movies } = this.props;
+   
+
     //  const favoritesList = movies.filter((movie) =>
     //     this.state.Favorites.includes(_id)
     //     );
@@ -126,8 +147,36 @@ handleDeleteUser = (e) => {
                   <Card.Text>Username: {this.state.Username}</Card.Text>
                   <Card.Text>Password: xxxxxx </Card.Text>
                   <Card.Text>Email: {this.state.Email}</Card.Text>
-                  <Card.Text>Birthday: {this.state.Birthday}</Card.Text>
-                  <Card.Text>Favorite Movies id: {this.state.Favorites }</Card.Text> 
+                  <Card.Text format="DD/MM/YYYY">Birthday: {this.state.Birthday}</Card.Text>
+                  <Card.Text>Favorite Movies id: {this.state.Favorites}</Card.Text>
+                  <Card.Text className="profile-item">Favorite Movies:</Card.Text>
+
+                      {/* {(this.state.Favorites).length  === 0 && (<div>Your favorite movies list is empty</div>)}
+                        <div className="favorites-container">
+                          <ul className="favorites-list">
+                              {(this.state.Favorites).length > 0 && movies.map(movie => {
+                                if (movie._id === Favorites.find(fav => fav === movie._id)) {
+                                return <li className="favorites-item" key={movie._id}>{movie.Title}
+                                <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie._id)}>Remove</Button>
+                                      </li>
+                                 }
+                                })
+                               }
+                            </ul>
+                          </div> */}
+
+                     <div className="buttons-back-remove"></div>
+                     <br/>
+                     <Button variant="success" className="delete-user" onClick={(e) => this.handleDeleteUser(e)}> Delete Profile </Button>
+                </Card.Body>
+              </Card>
+              <Link to={`/`}>
+                    <Button variant="warning">Back to Movies</Button>
+              </Link>
+          </Container>
+      );
+   }
+  }
 
                      {/* <div className="my-favorites"> </div>
                        {favoritesList.map((movie) => (
@@ -137,87 +186,3 @@ handleDeleteUser = (e) => {
                         </Link> 
                        </div>
                      ))} */}
-
-                     <div className="buttons-back-remove"></div>
-                     <br/>
-                     <Button variant="success" className="delete-user" onClick={(e) => this.handleDeleteUser(e)}> Delete Profile </Button>
-                </Card.Body>
-              </Card>
-              <Link to={`/`}>
-                             <Button variant="warning">Back to Movies</Button>
-                          </Link>
-          </Container>
-      );
-   }
-  }
-
-// find out how to display fav movies title instead of movie _id 
-// path="/movies/:movieId
-//  {this.state.Favorites.length === 0 && <div>No favorite movies so far</div>}
-{/* 
-//  <ButtonGroup size="lg">
-//   <Link to={`/user/update`}>
-//   <Button variant="success"  className="update-user" onClick={handleProfileUpdate}>Update Profile</Button>
-// onClick={(e) => this.handleDeleteUser(e)}
-//   <Button variant="success" type="submit" className="delete-user" onClick={handleDeleteUser}> Delete Profile </Button>
-// </Link>
-// </ButtonGroup>
-  */}
-
-  // // UPDATE or PUT requests for User profile
-// handleProfileUpdate = (e, createUsername, createPassword, createEmail, createBirthday) => {
-//   e.preventDefault();
-
-//   const username = localStorage.getItem('user');
-//   const token = localStorage.getItem('token');
-
-//   axios.put(`https://myflix-movie.herokuapp.com/users/${username}`, {
-//     headers: { Authorization: `Bearer ${token}` },
-//     data: {
-//       Username: createUsername ? createwUsername : this.state.Username,
-//       Password: createPassword ? createPassword : this.state.Password,
-//       Email: createEmail ? createEmail : this.state.Email,
-//       Birthday: createwBirthday ? createBirthday : this.state.Birthday
-//     },
-//   })
-//   .then((response) => {
-//     localStorage.setItem('user', this.state.Username);
-//     console.log(`${username} was updated`);
-//     alert('your profile is successfully updated');
-//       window.open(`/client/users/${username}`, '_self');
-//       })
-//       .catch((e) => { 
-//        console.log('Error Updating User profile');
-//       })
-//    } 
-//    setUsername(input) {
-//     this.Username = input;
-//   }
-//   setPassword(input) {
-//     this.Password = input;
-//   }
-//   setEmail(input) {
-//     this.Email = input;
-//   }
-//   setBirthday(input) {
-//     this.Birthday = input;
-//   }
-
-
-// // // REMOVE favorite movie from User profile
-// // handleRemoveFavorite = (e, movie) => {
-// //   e.preventDefault();
-
-// //   const username = localStorage.getItem('user');
-// //   const token = localStorage.getItem('token');
-// //   axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
-// //     headers: { Authorization: `Bearer ${token}` }
-// //   })
-// //     .then((response) => {
-// //       console.log(`${movie.Title} was removed from Favorites`);
-// //       window.open('_self');
-// //     })
-// //     .catch((e) => { 
-// //       console.log(err)
-// //     });
-// //   }; 
