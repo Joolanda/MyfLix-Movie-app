@@ -51837,7 +51837,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       password: null,
       email: null,
       birthday: null,
-      // favoriteMovies: [],
+      favorites: [],
       movies: []
     };
     return _this;
@@ -51869,8 +51869,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Username: response.data.Username,
           Password: response.data.Password,
           Email: response.data.Email,
-          Birthday: response.data.Birthday //  FavoriteMovies: response.data.FavoriteMovies,
-
+          Birthday: response.data.Birthday,
+          Favorites: response.data.Favorites
         });
       }).catch(function (err) {
         console.log(err);
@@ -51926,13 +51926,14 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         style: {
           width: '20rem'
         }
-      }, _react.default.createElement(_reactBootstrap.Card.Header, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", this.state.Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", this.state.Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement("div", {
+      }, _react.default.createElement(_reactBootstrap.Card.Header, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", this.state.Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", this.state.Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies: ", this.state.Favorites), _react.default.createElement("div", {
         className: "my-favorites"
       }), _react.default.createElement("div", {
         className: "buttons-back-remove"
       }), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
-        variant: "success",
+        variant: "danger",
         className: "delete-user",
+        size: "sm",
         onClick: function onClick(e) {
           return _this3.handleDeleteUser(e);
         }
@@ -51994,25 +51995,6 @@ exports.ProfileView = ProfileView;
 //   setBirthday(input) {
 //     this.Birthday = input;
 //   }
-// //DELETE requests for deregistering
-// handleDeleteUser = (e) => {
-//   e.preventDefault();
-//   const username = localStorage.getItem('user');
-//   const token = localStorage.getItem('token');
-//   axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
-//       headers: { Authorization: `Bearer ${token}` }
-//     })
-//     .then((response) => {
-//       localStorage.removeItem('token');
-//       localStorage.removeItem('user');
-//       console.log(`${username} was deleted`);
-//       alert('your profile is successfully deleted');
-//       window.open('/', '_self');
-//       })
-//       .catch((e) => { 
-//        console.log('Error deleting User profile');
-//      });
-//    };
 // // // REMOVE favorite movie from User profile
 // // handleRemoveFavorite = (e, movie) => {
 // //   e.preventDefault();
