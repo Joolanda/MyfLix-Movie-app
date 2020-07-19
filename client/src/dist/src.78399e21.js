@@ -51153,6 +51153,7 @@ function LoginView(props) {
       props.onLoggedIn(data);
     }).catch(function (e) {
       console.log('no such user here');
+      alert('no such user here. . . try again or create your account!');
     });
   };
 
@@ -51810,12 +51811,33 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, ProfileView);
 
     _this = _super.call(this, props);
+
+    _this.handleDeleteUser = function (e) {
+      e.preventDefault();
+      var username = localStorage.getItem('user');
+      var token = localStorage.getItem('token');
+
+      _axios.default.delete("https://myflix-movie.herokuapp.com/users/".concat(username), {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        console.log("".concat(username, " was deleted"));
+        alert('your profile is successfully deleted');
+        window.open('/', '_self');
+      }).catch(function (e) {
+        console.log('Error deleting User profile');
+      });
+    };
+
     _this.state = {
       username: null,
       password: null,
       email: null,
       birthday: null,
-      favoriteMovies: [],
+      // favoriteMovies: [],
       movies: []
     };
     return _this;
@@ -51836,7 +51858,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     value: function getUser(token) {
       var _this2 = this;
 
-      letusername = localStorage.getItem('user');
+      var username = localStorage.getItem('user');
 
       _axios.default.get("https://myflix-movie.herokuapp.com/users/".concat(username), {
         headers: {
@@ -51889,34 +51911,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     //   setBirthday(input) {
     //     this.Birthday = input;
     //   }
-    // //DELETE requests for deregistering
-    // handleDeleteUser = (e) => {
-    //   e.preventDefault();
-    //   const username = localStorage.getItem('user');
-    //   const token = localStorage.getItem('token');
-    //   axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
-    //       headers: { Authorization: `Bearer ${token}` }
-    //     })
-    //     .then((response) => {
-    //       localStorage.removeItem('token');
-    //       localStorage.removeItem('user');
-    //       console.log(`${username} was deleted`);
-    //       alert('your profile is successfully deleted');
-    //       window.open('/', '_self');
-    //       })
-    //       .catch((e) => { 
-    //        console.log('Error deleting User profile');
-    //      });
-    //    };
+    //DELETE requests for deregistering
 
   }, {
     key: "render",
     value: function render() {
-      var _this$state = this.state,
-          username = _this$state.username,
-          email = _this$state.email,
-          birthday = _this$state.birthday,
-          favoriteMovies = _this$state.favoriteMovies;
+      var _this3 = this;
+
       var movies = this.props.movies;
       return _react.default.createElement(_reactBootstrap.Container, {
         className: "profile-container"
@@ -51925,25 +51926,38 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         style: {
           width: '20rem'
         }
-      }, _react.default.createElement(_reactBootstrap.Card.Header, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", this.state.Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", this.state.Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies: ", favoriteMovies), _react.default.createElement("div", {
+      }, _react.default.createElement(_reactBootstrap.Card.Header, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", this.state.Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", this.state.Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement("div", {
         className: "my-favorites"
       }), _react.default.createElement("div", {
         className: "buttons-back-remove"
-      }), _react.default.createElement("br", null), _react.default.createElement(_reactRouterDom.Link, {
+      }), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
+        variant: "success",
+        className: "delete-user",
+        onClick: function onClick(e) {
+          return _this3.handleDeleteUser(e);
+        }
+      }, " Delete Profile "))), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "warning"
-      }, "Back to Movies")))));
+      }, "Back to Movies")));
     }
   }]);
 
   return ProfileView;
-}(_react.default.Component); //  <ButtonGroup size="lg">
+}(_react.default.Component);
+
+exports.ProfileView = ProfileView;
+{}
+/* 
+//  <ButtonGroup size="lg">
 //   <Link to={`/user/update`}>
 //   <Button variant="success"  className="update-user" onClick={handleProfileUpdate}>Update Profile</Button>
+// onClick={(e) => this.handleDeleteUser(e)}
 //   <Button variant="success" type="submit" className="delete-user" onClick={handleDeleteUser}> Delete Profile </Button>
 // </Link>
 // </ButtonGroup>
+ */
 // // UPDATE or PUT requests for User profile
 // handleProfileUpdate = (e, createUsername, createPassword, createEmail, createBirthday) => {
 //   e.preventDefault();
@@ -52014,10 +52028,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 // //     .catch((e) => { 
 // //       console.log(err)
 // //     });
-// //   }; 
-
-
-exports.ProfileView = ProfileView;
+// //   };
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./profile-view.scss":"components/profile-view/profile-view.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -52159,11 +52170,12 @@ var MainView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "onLoggedOut",
     value: function onLoggedOut() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
       this.setState({
         user: null
       });
-      localStorage.removeItem("token");
-      localStorage.removeItem("user"); //  window.open('/', '_self');
+      window.open('/', '_self');
     }
   }, {
     key: "render",
@@ -52181,8 +52193,10 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
       return _react.default.createElement(_reactRouterDom.BrowserRouter, {
         basename: "/client"
-      }, _react.default.createElement(_reactBootstrap.CardGroup, {
+      }, _react.default.createElement("div", {
         className: "main-view"
+      }, _react.default.createElement(_reactBootstrap.CardGroup, {
+        className: "card-group"
       }, _react.default.createElement(_reactBootstrap.Navbar, {
         bg: "success",
         variant: "dark",
@@ -52199,11 +52213,11 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         as: _reactRouterDom.Link,
         to: "/users/".concat(user)
       }, "Profile"), _react.default.createElement(_reactBootstrap.Nav.Link, {
-        onClick: function onClick() {
+        onClick: function onClick(user) {
           return _this3.onLoggedOut();
         },
         href: "/login"
-      }, "Logout"))), _react.default.createElement(_reactRouterDom.Route, {
+      }, "Logout"))), _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/",
         render: function render() {
@@ -52264,11 +52278,19 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         exact: true,
         path: "/users/:Username",
         render: function render() {
-          _react.default.createElement(_profileView.ProfileView, {
+          if (!user) return _react.default.createElement(_loginView.LoginView, {
+            onLoggedIn: function onLoggedIn(user) {
+              return _this3.onLoggedIn(user);
+            }
+          });
+          if (movies.length === 0) return _react.default.createElement("div", {
+            className: "main-view"
+          });
+          return _react.default.createElement(_profileView.ProfileView, {
             movies: movies
           });
         }
-      })));
+      })))));
     }
   }]);
 
@@ -52401,7 +52423,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62995" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56279" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

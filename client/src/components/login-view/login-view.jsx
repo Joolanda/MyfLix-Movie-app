@@ -26,6 +26,7 @@ const handleSubmit = (e) => {
     })
     .catch((e) => { 
     console.log('no such user here');
+    alert('no such user here. . . try again or create your account!');
     });
   }; 
 

@@ -84,16 +84,13 @@ export class MainView extends React.Component {
 
 // new method for signing out, button mainview
   onLoggedOut() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     this.setState({
       user: null
     });
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-  //  window.open('/', '_self');
+    window.open('/', '_self');
   }
-
-  const 
-
 
   render() {
     const { movies, user } = this.state;
@@ -106,7 +103,8 @@ export class MainView extends React.Component {
 
     return (
       <Router basename="/client">
-       <CardGroup className="main-view">
+        <div className="main-view">
+       <CardGroup className="card-group">
          <Navbar bg="success" variant="dark" fixed="top">
          <Navbar.Brand as={Link} to="/">MyFlix Movie</Navbar.Brand>
             <Nav className="mr-auto">
@@ -117,7 +115,7 @@ export class MainView extends React.Component {
 								</Nav.Link>
             </Nav>
           </Navbar>
-          
+          <div>
           <Route exact path="/" render={() => {
                     if (!user) 
                     return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
@@ -147,10 +145,13 @@ export class MainView extends React.Component {
            } />
            
            <Route exact path="/users/:Username" render={() => {
-            <ProfileView movies={movies} />}
-            } />
-
+             if (!user) return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+             if (movies.length === 0) return <div className="main-view" />;
+             return <ProfileView movies={movies}/>
+            }} />
+        </div>
         </CardGroup>
+        </div>
       </Router>
     );
   }

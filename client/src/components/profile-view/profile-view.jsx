@@ -16,7 +16,7 @@ constructor(props) {
       password: null,
       email: null,
       birthday: null,
-      favoriteMovies: [],
+      // favoriteMovies: [],
       movies: []
     };
   }
@@ -29,7 +29,7 @@ constructor(props) {
   }
 
   getUser(token) {
-    letusername = localStorage.getItem('user');
+    let username = localStorage.getItem('user');
     axios.get(`https://myflix-movie.herokuapp.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -88,34 +88,33 @@ constructor(props) {
 //   }
 
 
-// //DELETE requests for deregistering
-// handleDeleteUser = (e) => {
-//   e.preventDefault();
+//DELETE requests for deregistering
+handleDeleteUser = (e) => {
+  e.preventDefault();
 
-//   const username = localStorage.getItem('user');
-//   const token = localStorage.getItem('token');
+  const username = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
 
-//   axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
-//       headers: { Authorization: `Bearer ${token}` }
-//     })
-//     .then((response) => {
-//       localStorage.removeItem('token');
-//       localStorage.removeItem('user');
-//       console.log(`${username} was deleted`);
-//       alert('your profile is successfully deleted');
-//       window.open('/', '_self');
-//       })
-//       .catch((e) => { 
-//        console.log('Error deleting User profile');
-//      });
-//    };
+  axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    .then((response) => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      console.log(`${username} was deleted`);
+      alert('your profile is successfully deleted');
+      window.open('/', '_self');
+      })
+      .catch((e) => { 
+       console.log('Error deleting User profile');
+     });
+   };
 
 
 
    render() {
-     const { username, email, birthday, favoriteMovies } = this.state
      const { movies } = this.props;
-   
+
      return (
        <Container className="profile-container">
            <Card className="border-success text-white bg-secondary mb-3" style={{ width: '20rem'}}>
@@ -125,30 +124,31 @@ constructor(props) {
                   <Card.Text>Password: xxxxxx </Card.Text>
                   <Card.Text>Email: {this.state.Email}</Card.Text>
                   <Card.Text>Birthday: {this.state.Birthday}</Card.Text>
-                  <Card.Text>Favorite Movies: {favoriteMovies }</Card.Text>
+                  {/* <Card.Text>Favorite Movies: {favoriteMovies }</Card.Text> */}
                      <div className="my-favorites"></div>
                      <div className="buttons-back-remove"></div>
                      <br/>
-                         <Link to={`/`}>
-                             <Button variant="warning">Back to Movies</Button>
-                          </Link>
+                     <Button variant="success" className="delete-user" onClick={(e) => this.handleDeleteUser(e)}> Delete Profile </Button>
                 </Card.Body>
               </Card>
+              <Link to={`/`}>
+                             <Button variant="warning">Back to Movies</Button>
+                          </Link>
           </Container>
       );
    }
   }
 
 
-
+{/* 
 //  <ButtonGroup size="lg">
 //   <Link to={`/user/update`}>
 //   <Button variant="success"  className="update-user" onClick={handleProfileUpdate}>Update Profile</Button>
-
+// onClick={(e) => this.handleDeleteUser(e)}
 //   <Button variant="success" type="submit" className="delete-user" onClick={handleDeleteUser}> Delete Profile </Button>
 // </Link>
 // </ButtonGroup>
-
+  */}
 
   // // UPDATE or PUT requests for User profile
 // handleProfileUpdate = (e, createUsername, createPassword, createEmail, createBirthday) => {
