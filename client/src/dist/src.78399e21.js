@@ -52144,8 +52144,23 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           movies = _this$state.movies,
           user = _this$state.user;
-      var username = localStorage.getItem("user"); // if (!user) return <MainView /> />;
+      var username = localStorage.getItem("user"); // Allowed or restricted pages: Currentpath to check which page the user is currently on
+
+      var currentPath = window.location.pathname; // Add more allowed paths
+
+      var allowedPaths = ['/register', '/login', '/'];
+
+      if (!user && !allowedPaths.includes(currentPath)) {
+        if (currentPath !== '/register' && !user) {
+          return _react.default.createElement(_loginView.LoginView, {
+            onLoggedIn: function onLoggedIn(user) {
+              return _this3.onLoggedIn(user);
+            }
+          });
+        }
+      } // if (!user) return <MainView /> />;
       // "Next, you need to move this line of the render method"and place it inside the route path (path="/")
+
 
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"

@@ -102,7 +102,17 @@ export class MainView extends React.Component {
   render() {
     const { movies, user } = this.state;
     const username = localStorage.getItem("user");
-
+    
+    // Allowed or restricted pages: Currentpath to check which page the user is currently on
+    const currentPath = window.location.pathname;
+    // Add more allowed paths
+    const allowedPaths = ['/register', '/login', '/'];
+    if (!user && !allowedPaths.includes(currentPath)) {
+    if (currentPath !== '/register' && !user) {
+    return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+    }
+  }
+    
     // if (!user) return <MainView /> />;
     // "Next, you need to move this line of the render method"and place it inside the route path (path="/")
 
