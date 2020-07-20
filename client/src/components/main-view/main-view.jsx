@@ -4,8 +4,13 @@ import axios from "axios";
 import { connect } from 'react-redux';
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+// #0
+import { setMovies } from '../../actions/actions';
+
 import { Link } from "react-router-dom";
 
+import MoviesList from '../movies-list/movies-list';
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
 import { MovieCard } from "../movie-card/movie-card";
@@ -28,32 +33,15 @@ import {
 
 import "./main-view.scss";
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      movies: [],
-      //    movie: null,
-      //    selectedMovie: null,
       user: null,
     };
   }
-  // old code from task 34 and before
-  // componentDidMount() {
-  //    axios.get('https://myflix-movie.herokuapp.com/movies')
-  //     .then(response => {
-  //       // Assign the result to the state
-  //       this.setState({
-  //         movies: response.data
-  //       });
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }
 
-  // // new code added with Task 3.5
   componentDidMount() {
     let accessToken = localStorage.getItem("token");
     if (accessToken !== null) {
@@ -71,10 +59,11 @@ export class MainView extends React.Component {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data,
-        });
+        // 3.5 Assign the result to the state:
+        //  this.setState({
+        //  movies: response.data,
+        // #1 (3.5 Assign the result to the state)
+        this.props.getMovies(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -103,8 +92,12 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, user } = this.state;
-    const username = localStorage.getItem("user");
+
+    // #2
+    let { movies, user } = this.props;
+    let { user} = this.state;
+
+    let username = localStorage.getItem("user");
     
     // Allowed or restricted pages: Currentpath to check which page the user is currently on
     const currentPath = window.location.pathname;
@@ -150,11 +143,13 @@ export class MainView extends React.Component {
                     return (
                       <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
                     );
-                  return movies.map((m) => <MovieCard key={m._id} movie={m} />);
-                }}
-              />
+                  return <MoviesList movies={movies}/>;
+                }} />
 
-              <Route path="/register" render={() => <RegistrationView />} />
+              <Route 
+                 path="/register" 
+                 render={() => 
+                  <RegistrationView />} />
 
               <Route
                 path="/movies/:movieId"
@@ -218,6 +213,12 @@ export class MainView extends React.Component {
   }
 }
 
+// #3
+let mapStateToProps = state => {
+  return { movies: state.movies}
+}
+// #4
+export default connect(mapStateToProps, { setMovies } )(MainView);
 // feedback on
 
 {/* <Route
