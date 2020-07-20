@@ -94,7 +94,7 @@ class MainView extends React.Component {
   render() {
 
     // #2
-    let { movies, user } = this.props;
+    let { movies } = this.props;
     let { user} = this.state;
 
     let username = localStorage.getItem("user");
