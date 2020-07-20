@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./profile-view.scss";
 // bootstrap import
-import { Card, Button, Container, ButtonGroup } from "react-bootstrap";
+import { Card, Button, Container, ButtonGroup, Form } from "react-bootstrap";
 
 export class ProfileView extends React.Component {
   constructor(props) {
@@ -48,44 +48,44 @@ export class ProfileView extends React.Component {
       });
   }
 
-  // // UPDATE or PUT requests for User profile
-  // handleProfileUpdate = (e, createUsername, createPassword, createEmail, createBirthday) => {
-  //   e.preventDefault();
+  // UPDATE or PUT requests for User profile
+  handleProfileUpdate = (e, newUsername, newPassword, newEmail, newBirthday) => {
+    e.preventDefault();
 
-  //   const username = localStorage.getItem('user');
-  //   const token = localStorage.getItem('token');
+    const username = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
 
-  //   axios.put(`https://myflix-movie.herokuapp.com/users/${username}`, {
-  //     headers: { Authorization: `Bearer ${token}` },
-  //     data: {
-  //       Username: createUsername ? createwUsername : this.state.Username,
-  //       Password: createPassword ? createPassword : this.state.Password,
-  //       Email: createEmail ? createEmail : this.state.Email,
-  //       Birthday: createwBirthday ? createBirthday : this.state.Birthday
-  //     },
-  //   })
-  //   .then((response) => {
-  //     localStorage.setItem('user', this.state.Username);
-  //     console.log(`${username} was updated`);
-  //     alert('your profile is successfully updated');
-  //       window.open(`/client/users/${username}`, '_self');
-  //       })
-  //       .catch((e) => {
-  //        console.log('Error Updating User profile');
-  //       })
-  //    }
-  //    setUsername(input) {
-  //     this.Username = input;
-  //   }
-  //   setPassword(input) {
-  //     this.Password = input;
-  //   }
-  //   setEmail(input) {
-  //     this.Email = input;
-  //   }
-  //   setBirthday(input) {
-  //     this.Birthday = input;
-  //   }
+    axios.put(`https://myflix-movie.herokuapp.com/users/${username}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        Username: newUsername ? newUsername : this.state.Username,
+        Password: newPassword ? newPassword : this.state.Password,
+        Email: neweEmail ? newEmail : this.state.Email,
+        Birthday: newBirthday ? newBirthday : this.state.Birthday
+      },
+    })
+    .then((response) => {
+      localStorage.setItem('user', this.state.Username);
+      console.log(`${username} was updated`);
+      alert('your profile is successfully updated');
+        window.open(`/client/users/${username}`, '_self');
+        })
+        .catch((e) => {
+         console.log('Error Updating User profile');
+        })
+     }
+     setUsername(input) {
+      this.Username = input;
+    }
+    setPassword(input) {
+      this.Password = input;
+    }
+    setEmail(input) {
+      this.Email = input;
+    }
+    setBirthday(input) {
+      this.Birthday = input;
+    }
 
   //DELETE requests for deregistering
   handleDeleteUser = (e) => {
@@ -118,7 +118,7 @@ export class ProfileView extends React.Component {
     const token = localStorage.getItem("token");
 
     axios
-      .delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
+      .delete(`https://myflix-movie.herokuapp.com/users/${username}/Movies/:${movie}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -131,11 +131,9 @@ export class ProfileView extends React.Component {
   };
 
   render() {
-    const { movies, favorites } = this.props;
-    const { Favorites, Username, Email, Birthday } = this.state;
-    //  const favoritesList = movies.filter((movie) =>
-    //     this.state.Favorites.includes(_id)
-    //     );
+    const { movies, favorites} = this.props;
+    const { Favorites, Username, Email, Birthday } = this.state; 
+
 
     return (
       <Container className="profile-container">
@@ -143,32 +141,39 @@ export class ProfileView extends React.Component {
           className="border-success text-white bg-secondary mb-3"
           style={{ width: "20rem" }}
         >
-          <Card.Header> My Flix Profile </Card.Header>
+          <Card.Title> My Flix Profile </Card.Title>
           <Card.Body>
             <Card.Text>Username: {Username}</Card.Text>
             <Card.Text>Password: xxxxxx </Card.Text>
             <Card.Text>Email: {Email}</Card.Text>
-            <Card.Text format="DD/MM/YYYY">
+            <Card.Text>
               Birthday: {Birthday}
             </Card.Text>
             <Card.Text>Favorite Movies id: {Favorites}</Card.Text>
-            <Card.Text className="profile-item">My Favorite Movies: </Card.Text>
-  
 
-         {/*   {favorites.length  === 0 && (<div>Your favorite movies list is empty</div>)}
+            {favorites.length  === 0 && (<div>Your favorite movies list is empty</div>)}
                       <div className="favorites-container">
                           <ul className="favorites-list">
-                              {Favorites.length > 0 && movies.map(movie => {
-                                if (movie._id === Favorites.find(fav => fav === movie._id)) {
+                              {favorites.length > 0 && movies.map(movie => {
+                                if (movie._id === favorites.find(movie => movie === movie._id)) {
                                 return <li className="favorites-item" key={movie._id}>{movie.Title}
-                                <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie._id)}>Remove</Button>
+                                <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie)}>Remove</Button>
                                       </li>
                                  }
                                 })
                                }
                             </ul>
-                          </div> */}
+                          </div> 
 
+            <Button
+              variant="info"
+              className="delete-favorite"
+              onClick={(e) => this.handleRemoveFavorite}
+            >
+              {" "}
+              Delete favorite movies {" "}
+            </Button>
+            
             <div className="buttons-back-remove"></div>
             <br />
             <Button
@@ -189,14 +194,37 @@ export class ProfileView extends React.Component {
   }
 }
 
-{
-  /* <div className="my-favorites"> </div>
+
+
+{/* version A return code:  {favorites.length  === 0 && (<div>Your favorite movies list is empty</div>)}
+                      <div className="favorites-container">
+                          <ul className="favorites-list">
+                              {Favorites.length > 0 && movies.map(movie => {
+                                if (movie._id === Favorites.find(fav => fav === movie._id)) {
+                                return <li className="favorites-item" key={movie._id}>{movie.Title}
+                                <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie)>Remove</Button>
+                                      </li>
+                                 }
+                                })
+                               }
+                            </ul>
+                          </div> 
+ 
+version B render code: display favorite movie code
+      const favoritesList = movies.filter((movie) =>
+         Favorites.includes(_id)
+         );
+
+
+version B return code: <div className="my-favorites"> </div>
                        {favoritesList.map((movie) => (
                        <div key={movie._id} className="favorites-button">
                        <Link to={`/movies/:${movie._id}`}>
                           <Button variant="link">{movie.Title}</Button>
                         </Link> 
                        </div>
-                     ))} */
-}
+                     ))} 
 
+draft C render={({match}) => movie={movies.find(m => m._id === match.params.movieId)}
+ movie={movies.find((m) => m._id === match.params.movieId) 
+fix birthday format="DD/MM/YYYY"  */}

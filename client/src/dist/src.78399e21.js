@@ -51812,6 +51812,31 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
 
+    _this.handleProfileUpdate = function (e, newUsername, newPassword, newEmail, newBirthday) {
+      e.preventDefault();
+      var username = localStorage.getItem('user');
+      var token = localStorage.getItem('token');
+
+      _axios.default.put("https://myflix-movie.herokuapp.com/users/".concat(username), {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        },
+        data: {
+          Username: newUsername ? newUsername : _this.state.Username,
+          Password: newPassword ? newPassword : _this.state.Password,
+          Email: neweEmail ? newEmail : _this.state.Email,
+          Birthday: newBirthday ? newBirthday : _this.state.Birthday
+        }
+      }).then(function (response) {
+        localStorage.setItem('user', _this.state.Username);
+        console.log("".concat(username, " was updated"));
+        alert('your profile is successfully updated');
+        window.open("/client/users/".concat(username), '_self');
+      }).catch(function (e) {
+        console.log('Error Updating User profile');
+      });
+    };
+
     _this.handleDeleteUser = function (e) {
       e.preventDefault();
       var username = localStorage.getItem("user");
@@ -51837,7 +51862,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       var username = localStorage.getItem("user");
       var token = localStorage.getItem("token");
 
-      _axios.default.delete("https://myflix-movie.herokuapp.com/users/".concat(username), {
+      _axios.default.delete("https://myflix-movie.herokuapp.com/users/".concat(username, "/Movies/:").concat(movie), {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
@@ -51892,43 +51917,28 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }).catch(function (err) {
         console.log(err);
       });
-    } // // UPDATE or PUT requests for User profile
-    // handleProfileUpdate = (e, createUsername, createPassword, createEmail, createBirthday) => {
-    //   e.preventDefault();
-    //   const username = localStorage.getItem('user');
-    //   const token = localStorage.getItem('token');
-    //   axios.put(`https://myflix-movie.herokuapp.com/users/${username}`, {
-    //     headers: { Authorization: `Bearer ${token}` },
-    //     data: {
-    //       Username: createUsername ? createwUsername : this.state.Username,
-    //       Password: createPassword ? createPassword : this.state.Password,
-    //       Email: createEmail ? createEmail : this.state.Email,
-    //       Birthday: createwBirthday ? createBirthday : this.state.Birthday
-    //     },
-    //   })
-    //   .then((response) => {
-    //     localStorage.setItem('user', this.state.Username);
-    //     console.log(`${username} was updated`);
-    //     alert('your profile is successfully updated');
-    //       window.open(`/client/users/${username}`, '_self');
-    //       })
-    //       .catch((e) => {
-    //        console.log('Error Updating User profile');
-    //       })
-    //    }
-    //    setUsername(input) {
-    //     this.Username = input;
-    //   }
-    //   setPassword(input) {
-    //     this.Password = input;
-    //   }
-    //   setEmail(input) {
-    //     this.Email = input;
-    //   }
-    //   setBirthday(input) {
-    //     this.Birthday = input;
-    //   }
-    //DELETE requests for deregistering
+    } // UPDATE or PUT requests for User profile
+
+  }, {
+    key: "setUsername",
+    value: function setUsername(input) {
+      this.Username = input;
+    }
+  }, {
+    key: "setPassword",
+    value: function setPassword(input) {
+      this.Password = input;
+    }
+  }, {
+    key: "setEmail",
+    value: function setEmail(input) {
+      this.Email = input;
+    }
+  }, {
+    key: "setBirthday",
+    value: function setBirthday(input) {
+      this.Birthday = input;
+    } //DELETE requests for deregistering
     // REMOVE favorite movie from User profile
 
   }, {
@@ -51943,10 +51953,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Favorites = _this$state.Favorites,
           Username = _this$state.Username,
           Email = _this$state.Email,
-          Birthday = _this$state.Birthday; //  const favoritesList = movies.filter((movie) =>
-      //     this.state.Favorites.includes(_id)
-      //     );
-
+          Birthday = _this$state.Birthday;
       return _react.default.createElement(_reactBootstrap.Container, {
         className: "profile-container"
       }, _react.default.createElement(_reactBootstrap.Card, {
@@ -51954,11 +51961,32 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         style: {
           width: "20rem"
         }
-      }, _react.default.createElement(_reactBootstrap.Card.Header, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", Email), _react.default.createElement(_reactBootstrap.Card.Text, {
-        format: "DD/MM/YYYY"
-      }, "Birthday: ", Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies id: ", Favorites), _react.default.createElement(_reactBootstrap.Card.Text, {
-        className: "profile-item"
-      }, "My Favorite Movies: "), _react.default.createElement("div", {
+      }, _react.default.createElement(_reactBootstrap.Card.Title, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies id: ", Favorites), favorites.length === 0 && _react.default.createElement("div", null, "Your favorite movies list is empty"), _react.default.createElement("div", {
+        className: "favorites-container"
+      }, _react.default.createElement("ul", {
+        className: "favorites-list"
+      }, favorites.length > 0 && movies.map(function (movie) {
+        if (movie._id === favorites.find(function (movie) {
+          return movie === movie._id;
+        })) {
+          return _react.default.createElement("li", {
+            className: "favorites-item",
+            key: movie._id
+          }, movie.Title, _react.default.createElement(_reactBootstrap.Button, {
+            size: "sm",
+            className: "remove-favorite",
+            onClick: function onClick(e) {
+              return _this3.handleRemoveFavorite(e, movie);
+            }
+          }, "Remove"));
+        }
+      }))), _react.default.createElement(_reactBootstrap.Button, {
+        variant: "info",
+        className: "delete-favorite",
+        onClick: function onClick(e) {
+          return _this3.handleRemoveFavorite;
+        }
+      }, " ", "Delete favorite movies ", " "), _react.default.createElement("div", {
         className: "buttons-back-remove"
       }), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
         variant: "success",
@@ -51979,14 +52007,36 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 
 exports.ProfileView = ProfileView;
 {
-  /* <div className="my-favorites"> </div>
-                       {favoritesList.map((movie) => (
-                       <div key={movie._id} className="favorites-button">
-                       <Link to={`/movies/:${movie._id}`}>
-                          <Button variant="link">{movie.Title}</Button>
-                        </Link> 
-                       </div>
-                     ))} */
+  /* version A return code:  {favorites.length  === 0 && (<div>Your favorite movies list is empty</div>)}
+                       <div className="favorites-container">
+                           <ul className="favorites-list">
+                               {Favorites.length > 0 && movies.map(movie => {
+                                 if (movie._id === Favorites.find(fav => fav === movie._id)) {
+                                 return <li className="favorites-item" key={movie._id}>{movie.Title}
+                                 <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie)>Remove</Button>
+                                       </li>
+                                  }
+                                 })
+                                }
+                             </ul>
+                           </div> 
+  
+  version B render code: display favorite movie code
+       const favoritesList = movies.filter((movie) =>
+          Favorites.includes(_id)
+          );
+  
+  version B return code: <div className="my-favorites"> </div>
+                        {favoritesList.map((movie) => (
+                        <div key={movie._id} className="favorites-button">
+                        <Link to={`/movies/:${movie._id}`}>
+                           <Button variant="link">{movie.Title}</Button>
+                         </Link> 
+                        </div>
+                      ))} 
+  draft C render={({match}) => movie={movies.find(m => m._id === match.params.movieId)}
+  movie={movies.find((m) => m._id === match.params.movieId) 
+  fix birthday format="DD/MM/YYYY"  */
 }
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./profile-view.scss":"components/profile-view/profile-view.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -52246,6 +52296,14 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             director: movies.find(function (m) {
               return m.Director.Name === match.params.name;
             }).Director
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
+        path: "/users",
+        render: function render() {
+          return _react.default.createElement(_profileView.ProfileView, {
+            movies: movies
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {

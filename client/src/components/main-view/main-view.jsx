@@ -190,7 +190,10 @@ export class MainView extends React.Component {
                   );
                 }}
               />
-
+              <Route exact
+                path="/users"
+                render={() => <ProfileView movies={movies} />}
+              />
               <Route
                 exact
                 path="/users/:Username"
