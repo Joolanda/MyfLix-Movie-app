@@ -51969,13 +51969,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         }
       }, " ", "Delete favorite movies", " "), _react.default.createElement("div", {
         className: "buttons-back-remove"
-      }), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
-        variant: "success",
-        className: "delete-user",
-        onClick: function onClick(e) {
-          return _this3.handleDeleteUser(e);
-        }
-      }, " ", "Delete Profile", " "), _react.default.createElement(_reactBootstrap.Form, {
+      }), _react.default.createElement("br", null), " ", _react.default.createElement(_reactBootstrap.Card.Text, null, "If you want to update your profile, you can use this form:"), " ", _react.default.createElement(_reactBootstrap.Form, {
         className: "update-form",
         onSubmit: function onSubmit(e) {
           return _this3.handleProfileUpdate(e, _this3.Username, _this3.Password, _this3.Email, _this3.Birthday);
@@ -52026,10 +52020,18 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           return _this3.setBirthday(e.target.value);
         }
       })), _react.default.createElement(_reactBootstrap.Button, {
+        variant: "success",
         className: "update",
         type: "submit",
         size: "sm"
-      }, "Update")))), _react.default.createElement(_reactRouterDom.Link, {
+      }, "Update")), _react.default.createElement(_reactBootstrap.Button, {
+        variant: "danger",
+        className: "delete-user",
+        size: "sm",
+        onClick: function onClick(e) {
+          return _this3.handleDeleteUser(e);
+        }
+      }, " ", "Delete Profile", " "))), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "warning"
@@ -52087,6 +52089,8 @@ exports.MainView = void 0;
 var _react = _interopRequireDefault(require("react"));
 
 var _axios = _interopRequireDefault(require("axios"));
+
+var _reactRedux = require("react-redux");
 
 var _reactRouterDom = require("react-router-dom");
 
@@ -52364,7 +52368,65 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
 
 exports.MainView = MainView;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./main-view.scss":"components/main-view/main-view.scss"}],"index.scss":[function(require,module,exports) {
+{
+  /* <Route
+  path="/update/:Username"
+  render={() => 
+   <ProfileUpdateView movies={movies} />}
+   /> */
+}
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./main-view.scss":"components/main-view/main-view.scss"}],"reducers/reducers.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _redux = require("redux");
+
+var _actions = require("../actions/actions");
+
+function visibilityFilter() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions.SET_FILTER:
+      return action.value;
+
+    default:
+      return state;
+  }
+}
+
+function movies() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions.SET_MOVIES:
+      return action.value;
+
+    default:
+      return state;
+  }
+} // Redux comes with a built-in function to split into smaller reducers
+
+
+var moviesApp = (0, _redux.combineReducers)({
+  visibilityFilter: visibilityFilter,
+  movies: movies
+}); // function moviesApp(state = {}, action) {
+//   return {
+//     visibilityFilter: visibilityFilter(state.visibilityFilter, action),
+//     movies: movies(state.movies, action)
+//   }
+// }
+
+var _default = moviesApp;
+exports.default = _default;
+},{}],"index.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -52381,6 +52443,8 @@ var _redux = require("redux");
 var _reactRedux = require("react-redux");
 
 var _mainView = require("./components/main-view/main-view");
+
+var _reducers = _interopRequireDefault(require("./reducers/reducers"));
 
 require("./index.scss");
 
@@ -52408,7 +52472,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-// Main component (will eventually use all the others)
+var store = (0, _redux.createStore)(moviesApp); // Main component (will eventually use all the others)
+
 var MyFlixApplication = /*#__PURE__*/function (_React$Component) {
   _inherits(MyFlixApplication, _React$Component);
 
@@ -52423,7 +52488,9 @@ var MyFlixApplication = /*#__PURE__*/function (_React$Component) {
   _createClass(MyFlixApplication, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement(_mainView.MainView, null);
+      return _react.default.createElement(_reactRedux.Provider, {
+        store: store
+      }, _react.default.createElement(_mainView.MainView, null));
     }
   }]);
 
@@ -52434,7 +52501,7 @@ var MyFlixApplication = /*#__PURE__*/function (_React$Component) {
 var container = document.getElementsByClassName('app-container')[0]; // Tells React to render your app in the root DOM element
 
 _reactDom.default.render(_react.default.createElement(MyFlixApplication), container);
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","redux":"../node_modules/redux/es/redux.js","react-redux":"../node_modules/react-redux/es/index.js","./components/main-view/main-view":"components/main-view/main-view.jsx","./index.scss":"index.scss"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","redux":"../node_modules/redux/es/redux.js","react-redux":"../node_modules/react-redux/es/index.js","./components/main-view/main-view":"components/main-view/main-view.jsx","./reducers/reducers":"reducers/reducers.js","./index.scss":"index.scss"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

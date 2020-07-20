@@ -4,9 +4,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./profile-view.scss";
 // bootstrap import
-import { Card, Button, Container, ButtonGroup, Form } from "react-bootstrap";
+import { Card, Button, Container, Form } from "react-bootstrap";
 
-export class ProfileView extends React.Component {
+export class ProfileUpdateView extends React.Component {
   constructor(props) {
     super(props);
 
@@ -117,40 +117,19 @@ export class ProfileView extends React.Component {
       });
   };
 
-  // REMOVE favorite movie from User profile
-  handleRemoveFavorite = (e, movie) => {
-    e.preventDefault();
 
-    const username = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
-
-    axios
-      .delete(
-        `https://myflix-movie.herokuapp.com/users/${username}/Movies/:${movie}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
-      .then((response) => {
-        console.log(`${movie.Title} was removed from Favorites`);
-        window.open("_self");
-      })
-      .catch((e) => {
-        console.log(err);
-      });
-  };
 
   render() {
     const { movies, favorites } = this.props;
     const { Favorites, Username, Email, Birthday } = this.state;
 
     return (
-      <Container className="profile-container">
+      <Container className="profile-update-container">
         <Card
           className="border-success text-white bg-secondary mb-3"
           style={{ width: "20rem" }}
         >
-          <Card.Title> My Flix Profile </Card.Title>
+          <Card.Title> Update my profile </Card.Title>
           <Card.Body>
             <Card.Text>Username: {Username}</Card.Text>
             <Card.Text>Password: xxxxxx </Card.Text>
@@ -158,49 +137,6 @@ export class ProfileView extends React.Component {
             <Card.Text>Birthday: {Birthday}</Card.Text>
             <Card.Text>Favorite Movies id: {Favorites}</Card.Text>
 
-            {/* {favorites.length === 0 && (
-              <div>Your favorite movies list is empty</div>
-            )}
-            <div className="favorites-container">
-              <ul className="favorites-list">
-                {favorites.length > 0 &&
-                  movies.map((movie) => {
-                    if (
-                      movie._id ===
-                      favorites.find((movie) => movie === movie._id)
-                    ) {
-                      return (
-                        <li className="favorites-item" key={movie._id}>
-                          {movie.Title}
-                          <Button
-                            size="sm"
-                            className="remove-favorite"
-                            onClick={(e) => this.handleRemoveFavorite(e, movie)}
-                          >
-                            Remove
-                          </Button>
-                        </li>
-                      );
-                    }
-                  })}
-              </ul>
-            </div> */}
-
-            <Button
-              variant="info"
-              className="delete-favorite"
-              onClick={(e) => this.handleRemoveFavorite}
-            >
-              {" "}
-              Delete favorite movies{" "}
-            </Button>
-
-            <div className="buttons-back-remove"></div>
-            <br />
-            {" "}
-
-            <Card.Text>If you want to update your profile, you can use this form:</Card.Text>
-            {" "}
             <Form
               className="update-form"
               onSubmit={(e) =>
@@ -250,24 +186,19 @@ export class ProfileView extends React.Component {
                   onChange={(e) => this.setBirthday(e.target.value)}
                 />
               </Form.Group>
-              <Button 
-                variant="success" 
-                className="update" 
-                type="submit" 
-                size="sm">
+              <Button className="update" type="submit" size="sm">
                 Update
               </Button>
             </Form>
-            <Button
-              variant="danger"
+          </Card.Body>
+          <Button
+              variant="success"
               className="delete-user"
-              size="sm"
               onClick={(e) => this.handleDeleteUser(e)}
             >
               {" "}
               Delete Profile{" "}
             </Button>
-          </Card.Body>
         </Card>
         <Link to={`/`}>
           <Button variant="warning">Back to Movies</Button>
@@ -277,37 +208,3 @@ export class ProfileView extends React.Component {
   }
 }
 
-{
-  /* version A return code:  {favorites.length  === 0 && (<div>Your favorite movies list is empty</div>)}
-                      <div className="favorites-container">
-                          <ul className="favorites-list">
-                              {Favorites.length > 0 && movies.map(movie => {
-                                if (movie._id === Favorites.find(fav => fav === movie._id)) {
-                                return <li className="favorites-item" key={movie._id}>{movie.Title}
-                                <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie)>Remove</Button>
-                                      </li>
-                                 }
-                                })
-                               }
-                            </ul>
-                          </div> 
- 
-version B render code: display favorite movie code
-      const favoritesList = movies.filter((movie) =>
-         Favorites.includes(_id)
-         );
-
-
-version B return code: <div className="my-favorites"> </div>
-                       {favoritesList.map((movie) => (
-                       <div key={movie._id} className="favorites-button">
-                       <Link to={`/movies/:${movie._id}`}>
-                          <Button variant="link">{movie.Title}</Button>
-                        </Link> 
-                       </div>
-                     ))} 
-
-draft C render={({match}) => movie={movies.find(m => m._id === match.params.movieId)}
- movie={movies.find((m) => m._id === match.params.movieId) 
-fix birthday format="DD/MM/YYYY"  */
-}

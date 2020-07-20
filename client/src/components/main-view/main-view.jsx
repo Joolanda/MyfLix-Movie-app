@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 
+import { connect } from 'react-redux';
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -11,6 +13,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { ProfileView } from "../profile-view/profile-view";
+//import { ProfileUpdateView } from "../profile-update-view/profile-update-view";
 
 // bootstrap import
 import {
@@ -194,6 +197,7 @@ export class MainView extends React.Component {
                 path="/users"
                 render={() => <ProfileView movies={movies} />}
               />
+              
               <Route
                 exact
                 path="/users/:Username"
@@ -216,3 +220,8 @@ export class MainView extends React.Component {
 
 // feedback on
 
+{/* <Route
+path="/update/:Username"
+render={() => 
+  <ProfileUpdateView movies={movies} />}
+  /> */}
