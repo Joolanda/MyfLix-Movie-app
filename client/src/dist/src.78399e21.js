@@ -51814,8 +51814,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 
     _this.handleProfileUpdate = function (e, newUsername, newPassword, newEmail, newBirthday) {
       e.preventDefault();
-      var username = localStorage.getItem('user');
-      var token = localStorage.getItem('token');
+      var username = localStorage.getItem("user");
+      var token = localStorage.getItem("token");
 
       _axios.default.put("https://myflix-movie.herokuapp.com/users/".concat(username), {
         headers: {
@@ -51824,16 +51824,16 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         data: {
           Username: newUsername ? newUsername : _this.state.Username,
           Password: newPassword ? newPassword : _this.state.Password,
-          Email: neweEmail ? newEmail : _this.state.Email,
+          Email: newEmail ? newEmail : _this.state.Email,
           Birthday: newBirthday ? newBirthday : _this.state.Birthday
         }
       }).then(function (response) {
-        localStorage.setItem('user', _this.state.Username);
+        localStorage.setItem("user", _this.state.Username);
         console.log("".concat(username, " was updated"));
-        alert('your profile is successfully updated');
-        window.open("/client/users/".concat(username), '_self');
+        alert("your profile is successfully updated");
+        window.open("/client/users/".concat(username), "_self");
       }).catch(function (e) {
-        console.log('Error Updating User profile');
+        console.log("Error Updating User profile");
       });
     };
 
@@ -51961,32 +51961,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         style: {
           width: "20rem"
         }
-      }, _react.default.createElement(_reactBootstrap.Card.Title, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies id: ", Favorites), favorites.length === 0 && _react.default.createElement("div", null, "Your favorite movies list is empty"), _react.default.createElement("div", {
-        className: "favorites-container"
-      }, _react.default.createElement("ul", {
-        className: "favorites-list"
-      }, favorites.length > 0 && movies.map(function (movie) {
-        if (movie._id === favorites.find(function (movie) {
-          return movie === movie._id;
-        })) {
-          return _react.default.createElement("li", {
-            className: "favorites-item",
-            key: movie._id
-          }, movie.Title, _react.default.createElement(_reactBootstrap.Button, {
-            size: "sm",
-            className: "remove-favorite",
-            onClick: function onClick(e) {
-              return _this3.handleRemoveFavorite(e, movie);
-            }
-          }, "Remove"));
-        }
-      }))), _react.default.createElement(_reactBootstrap.Button, {
+      }, _react.default.createElement(_reactBootstrap.Card.Title, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies id: ", Favorites), _react.default.createElement(_reactBootstrap.Button, {
         variant: "info",
         className: "delete-favorite",
         onClick: function onClick(e) {
           return _this3.handleRemoveFavorite;
         }
-      }, " ", "Delete favorite movies ", " "), _react.default.createElement("div", {
+      }, " ", "Delete favorite movies", " "), _react.default.createElement("div", {
         className: "buttons-back-remove"
       }), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
         variant: "success",
@@ -51994,7 +51975,61 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick(e) {
           return _this3.handleDeleteUser(e);
         }
-      }, " ", "Delete Profile", " "))), _react.default.createElement(_reactRouterDom.Link, {
+      }, " ", "Delete Profile", " "), _react.default.createElement(_reactBootstrap.Form, {
+        className: "update-form",
+        onSubmit: function onSubmit(e) {
+          return _this3.handleProfileUpdate(e, _this3.Username, _this3.Password, _this3.Email, _this3.Birthday);
+        }
+      }, _react.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "formBasicUsername"
+      }, _react.default.createElement(_reactBootstrap.Form.Label, {
+        className: "form-label"
+      }, "Username:"), _react.default.createElement(_reactBootstrap.Form.Control, {
+        type: "text",
+        placeholder: "Change Username",
+        defaultValue: Username,
+        onChange: function onChange(e) {
+          return _this3.setUsername(e.target.value);
+        }
+      })), _react.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "formBasicPassword"
+      }, _react.default.createElement(_reactBootstrap.Form.Label, {
+        className: "form-label"
+      }, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
+        type: "password",
+        placeholder: "Enter Password",
+        defaultValue: "",
+        onChange: function onChange(e) {
+          return _this3.setPassword(e.target.value);
+        },
+        required: true
+      })), _react.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "formBasicEmail"
+      }, _react.default.createElement(_reactBootstrap.Form.Label, {
+        className: "form-label"
+      }, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
+        type: "email",
+        placeholder: "Change Email",
+        defaultValue: Email,
+        onChange: function onChange(e) {
+          return _this3.setEmail(e.target.value);
+        }
+      })), _react.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "formBasicBirthday"
+      }, _react.default.createElement(_reactBootstrap.Form.Label, {
+        className: "form-label"
+      }, "Birthday"), _react.default.createElement(_reactBootstrap.Form.Control, {
+        type: "date",
+        placeholder: "Change Birthday",
+        defaultValue: Birthday,
+        onChange: function onChange(e) {
+          return _this3.setBirthday(e.target.value);
+        }
+      })), _react.default.createElement(_reactBootstrap.Button, {
+        className: "update",
+        type: "submit",
+        size: "sm"
+      }, "Update")))), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "warning"
@@ -52008,32 +52043,30 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 exports.ProfileView = ProfileView;
 {
   /* version A return code:  {favorites.length  === 0 && (<div>Your favorite movies list is empty</div>)}
-                       <div className="favorites-container">
-                           <ul className="favorites-list">
-                               {Favorites.length > 0 && movies.map(movie => {
-                                 if (movie._id === Favorites.find(fav => fav === movie._id)) {
-                                 return <li className="favorites-item" key={movie._id}>{movie.Title}
-                                 <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie)>Remove</Button>
-                                       </li>
-                                  }
-                                 })
-                                }
-                             </ul>
-                           </div> 
-  
+                      <div className="favorites-container">
+                          <ul className="favorites-list">
+                              {Favorites.length > 0 && movies.map(movie => {
+                                if (movie._id === Favorites.find(fav => fav === movie._id)) {
+                                return <li className="favorites-item" key={movie._id}>{movie.Title}
+                                <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie)>Remove</Button>
+                                      </li>
+                                 }
+                                })
+                               }
+                            </ul>
+                          </div> 
   version B render code: display favorite movie code
-       const favoritesList = movies.filter((movie) =>
-          Favorites.includes(_id)
-          );
-  
+      const favoritesList = movies.filter((movie) =>
+         Favorites.includes(_id)
+         );
   version B return code: <div className="my-favorites"> </div>
-                        {favoritesList.map((movie) => (
-                        <div key={movie._id} className="favorites-button">
-                        <Link to={`/movies/:${movie._id}`}>
-                           <Button variant="link">{movie.Title}</Button>
-                         </Link> 
-                        </div>
-                      ))} 
+                       {favoritesList.map((movie) => (
+                       <div key={movie._id} className="favorites-button">
+                       <Link to={`/movies/:${movie._id}`}>
+                          <Button variant="link">{movie.Title}</Button>
+                        </Link> 
+                       </div>
+                     ))} 
   draft C render={({match}) => movie={movies.find(m => m._id === match.params.movieId)}
   movie={movies.find((m) => m._id === match.params.movieId) 
   fix birthday format="DD/MM/YYYY"  */
