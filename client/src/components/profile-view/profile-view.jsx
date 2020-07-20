@@ -131,7 +131,7 @@ export class ProfileView extends React.Component {
   };
 
   render() {
-    const { movies } = this.props;
+    const { movies, favorites } = this.props;
     const { Favorites, Username, Email, Birthday } = this.state;
     //  const favoritesList = movies.filter((movie) =>
     //     this.state.Favorites.includes(_id)
@@ -155,10 +155,10 @@ export class ProfileView extends React.Component {
             <Card.Text className="profile-item">My Favorite Movies: </Card.Text>
   
 
-            {/* {(this.state.Favorites).length  === 0 && (<div>Your favorite movies list is empty</div>)}
-                        <div className="favorites-container">
+         {/*   {favorites.length  === 0 && (<div>Your favorite movies list is empty</div>)}
+                      <div className="favorites-container">
                           <ul className="favorites-list">
-                              {(this.state.Favorites).length > 0 && movies.map(movie => {
+                              {Favorites.length > 0 && movies.map(movie => {
                                 if (movie._id === Favorites.find(fav => fav === movie._id)) {
                                 return <li className="favorites-item" key={movie._id}>{movie.Title}
                                 <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie._id)}>Remove</Button>
