@@ -149,7 +149,7 @@ handleRemoveFavorite = (e, movie) => {
                   <Card.Text>Email: {this.state.Email}</Card.Text>
                   <Card.Text format="DD/MM/YYYY">Birthday: {this.state.Birthday}</Card.Text>
                   <Card.Text>Favorite Movies id: {this.state.Favorites}</Card.Text>
-                  <Card.Text className="profile-item">Favorite Movies:</Card.Text>
+                  <Card.Text className="profile-item">My Favorite Movies:</Card.Text>
 
                       {/* {(this.state.Favorites).length  === 0 && (<div>Your favorite movies list is empty</div>)}
                         <div className="favorites-container">
