@@ -132,7 +132,7 @@ export class ProfileView extends React.Component {
 
   render() {
     const { movies } = this.props;
-
+    const { Favorites, Username, Email, Birthday } = this.state;
     //  const favoritesList = movies.filter((movie) =>
     //     this.state.Favorites.includes(_id)
     //     );
@@ -145,14 +145,15 @@ export class ProfileView extends React.Component {
         >
           <Card.Header> My Flix Profile </Card.Header>
           <Card.Body>
-            <Card.Text>Username: {this.state.Username}</Card.Text>
+            <Card.Text>Username: {Username}</Card.Text>
             <Card.Text>Password: xxxxxx </Card.Text>
-            <Card.Text>Email: {this.state.Email}</Card.Text>
+            <Card.Text>Email: {Email}</Card.Text>
             <Card.Text format="DD/MM/YYYY">
-              Birthday: {this.state.Birthday}
+              Birthday: {Birthday}
             </Card.Text>
-            <Card.Text>Favorite Movies id: {this.state.Favorites}</Card.Text>
-            <Card.Text className="profile-item">My Favorite Movies:</Card.Text>
+            <Card.Text>Favorite Movies id: {Favorites}</Card.Text>
+            <Card.Text className="profile-item">My Favorite Movies: ${movie.Title}</Card.Text>
+  
 
             {/* {(this.state.Favorites).length  === 0 && (<div>Your favorite movies list is empty</div>)}
                         <div className="favorites-container">
