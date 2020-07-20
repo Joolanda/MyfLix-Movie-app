@@ -152,7 +152,7 @@ export class ProfileView extends React.Component {
               Birthday: {Birthday}
             </Card.Text>
             <Card.Text>Favorite Movies id: {Favorites}</Card.Text>
-            <Card.Text className="profile-item">My Favorite Movies: ${movie.Title}</Card.Text>
+            <Card.Text className="profile-item">My Favorite Movies: </Card.Text>
   
 
             {/* {(this.state.Favorites).length  === 0 && (<div>Your favorite movies list is empty</div>)}
