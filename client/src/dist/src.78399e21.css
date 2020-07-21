@@ -1,3 +1,10 @@
+.movie-card {
+  width: 100%;
+  min-width: 330;
+  padding: 20px;
+  margin: auto;
+  height: 100%;
+}
 .login-container {
   width: 100%;
   max-width: 330px;
@@ -15,13 +22,6 @@
 
 .form-group {
   margin-top: 40px;
-}
-.movie-card {
-  width: 100%;
-  min-width: 330;
-  padding: 20px;
-  margin: auto;
-  height: 100%;
 }
 .movie-view {
   width: 100%;

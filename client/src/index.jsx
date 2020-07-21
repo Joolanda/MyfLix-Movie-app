@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import MainView  from './components/main-view/main-view';
-import movieApp from './reducers/reducers';
+import moviesApp from './reducers/reducers';
 
 // Import statement to indicate that you need to bundle `./index.scss`
 import './index.scss';
