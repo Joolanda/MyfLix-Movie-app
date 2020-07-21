@@ -115,15 +115,99 @@ class MainView extends React.Component {
     if (!movies) return <div className="main-view" />;
 
     return (
-      <Router basename="/client">
+       <Router basename="/client">
          <div className="main-view">
-           <Route exact path="/" render={() => {
-             if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-             return <MoviesList movies={movies}/>;
-         }} />
-           <Route path="/register" render={() => <RegistrationView />} />
-           <Route path="/movies/:movieId" render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>
-         </div>
+           <CardGroup className="card-group">
+             <Navbar bg="success" variant="dark" fixed="top">
+               <Navbar.Brand as={Link} to="/">
+                 MyFlix Movie
+               </Navbar.Brand>
+               <Nav className="mr-auto">
+                 <Nav.Link as={Link} to="/">
+                   Home
+                 </Nav.Link>
+                 <Nav.Link as={Link} to={`/users/${user}`}>
+                   Profile
+                 </Nav.Link>
+                 <Nav.Link onClick={(user) => this.onLoggedOut()} href="/login">
+                   Logout
+                </Nav.Link>
+               </Nav>
+             </Navbar>
+             <div>
+               <Route
+                exact
+                path="/"
+                render={() => {
+                  if (!user)
+                    return (
+                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                    );
+                  return <MoviesList movies={movies}/>;
+                }} />
+
+              <Route 
+                 path="/register" 
+                 render={() => 
+                  <RegistrationView />} />
+
+              <Route
+                path="/movies/:movieId"
+                render={({ match }) => (
+                  <MovieView
+                    movie={movies.find((m) => m._id === match.params.movieId)}
+                  />
+                )}
+              />
+              <Route
+                path="/genres/:name"
+                render={({ match }) => {
+                  if (!movies) return <CardGroup className="main-view" />;
+                  return (
+                    <GenreView
+                      genre={
+                        movies.find((m) => m.Genre.Name === match.params.name)
+                          .Genre
+                      }
+                    />
+                  );
+                }}
+              />
+              <Route
+                path="/directors/:name"
+                render={({ match }) => {
+                  if (!movies) return <CardGroup className="main-view" />;
+                  return (
+                    <DirectorView
+                      director={
+                        movies.find(
+                          (m) => m.Director.Name === match.params.name
+                        ).Director
+                      }
+                    />
+                  );
+                }}
+              />
+              <Route exact
+                path="/users"
+                render={() => <ProfileView movies={movies} />}
+              />
+              
+              <Route
+                exact
+                path="/users/:Username"
+                render={() => {
+                  if (!user)
+                    return (
+                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                    );
+                  if (movies.length === 0) return <div className="main-view" />;
+                  return <ProfileView movies={movies} />;
+                }}
+              />
+            </div>
+          </CardGroup>
+        </div>
       </Router>
 
     );
@@ -144,7 +228,19 @@ render={() =>
   <ProfileUpdateView movies={movies} />}
   /> */}
 
+// new Router code 3.6
+{/* <Router basename="/client">
+<div className="main-view">
+  <Route exact path="/" render={() => {
+    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+    return <MoviesList movies={movies}/>;
+}} />
+  <Route path="/register" render={() => <RegistrationView />} />
+  <Route path="/movies/:movieId" render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>
+</div>
 
+
+</Router> */}
   // Old Code before redux and flux:
 
       // <Router basename="/client">

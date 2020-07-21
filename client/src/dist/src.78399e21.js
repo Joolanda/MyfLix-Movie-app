@@ -52062,22 +52062,29 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var _this$props = this.props,
-          movies = _this$props.movies,
-          favorites = _this$props.favorites;
+      var movies = this.props.movies;
       var _this$state = this.state,
           Favorites = _this$state.Favorites,
           Username = _this$state.Username,
           Email = _this$state.Email,
           Birthday = _this$state.Birthday;
       return _react.default.createElement(_reactBootstrap.Container, {
-        className: "profile-container"
+        className: "profile-update-container"
       }, _react.default.createElement(_reactBootstrap.Card, {
         className: "border-success text-white bg-secondary mb-3",
         style: {
           width: "20rem"
         }
-      }, _react.default.createElement(_reactBootstrap.Card.Title, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies id: ", Favorites), _react.default.createElement(_reactBootstrap.Button, {
+      }, _react.default.createElement(_reactBootstrap.Card.Title, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies id: ", Favorites, " "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies: ", _react.default.createElement("div", null, Favorites.length === 0 && _react.default.createElement("div", null, "Your favorite movies list is empty"), Favorites.length > 0 && movies.map(function (m) {
+        if (m._id === Favorites.find(function (m) {
+          return m === m._id;
+        })) {
+          return _react.default.createElement("div", {
+            className: "favorites-item",
+            key: m._id
+          }, m.Title);
+        }
+      }))), _react.default.createElement(_reactBootstrap.Button, {
         variant: "info",
         className: "delete-favorite",
         onClick: function onClick(e) {
@@ -52360,7 +52367,29 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         basename: "/client"
       }, _react.default.createElement("div", {
         className: "main-view"
-      }, _react.default.createElement(_reactRouterDom.Route, {
+      }, _react.default.createElement(_reactBootstrap.CardGroup, {
+        className: "card-group"
+      }, _react.default.createElement(_reactBootstrap.Navbar, {
+        bg: "success",
+        variant: "dark",
+        fixed: "top"
+      }, _react.default.createElement(_reactBootstrap.Navbar.Brand, {
+        as: _reactRouterDom.Link,
+        to: "/"
+      }, "MyFlix Movie"), _react.default.createElement(_reactBootstrap.Nav, {
+        className: "mr-auto"
+      }, _react.default.createElement(_reactBootstrap.Nav.Link, {
+        as: _reactRouterDom.Link,
+        to: "/"
+      }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
+        as: _reactRouterDom.Link,
+        to: "/users/".concat(user)
+      }, "Profile"), _react.default.createElement(_reactBootstrap.Nav.Link, {
+        onClick: function onClick(user) {
+          return _this3.onLoggedOut();
+        },
+        href: "/login"
+      }, "Logout"))), _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/",
         render: function render() {
@@ -52388,7 +52417,57 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             })
           });
         }
-      })));
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/genres/:name",
+        render: function render(_ref2) {
+          var match = _ref2.match;
+          if (!movies) return _react.default.createElement(_reactBootstrap.CardGroup, {
+            className: "main-view"
+          });
+          return _react.default.createElement(_genreView.GenreView, {
+            genre: movies.find(function (m) {
+              return m.Genre.Name === match.params.name;
+            }).Genre
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/directors/:name",
+        render: function render(_ref3) {
+          var match = _ref3.match;
+          if (!movies) return _react.default.createElement(_reactBootstrap.CardGroup, {
+            className: "main-view"
+          });
+          return _react.default.createElement(_directorView.DirectorView, {
+            director: movies.find(function (m) {
+              return m.Director.Name === match.params.name;
+            }).Director
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
+        path: "/users",
+        render: function render() {
+          return _react.default.createElement(_profileView.ProfileView, {
+            movies: movies
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
+        path: "/users/:Username",
+        render: function render() {
+          if (!user) return _react.default.createElement(_loginView.LoginView, {
+            onLoggedIn: function onLoggedIn(user) {
+              return _this3.onLoggedIn(user);
+            }
+          });
+          if (movies.length === 0) return _react.default.createElement("div", {
+            className: "main-view"
+          });
+          return _react.default.createElement(_profileView.ProfileView, {
+            movies: movies
+          });
+        }
+      })))));
     }
   }]);
 
@@ -52415,6 +52494,20 @@ path="/update/:Username"
 render={() => 
  <ProfileUpdateView movies={movies} />}
  /> */
+// new Router code 3.6
+
+{}
+/* <Router basename="/client">
+<div className="main-view">
+ <Route exact path="/" render={() => {
+   if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+   return <MoviesList movies={movies}/>;
+}} />
+ <Route path="/register" render={() => <RegistrationView />} />
+ <Route path="/movies/:movieId" render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>
+</div>
+
+</Router> */
 // Old Code before redux and flux:
 // <Router basename="/client">
 //   <div className="main-view">

@@ -117,6 +117,7 @@ export class ProfileView extends React.Component {
       });
   };
 
+
   // REMOVE favorite movie from User profile
   handleRemoveFavorite = (e, movie) => {
     e.preventDefault();
@@ -141,11 +142,11 @@ export class ProfileView extends React.Component {
   };
 
   render() {
-    const { movies, favorites } = this.props;
-    const { Favorites, Username, Email, Birthday } = this.state;
+    const { movies } = this.props;
+    const { Favorites,Username, Email, Birthday } = this.state;
 
     return (
-      <Container className="profile-container">
+      <Container className="profile-update-container">
         <Card
           className="border-success text-white bg-secondary mb-3"
           style={{ width: "20rem" }}
@@ -156,7 +157,28 @@ export class ProfileView extends React.Component {
             <Card.Text>Password: xxxxxx </Card.Text>
             <Card.Text>Email: {Email}</Card.Text>
             <Card.Text>Birthday: {Birthday}</Card.Text>
-            <Card.Text>Favorite Movies id: {Favorites}</Card.Text>
+            <Card.Text>Favorite Movies id: {Favorites} </Card.Text>
+            <Card.Text>Favorite Movies: <div>
+            {Favorites.length === 0 && 
+              <div>Your favorite movies list is empty</div>}
+            {Favorites.length > 0 &&
+              movies.map(m => {
+                if (m._id === Favorites.find((m) => m === m._id)) {
+                  return <div className="favorites-item" key={m._id}>{m.Title}
+                   </div>
+                        }
+                      })
+                    }
+                    </div>
+
+            </Card.Text>
+
+            
+            {/* favoriteMovieList.map((movie) => (
+                <div key={movie._id} className="fav-movies-button">
+                  <Link to={`/movies/${movie._id}`}>
+                    <Button variant="link">{movie.Title}</Button>
+                  </Link> */}
 
             {/* {favorites.length === 0 && (
               <div>Your favorite movies list is empty</div>
