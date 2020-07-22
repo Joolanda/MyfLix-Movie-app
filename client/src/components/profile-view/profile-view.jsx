@@ -63,24 +63,29 @@ export class ProfileView extends React.Component {
 
     axios
       .put(`https://myflix-movie.herokuapp.com/users/${username}`, {
-        headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${token}` },
         data: {
           Username: newUsername ? newUsername : this.state.Username,
-          Password: newPassword ? newPassword : this.state.Password,
+          Password: this.Password,
           Email: newEmail ? newEmail : this.state.Email,
           Birthday: newBirthday ? newBirthday : this.state.Birthday,
         },
       })
       .then((response) => {
-        localStorage.setItem("user", this.state.Username);
-        console.log(`${username} was updated`);
-        alert("your profile is successfully updated");
-        window.open(`/client/users/${username}`, "_self");
+        alert('your changes are saved!');
+        this.setState({
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: response.data.Birthday
+        })
+        localStorage.setItem('user', this.state.Username);
+        window.open(`/client/users/${username}`, '_self');
       })
-      .catch((e) => {
-        console.log("Error Updating User profile");
-      });
-  };
+      .catch(function (error) {
+        console.log(error);
+      })
+  }
   setUsername(input) {
     this.Username = input;
   }
@@ -142,7 +147,7 @@ export class ProfileView extends React.Component {
   };
 
   render() {
-    const { movies } = this.props;
+    const { movies, favorites } = this.props;
     const { Favorites,Username, Email, Birthday } = this.state;
 
     return (
@@ -158,8 +163,8 @@ export class ProfileView extends React.Component {
             <Card.Text>Email: {Email}</Card.Text>
             <Card.Text>Birthday: {Birthday}</Card.Text>
             <Card.Text>Favorite Movies id: {Favorites} </Card.Text>
-            <Card.Text>Favorite Movies: <div>
-            {Favorites.length === 0 && 
+            <Card.Text>Favorite Movies: </Card.Text>
+            {/* {Favorites.length === 0 && 
               <div>Your favorite movies list is empty</div>}
             {Favorites.length > 0 &&
               movies.map(m => {
@@ -168,45 +173,19 @@ export class ProfileView extends React.Component {
                    </div>
                         }
                       })
-                    }
+                    } */}
+                    {/* <div>
+                      {Favorites.length === 0 && 
+                      <span>No Movies added so far
+                     </span>}
                     </div>
-
-            </Card.Text>
-
-            
-            {/* favoriteMovieList.map((movie) => (
-                <div key={movie._id} className="fav-movies-button">
-                  <Link to={`/movies/${movie._id}`}>
-                    <Button variant="link">{movie.Title}</Button>
-                  </Link> */}
-
-            {/* {favorites.length === 0 && (
-              <div>Your favorite movies list is empty</div>
-            )}
-            <div className="favorites-container">
-              <ul className="favorites-list">
-                {favorites.length > 0 &&
-                  movies.map((movie) => {
-                    if (
-                      movie._id ===
-                      favorites.find((movie) => movie === movie._id)
-                    ) {
-                      return (
-                        <li className="favorites-item" key={movie._id}>
-                          {movie.Title}
-                          <Button
-                            size="sm"
-                            className="remove-favorite"
-                            onClick={(e) => this.handleRemoveFavorite(e, movie)}
-                          >
-                            Remove
-                          </Button>
-                        </li>
-                      );
-                    }
-                  })}
-              </ul>
-            </div> */}
+                    <div>
+                    {Favorites.length > 0 && Favorites.map(favorite => {
+                              JSON.parse(localStorage.getItem("movies")).find(
+                                movie => movie._id === favorite
+                              ).Title
+                            })}
+                    </div> */}
 
             <Button
               variant="info"
@@ -276,7 +255,9 @@ export class ProfileView extends React.Component {
                 variant="success" 
                 className="update" 
                 type="submit" 
-                size="sm">
+                size="sm"
+                onClick={(e) => this.handleProfileUpdate(e)}
+                >
                 Update
               </Button>
             </Form>

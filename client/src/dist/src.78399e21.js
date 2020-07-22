@@ -51939,17 +51939,24 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         },
         data: {
           Username: newUsername ? newUsername : _this.state.Username,
-          Password: newPassword ? newPassword : _this.state.Password,
+          Password: _this.Password,
           Email: newEmail ? newEmail : _this.state.Email,
           Birthday: newBirthday ? newBirthday : _this.state.Birthday
         }
       }).then(function (response) {
-        localStorage.setItem("user", _this.state.Username);
-        console.log("".concat(username, " was updated"));
-        alert("your profile is successfully updated");
-        window.open("/client/users/".concat(username), "_self");
-      }).catch(function (e) {
-        console.log("Error Updating User profile");
+        alert('your changes are saved!');
+
+        _this.setState({
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: response.data.Birthday
+        });
+
+        localStorage.setItem('user', _this.state.Username);
+        window.open("/client/users/".concat(username), '_self');
+      }).catch(function (error) {
+        console.log(error);
       });
     };
 
@@ -52062,7 +52069,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var movies = this.props.movies;
+      var _this$props = this.props,
+          movies = _this$props.movies,
+          favorites = _this$props.favorites;
       var _this$state = this.state,
           Favorites = _this$state.Favorites,
           Username = _this$state.Username,
@@ -52075,16 +52084,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         style: {
           width: "20rem"
         }
-      }, _react.default.createElement(_reactBootstrap.Card.Title, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies id: ", Favorites, " "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies: ", _react.default.createElement("div", null, Favorites.length === 0 && _react.default.createElement("div", null, "Your favorite movies list is empty"), Favorites.length > 0 && movies.map(function (m) {
-        if (m._id === Favorites.find(function (m) {
-          return m === m._id;
-        })) {
-          return _react.default.createElement("div", {
-            className: "favorites-item",
-            key: m._id
-          }, m.Title);
-        }
-      }))), _react.default.createElement(_reactBootstrap.Button, {
+      }, _react.default.createElement(_reactBootstrap.Card.Title, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies id: ", Favorites, " "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies: "), _react.default.createElement(_reactBootstrap.Button, {
         variant: "info",
         className: "delete-favorite",
         onClick: function onClick(e) {
@@ -52146,7 +52146,10 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         variant: "success",
         className: "update",
         type: "submit",
-        size: "sm"
+        size: "sm",
+        onClick: function onClick(e) {
+          return _this3.handleProfileUpdate(e);
+        }
       }, "Update")), _react.default.createElement(_reactBootstrap.Button, {
         variant: "danger",
         className: "delete-user",
@@ -52754,7 +52757,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50176" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50522" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
