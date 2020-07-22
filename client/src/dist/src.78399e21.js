@@ -51944,7 +51944,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
 
-    _this.handleProfileUpdate = function (e, newUsername, newPassword, newEmail, newBirthday) {
+    _this.handleProfileUpdate = function (e, newUsername, newEmail, newBirthday) {
       e.preventDefault();
       var username = localStorage.getItem("user");
       var token = localStorage.getItem("token");

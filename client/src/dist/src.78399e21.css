@@ -29,6 +29,7 @@
   padding: 20px;
   margin: auto;
   height: 100%;
+  cursor: pointer;
 }
 
 .movie-view-image {

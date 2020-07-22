@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./profile-view.scss";
 // bootstrap import
-import { Card, Button, Container, ButtonGroup, Form } from "react-bootstrap";
+import { Card, Button, Container, Form } from "react-bootstrap";
 
 export class ProfileView extends React.Component {
   constructor(props) {
@@ -52,7 +52,6 @@ export class ProfileView extends React.Component {
   handleProfileUpdate = (
     e,
     newUsername,
-    newPassword,
     newEmail,
     newBirthday
   ) => {
@@ -190,7 +189,7 @@ export class ProfileView extends React.Component {
             <Button
               variant="info"
               className="delete-favorite"
-              onClick={(e) => this.handleRemoveFavorite}
+              onClick={(e) => this. handleRemoveFavorite}
             >
               {" "}
               Delete favorite movies{" "}
