@@ -12,6 +12,7 @@ export function RegistrationView (props) {
 const [ username, createUsername ] = useState('');
 const [ password, createPassword ] = useState('');
 const [ email, createEmail ] = useState('');
+const [ birthday, createBirthday] = useState('');
 
 //if (user) return null;  
 
@@ -22,12 +23,13 @@ const handleRegister = (e) => {
     Username: username,
     Password: password,
     Email: email,
+    Birthday: birthday,
   })
   .then(response => {
     const data = response.data;
     alert('Your account has been created! Please login with your new username and password.');
     console.log(data);
-    window.open('/', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
+    window.open('/client', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
   })
   .catch(e => { 
   console.log('error user registration');
@@ -56,6 +58,10 @@ const handleRegister = (e) => {
               <Form-Text className="text-muted">
                  We'll never share your email with anyone else.
               </Form-Text>
+            </Form.Group> 
+            <Form.Group controlId="formBasicBirthday">              
+              <Form.Label>Birthday:</Form.Label> 
+              <Form.Control size="sm" type="date" placeholder="00/00/2000" value={birthday} onChange={e => createBirthday(e.target.value)}/>
             </Form.Group>  
               <Button variant="success" type="submit" onClick={handleRegister}>Register</Button>
                 <br></br>

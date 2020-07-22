@@ -51482,7 +51482,12 @@ function RegistrationView(props) {
   var _useState5 = (0, _react.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
       email = _useState6[0],
-      createEmail = _useState6[1]; //if (user) return null;  
+      createEmail = _useState6[1];
+
+  var _useState7 = (0, _react.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      birthday = _useState8[0],
+      createBirthday = _useState8[1]; //if (user) return null;  
 
 
   var handleRegister = function handleRegister(e) {
@@ -51491,12 +51496,13 @@ function RegistrationView(props) {
     _axios.default.post('https://myflix-movie.herokuapp.com/users', {
       Username: username,
       Password: password,
-      Email: email
+      Email: email,
+      Birthday: birthday
     }).then(function (response) {
       var data = response.data;
       alert('Your account has been created! Please login with your new username and password.');
       console.log(data);
-      window.open('/', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
+      window.open('/client', '_self'); // if backend validation is successful, the data will be logged in the console and the user will be redirected to the main view. 
     }).catch(function (e) {
       console.log('error user registration');
     });
@@ -51549,7 +51555,17 @@ function RegistrationView(props) {
     }
   }), _react.default.createElement("Form-Text", {
     className: "text-muted"
-  }, "We'll never share your email with anyone else.")), _react.default.createElement(_reactBootstrap.Button, {
+  }, "We'll never share your email with anyone else.")), _react.default.createElement(_reactBootstrap.Form.Group, {
+    controlId: "formBasicBirthday"
+  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Birthday:"), _react.default.createElement(_reactBootstrap.Form.Control, {
+    size: "sm",
+    type: "date",
+    placeholder: "00/00/2000",
+    value: birthday,
+    onChange: function onChange(e) {
+      return createBirthday(e.target.value);
+    }
+  })), _react.default.createElement(_reactBootstrap.Button, {
     variant: "success",
     type: "submit",
     onClick: handleRegister
