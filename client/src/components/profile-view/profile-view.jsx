@@ -17,6 +17,7 @@ export class ProfileView extends React.Component {
       birthday: null,
       favorites: [],
       movies: [],
+      validated: null,
     };
   }
   componentDidMount() {
@@ -55,6 +56,18 @@ export class ProfileView extends React.Component {
     newEmail,
     newBirthday
   ) => {
+    this.setState({
+      validated: true,
+    })
+
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      this.setState({
+        validated: true,
+      })
+      return;
+    }
     e.preventDefault();
 
     const username = localStorage.getItem("user");
@@ -163,6 +176,18 @@ export class ProfileView extends React.Component {
             <Card.Text>Birthday: {Birthday}</Card.Text>
             <Card.Text>Favorite Movies id: {Favorites} </Card.Text>
             <Card.Text>Favorite Movies: </Card.Text>
+            {/* {Favorites.length === 0 && <div>You have no favorite movies.</div>}
+            <div>
+              {Favorites.length > 0 &&
+                movies.map(movie => {
+                  if (_id === Favorites.find(favMovie => favMovie === _id)) {
+                  return <div className="favorites-item" key={_id}>{movie.Title}
+                    <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, _id)}>Remove</Button>
+                        </div>
+                         }
+                      })
+                }
+            </div>  */}
             {/* {Favorites.length === 0 && 
               <div>Your favorite movies list is empty</div>}
             {Favorites.length > 0 &&
@@ -201,7 +226,7 @@ export class ProfileView extends React.Component {
 
             <Card.Text>If you want to update your profile, you can use this form:</Card.Text>
             {" "}
-            <Form
+            <Form noValidate validated={validated}
               className="update-form"
               onSubmit={(e) =>
                 this.handleProfileUpdate(
@@ -313,3 +338,12 @@ draft C render={({match}) => movie={movies.find(m => m._id === match.params.movi
  movie={movies.find((m) => m._id === match.params.movieId) 
 fix birthday format="DD/MM/YYYY"  */
 }
+
+
+{/* <div>
+{favorites.length > 0 &&
+  movies.map(movie => {
+    if (_id === favorites.find(favMovie => favMovie === _id)) {
+      return <div className="favorites-item" key={_id}>{movie.Title}
+        <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, _id)}>Remove</Button>
+      </div> */}

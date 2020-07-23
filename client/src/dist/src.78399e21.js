@@ -51945,6 +51945,22 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
 
     _this.handleProfileUpdate = function (e, newUsername, newEmail, newBirthday) {
+      _this.setState({
+        validated: true
+      });
+
+      var form = e.currentTarget;
+
+      if (form.checkValidity() === false) {
+        e.preventDefault();
+
+        _this.setState({
+          validated: true
+        });
+
+        return;
+      }
+
       e.preventDefault();
       var username = localStorage.getItem("user");
       var token = localStorage.getItem("token");
@@ -52019,7 +52035,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       email: null,
       birthday: null,
       favorites: [],
-      movies: []
+      movies: [],
+      validated: null
     };
     return _this;
   }
@@ -52109,6 +52126,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }, " ", "Delete favorite movies", " "), _react.default.createElement("div", {
         className: "buttons-back-remove"
       }), _react.default.createElement("br", null), " ", _react.default.createElement(_reactBootstrap.Card.Text, null, "If you want to update your profile, you can use this form:"), " ", _react.default.createElement(_reactBootstrap.Form, {
+        noValidate: true,
+        validated: validated,
         className: "update-form",
         onSubmit: function onSubmit(e) {
           return _this3.handleProfileUpdate(e, _this3.Username, _this3.Password, _this3.Email, _this3.Birthday);
@@ -52214,6 +52233,15 @@ exports.ProfileView = ProfileView;
   draft C render={({match}) => movie={movies.find(m => m._id === match.params.movieId)}
   movie={movies.find((m) => m._id === match.params.movieId) 
   fix birthday format="DD/MM/YYYY"  */
+}
+{
+  /* <div>
+  {favorites.length > 0 &&
+   movies.map(movie => {
+     if (_id === favorites.find(favMovie => favMovie === _id)) {
+       return <div className="favorites-item" key={_id}>{movie.Title}
+         <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, _id)}>Remove</Button>
+       </div> */
 }
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./profile-view.scss":"components/profile-view/profile-view.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -52773,7 +52801,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50522" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50225" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
