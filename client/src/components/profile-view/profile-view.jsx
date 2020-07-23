@@ -274,8 +274,8 @@ export class ProfileView extends React.Component {
               size="sm"
               onClick={(e) => this.handleDeleteUser(e)}
             >
-              {" "}
-              Delete Profile{" "}
+
+              Delete Profile
             </Button>
           </Card.Body>
         </Card>

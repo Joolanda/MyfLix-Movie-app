@@ -52173,7 +52173,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick(e) {
           return _this3.handleDeleteUser(e);
         }
-      }, " ", "Delete Profile", " "))), _react.default.createElement(_reactRouterDom.Link, {
+      }, "Delete Profile"))), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "warning"
