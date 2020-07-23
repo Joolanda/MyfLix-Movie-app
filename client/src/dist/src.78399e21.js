@@ -51945,22 +51945,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
 
     _this.handleProfileUpdate = function (e, newUsername, newEmail, newBirthday) {
-      _this.setState({
-        validated: true
-      });
-
-      var form = e.currentTarget;
-
-      if (form.checkValidity() === false) {
-        e.preventDefault();
-
-        _this.setState({
-          validated: true
-        });
-
-        return;
-      }
-
       e.preventDefault();
       var username = localStorage.getItem("user");
       var token = localStorage.getItem("token");
@@ -52035,8 +52019,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       email: null,
       birthday: null,
       favorites: [],
-      movies: [],
-      validated: null
+      movies: []
     };
     return _this;
   }
@@ -52123,11 +52106,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick(e) {
           return _this3.handleRemoveFavorite;
         }
-      }, " ", "Delete favorite movies", " "), _react.default.createElement("div", {
+      }, "Delete favorite movies"), _react.default.createElement("div", {
         className: "buttons-back-remove"
-      }), _react.default.createElement("br", null), " ", _react.default.createElement(_reactBootstrap.Card.Text, null, "If you want to update your profile, you can use this form:"), " ", _react.default.createElement(_reactBootstrap.Form, {
-        noValidate: true,
-        validated: validated,
+      }), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Card.Text, null, "If you want to update your profile, you can use this form:"), _react.default.createElement(_reactBootstrap.Form, {
         className: "update-form",
         onSubmit: function onSubmit(e) {
           return _this3.handleProfileUpdate(e, _this3.Username, _this3.Password, _this3.Email, _this3.Birthday);

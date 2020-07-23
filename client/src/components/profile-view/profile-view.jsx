@@ -17,7 +17,6 @@ export class ProfileView extends React.Component {
       birthday: null,
       favorites: [],
       movies: [],
-      validated: null,
     };
   }
   componentDidMount() {
@@ -56,18 +55,6 @@ export class ProfileView extends React.Component {
     newEmail,
     newBirthday
   ) => {
-    this.setState({
-      validated: true,
-    })
-
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      this.setState({
-        validated: true,
-      })
-      return;
-    }
     e.preventDefault();
 
     const username = localStorage.getItem("user");
@@ -216,18 +203,14 @@ export class ProfileView extends React.Component {
               className="delete-favorite"
               onClick={(e) => this. handleRemoveFavorite}
             >
-              {" "}
-              Delete favorite movies{" "}
+              Delete favorite movies
             </Button>
 
             <div className="buttons-back-remove"></div>
             <br />
-            {" "}
 
             <Card.Text>If you want to update your profile, you can use this form:</Card.Text>
-            {" "}
-            <Form noValidate validated={validated}
-              className="update-form"
+            <Form className="update-form"
               onSubmit={(e) =>
                 this.handleProfileUpdate(
                   e,
