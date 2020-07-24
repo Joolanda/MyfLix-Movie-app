@@ -138,7 +138,7 @@ export class ProfileView extends React.Component {
       )
       .then((response) => {
         console.log(`${movie.Title} was removed from Favorites`);
-        window.open("_self");
+        window.open("/", "_self");
       })
       .catch((e) => {
         console.log(err);
@@ -318,7 +318,7 @@ version B return code: <div className="my-favorites"> </div>
                      ))} 
 
 draft C render={({match}) => movie={movies.find(m => m._id === match.params.movieId)}
- movie={movies.find((m) => m._id === match.params.movieId) 
+
 fix birthday format="DD/MM/YYYY"  */
 }
 

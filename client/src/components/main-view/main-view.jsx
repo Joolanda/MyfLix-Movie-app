@@ -104,10 +104,9 @@ class MainView extends React.Component {
     // Add more allowed paths
     const allowedPaths = ['/register', '/login', '/'];
     if (!user && !allowedPaths.includes(currentPath)) {
-    if (currentPath !== '/register' && !user) {
     return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
     }
-  }
+  
     
     // if (!user) return <MainView /> />;
     // "Next, you need to move this line of the render method"and place it inside the route path (path="/")
@@ -135,22 +134,24 @@ class MainView extends React.Component {
                </Nav>
              </Navbar>
              <div>
-               <Route
-                exact
-                path="/"
-                render={() => {
-                  if (!user)
-                    return (
-                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
-                    );
-                  return <MoviesList movies={movies}/>;
-                }} />
-
+             <Route 
+              exact path="/" 
+              render={() => {
+                 if (!user) 
+                return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+                return <MoviesList movies={movies}/>;
+               }} 
+              />  
+             <Route 
+                path="/login" 
+                render={() => 
+                  <LoginView onLoggedIn={user => this.onLoggedIn(user)} />}
+              />
               <Route 
                  path="/register" 
                  render={() => 
                   <RegistrationView />} />
-
+              
               <Route
                 path="/movies/:movieId"
                 render={({ match }) => (

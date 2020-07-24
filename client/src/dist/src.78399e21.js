@@ -52007,7 +52007,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         }
       }).then(function (response) {
         console.log("".concat(movie.Title, " was removed from Favorites"));
-        window.open("_self");
+        window.open("/", "_self");
       }).catch(function (e) {
         console.log(err);
       });
@@ -52212,7 +52212,6 @@ exports.ProfileView = ProfileView;
                        </div>
                      ))} 
   draft C render={({match}) => movie={movies.find(m => m._id === match.params.movieId)}
-  movie={movies.find((m) => m._id === match.params.movieId) 
   fix birthday format="DD/MM/YYYY"  */
 }
 {
@@ -52377,13 +52376,11 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       var allowedPaths = ['/register', '/login', '/'];
 
       if (!user && !allowedPaths.includes(currentPath)) {
-        if (currentPath !== '/register' && !user) {
-          return _react.default.createElement(_loginView.LoginView, {
-            onLoggedIn: function onLoggedIn(user) {
-              return _this3.onLoggedIn(user);
-            }
-          });
-        }
+        return _react.default.createElement(_loginView.LoginView, {
+          onLoggedIn: function onLoggedIn(user) {
+            return _this3.onLoggedIn(user);
+          }
+        });
       } // if (!user) return <MainView /> />;
       // "Next, you need to move this line of the render method"and place it inside the route path (path="/")
 
@@ -52428,6 +52425,15 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
           return _react.default.createElement(_moviesList.default, {
             movies: movies
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/login",
+        render: function render() {
+          return _react.default.createElement(_loginView.LoginView, {
+            onLoggedIn: function onLoggedIn(user) {
+              return _this3.onLoggedIn(user);
+            }
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
@@ -52782,7 +52788,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50225" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50464" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
