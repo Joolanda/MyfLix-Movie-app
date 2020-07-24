@@ -237,7 +237,8 @@ app.get(
   Email: String,
   (required)
   Birthday: Date
-}*/
+}
+*/
 app.put(
   "/users/:Username",
   passport.authenticate("jwt", {
