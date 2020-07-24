@@ -15,7 +15,6 @@ export class ProfileUpdateView extends React.Component {
       password: null,
       email: null,
       birthday: null,
-      favoriteMovies[];
       favorites: [],
       movies: [],
     };
@@ -42,7 +41,6 @@ export class ProfileUpdateView extends React.Component {
           Email: response.data.Email,
           Birthday: response.data.Birthday,
           Favorites: response.data.Favorites,
-          FavoriteMovies: response.data.FavoriteMovies,
         });
       })
       .catch(function (err) {
@@ -138,7 +136,6 @@ export class ProfileUpdateView extends React.Component {
             <Card.Text>Email: {Email}</Card.Text>
             <Card.Text>Birthday: {Birthday}</Card.Text>
             <Card.Text>Favorites id: {Favorites}</Card.Text>
-            <Card.Text>FavoriteMovies id: {FavoriteMovies}</Card.Text>
 
             <Form
               className="update-form"
