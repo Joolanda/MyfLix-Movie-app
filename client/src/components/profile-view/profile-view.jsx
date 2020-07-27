@@ -98,6 +98,7 @@ export class ProfileView extends React.Component {
     this.Birthday = input;
   }
 
+
   //DELETE requests for deregistering
   handleDeleteUser = (e) => {
     e.preventDefault();
@@ -133,9 +134,8 @@ export class ProfileView extends React.Component {
       .delete(
         `https://myflix-movie.herokuapp.com/users/${username}/Movies/:${movie}`,
         {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
         console.log(`${movie.Title} was removed from Favorites`);
         window.open("/", "_self");
@@ -146,9 +146,13 @@ export class ProfileView extends React.Component {
   };
 
   render() {
-    const { movies, favorites } = this.props;
+    const { movies } = this.props;
+
     const { Favorites,Username, Email, Birthday } = this.state;
 
+    if (favorites.length === 0) {
+      return <div>You have no favorite movies.</div>}
+            
     return (
       <Container className="profile-update-container">
         <Card
@@ -162,8 +166,8 @@ export class ProfileView extends React.Component {
             <Card.Text>Password: xxxxxx </Card.Text>
             <Card.Text>Email: {Email}</Card.Text>
             <Card.Text>Birthday: {Birthday}</Card.Text>
-            <Card.Text>Favorite Movies id: {Favorites} </Card.Text>
-      
+            <Card.Text> {Favorites} </Card.Text>
+
             {/* {Favorites.length === 0 && <div>You have no favorite movies.</div>}
             <div>
               {Favorites.length > 0 &&
@@ -207,8 +211,6 @@ export class ProfileView extends React.Component {
               Delete favorite movies
             </Button>
 
-            <div className="buttons-back-remove"></div>
-            <br />
 
             <Card.Text>If you want to update your profile, you can use this form:</Card.Text>
             <Form className="update-form"

@@ -189,6 +189,9 @@ class MainView extends React.Component {
                   );
                 }}
               />
+
+              <Route path="/users/:Username/movies/:_Id" render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>      
+
               <Route exact
                 path="/users"
                 render={() => <ProfileView movies={movies} />}

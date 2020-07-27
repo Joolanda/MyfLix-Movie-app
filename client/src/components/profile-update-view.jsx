@@ -120,7 +120,7 @@ export class ProfileUpdateView extends React.Component {
 
 
   render() {
-    const { movies, favorites } = this.props;
+    const { movies } = this.props;
     const { Favorites, Username, Email, Birthday } = this.state;
 
     return (

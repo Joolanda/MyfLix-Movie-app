@@ -19,10 +19,20 @@ function movies(state = [], action) {
       return state;
   }
 }
+
+function users(state = [], action) {
+  schwitch (action.type) {
+    case SET_USERS:
+      return action.value;
+    default:
+      return state;
+  }
+}
 // Redux comes with a built-in function to split into smaller reducers
 const moviesApp = combineReducers({
   visibilityFilter,
-  movies
+  movies,
+  users
 });
 
 // function moviesApp(state = {}, action) {

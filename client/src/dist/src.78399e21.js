@@ -52085,14 +52085,17 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var _this$props = this.props,
-          movies = _this$props.movies,
-          favorites = _this$props.favorites;
+      var movies = this.props.movies;
       var _this$state = this.state,
           Favorites = _this$state.Favorites,
           Username = _this$state.Username,
           Email = _this$state.Email,
           Birthday = _this$state.Birthday;
+
+      if (favorites.length === 0) {
+        return _react.default.createElement("div", null, "You have no favorite movies.");
+      }
+
       return _react.default.createElement(_reactBootstrap.Container, {
         className: "profile-update-container"
       }, _react.default.createElement(_reactBootstrap.Card, {
@@ -52100,15 +52103,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         style: {
           width: "20rem"
         }
-      }, _react.default.createElement(_reactBootstrap.Card.Title, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, "Favorite Movies id: ", Favorites, " "), _react.default.createElement(_reactBootstrap.Button, {
+      }, _react.default.createElement(_reactBootstrap.Card.Title, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, " ", Favorites, " "), _react.default.createElement(_reactBootstrap.Button, {
         variant: "info",
         className: "delete-favorite",
         onClick: function onClick(e) {
           return _this3.handleRemoveFavorite;
         }
-      }, "Delete favorite movies"), _react.default.createElement("div", {
-        className: "buttons-back-remove"
-      }), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Card.Text, null, "If you want to update your profile, you can use this form:"), _react.default.createElement(_reactBootstrap.Form, {
+      }, "Delete favorite movies"), _react.default.createElement(_reactBootstrap.Card.Text, null, "If you want to update your profile, you can use this form:"), _react.default.createElement(_reactBootstrap.Form, {
         className: "update-form",
         onSubmit: function onSubmit(e) {
           return _this3.handleProfileUpdate(e, _this3.Username, _this3.Password, _this3.Email, _this3.Birthday);
@@ -52478,6 +52479,16 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/users/:Username/movies/:_Id",
+        render: function render(_ref4) {
+          var match = _ref4.match;
+          return _react.default.createElement(_movieView.MovieView, {
+            movie: movies.find(function (m) {
+              return m._id === match.params.movieId;
+            })
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/users",
         render: function render() {
@@ -52788,7 +52799,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50564" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49976" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
