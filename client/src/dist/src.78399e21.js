@@ -36385,16 +36385,26 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.setMovies = setMovies;
+exports.setUsers = setUsers;
 exports.setFilter = setFilter;
-exports.SET_FILTER = exports.SET_MOVIES = void 0;
+exports.SET_USERS = exports.SET_FILTER = exports.SET_MOVIES = void 0;
 var SET_MOVIES = 'SET_MOVIES';
 exports.SET_MOVIES = SET_MOVIES;
 var SET_FILTER = 'SET_FILTER';
 exports.SET_FILTER = SET_FILTER;
+var SET_USERS = ' SET_USERS';
+exports.SET_USERS = SET_USERS;
 
 function setMovies(value) {
   return {
     type: SET_MOVIES,
+    value: value
+  };
+}
+
+function setUsers(value) {
+  return {
+    type: SET_USERS,
     value: value
   };
 }
@@ -52085,16 +52095,15 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var movies = this.props.movies;
+      var _this$props = this.props,
+          movies = _this$props.movies,
+          favorites = _this$props.favorites;
       var _this$state = this.state,
           Favorites = _this$state.Favorites,
           Username = _this$state.Username,
           Email = _this$state.Email,
-          Birthday = _this$state.Birthday;
-
-      if (favorites.length === 0) {
-        return _react.default.createElement("div", null, "You have no favorite movies.");
-      }
+          Birthday = _this$state.Birthday; // if (favorites.length === 0) {
+      //   return <div>You have no favorite movies.</div>}
 
       return _react.default.createElement(_reactBootstrap.Container, {
         className: "profile-update-container"
@@ -52103,7 +52112,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         style: {
           width: "20rem"
         }
-      }, _react.default.createElement(_reactBootstrap.Card.Title, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, " ", Favorites, " "), _react.default.createElement(_reactBootstrap.Button, {
+      }, _react.default.createElement(_reactBootstrap.Card.Title, null, " My Flix Profile "), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", Username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Password: xxxxxx "), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, " My favorite movies: ", Favorites, " "), _react.default.createElement(_reactBootstrap.Button, {
         variant: "info",
         className: "delete-favorite",
         onClick: function onClick(e) {
@@ -52241,6 +52250,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _axios = _interopRequireDefault(require("axios"));
 
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
 var _reactRedux = require("react-redux");
 
 var _reactRouterDom = require("react-router-dom");
@@ -52301,7 +52312,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, MainView);
 
-    _this = _super.call(this);
+    _this = _super.call(this); //  old code before redux users, remove?:
+
     _this.state = {
       user: null
     };
@@ -52316,7 +52328,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       if (accessToken !== null) {
         this.setState({
           user: localStorage.getItem("user")
-        });
+        }); // add new code?? this.props.setusers(users);
+
         this.getMovies(accessToken);
       }
     } // // new method get movies, new code Task 3.5, make a request to the movies endpoint
@@ -52343,10 +52356,12 @@ var MainView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "onLoggedIn",
     value: function onLoggedIn(authData) {
-      console.log(authData);
+      console.log(authData); // old code before redux users, remove??:
+
       this.setState({
         user: authData.user.Username
-      });
+      }); // add new code?? this.props.setUsers(authData.user.Username);
+
       localStorage.setItem("token", authData.token);
       localStorage.setItem("user", authData.user.Username);
       this.getMovies(authData.token);
@@ -52356,10 +52371,12 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     key: "onLoggedOut",
     value: function onLoggedOut() {
       localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      localStorage.removeItem("user"); // old code before redux users: 
+
       this.setState({
         user: null
-      });
+      }); // add new code?? this.props.setUsers(!user)
+
       window.open("/", "_self");
     }
   }, {
@@ -52479,6 +52496,14 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
+        path: "/users",
+        render: function render() {
+          return _react.default.createElement(_profileView.ProfileView, {
+            movies: movies
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/users/:Username/movies/:_Id",
         render: function render(_ref4) {
           var match = _ref4.match;
@@ -52486,14 +52511,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             movie: movies.find(function (m) {
               return m._id === match.params.movieId;
             })
-          });
-        }
-      }), _react.default.createElement(_reactRouterDom.Route, {
-        exact: true,
-        path: "/users",
-        render: function render() {
-          return _react.default.createElement(_profileView.ProfileView, {
-            movies: movies
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
@@ -52522,130 +52539,39 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    movies: state.movies
+    movies: state.movies,
+    users: state.users
   };
 }; // #4
 
 
 var _default = (0, _reactRedux.connect)(mapStateToProps, {
-  setMovies: _actions.setMovies
-})(MainView); // feedback on
+  setMovies: _actions.setMovies,
+  setUsers: _actions.setUsers
+})(MainView); // MainView.propTypes = {
+//   movies: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       _id: PropTypes.string.isRequired,
+//       Title: PropTypes.string.isRequired,
+//       Description: PropTypes.string.isRequired,
+//       Genre: PropTypes.shape({
+//         Name: PropTypes.string.isRequired,
+//         Description: PropTypes.string.isRequired
+//       }),
+//       Director: PropTypes.shape({
+//         Name: PropTypes.string.isRequired,
+//         Bio: PropTypes.string.isRequired,
+//       }),
+//       ImagePath: PropTypes.string.isRequired,
+//       Featured: PropTypes.bool.isRequired
+//     })
+//   ),
+//   user: PropTypes.string.isRequired
+// };
 
 
 exports.default = _default;
-{}
-/* <Route
-path="/update/:Username"
-render={() => 
- <ProfileUpdateView movies={movies} />}
- /> */
-// new Router code 3.6
-
-{}
-/* <Router basename="/client">
-<div className="main-view">
- <Route exact path="/" render={() => {
-   if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-   return <MoviesList movies={movies}/>;
-}} />
- <Route path="/register" render={() => <RegistrationView />} />
- <Route path="/movies/:movieId" render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>
-</div>
-
-</Router> */
-// Old Code before redux and flux:
-// <Router basename="/client">
-//   <div className="main-view">
-//     <CardGroup className="card-group">
-//       <Navbar bg="success" variant="dark" fixed="top">
-//         <Navbar.Brand as={Link} to="/">
-//           MyFlix Movie
-//         </Navbar.Brand>
-//         <Nav className="mr-auto">
-//           <Nav.Link as={Link} to="/">
-//             Home
-//           </Nav.Link>
-//           <Nav.Link as={Link} to={`/users/${user}`}>
-//             Profile
-//           </Nav.Link>
-//           <Nav.Link onClick={(user) => this.onLoggedOut()} href="/login">
-//             Logout
-//           </Nav.Link>
-//         </Nav>
-//       </Navbar>
-//       <div>
-//         <Route
-//           exact
-//           path="/"
-//           render={() => {
-//             if (!user)
-//               return (
-//                 <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
-//               );
-//             return <MoviesList movies={movies}/>;
-//           }} />
-//         <Route 
-//            path="/register" 
-//            render={() => 
-//             <RegistrationView />} />
-//         <Route
-//           path="/movies/:movieId"
-//           render={({ match }) => (
-//             <MovieView
-//               movie={movies.find((m) => m._id === match.params.movieId)}
-//             />
-//           )}
-//         />
-//         <Route
-//           path="/genres/:name"
-//           render={({ match }) => {
-//             if (!movies) return <CardGroup className="main-view" />;
-//             return (
-//               <GenreView
-//                 genre={
-//                   movies.find((m) => m.Genre.Name === match.params.name)
-//                     .Genre
-//                 }
-//               />
-//             );
-//           }}
-//         />
-//         <Route
-//           path="/directors/:name"
-//           render={({ match }) => {
-//             if (!movies) return <CardGroup className="main-view" />;
-//             return (
-//               <DirectorView
-//                 director={
-//                   movies.find(
-//                     (m) => m.Director.Name === match.params.name
-//                   ).Director
-//                 }
-//               />
-//             );
-//           }}
-//         />
-//         <Route exact
-//           path="/users"
-//           render={() => <ProfileView movies={movies} />}
-//         />
-//         <Route
-//           exact
-//           path="/users/:Username"
-//           render={() => {
-//             if (!user)
-//               return (
-//                 <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
-//               );
-//             if (movies.length === 0) return <div className="main-view" />;
-//             return <ProfileView movies={movies} />;
-//           }}
-//         />
-//       </div>
-//     </CardGroup>
-//   </div>
-// </Router>
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../../actions/actions":"actions/actions.js","../movies-list/movies-list":"components/movies-list/movies-list.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./main-view.scss":"components/main-view/main-view.scss"}],"reducers/reducers.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","prop-types":"../node_modules/prop-types/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../../actions/actions":"actions/actions.js","../movies-list/movies-list":"components/movies-list/movies-list.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./main-view.scss":"components/main-view/main-view.scss"}],"reducers/reducers.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52681,12 +52607,26 @@ function movies() {
     default:
       return state;
   }
+}
+
+function users() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions.SET_USERS:
+      return action.value;
+
+    default:
+      return state;
+  }
 } // Redux comes with a built-in function to split into smaller reducers
 
 
 var moviesApp = (0, _redux.combineReducers)({
   visibilityFilter: visibilityFilter,
-  movies: movies
+  movies: movies,
+  users: users
 }); // function moviesApp(state = {}, action) {
 //   return {
 //     visibilityFilter: visibilityFilter(state.visibilityFilter, action),
@@ -52799,7 +52739,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49976" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60279" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -146,12 +146,12 @@ export class ProfileView extends React.Component {
   };
 
   render() {
-    const { movies } = this.props;
+    const { movies, favorites } = this.props;
 
     const { Favorites,Username, Email, Birthday } = this.state;
 
-    if (favorites.length === 0) {
-      return <div>You have no favorite movies.</div>}
+    // if (favorites.length === 0) {
+    //   return <div>You have no favorite movies.</div>}
             
     return (
       <Container className="profile-update-container">
@@ -166,7 +166,7 @@ export class ProfileView extends React.Component {
             <Card.Text>Password: xxxxxx </Card.Text>
             <Card.Text>Email: {Email}</Card.Text>
             <Card.Text>Birthday: {Birthday}</Card.Text>
-            <Card.Text> {Favorites} </Card.Text>
+            <Card.Text> My favorite movies: {Favorites} </Card.Text>
 
             {/* {Favorites.length === 0 && <div>You have no favorite movies.</div>}
             <div>

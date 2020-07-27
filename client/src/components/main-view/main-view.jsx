@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
@@ -36,20 +37,20 @@ import "./main-view.scss";
 class MainView extends React.Component {
   constructor() {
     super();
+  //  old code before redux users, remove?:
+  this.state = {		  
+    user: null,	 
+     };		   
   }
 
-  //  old code before redux users:
-  //this.state = {
-  //   user: null,
-  // };
-  //}
-
+  
   componentDidMount() {
     let accessToken = localStorage.getItem("token");
     if (accessToken !== null) {
-  //  old code before redux users:   this.setState({
-  //      user: localStorage.getItem("user"), });
-      this.props.setusers(users);
+      this.setState({
+        user: localStorage.getItem("user"),
+      });
+      // add new code?? this.props.setusers(users);
       this.getMovies(accessToken);
     }
   }
@@ -74,11 +75,11 @@ class MainView extends React.Component {
 
   onLoggedIn(authData) {
     console.log(authData);
-    // old code before redux users:
-    // this.setState({
-    //user: authData.user.Username,
-    // });
-    this.props.setUsers(authData.user.Username);
+    // old code before redux users, remove??:
+    this.setState({
+    user: authData.user.Username,
+    });
+    // add new code?? this.props.setUsers(authData.user.Username);
 
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
@@ -91,17 +92,17 @@ class MainView extends React.Component {
     localStorage.removeItem("user");
 
     // old code before redux users: 
-    // this.setState({
-    //  user: null,
-    //});
-    this.props.setUsers(!user)
+     this.setState({
+      user: null,
+    });
+    // add new code?? this.props.setUsers(!user)
     window.open("/", "_self");
   }
 
   render() {
 
     // #2
-    let { movies, user } = this.props;
+    let { movies } = this.props;
     let { user } = this.state;
 
     let username = localStorage.getItem("user");
@@ -202,6 +203,7 @@ class MainView extends React.Component {
                 render={() => <ProfileView movies={movies} />}
               />
               
+              <Route path="/users/:Username/movies/:_Id" render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>   
               <Route
                 exact
                 path="/users/:Username"
@@ -229,3 +231,26 @@ let mapStateToProps = state => {
 }
 // #4
 export default connect(mapStateToProps, { setMovies, setUsers } )(MainView);
+
+// MainView.propTypes = {
+
+//   movies: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       _id: PropTypes.string.isRequired,
+//       Title: PropTypes.string.isRequired,
+//       Description: PropTypes.string.isRequired,
+//       Genre: PropTypes.shape({
+//         Name: PropTypes.string.isRequired,
+//         Description: PropTypes.string.isRequired
+//       }),
+//       Director: PropTypes.shape({
+//         Name: PropTypes.string.isRequired,
+//         Bio: PropTypes.string.isRequired,
+
+//       }),
+//       ImagePath: PropTypes.string.isRequired,
+//       Featured: PropTypes.bool.isRequired
+//     })
+//   ),
+//   user: PropTypes.string.isRequired
+// };
