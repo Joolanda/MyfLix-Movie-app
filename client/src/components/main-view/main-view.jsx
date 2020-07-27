@@ -36,6 +36,7 @@ import "./main-view.scss";
 class MainView extends React.Component {
   constructor() {
     super();
+  }
 
   //  old code before redux users:
   //this.state = {
