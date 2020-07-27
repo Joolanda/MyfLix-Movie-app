@@ -22,7 +22,7 @@ function movies(state = [], action) {
 
 function users(state = [], action) {
   switch (action.type) {
-    case SET_USERS;
+    case SET_USERS:
       return action.value;
     default:
       return state;

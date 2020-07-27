@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // #0
-import { setMovies } from '../../actions/actions';
+import { setMovies, setUsers } from '../../actions/actions';
 
 import { Link } from "react-router-dom";
 
@@ -220,10 +220,10 @@ class MainView extends React.Component {
 
 // #3
 let mapStateToProps = state => {
-  return { movies: state.movies}
+  return { movies: state.movies, users: state.users }
 }
 // #4
-export default connect(mapStateToProps, { setMovies } )(MainView);
+export default connect(mapStateToProps, { setMovies, setUsers } )(MainView);
 // feedback on
 
 {/* <Route
