@@ -21,8 +21,8 @@ function movies(state = [], action) {
 }
 
 function users(state = [], action) {
-  schwitch (action.type) {
-    case SET_USERS:
+  switch (action.type) {
+    case SET_USERS;
       return action.value;
     default:
       return state;
