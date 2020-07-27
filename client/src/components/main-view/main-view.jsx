@@ -37,17 +37,18 @@ class MainView extends React.Component {
   constructor() {
     super();
 
-    this.state = {
-      user: null,
-    };
-  }
+  //  old code before redux users:
+  //this.state = {
+  //   user: null,
+  // };
+  //}
 
   componentDidMount() {
     let accessToken = localStorage.getItem("token");
     if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem("user"),
-      });
+  //  old code before redux users:   this.setState({
+  //      user: localStorage.getItem("user"), });
+      this.props.setusers(users);
       this.getMovies(accessToken);
     }
   }
@@ -72,9 +73,11 @@ class MainView extends React.Component {
 
   onLoggedIn(authData) {
     console.log(authData);
-    this.setState({
-    user: authData.user.Username,
-    });
+    // old code before redux users:
+    // this.setState({
+    //user: authData.user.Username,
+    // });
+    this.props.setUsers(authData.user.Username);
 
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
@@ -85,16 +88,19 @@ class MainView extends React.Component {
   onLoggedOut() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    this.setState({
-      user: null,
-    });
+
+    // old code before redux users: 
+    // this.setState({
+    //  user: null,
+    //});
+    this.props.setUsers(!user)
     window.open("/", "_self");
   }
 
   render() {
 
     // #2
-    let { movies } = this.props;
+    let { movies, user } = this.props;
     let { user } = this.state;
 
     let username = localStorage.getItem("user");
