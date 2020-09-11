@@ -5,6 +5,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const app = express();
+const path = require("path");
 const { check, validationResult } = require("express-validator");
 let allowedOrigins = ["http://localhost:1234", "*"]; // CORS origin sites to be given access
 
@@ -12,8 +13,12 @@ let allowedOrigins = ["http://localhost:1234", "*"]; // CORS origin sites to be 
 app.use(bodyParser.json()); // JSON Parsing
 app.use(morgan("common")); // logging with Morgan
 app.use(express.static("public")); //retrieves files from public folder
+app.use("/client", express.static(path.join(__dirname, "client", "dist"))); // add this code right after the line app.use(express.static("public"));. task 3.6 prep for hosting
 app.use(cors());
 
+app.get("/client/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 // // routes all requests for the client to 'dist' folder..next lines are for handlesubmit loginview task 3.5
 //  app.use('/client', express.static(path.join(__dirname, 'client', 'dist'))); 
 // // all routes to the React client
