@@ -1,0 +1,67 @@
+.movie-card {
+  width: 100%;
+  min-width: 330;
+  padding: 20px;
+  margin: auto;
+  height: 100%;
+}
+.login-container {
+  width: 100%;
+  max-width: 330px;
+  padding: 20px;
+  margin: auto;
+  height: 100%;
+}
+.registration-container {
+  width: 100%;
+  max-width: 330px;
+  padding: 20px;
+  margin: auto;
+  height: 100%;
+}
+
+.form-group {
+  margin-top: 40px;
+}
+.movie-view {
+  width: 100%;
+  min-width: 330;
+  padding: 20px;
+  margin: auto;
+  height: 100%;
+  cursor: pointer;
+}
+
+.movie-view-image {
+  padding: 20px;
+}
+.director-view {
+  width: 100%;
+  min-width: 330;
+  padding: 20px;
+  margin: auto;
+  height: 100%;
+}
+.genre-view {
+  width: 100%;
+  min-width: 330;
+  padding: 20px;
+  margin: auto;
+  height: 100%;
+}
+.profile-container {
+  width: 100%;
+  min-width: 330;
+  padding: 20px;
+  margin: auto;
+  height: 100%;
+}
+.app-container {
+  font-family: "Roboto", sans-serif;
+}
+
+.my-flix {
+  color: steelblue;
+}
+
+/*# sourceMappingURL=/src.78399e21.css.map */

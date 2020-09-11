@@ -167,42 +167,7 @@ export class ProfileView extends React.Component {
             <Card.Text>Email: {Email}</Card.Text>
             <Card.Text>Birthday: {Birthday}</Card.Text>
             <Card.Text> My favorite movies: {Favorites} </Card.Text>
-
-            {/* {Favorites.length === 0 && <div>You have no favorite movies.</div>}
-            <div>
-              {Favorites.length > 0 &&
-                movies.map(movie => {
-                  if (_id === Favorites.find(favMovie => favMovie === _id)) {
-                  return <div className="favorites-item" key={_id}>{movie.Title}
-                    <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, _id)}>Remove</Button>
-                        </div>
-                         }
-                      })
-                }
-            </div>  */}
-            {/* {Favorites.length === 0 && 
-              <div>Your favorite movies list is empty</div>}
-            {Favorites.length > 0 &&
-              movies.map(m => {
-                if (m._id === Favorites.find((m) => m === m._id)) {
-                  return <div className="favorites-item" key={m._id}>{m.Title}
-                   </div>
-                        }
-                      })
-                    } */}
-                    {/* <div>
-                      {Favorites.length === 0 && 
-                      <span>No Movies added so far
-                     </span>}
-                    </div>
-                    <div>
-                    {Favorites.length > 0 && Favorites.map(favorite => {
-                              JSON.parse(localStorage.getItem("movies")).find(
-                                movie => movie._id === favorite
-                              ).Title
-                            })}
-                    </div> */}
-
+            
             <Button
               variant="info"
               className="delete-favorite"
@@ -289,47 +254,3 @@ export class ProfileView extends React.Component {
     );
   }
 }
-
-{
-  /* version A return code:  {favorites.length  === 0 && (<div>Your favorite movies list is empty</div>)}
-                      <div className="favorites-container">
-                          <ul className="favorites-list">
-                              {Favorites.length > 0 && movies.map(movie => {
-                                if (movie._id === Favorites.find(fav => fav === movie._id)) {
-                                return <li className="favorites-item" key={movie._id}>{movie.Title}
-                                <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie)>Remove</Button>
-                                      </li>
-                                 }
-                                })
-                               }
-                            </ul>
-                          </div> 
- 
-version B render code: display favorite movie code
-      const favoritesList = movies.filter((movie) =>
-         Favorites.includes(_id)
-         );
-
-
-version B return code: <div className="my-favorites"> </div>
-                       {favoritesList.map((movie) => (
-                       <div key={movie._id} className="favorites-button">
-                       <Link to={`/movies/:${movie._id}`}>
-                          <Button variant="link">{movie.Title}</Button>
-                        </Link> 
-                       </div>
-                     ))} 
-
-draft C render={({match}) => movie={movies.find(m => m._id === match.params.movieId)}
-
-fix birthday format="DD/MM/YYYY"  */
-}
-
-
-{/* <div>
-{favorites.length > 0 &&
-  movies.map(movie => {
-    if (_id === favorites.find(favMovie => favMovie === _id)) {
-      return <div className="favorites-item" key={_id}>{movie.Title}
-        <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, _id)}>Remove</Button>
-      </div> */}
