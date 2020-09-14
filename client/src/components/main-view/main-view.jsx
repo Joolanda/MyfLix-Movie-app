@@ -110,7 +110,7 @@ class MainView extends React.Component {
     // Allowed or restricted pages: Currentpath to check which page the user is currently on
     const currentPath = window.location.pathname;
     // Add more allowed paths
-    const allowedPaths = ['/register', '/login', '/'];
+    const allowedPaths = ['/register', '/login', '/client/register', '/'];
     if (!user && !allowedPaths.includes(currentPath)) {
     return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
     }

@@ -52353,7 +52353,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
       var currentPath = window.location.pathname; // Add more allowed paths
 
-      var allowedPaths = ['/register', '/login', '/'];
+      var allowedPaths = ['/register', '/login', '/client/register', '/'];
 
       if (!user && !allowedPaths.includes(currentPath)) {
         return _react.default.createElement(_loginView.LoginView, {
