@@ -159,7 +159,11 @@ class MainView extends React.Component {
                  path="/register" 
                  render={() => 
                   <RegistrationView />} />
-              
+              <Route 
+                 path="/client/register" 
+                 render={() => 
+                  <RegistrationView />} />
+                  
               <Route
                 path="/movies/:movieId"
                 render={({ match }) => (
