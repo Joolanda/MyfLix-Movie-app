@@ -51957,17 +51957,16 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     _this.handleProfileUpdate = function (e, newUsername, newEmail, newBirthday) {
       e.preventDefault();
       var username = localStorage.getItem("user");
-      var token = localStorage.getItem("token");
+      var token = localStorage.getItem("token"); // revision : axios.put("my/url/goes/here", { Username: "...", password: "...", ... }, { headers: Authorization: "..." } ).then(...)
 
       _axios.default.put("https://myflix-movie.herokuapp.com/users/".concat(username), {
+        Username: newUsername ? newUsername : _this.state.Username,
+        Password: _this.Password,
+        Email: newEmail ? newEmail : _this.state.Email,
+        Birthday: newBirthday ? newBirthday : _this.state.Birthday
+      }, {
         headers: {
           Authorization: "Bearer ".concat(token)
-        },
-        data: {
-          Username: newUsername ? newUsername : _this.state.Username,
-          Password: _this.Password,
-          Email: newEmail ? newEmail : _this.state.Email,
-          Birthday: newBirthday ? newBirthday : _this.state.Birthday
         }
       }).then(function (response) {
         alert('your changes are saved!');

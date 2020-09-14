@@ -59,16 +59,16 @@ export class ProfileView extends React.Component {
 
     const username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
-
+// revision : axios.put("my/url/goes/here", { Username: "...", password: "...", ... }, { headers: Authorization: "..." } ).then(...)
     axios
-      .put(`https://myflix-movie.herokuapp.com/users/${username}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        data: {
+      .put(`https://myflix-movie.herokuapp.com/users/${username}`, 
+        {
           Username: newUsername ? newUsername : this.state.Username,
           Password: this.Password,
           Email: newEmail ? newEmail : this.state.Email,
           Birthday: newBirthday ? newBirthday : this.state.Birthday,
         },
+        { headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         alert('your changes are saved!');
@@ -167,7 +167,7 @@ export class ProfileView extends React.Component {
             <Card.Text>Email: {Email}</Card.Text>
             <Card.Text>Birthday: {Birthday}</Card.Text>
             <Card.Text> My favorite movies: {Favorites} </Card.Text>
-            
+
             <Button
               variant="info"
               className="delete-favorite"
