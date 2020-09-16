@@ -35,7 +35,7 @@ const handleNewUser = (e) => {
   // check this new code to handle click event for new users to open registration view.
   // new users who want to register, should not have to login first..add or rewrite code to fix this issue 
    e.preventDefault();
-  window.open('/register', '_self');
+  window.open('client/register', '_self');
 
   };
  
