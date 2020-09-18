@@ -56,6 +56,9 @@
   margin: auto;
   height: 100%;
 }
+.main-view {
+  padding-top: 100px;
+}
 .app-container {
   font-family: "Roboto", sans-serif;
 }

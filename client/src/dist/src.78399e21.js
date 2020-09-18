@@ -51380,7 +51380,7 @@ function LoginView(props) {
     // check this new code to handle click event for new users to open registration view.
     // new users who want to register, should not have to login first..add or rewrite code to fix this issue 
     e.preventDefault();
-    window.open('/register', '_self');
+    window.open('client/register', '_self');
   };
 
   return _react.default.createElement(_reactBootstrap.Container, {
@@ -51957,17 +51957,16 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     _this.handleProfileUpdate = function (e, newUsername, newEmail, newBirthday) {
       e.preventDefault();
       var username = localStorage.getItem("user");
-      var token = localStorage.getItem("token");
+      var token = localStorage.getItem("token"); // revision : axios.put("my/url/goes/here", { Username: "...", password: "...", ... }, { headers: Authorization: "..." } ).then(...)
 
       _axios.default.put("https://myflix-movie.herokuapp.com/users/".concat(username), {
+        Username: newUsername ? newUsername : _this.state.Username,
+        Password: _this.Password,
+        Email: newEmail ? newEmail : _this.state.Email,
+        Birthday: newBirthday ? newBirthday : _this.state.Birthday
+      }, {
         headers: {
           Authorization: "Bearer ".concat(token)
-        },
-        data: {
-          Username: newUsername ? newUsername : _this.state.Username,
-          Password: _this.Password,
-          Email: newEmail ? newEmail : _this.state.Email,
-          Birthday: newBirthday ? newBirthday : _this.state.Birthday
         }
       }).then(function (response) {
         alert('your changes are saved!');
@@ -52195,44 +52194,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.ProfileView = ProfileView;
-{
-  /* version A return code:  {favorites.length  === 0 && (<div>Your favorite movies list is empty</div>)}
-                      <div className="favorites-container">
-                          <ul className="favorites-list">
-                              {Favorites.length > 0 && movies.map(movie => {
-                                if (movie._id === Favorites.find(fav => fav === movie._id)) {
-                                return <li className="favorites-item" key={movie._id}>{movie.Title}
-                                <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movie)>Remove</Button>
-                                      </li>
-                                 }
-                                })
-                               }
-                            </ul>
-                          </div> 
-  version B render code: display favorite movie code
-      const favoritesList = movies.filter((movie) =>
-         Favorites.includes(_id)
-         );
-  version B return code: <div className="my-favorites"> </div>
-                       {favoritesList.map((movie) => (
-                       <div key={movie._id} className="favorites-button">
-                       <Link to={`/movies/:${movie._id}`}>
-                          <Button variant="link">{movie.Title}</Button>
-                        </Link> 
-                       </div>
-                     ))} 
-  draft C render={({match}) => movie={movies.find(m => m._id === match.params.movieId)}
-  fix birthday format="DD/MM/YYYY"  */
-}
-{
-  /* <div>
-  {favorites.length > 0 &&
-   movies.map(movie => {
-     if (_id === favorites.find(favMovie => favMovie === _id)) {
-       return <div className="favorites-item" key={_id}>{movie.Title}
-         <Button size="sm" className="remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, _id)}>Remove</Button>
-       </div> */
-}
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./profile-view.scss":"components/profile-view/profile-view.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -52391,7 +52352,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
       var currentPath = window.location.pathname; // Add more allowed paths
 
-      var allowedPaths = ['/register', '/login', '/'];
+      var allowedPaths = ['/register', '/login', '/client/register', '/'];
 
       if (!user && !allowedPaths.includes(currentPath)) {
         return _react.default.createElement(_loginView.LoginView, {
@@ -52456,6 +52417,11 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/register",
+        render: function render() {
+          return _react.default.createElement(_registrationView.RegistrationView, null);
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/client/register",
         render: function render() {
           return _react.default.createElement(_registrationView.RegistrationView, null);
         }
@@ -52739,7 +52705,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60279" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56889" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

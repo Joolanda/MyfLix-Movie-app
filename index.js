@@ -68,9 +68,8 @@ app.get("/", function (req, res) {
 });
 
 // Movies //
-// GETs the list of data about All movies, in Task 3.5 add jwt auth to this endpoint
-app.get("/movies", 
-passport.authenticate('jwt', { 
+// GETs the list of data about All movies, in Task 3.5 add jwt auth "passport.authenticate('jwt',"" to this endpoint
+app.get("/movies", { 
   session: false,
  }),
 (req, res) => {
