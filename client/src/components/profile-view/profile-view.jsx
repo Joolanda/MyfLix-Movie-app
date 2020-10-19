@@ -138,7 +138,7 @@ export class ProfileView extends React.Component {
 
     axios
       .delete(
-        `https://myflix-movie.herokuapp.com/users/${username}/Movies/:${movie}`,
+        `https://myflix-movie.herokuapp.com/users/${username}/Movies/:${movie._id}`,
         {
         headers: { Authorization: `Bearer ${token}` },
       })
@@ -153,8 +153,8 @@ export class ProfileView extends React.Component {
 
   render() {
     const { movies, favorites } = this.props;
-
-    const { Favorites,Username, Email, Birthday } = this.state;
+    const favoritesList = movies.filter((movie) =>
+      this.state.favorites.includes(movie._id)
 
     // if (favorites.length === 0) {
     //   return <div>You have no favorite movies.</div>}
@@ -173,16 +173,22 @@ export class ProfileView extends React.Component {
             <Card.Text>Email: {Email}</Card.Text>
             <Card.Text>Birthday: {Birthday}</Card.Text>
             <Card.Text> My favorite movies: {Favorites} </Card.Text>
-
-            <Button
-              variant="info"
-              className="delete-favorite"
-              onClick={(e) => this. handleRemoveFavorite}
-            >
-              Delete favorite movies
-            </Button>
-
-
+            {favoritesList.map((movie) => (
+              <div key={movie._id} className="Favorite-button">
+                <Link to={`/movies/${movie._id}`}>
+                  <Button variant='link'>{movie.Title}</Button>
+                </Link>
+                <Button
+                  variant="info"
+                  className="delete-favorite"
+                  onClick={(e) => this. handleRemoveFavorite}
+                    >
+                    Delete favorite movies
+                </Button>
+                </div>
+            ))}
+            <br />
+            <br />
             <Card.Text>If you want to update your profile, you can use this form:</Card.Text>
             <Form className="update-form"
               onSubmit={(e) =>
