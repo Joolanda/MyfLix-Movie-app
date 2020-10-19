@@ -91,16 +91,16 @@ export class ProfileView extends React.Component {
       })
   }
   setUsername(input) {
-    newUsername = input;
+    this.newUsername = input;
   }
   setPassword(input) {
-    this.Password = input;
+    this.newPassword = input;
   }
   setEmail(input) {
-    this.Email = input;
+    this.newmail = input;
   }
   setBirthday(input) {
-    this.Birthday = input;
+    this.newBirthday = input;
   }
 
 
@@ -128,7 +128,8 @@ export class ProfileView extends React.Component {
   };
 
 
-  // REMOVE favorite movie from User profile
+  // REMOVE favorite movie from User profile movie._id
+  
   handleRemoveFavorite = (e, movie) => {
     e.preventDefault();
 
