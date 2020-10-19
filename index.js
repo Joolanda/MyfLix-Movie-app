@@ -81,7 +81,7 @@ app.get("/movies", {
       console.error(err);
       res.status(500).send("Error: " + err);
     });
-});
+};
 // GETs the data about a single movie, by title
 app.get(
   "/movies/:Title",

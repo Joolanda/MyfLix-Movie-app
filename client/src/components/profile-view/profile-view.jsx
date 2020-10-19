@@ -15,6 +15,10 @@ export class ProfileView extends React.Component {
       password: null,
       email: null,
       birthday: null,
+      newUsername: null,
+      newPassword: null,
+      newEmail: null,
+      newBirthday: null,
       favorites: [],
       movies: [],
     };
@@ -48,13 +52,14 @@ export class ProfileView extends React.Component {
       });
   }
 
+
   // UPDATE or PUT requests for User profile
-  handleProfileUpdate = (
+  handleProfileUpdate(
     e,
     newUsername,
     newEmail,
     newBirthday
-  ) => {
+  ) {
     e.preventDefault();
 
     const username = localStorage.getItem("user");
@@ -63,10 +68,10 @@ export class ProfileView extends React.Component {
     axios
       .put(`https://myflix-movie.herokuapp.com/users/${username}`, 
         {
-          Username: newUsername ? newUsername : this.state.Username,
-          Password: this.Password,
-          Email: newEmail ? newEmail : this.state.Email,
-          Birthday: newBirthday ? newBirthday : this.state.Birthday,
+          Username: this.state.newUsername,
+          Password: this.state.newPassword,
+          Email: this.state.newEmail,
+          Birthday: this.state.newBirthday,
         },
         { headers: { Authorization: `Bearer ${token}` },
       })
@@ -86,7 +91,7 @@ export class ProfileView extends React.Component {
       })
   }
   setUsername(input) {
-    this.Username = input;
+    newUsername = input;
   }
   setPassword(input) {
     this.Password = input;
