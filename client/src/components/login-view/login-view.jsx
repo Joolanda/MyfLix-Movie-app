@@ -61,7 +61,7 @@ const handleNewUser = (e) => {
             </Form.Group> 
                <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>
                  Login
-                </Button>					       
+                </Button>				       
                 <Button variant="btn-lg btn-success btn-block" btn-block btn-block type="submit"  size="sm" onClick={handleNewUser}>
 					        You don't have an acount? Click here
 					      </Button>
