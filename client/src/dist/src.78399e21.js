@@ -52181,9 +52181,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         onChange: function onChange(e) {
           return _this4.setBirthday(e.target.value);
         }
-      })), _react.default.createElement(_reactRouterDom.Link, {
-        to: '/user/update`}'
-      }, _react.default.createElement(_reactBootstrap.Button, {
+      })), _react.default.createElement(_reactBootstrap.Button, {
         variant: "success",
         className: "update",
         type: "submit",
@@ -52191,7 +52189,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick(e) {
           return _this4.handleProfileUpdate(e);
         }
-      }, "Update"))), _react.default.createElement(_reactBootstrap.Button, {
+      }, "Update")), _react.default.createElement(_reactBootstrap.Button, {
         variant: "danger",
         className: "delete-user",
         size: "sm",
@@ -52368,7 +52366,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
       var currentPath = window.location.pathname; // Add more allowed paths
 
-      var allowedPaths = ['/register', '/login', '/client/register', '/'];
+      var allowedPaths = ['/register', '/login', '/client/register', '/', '/client'];
 
       if (!user && !allowedPaths.includes(currentPath)) {
         return _react.default.createElement(_loginView.LoginView, {
@@ -52433,11 +52431,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/register",
-        render: function render() {
-          return _react.default.createElement(_registrationView.RegistrationView, null);
-        }
-      }), _react.default.createElement(_reactRouterDom.Route, {
-        path: "/client/register",
         render: function render() {
           return _react.default.createElement(_registrationView.RegistrationView, null);
         }
@@ -52721,7 +52714,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63006" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49515" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

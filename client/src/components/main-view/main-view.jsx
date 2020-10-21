@@ -110,7 +110,7 @@ class MainView extends React.Component {
     // Allowed or restricted pages: Currentpath to check which page the user is currently on
     const currentPath = window.location.pathname;
     // Add more allowed paths
-    const allowedPaths = ['/register', '/login', '/client/register', '/'];
+    const allowedPaths = ['/register', '/login', '/client/register', '/', '/client'];
     if (!user && !allowedPaths.includes(currentPath)) {
     return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
     }
@@ -158,12 +158,7 @@ class MainView extends React.Component {
               <Route 
                  path="/register" 
                  render={() => 
-                  <RegistrationView />} />
-              <Route 
-                 path="/client/register" 
-                 render={() => 
-                  <RegistrationView />} />
-                  
+                  <RegistrationView />} />   
               <Route
                 path="/movies/:movieId"
                 render={({ match }) => (
