@@ -238,6 +238,7 @@ export class ProfileView extends React.Component {
                   onChange={(e) => this.setBirthday(e.target.value)}
                 />
               </Form.Group>
+              <Link to={'/user/update`}'}>
               <Button 
                 variant="success" 
                 className="update" 
@@ -247,6 +248,7 @@ export class ProfileView extends React.Component {
                 >
                 Update
               </Button>
+              </Link>
             </Form>
             <Button
               variant="danger"
