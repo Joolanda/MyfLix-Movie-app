@@ -42,7 +42,7 @@ const handleRegister = (e) => {
     <Container className="registration-container">
       <Row className="justify-content-center">
         <Col xs={12} sm={10} md={8} className="form-container">
-          <Form className="registration-form">>
+          <Form className="registration-form">
            <Form.Group controlId="formBasicUsername">
               <Form.Label>Username:</Form.Label>
               <Form.Control size="sm" type="text" placeholder="username" value={username} onChange={e => createUsername(e.target.value)}/>
