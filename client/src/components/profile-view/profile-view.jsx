@@ -154,7 +154,7 @@ export class ProfileView extends React.Component {
   render() {
     const { movies, favorites } = this.props;
     const favoritesList = movies.filter((movie) =>
-      this.state.favorites.includes(movie._id)
+      this.state.favorites.includes(movie._id));
 
     // if (favorites.length === 0) {
     //   return <div>You have no favorite movies.</div>}
