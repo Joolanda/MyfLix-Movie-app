@@ -7,7 +7,7 @@ const morgan = require("morgan");
 const app = express();
 const path = require("path");
 const { check, validationResult } = require("express-validator");
-let allowedOrigins = ["http://localhost:1234", "https://myflix-movie.herokuapp.com/client","https://myflix-movie.herokuapp.com/users", "*"]; // CORS origin sites to be given access
+let allowedOrigins = ["http://localhost:1234", "https://myflix-movie.herokuapp.com/client","https://myflix-movie.herokuapp.com/users", "https://myflix-movie.herokuapp.com/", "*"]; // CORS origin sites to be given access
 
 // Middleware //
 app.use(bodyParser.json()); // JSON Parsing
