@@ -6,6 +6,6 @@
   "extends": [
     "airbnb",
     "jsx-a11y",
-    "import",
+    "import"
   ]
 }
