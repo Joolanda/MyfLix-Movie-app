@@ -69,19 +69,18 @@ app.get("/", function (req, res) {
 
 // Movies //
 // GETs the list of data about All movies, in Task 3.5 add jwt auth "passport.authenticate('jwt',"" to this endpoint
-app.get("/movies", { 
-  session: false,
- }),
-(req, res) => {
-  Movies.find()
-    .then((movies) => {
-      res.status(201).json(movies);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error: " + err);
-    });
-};
+app.get("/movies", 
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Movies.find()
+      .then((movies) => {
+        res.status(201).json(movies);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      });
+  });
 // GETs the data about a single movie, by title
 app.get(
   "/movies/:Title",
