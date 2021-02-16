@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios from "../profile-view/node_modules/axios";
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';

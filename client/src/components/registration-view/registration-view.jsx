@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './registration-view.scss';
-import axios from 'axios';
+import axios from '../profile-view/node_modules/axios';
 import { Link } from "react-router-dom";
 
 
