@@ -31,7 +31,11 @@ export class ProfileView extends React.Component {
       this.getUser(accessToken);
     }
   }
-
+  /**
+  * Display current user
+  * @function getUser
+  * @axios
+  */
   getUser(token) {
     let username = localStorage.getItem("user");
     axios.get(`https://myflix-movie.herokuapp.com/users/${username}`, {
@@ -52,8 +56,16 @@ export class ProfileView extends React.Component {
       });
   }
 
-  //DELETE requests for deregistering
- deleteUser = (e) => {
+  /**
+  * Deletes the user's account
+  * After authorizing the user, it confirms deletion in an alert 
+  * Then it logs the user out and empties local storage
+  * Redirects to login screen
+  * @function deleteUser
+  * @param {e}  
+  * @axios
+  */
+ deleteUser(e) {
     e.preventDefault();
 
     const username = localStorage.getItem("user");
@@ -74,18 +86,23 @@ export class ProfileView extends React.Component {
         console.log("Error deleting User profile");
       });
   };
-
-
-  // UPDATE or PUT requests for User profile
+  /**
+  * Update users info in the database
+  * @function profileUpdate
+  * @axios
+  * @param {string} username
+  * @param {string} password
+  * @param {string} email
+  * @param {date} birthday
+  */
   profileUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
     e.preventDefault();
-
     const username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 // revision : axios.put("my/url/goes/here", { Username: "...", password: "...", ... }, { headers: Authorization: "..." } ).then(...)
     axios
       .put(`https://myflix-movie.herokuapp.com/users/${username}`, 
-        { 
+        { // UPDATE or PUT requests for User profile
           Username: newUsername ? newUsername : this.state.Username,
           Password: newPassword ? newPassword : this.state.Password,
           Email: newEmail ? newEmail: this.state.Email,
@@ -120,15 +137,22 @@ export class ProfileView extends React.Component {
   setBirthday(input) {
     this.Birthday = input;
   }
-
+  /**
+  * Logs the user out
+  * @function onLoggedOut
+  */
   onLogOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     window.open('/', '_self');
   }
-
-  // REMOVE favorite movie from User profile movie._id
-  
+ /**
+   * Removes a movie from user's list of favorites
+   * @function removeFavorite
+   * @param {*} e 
+   * @param {*} movie._id
+   * @axios
+   */ 
   removeFavorite = (e, movie) => {
     e.preventDefault();
 

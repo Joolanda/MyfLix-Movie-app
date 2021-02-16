@@ -43,7 +43,11 @@ class MainView extends React.Component {
      };		   
   }
 
-  
+  /**
+  * Upon loading component
+  * Gets what's stored in local storage and converts this stringified array back to an actual array
+  * @function componentDidMount
+  */
   componentDidMount() {
     let accessToken = localStorage.getItem("token");
     if (accessToken !== null) {
@@ -56,7 +60,14 @@ class MainView extends React.Component {
     }
   }
 
-  // // new method get movies, new code Task 3.5, make a request to the movies endpoint
+  /**
+  * Loads all movies from database
+  * User needs to be logged in
+  * @function getMovies
+  * @param {string} token
+  * @returns {array} movies
+  * @axios
+  */
   getMovies(token) {
     axios
       .get("https://myflix-movie.herokuapp.com/movies", {
@@ -71,6 +82,14 @@ class MainView extends React.Component {
       });
   }
 
+  /**
+  * Saves logged user credentials in localStorage
+  * Sets the state according to current user
+  * @function onLoggedIn
+  * @param {object} authData
+  * @returns {state}
+  * @returns {localStorage}
+  */
   onLoggedIn(authData) {
     console.log(authData);
     // old code before redux users, remove??:
@@ -86,18 +105,25 @@ class MainView extends React.Component {
     this.getMovies(authData.token); //'this' refers to main page here
   }
 
-  // new method for signing out, button mainview
+  /**
+   * Logs the user out
+   * @function logout
+   */
   onLoggedOut() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-
     // old code before redux users: 
      this.setState({
       user: null,
     });
     window.open("/", "_self"); // window.open("/client", "_self");
   }
-  // user can update list of favorite movies, use this new method in ProfileView
+
+  /**
+   * Allows the user to update (add) movies to their favorites
+   * Using this new method in ProfileView
+   * @param {*} newFavorites
+   */
   setFavorites(newFavorites) {
     this.setState({
       favorites: newFavorites
