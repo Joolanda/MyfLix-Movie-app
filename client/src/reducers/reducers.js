@@ -35,11 +35,4 @@ const moviesApp = combineReducers({
   users
 });
 
-// function moviesApp(state = {}, action) {
-//   return {
-//     visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-//     movies: movies(state.movies, action)
-//   }
-// }
-
 export default moviesApp;

@@ -10,36 +10,23 @@ import { Row, Col, Button, Form, Container} from 'react-bootstrap';
 export function LoginView (props) {
 const [ username, setUsername ] = useState('');
 const [ password, setPassword ] = useState('');
-const [ email, setEmail ] = useState('');
 
 const handleSubmit = (e) => {
   e.preventDefault();
   /* Send a request to the server for authentication */
-  axios.
-    post('https://myflix-movie.herokuapp.com/login', {
+  axios.post('https://myflix-movie.herokuapp.com/login', {
       Username: username,
       Password: password
     })
-    .then((response) => {
+    .then(response => {
     const data = response.data;
-      props.onLoggedIn(data);
+      props.onLoggedIn(data); // changed into data because you need the token as well as the username
     })
-    .catch((e) => { 
+    .catch(e => { 
     console.log('no such user here');
-    alert('no such user here. . . try again or create your account!');
     });
   }; 
-
  
-const handleNewUser = (e) => {
-  // check this new code to handle click event for new users to open registration view.
-  // new users who want to register, should not have to login first..add or rewrite code to fix this issue 
-   e.preventDefault();
-  window.open('client/register', '_self');
-
-  };
- 
-
     return (
       <Container className="login-container">
         <Row className="justify-content-center">
@@ -47,24 +34,22 @@ const handleNewUser = (e) => {
             <Form className="login-form">
               <Form.Group controlId="formBasicUsername">
                 <Form.Label>Username:</Form.Label>  
-                <Form.Control 
-                  size="sm" 
-                  type="username" 
-                  placeholder="enter your login userID" 
-                  value={username} 
-                  onChange={e => setUsername(e.target.value)}/>
+                <Form.Control size="sm" type="username" placeholder="enter your login userID" value={username} onChange={e => setUsername(e.target.value)}/>
               <Form.Text className="text-muted"></Form.Text>
-             </Form.Group>   
+             </Form.Group>
+
              <Form.Group controlId="formBasicPassword">              
               <Form.Label>Password:</Form.Label> 
               <Form.Control size="sm" type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}/>
             </Form.Group> 
-               <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>
-                 Login
-                </Button>				       
-                <Button variant="btn-lg btn-success btn-block" btn-block btn-block type="submit"  size="sm" onClick={handleNewUser}>
-					        You don't have an acount? Click here
-					      </Button>
+
+               <Button variant="btn-lg btn-success btn-block" type="submit" size="sm"  onClick={handleSubmit}>Login</Button>	
+
+                <Link to={`/register`}>      
+                  <Button variant="link">
+                    You don't have an acount? Click here
+					        </Button>
+                </Link>
             </Form>
           </Col>
         </Row>
@@ -72,14 +57,7 @@ const handleNewUser = (e) => {
     );
    }
 
-  //  <a href={`/register`}>
-  //  <Button variant="btn-lg btn-success btn-block" btn-block type="link" size="sm" >
-  //   You don't have an acount? Click here
-  // </Button>
-  // </a>
+   LoginView.propTypes = {
+    onLoggedIn: PropTypes.func.isRequired,
+  };
 
-  // LoginView.propTypes = {
-  //   username: PropTypes.string.isRequired,
-  //   password: PropTypes.string.isRequired,
-  //   onClick: PropTypes.func.isRequired
-  // };
