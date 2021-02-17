@@ -227,7 +227,7 @@ class MainView extends React.Component {
                 }}
               />
               <Route
-                exact path="/users"
+                path="/users/:Username"
                 render={() => {
                   if (!user) return (<LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />);
                   return (
