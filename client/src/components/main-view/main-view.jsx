@@ -173,7 +173,7 @@ class MainView extends React.Component {
                 }}
               />
               <Route
-                path="/register"
+                exact path="/register"
                 render={() => {
                   if (user) return <Redirect to="/" />;
                   return (
@@ -229,7 +229,7 @@ class MainView extends React.Component {
               <Route
                 exact path="/users"
                 render={() => {
-                  if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+                  if (!user) return (<LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />);
                   return (
                     <ProfileView favorites={favorites} movies={movies}
                       setFavorites={(newFav) => this.setFavorites(newFav)}
