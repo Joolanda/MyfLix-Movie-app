@@ -4,8 +4,7 @@ import './movie-card.scss';
 import { Link } from "react-router-dom";
 
 // bootstrap import
-import { Button,Card, CardGroup, Nav, NavBar } from 'react-bootstrap';
-
+import { Button, Card, CardGroup, Nav, NavBar } from 'react-bootstrap';
 
 export class MovieCard extends React.Component {
   render() {
@@ -30,12 +29,13 @@ export class MovieCard extends React.Component {
   }
 }
 
-
+// props because it will need to display information about the specific movie it’s hosting.
+// These props will be the movie image path, the movie title, and the movie description.
 MovieCard.propTypes = {
 
   movie: PropTypes.shape({
     ImagePath: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired
-    }).isRequired,
+    Description: PropTypes.string.isRequired,
+  }).isRequired,
 };

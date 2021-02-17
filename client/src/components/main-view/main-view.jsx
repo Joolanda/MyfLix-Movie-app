@@ -32,10 +32,17 @@ import {
 } from "react-bootstrap";
 
 import "./main-view.scss";
-
+/**
+ * @class MainView
+ * @requires React
+ * @requires axios from '../profile-view/node_modules/axios"
+ * @requires PropTypes
+ * @requires react-redux
+ */
 class MainView extends React.Component {
   constructor() {
     super();
+    // code executed right when the component is created in the memory
   //  old code before redux users, remove?:
   this.state = {		  
     user: null,	 
@@ -44,16 +51,17 @@ class MainView extends React.Component {
   }
 
   /**
-  * Upon loading component
-  * Gets what's stored in local storage and converts this stringified array back to an actual array
   * @function componentDidMount
+  * code executed right after the component is added to the DOM.
+  * Gets what's stored in local storage and converts this stringified array back to an actual array
+  * Set state acordingly
   */
   componentDidMount() {
-    let accessToken = localStorage.getItem("token");
+    let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
       this.setState({
-        user: localStorage.getItem("user"),
-        favorites: JSON.parse(localStorage.getItem('favorites'))
+        user: localStorage.getItem('user'),
+        favorites: JSON.parse(localStorage.getItem('favorites')),
       });
       // add new code?? this.props.setusers(users);
       this.getMovies(accessToken);
@@ -61,6 +69,7 @@ class MainView extends React.Component {
   }
 
   /**
+  * @function getMovies
   * Loads all movies from database
   * User needs to be logged in
   * @function getMovies
@@ -70,7 +79,7 @@ class MainView extends React.Component {
   */
   getMovies(token) {
     axios
-      .get("https://myflix-movie.herokuapp.com/movies", {
+      .get('https://myflix-movie.herokuapp.com/movies', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -83,9 +92,9 @@ class MainView extends React.Component {
   }
 
   /**
+  * @function onLoggedIn
   * Saves logged user credentials in localStorage
   * Sets the state according to current user
-  * @function onLoggedIn
   * @param {object} authData
   * @returns {state}
   * @returns {localStorage}

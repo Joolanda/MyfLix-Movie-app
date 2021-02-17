@@ -1,41 +1,44 @@
-require('dotenv').config({ debug: process.env.DEBUG })
-const express = require("express");
-  bodyParser = require("body-parser");
-  uuid = require("uuid");
-const cors = require("cors");
-const morgan = require("morgan");
+require('dotenv').config({ debug: process.env.DEBUG });
+const express = require('express');
+bodyParser = require('body-parser');
+uuid = require('uuid');
+const cors = require('cors');
+const morgan = require('morgan');
+
 const app = express();
-const path = require("path");
-const { check, validationResult } = require("express-validator");
-let allowedOrigins = ["http://localhost:1234", "http://myflix-movie.herokuapp.com", "https://myflix-movie.herokuapp.com", "*"]; // CORS origin sites to be given access
+const path = require('path');
+const { check, validationResult } = require('express-validator');
+
+const allowedOrigins = ['http://localhost:1234', 'http://myflix-movie.herokuapp.com', 'https://myflix-movie.herokuapp.com', "*"]; // CORS origin sites to be given access
 
 // Middleware //
 app.use(bodyParser.json()); // JSON Parsing
-app.use(morgan("common")); // logging with Morgan
-app.use(express.static("public")); //retrieves files from public folder
-app.use("/client", express.static(path.join(__dirname, "client", "dist"))); // add this code right after the line app.use(express.static("public"));. task 3.6 prep for hosting
-app.use(cors());
-
-app.get("/client/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+app.use(morgan('common')); // logging with Morgan
+app.use(express.static('public')); // retrieves files from public folder
+app.use('/client', express.static(path.join(__dirname, 'client', 'dist'))); // add this code right after the line app.use(express.static("public"));. task 3.6 prep for hosting
+// app.use(cors());
+app.use(cors({ origin: '*' }));
+app.get('/client/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
-// // routes all requests for the client to 'dist' folder..next lines are for handlesubmit loginview task 3.5
+// routes all requests for the client to 'dist' folder..next lines are for handlesubmit loginview task 3.5
 //  app.use('/client', express.static(path.join(__dirname, 'client', 'dist'))); 
-// // all routes to the React client
-//  app.get('/client/*', (req, res) => {
-//    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+// all routes to the React client
+// app.get('/client/*', (req, res) => {
+// res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 //  });
 
 // Integrating mongoose with a REST API
-const mongoose = require("mongoose");
-const Models = require("./models.js");
-  Movies = Models.Movie;
-  Users = Models.User;
+const mongoose = require('mongoose');
+const Models = require('./models.js');
 
-console.log(process.env)
-//MongoDB connections
-//mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true})..then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
-mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
+Movies = Models.Movie;
+Users = Models.User;
+
+console.log(process.env);
+// MongoDB connections
+// mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true})..then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
 
 // CORS implementation
 app.use(
@@ -44,21 +47,19 @@ app.use(
       if (!origin) return callback(null, true);
       if (allowedOrigins.indexOf(origin) === -1) {
         // If a specific origin isn't found on the list of allowed origins:
-        let message =
-          "The CORS policy for this application doesnt allow access from origin " +
-          origin;
+        const message = `The CORS policy for this application doesnt allow access from origin ${origin}`;
         return callback(new Error(message), false);
       }
       return callback(null, true);
     },
-  })
+  }),
 );
 
-var auth = require("./auth")(app);
+let auth = require('./auth')(app);
 
 // Authentication(passport) and Authorization(auth)
-const passport = require("passport");
-require("./passport");
+const passport = require('passport');
+require('./passport');
 
 
 // default textual response when request hits the root folder
@@ -201,21 +202,21 @@ app.post(
             })
             .catch((error) => {
               console.error(error);
-              res.status(500).send("Error: " + error);
+              res.status(500).send('Error: ' + error);
             });
         }
       })
       .catch((err) => {
         console.error(err);
-        res.status(500).send("Error: " + err);
+        res.status(500).send('Error: ' + err);
       });
-  }
+  },
 );
 
 // GET a specific user by username
 app.get(
-  "/users/:Username",
-  passport.authenticate("jwt", {
+  '/users/:Username',
+  passport.authenticate('jwt', {
     session: false,
   }),
   (req, res) => {
@@ -225,7 +226,7 @@ app.get(
       })
       .catch((error) => {
         console.error(error);
-        res.status(500).send("Error: " + error);
+        res.status(500).send('Error: ' + error);
       });
   }
 );
@@ -243,18 +244,18 @@ app.get(
 }
 */
 app.put(
-  "/users/:Username",
-  passport.authenticate("jwt", {
+  '/users/:Username',
+  passport.authenticate('jwt', {
     session: false,
   }),
   [
-    check("Username", "Username is required").isLength({ min: 4 }),
+    check('Username', 'Username is required').isLength({ min: 4 }),
     check(
-      "Username",
-      "Username contains non alphanummeric characters - not allowed."
+      'Username',
+      'Username contains non alphanummeric characters - not allowed.',
     ).isAlphanumeric(),
-    check("Password", "Password is required").not().isEmpty(),
-    check("Email", "Email does not appear to be valid").isEmail(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isEmail(),
   ],
   (req, res) => {
     //check the validation object for errors
@@ -267,55 +268,54 @@ app.put(
     let hashedPassword = Users.hashPassword(req.body.Password);
 
     Users.findOneAndUpdate(
-     { Username: req.params.Username },
-     {
-       $set: {
-         Username: req.body.Username,
-         Password: hashedPassword,
-         Email: req.body.Email,
+      { Username: req.params.Username },
+      {
+        $set: {
+          Username: req.body.Username,
+          Password: hashedPassword,
+          Email: req.body.Email,
           Birthday: req.body.Birthday,
-        }
-     },
-     { new: true }, //Makes sure updated document is returned
+        },
+      },
+      { new: true }, //Makes sure updated document is returned
       (err, updatedUser) => {
         if (err) {
           console.error(err);
           res.status(500).send('Error: ' + err);
-       } else {
-         res.json(updatedUser);
-       }
-     }
-   );
-  }
+        } else {
+          res.json(updatedUser);
+        }
+      },
+    );
+  },
 );
 
-
-//REMOVE existing users by username
+// REMOVE existing users by username
 app.delete(
-  "/users/:Username",
-  passport.authenticate("jwt", {
+  '/users/:Username',
+  passport.authenticate('jwt', {
     session: false,
   }),
   (req, res) => {
     Users.findOneAndRemove({ Username: req.params.Username })
       .then((user) => {
         if (!user) {
-          res.status(400).send(req.params.Username + " was not found");
+          res.status(400).send(req.params.Username + ' was not found');
         } else {
-          res.status(200).send(req.params.Username + " was deleted.");
+          res.status(200).send(req.params.Username + ' was deleted.');
         }
       })
       .catch((err) => {
         console.error(err);
-        res.status(500).send("Error: " + err);
+        res.status(500).send('Error: ' + err);
       });
-  }
+  },
 );
 
 // ADD a movie to a user's list of favorites
 app.post(
-  "/users/:Username/Movies/:_id",
-  passport.authenticate("jwt", {
+  '/users/:Username/Movies/:_id',
+  passport.authenticate('jwt', {
     session: false,
   }),
   (req, res) => {
@@ -326,19 +326,19 @@ app.post(
       (err, updatedUser) => {
         if (err) {
           console.error(err);
-          res.status(500).send("Error: " + err);
+          res.status(500).send('Error: ' + err);
         } else {
           res.json(updatedUser);
         }
-      }
+      },
     );
-  }
+  },
 );
 
 // DELETE a favorite movie from the list.
 app.delete(
-  "/users/:Username/Movies/:_id",
-  passport.authenticate("jwt", {
+  '/users/:Username/Movies/:_id',
+  passport.authenticate('jwt', {
     session: false,
   }),
   (req, res) => {
@@ -349,7 +349,7 @@ app.delete(
       (err, updatedUser) => {
         if (err) {
           console.error(err);
-          res.status(500).send("Error: " + err);
+          res.status(500).send('Error: ' + err);
         } else {
           res.json(updatedUser);
         }
@@ -361,13 +361,12 @@ app.delete(
 // error handling middleware, defined last in chain
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send("something broke!!");
+  res.status(500).send('something broke!!');
   next();
 });
 
 // listen for requests
-var port = process.env.PORT || 3000;
-app.listen(port, "0.0.0.0", () => {
- // console.log("Listening on port " + port);
+let port = process.env.PORT || 3000;
+app.listen(port, '0.0.0.0', () => {
+// console.log("Listening on port " + port);
 });
-

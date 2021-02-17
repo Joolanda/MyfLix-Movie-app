@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 // bootstrap imports
 import { Row, Col, Button, Form, Container} from 'react-bootstrap';
-
+// LoginView is an high-level component. It consists of an entire “view” that won’t be reused.
 export function LoginView (props) {
 const [ username, setUsername ] = useState('');
 const [ password, setPassword ] = useState('');

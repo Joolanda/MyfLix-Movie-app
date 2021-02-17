@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "./profile-view.scss";
 // bootstrap import
 import { Card, Button, Container, Form } from "react-bootstrap";
-
+// ProfileView is a low-level component.Here are user’s favorite movies are listed
 export class ProfileView extends React.Component {
   constructor(props) {
     super(props);
@@ -32,8 +32,8 @@ export class ProfileView extends React.Component {
     }
   }
   /**
-  * Display current user
   * @function getUser
+  * Displaying the current user
   * @axios
   */
   getUser(token) {
