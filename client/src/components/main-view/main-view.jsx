@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import axios from '../profile-view/node_modules/axios';
+import axios from 'axios';
 
 // #0
 import { setMovies, setUsers } from '../../actions/actions';
@@ -23,7 +23,7 @@ import './main-view.scss';
 /**
  * @class MainView
  * @requires React
- * @requires axios from '../profile-view/node_modules/axios"
+ * @requires axios from 'axios"
  * @requires PropTypes
  * @requires react-redux
  */
