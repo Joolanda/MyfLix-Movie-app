@@ -205,8 +205,8 @@ class MainView extends React.Component {
                   return (
                     <GenreView
                       genre={
-                      movies.find((m) => m.Genre.Name === match.params.name)
-                        .Genre
+                        movies.find((m) => m.Genre.Name === match.params.name)
+                          .Genre
                       }
                     />
                   );
@@ -237,7 +237,6 @@ class MainView extends React.Component {
                   );
                 }}
               />
-
               <Route path="/users/:Username/movies/:_Id" render={({ match }) => <MovieView movie={movies.find((m) => m._id === match.params.movieId)} />} />
               <Route
                 path="/users/:Username"
@@ -258,7 +257,7 @@ class MainView extends React.Component {
 
 // #3
 const mapStateToProps = state => {
-  return { movies: state.movies, users: state.users } 
+  return { movies: state.movies, users: state.users }
 }
 // #4
 export default connect(mapStateToProps, { setMovies, setUsers })(MainView);
