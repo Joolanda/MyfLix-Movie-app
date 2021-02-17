@@ -21,15 +21,7 @@ import { GenreView } from "../genre-view/genre-view";
 import { ProfileView } from "../profile-view/profile-view";
 
 // bootstrap import
-import {
-  Row,
-  Col,
-  Card,
-  CardGroup,
-  Nav,
-  Navbar,
-  Container,
-} from "react-bootstrap";
+import { Row, Col, Card, CardGroup, Nav, Navbar, Container } from "react-bootstrap";
 
 import "./main-view.scss";
 /**
@@ -42,12 +34,10 @@ import "./main-view.scss";
 class MainView extends React.Component {
   constructor() {
     super();
-    // code executed right when the component is created in the memory
-  //  old code before redux users, remove?:
-  this.state = {		  
-    user: null,	 
-    favorites:[]
-     };		   
+    this.state = {
+      user: null,
+      favorites: [],
+    };
   }
 
   /**
@@ -103,8 +93,8 @@ class MainView extends React.Component {
     console.log(authData);
     // old code before redux users, remove??:
     this.setState({
-    user: authData.user.Username,
-    favorites: authData.user.Favorites
+      user: authData.user.Username,
+      favorites: authData.user.Favorites,
     });
     // add new code?? this.props.setUsers(authData.user.Username);
 
@@ -121,11 +111,11 @@ class MainView extends React.Component {
   onLoggedOut() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    // old code before redux users: 
-     this.setState({
+    // old code before redux users:
+    this.setState({
       user: null,
     });
-    window.open("/", "_self"); // window.open("/client", "_self");
+    window.open("/client", "_self"); //  window.open("/", "_self");
   }
 
   /**
@@ -135,81 +125,77 @@ class MainView extends React.Component {
    */
   setFavorites(newFavorites) {
     this.setState({
-      favorites: newFavorites
+      favorites: newFavorites,
     });
     localStorage.setItem('favorites', JSON.stringify(newFavorites));
   }
 
   render() {
-
     // #2
     let { movies } = this.props;
     let { user, favorites } = this.state;
 
     let username = localStorage.getItem("user");
-    
+
     // Allowed or restricted pages: Currentpath to check which page the user is currently on
     const currentPath = window.location.pathname;
     // Add more allowed paths
     const allowedPaths = ['/register', '/login', '/client/register', '/', '/client'];
     if (!user && !allowedPaths.includes(currentPath)) {
-    return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+      return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
     }
-  
-    
-    // if (!user) return <MainView /> />;
-    // "Next, you need to move this line of the render method"and place it inside the route path (path="/")
 
     if (!movies) return <div className="main-view" />;
 
     return (
-       <Router basename="/client">
-         <div className="main-view">
-           <CardGroup className="card-group">
-             <Navbar bg="success" variant="dark" fixed="top">
-               <Navbar.Brand as={Link} to="/">
-                 MyFlix Movie
-               </Navbar.Brand>
-               <Nav className="mr-auto">
-                 <Nav.Link as={Link} to="/">
-                   Home
-                 </Nav.Link>
-                 <Nav.Link as={Link} to={`/users/${user}`}>
-                   Profile
-                 </Nav.Link>
-                 <Nav.Link onClick={(user) => this.onLoggedOut()} href="/login">
-                   Logout
+      <Router basename="/client">
+        <div className="main-view">
+          <CardGroup className="card-group">
+            <Navbar bg="success" variant="dark" fixed="top">
+              <Navbar.Brand as={Link} to="/">
+                MyFlix Movie
+              </Navbar.Brand>
+              <Nav className="mr-auto">
+                <Nav.Link as={Link} to="/">
+                  Home
                 </Nav.Link>
-               </Nav>
-             </Navbar>
-             <div>
+                <Nav.Link as={Link} to={`/users/${user}`}>
+                  Profile
+                </Nav.Link>
+                <Nav.Link onClick={() => this.onLoggedOut()} href="/login">
+                  Logout
+                </Nav.Link>
+              </Nav>
+            </Navbar>
+            <div>
 
-             <Route exact path="/" render={() => { 
+              <Route exact path="/" render={() => {
                 if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-                return <MoviesList movies={movies}/>;
-               }} 
-              />                
+                return <MoviesList movies={movies} />;
+              }}
+              />
               <Route path="/register" render={() => {
                 if (user) return <Redirect to='/' />
-                return <RegistrationView />}} />   
+                return <RegistrationView />
+              }} />
 
               <Route path="/movies/:movieId" render={({ match }) => {
                 if (!user) return (<LoginView onLoggedIn={user => this.onLoggedIn(user)} />);
-                return (<MovieView movie={movies.find(m => m._id === match.params.movieId)} favorites={favorites} 
-                setFavorites={(newFav) => this.setFavorites(newFav)} />);
+                return (<MovieView movie={movies.find(m => m._id === match.params.movieId)} favorites={favorites}
+                  setFavorites={(newFav) => this.setFavorites(newFav)} />);
               }} />
 
               <Route path="/genres/:name" render={({ match }) => {
-                  if (!movies) return <CardGroup className="main-view" />;
-                  return (
-                    <GenreView
-                      genre={
-                        movies.find((m) => m.Genre.Name === match.params.name)
-                          .Genre
-                      }
-                    />
-                  );
-                }}
+                if (!movies) return <CardGroup className="main-view" />;
+                return (
+                  <GenreView
+                    genre={
+                      movies.find((m) => m.Genre.Name === match.params.name)
+                        .Genre
+                    }
+                  />
+                );
+              }}
               />
               <Route
                 path="/directors/:name"
@@ -232,14 +218,14 @@ class MainView extends React.Component {
                 return <ProfileView favorites={favorites} movies={movies}
                   setFavorites={(newFav) => this.setFavorites(newFav)} />
 
-              }}/>
+              }} />
               {/* Review these Route paths below: */}
-              <Route path="/users/:Username/movies/:_Id" render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>   
+              <Route path="/users/:Username/movies/:_Id" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieId)} />} />
               <Route path="/users/:Username" render={() => {
-                  if (!user) return <LoginView getMovies={(token) => this.getMovies(token)} />;
-                  if (movies.length === 0) return <div className="main-view" />;
-                  return <ProfileView movies={movies} />;
-                }}
+                if (!user) return <LoginView getMovies={(token) => this.getMovies(token)} />;
+                if (movies.length === 0) return <div className="main-view" />;
+                return <ProfileView movies={movies} />;
+              }}
               />
             </div>
           </CardGroup>
@@ -251,11 +237,9 @@ class MainView extends React.Component {
 }
 
 // #3
-const mapStateToProps = state => {
-  return { movies: state.movies, users: state.users }
-}
+const mapStateToProps = state => { return { movies: state.movies, users: state.users } }
 // #4
-export default connect(mapStateToProps, { setMovies, setUsers } )(MainView);  // 
+export default connect(mapStateToProps, { setMovies, setUsers })(MainView);
 
 /*   MainView.propTypes = {
     setMovies: PropTypes.func.isRequired,

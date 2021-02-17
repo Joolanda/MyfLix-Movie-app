@@ -83,7 +83,7 @@ const handleRegister = (e) => {
   );
 }
 
- RegistrationView.propTypes = {
+RegistrationView.propTypes = {
   user: PropTypes.shape({
     Username: PropTypes.string.isRequired,
     Password: PropTypes.string.isRequired,
