@@ -27,20 +27,20 @@ For more information about each endpoint and data that is requestet and responde
 ## Dependencies
 *Back-End*   | *Front-End*
 ------------ | -------------
-- bcryptjs | - axios
-- cors | - body-parser
-- jsonwebtoken | - lodash
-- mongoose | - prop
-- morgan | - prop-types
-- passport | - re
-- passport-jwt | - react-bootstrap
-- passport-local | - react-redux 
-- body-parser | - react
-- core-js | - react-dom
-- dotenv | - react-router-dom
-- express | - redux
-- express-validator |
-- react |  
-- react-dom | 
-- react-router-dom | 
-- uuid | 
+bcryptjs | axios
+cors | body-parser
+jsonwebtoken | lodash
+mongoose | prop
+morgan | prop-types
+passport | re
+passport-jwt | react-bootstrap
+passport-local | react-redux 
+body-parser | react
+core-js | react-dom
+dotenv | react-router-dom
+express | redux
+express-validator |
+react |  
+react-dom | 
+react-router-dom | 
+uuid | 
