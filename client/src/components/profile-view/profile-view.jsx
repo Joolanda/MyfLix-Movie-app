@@ -154,7 +154,7 @@ export class ProfileView extends React.Component {
     * @param {*} movie._id
     * @axios
     */
-  removeFavorite = (e, movie) => {
+  removeFavorite(e, movie) {
     e.preventDefault();
 
     const username = localStorage.getItem("user");
@@ -180,9 +180,6 @@ export class ProfileView extends React.Component {
     const favoritesList = movies.filter((movie) => userFavorites.includes(movie._id));
     const username = localStorage.getItem('user');
     const token = localStorage.getItem('token');
-
-    // if (favorites.length === 0) {
-    //   return <div>You have no favorite movies.</div>}
 
     return (
       <Container className="profile-update-container">
@@ -210,7 +207,7 @@ export class ProfileView extends React.Component {
                 <Card.Img variant='top' src={movie.ImagePath} />
                 <Card.Body>
                   <Link to={`/movies/${movie._id}`}>
-                    <Button variant='link' className='fav-movie'>Movie Details</Button>
+                    <Button variant='link' className='fav-movie'>{movie.Title}</Button>
                   </Link >
                   <Link to=''>
                     <Button onClick={() => this.removeFavorite(movie._id)}>delete favorite movie</Button>

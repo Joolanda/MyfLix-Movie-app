@@ -243,7 +243,7 @@ class MainView extends React.Component {
                 render={() => {
                   if (!user) return <LoginView getMovies={(token) => this.getMovies(token)} />;
                   if (movies.length === 0) return <div className="main-view" />;
-                  return <ProfileView movies={movies} />;
+                  return <ProfileView movies={movies} favorites={favorites} />;
                 }}
               />
             </div>

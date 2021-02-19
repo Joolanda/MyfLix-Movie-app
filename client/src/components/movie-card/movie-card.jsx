@@ -13,18 +13,18 @@ export class MovieCard extends React.Component {
     return (
       <div className="movie-card">
         <CardGroup>
-          <Card className="border-success text-white bg-dark mb-3" style={{ width: '20rem'}}>
+          <Card className="border-success text-white bg-dark mb-3" style={{ width: '20rem' }}>
             <Card.Img variant="top" src={movie.ImagePath} />
-           <Card.Body>
-             <Card.Header> <h2>{movie.Title}</h2></Card.Header>
-             <Card.Text>{movie.Description}</Card.Text>
-             <Link to={`/movies/${movie._id}`}>
-            <Button variant="success" size="lg" btn-block="true" >Tell me more</Button>
-          </Link>
+            <Card.Body>
+              <Card.Header> <h2>{movie.Title}</h2></Card.Header>
+              <Card.Text>{movie.Description}</Card.Text>
+              <Link to={`/movies/${movie._id}`}>
+                <Button variant="success" size="lg" btn-block="true" >Tell me more</Button>
+              </Link>
             </Card.Body>
           </Card>
-         </CardGroup>
-       </div> 
+        </CardGroup>
+      </div>
     );
   }
 }
