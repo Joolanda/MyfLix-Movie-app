@@ -51272,6 +51272,7 @@ var mapStateToProps = function mapStateToProps(state) {
 /**
   * Allows users to filter the list of movies
   * @function MoviesList
+  * @Param {*} props
   */
 
 

@@ -11,6 +11,7 @@ const mapStateToProps = state => {
 /**
   * Allows users to filter the list of movies
   * @function MoviesList
+  * @Param {*} props
   */
 function MoviesList(props) {
   const { movies, visibilityFilter } = props;
@@ -23,8 +24,8 @@ function MoviesList(props) {
   if (!movies) return <div className="main-view" />;
 
   return <div className="movies-list">
-  <VisibilityFilterInput visibilityFilter={visibilityFilter} />
-  {filteredMovies.map(m => <MovieCard key={m._id} movie={m} />)}
+    <VisibilityFilterInput visibilityFilter={visibilityFilter} />
+    {filteredMovies.map(m => <MovieCard key={m._id} movie={m} />)}
   </div>;
 }
 

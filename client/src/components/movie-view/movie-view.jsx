@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 // bootstrap import
 import { Card, Button, ButtonGroup } from 'react-bootstrap';
-import Axios from 'axios';
+import axios from 'axios';
 
 export class MovieView extends React.Component {
 
@@ -28,7 +28,7 @@ export class MovieView extends React.Component {
     e.preventDefault();
     console.log();
     // send a request to the server for authentication
-    Axios.post(`https://myflix-movie.herokuapp.com/users/${localStorage.getItem('user')}/movies/${movieID}`,
+    axios.post(`https://myflix-movie.herokuapp.com/users/${localStorage.getItem('user')}/movies/${movieID}`,
       {},
       { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } },
     )
