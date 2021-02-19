@@ -131,7 +131,7 @@ class MainView extends React.Component {
     let { movies } = this.props;
     let { user, favorites } = this.state;
 
-    let username = localStorage.getItem('user');
+    let Username = localStorage.getItem('user');
 
     // Allowed or restricted pages: Currentpath to check which page the user is currently on
     const currentPath = window.location.pathname;

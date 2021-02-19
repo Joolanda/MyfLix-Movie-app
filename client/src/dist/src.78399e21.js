@@ -52499,7 +52499,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           user = _this$state.user,
           favorites = _this$state.favorites;
-      var username = localStorage.getItem('user'); // Allowed or restricted pages: Currentpath to check which page the user is currently on
+      var Username = localStorage.getItem('user'); // Allowed or restricted pages: Currentpath to check which page the user is currently on
 
       var currentPath = window.location.pathname; // Add more allowed paths
 
