@@ -91,4 +91,9 @@ MovieView.propTypes = {
       Name: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired
+  favorites: PropTypes.arrayOf(
+    PropTypes.string
+  ).isRequired,
+  setFavorites: PropTypes.func.isRequired
 };
+
