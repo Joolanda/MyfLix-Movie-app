@@ -45,7 +45,7 @@ For more information about each endpoint and data that is requestet and responde
 - uuid
 
 *frontend*
-_ axios
+- axios
 - body-parser
 - lodash
 - prop
