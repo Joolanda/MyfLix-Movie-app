@@ -25,35 +25,23 @@ Technologies used: MERN Stack, MongoDB and mongoDB atlas, Redux and Flux.
 For more information about each endpoint and data that is requestet and responded see *documentation.hmtl*.
 
 ## Dependencies
-*back-End*
-- bcryptjs
-- cors
-- jsonwebtoken
-- mongoose
-- morgan
-- passport
-- passport-jwt
-- passport-local
-- body-parser
-- core-js
-- dotenv
-- express
-- express-validator
-- react
-- react-dom
-- react-router-dom
-- uuid
+*Back-End*   | *Front-End*
+------------ | -------------
+- bcryptjs | - axios
+- cors | - body-parser
+- jsonwebtoken | - lodash
+- mongoose | - prop
+- morgan | - prop-types
+- passport | - re
+- passport-jwt | - react-bootstrap
+- passport-local | - react-redux 
+- body-parser | - react
+- core-js | - react-dom
+- dotenv | - react-router-dom
+- express | - redux
+- express-validator |
+- react |  
+- react-dom | 
+- react-router-dom | 
+- uuid | 
 
-*frontend*
-- axios
-- body-parser
-- lodash
-- prop
-- prop-types
-- re
-- react
-- react-bootstrap
-- react-dom
-- react-redux
-- react-router-dom
-- redux
