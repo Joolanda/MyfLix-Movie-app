@@ -52199,7 +52199,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         variant: "danger",
         className: "delete-button"
       }, "Delete account"), _react.default.createElement(_reactRouterDom.Link, {
-        to: '/'
+        to: '/client'
       }, _react.default.createElement(_reactBootstrap.Button, {
         className: "delete-button",
         variant: "info"
@@ -52215,16 +52215,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           src: movie.ImagePath
         }), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactRouterDom.Link, {
           to: "/movies/".concat(movie._id)
-        }, _react.default.createElement(_reactBootstrap.Button, {
-          variant: "link",
-          className: "fav-movie"
-        }, movie.Title)), _react.default.createElement(_reactRouterDom.Link, {
-          to: ""
+        }, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Title))), _react.default.createElement(_reactRouterDom.Link, {
+          to: "/client"
         }, _react.default.createElement(_reactBootstrap.Button, {
           onClick: function onClick() {
             return _this4.removeFavorite(movie._id);
           }
-        }, "delete favorite movie"))));
+        }, "delete favorite movie")));
       })), _react.default.createElement(_reactBootstrap.Container, null, _react.default.createElement(_reactBootstrap.Card.Body, {
         className: "update"
       }, _react.default.createElement(_reactBootstrap.Card.Text, null, "If you want to update your profile, you can use this form:"), _react.default.createElement(_reactBootstrap.Form, {
@@ -52502,7 +52499,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           user = _this$state.user,
           favorites = _this$state.favorites;
-      var username = localStorage.getItem('user'); // Allowed or restricted pages: Currentpath to check which page the user is currently on
+      var Username = localStorage.getItem('user'); // Allowed or restricted pages: Currentpath to check which page the user is currently on
 
       var currentPath = window.location.pathname; // Add more allowed paths
 
@@ -52562,9 +52559,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         exact: true,
         path: "/register",
         render: function render() {
-          if (user) return _react.default.createElement(_reactRouterDom.Redirect, {
-            to: "/"
-          });
           return _react.default.createElement(_registrationView.RegistrationView, null);
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
@@ -52857,7 +52851,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55083" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57693" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

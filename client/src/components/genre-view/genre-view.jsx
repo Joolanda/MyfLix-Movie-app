@@ -20,21 +20,21 @@ export class GenreView extends React.Component {
     if (!genre) return null;
 
     return (
-        <div className="genre-view">
-        <Card className="border-success text-white bg-info mb-3" style={{ width: '20rem'}}>
-        <Card.Header></Card.Header>
-        <Card.Body>
-          <Card.Title className="genre-name">{genre.Name}</Card.Title>
-          <Card.Text>{genre.Description}</Card.Text>
-          <Card.Text>All movies with this genre: <br/>. . . coming soon . . .</Card.Text>
-          <Link to={`/`}>
-            <Button variant="dark">Back to Movies</Button>
-          </Link>
-        </Card.Body>
-      </Card>
+      <div className="genre-view">
+        <Card className="border-success text-white bg-info mb-3" style={{ width: '20rem' }}>
+          <Card.Header></Card.Header>
+          <Card.Body>
+            <Card.Title className="genre-name">{genre.Name}</Card.Title>
+            <Card.Text>{genre.Description}</Card.Text>
+            <Card.Text>All movies with this genre: <br />. . . coming soon . . .</Card.Text>
+            <Link to={`/`}>
+              <Button variant="dark">Back to Movies</Button>
+            </Link>
+          </Card.Body>
+        </Card>
       </div>
-  );
-}
+    );
+  }
 }
 
 GenreView.propTypes = {

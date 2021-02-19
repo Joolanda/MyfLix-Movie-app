@@ -13,13 +13,13 @@ const store = createStore(moviesApp);
 
 // Main component (will eventually use all the others)
 class MyFlixApplication extends React.Component {
-    render() {
-        return(
+  render() {
+    return(
         <Provider store={store}>
-             <MainView />
+          <MainView />
         </Provider>
-        );
-    }
+    );
+  }
 }
 
 // Finds the root of your app

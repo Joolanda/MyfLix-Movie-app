@@ -131,7 +131,7 @@ class MainView extends React.Component {
     let { movies } = this.props;
     let { user, favorites } = this.state;
 
-    let username = localStorage.getItem('user');
+    let Username = localStorage.getItem('user');
 
     // Allowed or restricted pages: Currentpath to check which page the user is currently on
     const currentPath = window.location.pathname;
@@ -168,19 +168,11 @@ class MainView extends React.Component {
               <Route
                 exact path="/"
                 render={() => {
-                  if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+                  if (!user) return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
                   return (<MoviesList movies={movies} />);
                 }}
               />
-              <Route
-                exact path="/register"
-                render={() => {
-                  if (user) return <Redirect to="/" />;
-                  return (
-                    <RegistrationView />
-                  );
-                }}
-              />
+              <Route exact path="/register" render={() => <RegistrationView />} />
               <Route
                 path="/login"
                 render={() => <LoginView onLoggedIn={user => this.onLoggedIn(user)} />}
@@ -256,9 +248,7 @@ class MainView extends React.Component {
 }
 
 // #3
-const mapStateToProps = state => {
-  return { movies: state.movies, users: state.users }
-}
+const mapStateToProps = state => { return { movies: state.movies, users: state.users } }
 // #4
 export default connect(mapStateToProps, { setMovies, setUsers })(MainView);
 
