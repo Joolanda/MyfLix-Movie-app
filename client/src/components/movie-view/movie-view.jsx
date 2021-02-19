@@ -48,7 +48,6 @@ export class MovieView extends React.Component {
 
     if (!movie) return null;
 
-
     return (
       <div className="movie-view">
         <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{ width: '20rem' }}>

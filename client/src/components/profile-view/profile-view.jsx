@@ -194,7 +194,7 @@ export class ProfileView extends React.Component {
             <Card.Text>Email: {Email}</Card.Text>
             <Card.Text>Birthday: {Birthday}</Card.Text>
             <Button onClick={() => this.deleteUser()} variant="danger" className='delete-button'>Delete account</Button>
-            <Link to={'/'}>
+            <Link to={'/client'}>
               <Button className='delete-button' variant="info"> Back</Button>
             </Link>
           </Card.Body>
@@ -207,12 +207,12 @@ export class ProfileView extends React.Component {
                 <Card.Img variant='top' src={movie.ImagePath} />
                 <Card.Body>
                   <Link to={`/movies/${movie._id}`}>
-                    <Button variant='link' className='fav-movie'>{movie.Title}</Button>
+                    <Card.Title>{movie.Title}</Card.Title>
                   </Link >
-                  <Link to=''>
-                    <Button onClick={() => this.removeFavorite(movie._id)}>delete favorite movie</Button>
-                  </Link>
                 </Card.Body>
+                <Link to='/client'>
+                  <Button onClick={() => this.removeFavorite(movie._id)}>delete favorite movie</Button>
+                </Link>
               </Card>
             );
           })}
