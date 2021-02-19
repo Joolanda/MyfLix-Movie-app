@@ -168,19 +168,11 @@ class MainView extends React.Component {
               <Route
                 exact path="/"
                 render={() => {
-                  if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+                  if (!user) return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
                   return (<MoviesList movies={movies} />);
                 }}
               />
-              <Route
-                exact path="/register"
-                render={() => {
-                  if (user) return <Redirect to="/" />;
-                  return (
-                    <RegistrationView />
-                  );
-                }}
-              />
+              <Route exact path="/register" render={() => <RegistrationView />} />
               <Route
                 path="/login"
                 render={() => <LoginView onLoggedIn={user => this.onLoggedIn(user)} />}
