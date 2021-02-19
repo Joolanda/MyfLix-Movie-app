@@ -44,4 +44,3 @@ For more information about each endpoint and data that is requestet and responde
 - react-dom | 
 - react-router-dom | 
 - uuid | 
-
