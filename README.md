@@ -22,7 +22,7 @@ Technologies used: MERN Stack, MongoDB and mongoDB atlas, Redux and Flux.
 - Allows existing users to update their user info or to delete their account
 - Allows existing users to add or remove movies to/from their list of favorites
 
-For more information about each endpoint and data that is requestet and responded see *documentation.hmtl*.
+For more information about each endpoint, see *documentation.hmtl*.
 
 ## Dependencies
 *Back-End*   | *Front-End*
