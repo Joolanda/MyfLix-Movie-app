@@ -33,10 +33,9 @@ export class DirectorView extends React.Component {
           </Card.Body>
         </Card>
     </div>
-    );   
+    );
   }
 }
-
 
 DirectorView.propTypes = {
   Director: PropTypes.shape({

@@ -1,15 +1,4 @@
 # Ignore folder named 'node_modules'
 node_modules
-.DS_Store
-node_modules
-npm-debug.log
-*.map
-.env
-.env
 .cache
 client/src/.cache/*
-client/src/.cache/fb/3f0188985d0e6bf6e3acac87bd6652.json
-client/src/.cache/eb/ec2d2cf168d65e7f09f6fbdf6dc95d.json
-client/src/.cache/d1/3e0975e3390ebd40362c5a9b471305.json
-client/src/.cache/c7/02b2ef48769beb9cb5fd6f9e9d62fb.json
-
