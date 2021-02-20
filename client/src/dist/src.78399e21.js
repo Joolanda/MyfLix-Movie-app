@@ -52183,7 +52183,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       var favoritesList = movies.filter(function (movie) {
         return userFavorites.includes(movie._id);
       });
-      var username = localStorage.getItem('user');
+      var Username = localStorage.getItem('user');
       var token = localStorage.getItem('token');
       return _react.default.createElement(_reactBootstrap.Container, {
         className: "profile-update-container"

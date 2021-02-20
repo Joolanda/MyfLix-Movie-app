@@ -86,8 +86,7 @@ class MainView extends React.Component {
   * @returns {localStorage}
   */
   onLoggedIn(authData) {
-    console.log(authData);
-    // old code before redux users, remove??:
+    // old code before redux users, remove this??:    console.log(authData);
     this.setState({
       user: authData.user.Username,
       favorites: authData.user.Favorites,
@@ -131,7 +130,7 @@ class MainView extends React.Component {
     let { movies } = this.props;
     let { user, favorites } = this.state;
 
-    let Username = localStorage.getItem('user');
+    let username = localStorage.getItem('user');
 
     // Allowed or restricted pages: Currentpath to check which page the user is currently on
     const currentPath = window.location.pathname;
