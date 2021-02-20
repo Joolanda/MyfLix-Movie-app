@@ -178,7 +178,7 @@ export class ProfileView extends React.Component {
     const { movies } = this.props;
     const userFavorites = this.state.favorites;
     const favoritesList = movies.filter((movie) => userFavorites.includes(movie._id));
-    const Username = localStorage.getItem('user');
+    const username = localStorage.getItem('user');
     const token = localStorage.getItem('token');
 
     return (
