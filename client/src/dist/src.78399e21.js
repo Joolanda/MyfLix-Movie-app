@@ -52447,8 +52447,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "onLoggedIn",
     value: function onLoggedIn(authData) {
-      console.log(authData); // old code before redux users, remove??:
-
+      // old code before redux users, remove this??:    console.log(authData);
       this.setState({
         user: authData.user.Username,
         favorites: authData.user.Favorites
@@ -52499,7 +52498,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           user = _this$state.user,
           favorites = _this$state.favorites;
-      var Username = localStorage.getItem('user'); // Allowed or restricted pages: Currentpath to check which page the user is currently on
+      var username = localStorage.getItem('user'); // Allowed or restricted pages: Currentpath to check which page the user is currently on
 
       var currentPath = window.location.pathname; // Add more allowed paths
 
@@ -52851,7 +52850,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57693" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52497" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
