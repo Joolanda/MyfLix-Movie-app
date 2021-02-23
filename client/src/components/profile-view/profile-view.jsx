@@ -43,12 +43,13 @@ export class ProfileView extends React.Component {
     })
 
       .then((response) => {
+        // console.log(response)
         this.setState({
           Username: response.data.Username,
           Password: response.data.Password,
           Email: response.data.Email,
           Birthday: response.data.Birthday,
-          favorites: response.data.favorites,
+          favorites: response.data.Favorites,
         });
       })
       .catch(function (error) {
@@ -62,7 +63,7 @@ export class ProfileView extends React.Component {
   * Then it logs the user out and empties local storage
   * Redirects to login screen
   * @function deleteUser
-  * @param {e}  
+  * @param {e}
   * @axios
   */
   deleteUser(e) {
@@ -150,7 +151,7 @@ export class ProfileView extends React.Component {
   /**
     * Removes a movie from user's list of favorites
     * @function removeFavorite
-    * @param {*} e 
+    * @param {*} e
     * @param {*} movie._id
     * @axios
     */
@@ -176,73 +177,74 @@ export class ProfileView extends React.Component {
 
   render() {
     const { movies } = this.props;
-    const userFavorites = this.state.favorites;
-    const favoritesList = movies.filter((movie) => userFavorites.includes(movie._id));
+    const { favorites } = this.state;
+    const favoritesList = movies.filter((movie) => favorites.includes(movie._id));
     const username = localStorage.getItem('user');
     const token = localStorage.getItem('token');
 
     return (
       <Container className="profile-update-container">
-        <Card
-          className="border-success text-white bg-secondary mb-3"
-          style={{ width: "20rem" }}
-        >
+        <div>
+          <Card className="border-success text-white bg-secondary mb-3"
+          style={{ width: "20rem" }} >
           <Card.Title> My Flix Profile </Card.Title>
           <Card.Body>
             <br />
-            <Card.Text>Username: {Username}</Card.Text>
-            <Card.Text>Email: {Email}</Card.Text>
-            <Card.Text>Birthday: {Birthday}</Card.Text>
+            <Card.Text>
+              Username:
+              {username}
+            </Card.Text>
+            {/* <Card.Text>Email: {Email}</Card.Text> */}
+            {/* <Card.Text>Birthday: {Birthday}</Card.Text> */}
             <Button onClick={() => this.deleteUser()} variant="danger" className='delete-button'>Delete account</Button>
             <Link to={'/client'}>
               <Button className='delete-button' variant="info"> Back</Button>
             </Link>
           </Card.Body>
-        </Card>
-        <Container>
-          <Card.Text> My favorite movies: {favorites} </Card.Text>
+          </Card>
+          </div>
+          <Container>
+          <Card.Text> My favorite movies: </Card.Text>
           {favoritesList.map((movie) => {
             return (
-              <Card key={movie._id} style={{ width: '20rem' }} className="favorite-movies">
+              <Card key={movie._id} style={{ width: '10rem' }} className="favorite-movies">
                 <Card.Img variant='top' src={movie.ImagePath} />
                 <Card.Body>
                   <Link to={`/movies/${movie._id}`}>
                     <Card.Title>{movie.Title}</Card.Title>
                   </Link >
-                </Card.Body>
-                <Link to='/client'>
+                <Link to=''>
                   <Button onClick={() => this.removeFavorite(movie._id)}>delete favorite movie</Button>
                 </Link>
+                </Card.Body>
               </Card>
             );
           })}
-        </Container>
-        <Container>
           <Card.Body className="update">
             <Card.Text>If you want to update your profile, you can use this form:</Card.Text>
             <Form className="update-form" onSubmit={(e) => this.profileUpdate(e, this.Username, this.Password, this.Email, this.Birthday)} >
               <Form.Group controlId="formBasicUsername">
                 <Form.Label className="form-label">Username:</Form.Label>
-                <Form.Control type="text" placeholder="Change Username" defaultValue={Username} onChange={(e) => this.setUsername(e.target.value)} />
+                <Form.Control type="text" placeholder="Change Username" defaultValue={username} onChange={(e) => this.setUsername(e.target.value)} />
               </Form.Group>
               <Form.Group controlId="formBasicPassword">
                 <Form.Label className="form-label">Password</Form.Label>
-                <Form.Control type="password" placeholder="Enter Password" defaultValue="" onChange={(e) => this.setPassword(e.target.value)} required />
+                <Form.Control type="password" placeholder="Current or New Password" defaultValue="" onChange={(e) => this.setPassword(e.target.value)} required />
               </Form.Group>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label className="form-label">Email</Form.Label>
-                <Form.Control type="email" placeholder="Change Email" defaultValue={Email} onChange={(e) => this.setEmail(e.target.value)} />
+                <Form.Control type="email" placeholder="Change Email" defaultValue={"Email"} onChange={(e) => this.setEmail(e.target.value)} />
               </Form.Group>
-              <Form.Group controlId="formBasicBirthday">
+              {/* <Form.Group controlId="formBasicBirthday">
                 <Form.Label className="form-label">Birthday</Form.Label>
                 <Form.Control type="date" placeholder="Change Birthday" defaultValue={Birthday} onChange={(e) => this.setBirthday(e.target.value)} />
-              </Form.Group>
+              </Form.Group> */}
               <Button variant="success" className="update" type="submit" size="sm" >
                 Update
               </Button>
             </Form>
           </Card.Body>
-        </Container>
+         </Container>
       </Container>
     );
   }
@@ -256,4 +258,5 @@ ProfileView.propTypes = {
     Birthday: PropTypes.instanceOf(Date).isRequired,
     favorites: PropTypes.array
   })
-}
+};
+export default ProfileView;

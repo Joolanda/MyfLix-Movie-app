@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './login-view.scss';
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 // bootstrap imports
 import { Row, Col, Button, Form, Container } from 'react-bootstrap';
@@ -45,11 +45,11 @@ export function LoginView(props) {
 
             <Button variant="btn-lg btn-success btn-block" type="submit" size="sm" onClick={handleSubmit}>Login</Button>
 
-            <Link to={`/register`}>
+            <NavLink to={`/register`}>
               <Button variant="link">
                 You don't have an acount? Click here
 					        </Button>
-            </Link>
+            </NavLink>
           </Form>
         </Col>
       </Row>
@@ -58,6 +58,6 @@ export function LoginView(props) {
 }
 
 LoginView.propTypes = {
-  onLoggedIn: PropTypes.func.isRequired,
+  onLoggedIn: PropTypes.func,
 };
 

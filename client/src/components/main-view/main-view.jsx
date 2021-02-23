@@ -128,8 +128,8 @@ class MainView extends React.Component {
 
   render() {
     // #2
-    let { movies } = this.props;
-    let { user, favorites } = this.state;
+    const { movies } = this.props;
+    const { user, favorites } = this.state;
 
     let username = localStorage.getItem('user');
 
@@ -137,9 +137,9 @@ class MainView extends React.Component {
     const currentPath = window.location.pathname;
     // Add more allowed paths
     const allowedPaths = ['/register', '/login', '/client/register', '/', '/client', 'client/login'];
-    if (!user && !allowedPaths.includes(currentPath)) {
-      return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-    }
+    // if (!user && !allowedPaths.includes(currentPath)) {
+    //   return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+    // }
 
     if (!movies) return <div className="main-view" />;
 
@@ -166,7 +166,8 @@ class MainView extends React.Component {
             <div>
 
               <Route
-                exact path="/"
+                exact
+                path="/"
                 render={() => {
                   if (!user) return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
                   return (<MoviesList movies={movies} />);
@@ -248,17 +249,10 @@ class MainView extends React.Component {
 }
 
 // #3
-const mapStateToProps = state => { return { movies: state.movies, users: state.users } }
+
+
+const mapStateToProps = (state) => {
+  return { movies: state.movies, users: state.users }
+}
 // #4
 export default connect(mapStateToProps, { setMovies, setUsers })(MainView);
-
-/* todo: check proptypes of all views!
-MainView.propTypes = {
-  setMovies: PropTypes.func.isRequired,
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    imagePath: PropTypes.string.isRequired,
-  })).isRequired,
-};
- */
