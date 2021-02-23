@@ -52317,6 +52317,8 @@ var _reactRedux = require("react-redux");
 
 var _axios = _interopRequireDefault(require("axios"));
 
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
 var _actions = require("../../actions/actions");
 
 var _moviesList = _interopRequireDefault(require("../movies-list/movies-list"));
@@ -52676,19 +52678,20 @@ var _default = (0, _reactRedux.connect)(mapStateToProps, {
   setMovies: _actions.setMovies,
   setUsers: _actions.setUsers
 })(MainView);
-/*   MainView.propTypes = {
-    setMovies: PropTypes.func.isRequired,
-    setUser: PropTypes.func.isRequired,
-    movies: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      imagePath: PropTypes.string.isRequired
-    })).isRequired,
-  } */
+/* todo: check proptypes of all views!
+MainView.propTypes = {
+  setMovies: PropTypes.func.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    imagePath: PropTypes.string.isRequired,
+  })).isRequired,
+};
+ */
 
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-redux":"../node_modules/react-redux/es/index.js","axios":"../node_modules/axios/index.js","../../actions/actions":"actions/actions.js","../movies-list/movies-list":"components/movies-list/movies-list.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./main-view.scss":"components/main-view/main-view.scss"}],"reducers/reducers.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-redux":"../node_modules/react-redux/es/index.js","axios":"../node_modules/axios/index.js","prop-types":"../node_modules/prop-types/index.js","../../actions/actions":"actions/actions.js","../movies-list/movies-list":"components/movies-list/movies-list.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./main-view.scss":"components/main-view/main-view.scss"}],"reducers/reducers.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52850,7 +52853,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59573" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49830" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

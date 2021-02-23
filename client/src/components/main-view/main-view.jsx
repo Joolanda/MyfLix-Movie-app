@@ -252,6 +252,7 @@ const mapStateToProps = state => { return { movies: state.movies, users: state.u
 // #4
 export default connect(mapStateToProps, { setMovies, setUsers })(MainView);
 
+/* todo: check proptypes of all views!
 MainView.propTypes = {
   setMovies: PropTypes.func.isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
@@ -260,3 +261,4 @@ MainView.propTypes = {
     imagePath: PropTypes.string.isRequired,
   })).isRequired,
 };
+ */
