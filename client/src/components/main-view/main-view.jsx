@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 // #0
 import { setMovies, setUsers } from '../../actions/actions';
@@ -251,12 +252,11 @@ const mapStateToProps = state => { return { movies: state.movies, users: state.u
 // #4
 export default connect(mapStateToProps, { setMovies, setUsers })(MainView);
 
-/*   MainView.propTypes = {
-    setMovies: PropTypes.func.isRequired,
-    setUser: PropTypes.func.isRequired,
-    movies: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      imagePath: PropTypes.string.isRequired
-    })).isRequired,
-  } */
+MainView.propTypes = {
+  setMovies: PropTypes.func.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    imagePath: PropTypes.string.isRequired,
+  })).isRequired,
+};
