@@ -4,13 +4,14 @@ import './movie-card.scss';
 import { Link } from "react-router-dom";
 
 // bootstrap import
-import { Button, Card, CardGroup, Nav, NavBar } from 'react-bootstrap';
+import { Button, Card, CardGroup, Col, Nav, NavBar } from 'react-bootstrap';
 
 export class MovieCard extends React.Component {
   render() {
     const { movie } = this.props;
 
     return (
+      <Col>
       <div className="movie-card">
         <CardGroup>
           <Card className="border-success text-white bg-dark mb-3" style={{ width: '20rem' }}>
@@ -25,6 +26,7 @@ export class MovieCard extends React.Component {
           </Card>
         </CardGroup>
       </div>
+      </Col>
     );
   }
 }

@@ -4,7 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./profile-view.scss";
 // bootstrap import
-import { Card, Button, Container, Form } from "react-bootstrap";
+import { Card, Button, Container, Form, Row, Col } from "react-bootstrap";
+import { MongooseDocument } from "mongoose";
 // ProfileView is a low-level component.Here are user’s favorite movies are listed
 export class ProfileView extends React.Component {
   constructor(props) {
@@ -184,67 +185,86 @@ export class ProfileView extends React.Component {
 
     return (
       <Container className="profile-update-container">
-        <div>
-          <Card className="border-success text-white bg-secondary mb-3"
-          style={{ width: "20rem" }} >
-          <Card.Title> My Flix Profile </Card.Title>
+        <Card
+          className="border-success text-white bg-secondary mb-3"
+          style={{ width: '20rem' }}
+        >
+          <h3>
+            Profile pages of
+                <br />
+            {username}
+          </h3>
           <Card.Body>
             <br />
             <Card.Text>
               Username:
-              {username}
+                {username}
             </Card.Text>
-            {/* <Card.Text>Email: {Email}</Card.Text> */}
-            {/* <Card.Text>Birthday: {Birthday}</Card.Text> */}
-            <Button onClick={() => this.deleteUser()} variant="danger" className='delete-button'>Delete account</Button>
-            <Link to={'/client'}>
-              <Button className='delete-button' variant="info"> Back</Button>
-            </Link>
+            <Card.Text>
+              Email:
+                {this.state.Email}
+            </Card.Text>
+            <Card.Text>
+              Birthday:
+                {this.state.Birthday}
+            </Card.Text>
+            <Card.Text>
+              <h3>
+                My collection of favorite movies:
+                </h3>
+            </Card.Text>
+            {favoritesList.map((movie) => {
+              return (
+                <Row>
+                  <Col key={movie._id} xs={12} s={6} md={4} l={3} xl={3}>
+                    <Card className="favorite-movies">
+                      <Card.Img variant='top' src={movie.ImagePath} />
+                      <Card.Body>
+                        <Link to={`/movies/${movie._id}`}>
+                          <Card.Title>{movie.Title}</Card.Title>
+                        </Link>
+                        <Link to=''>
+                          <Button onClick={() => this.removeFavorite(movie._id)}>delete this movie</Button>
+                        </Link>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                </Row>
+              );
+            })}
           </Card.Body>
-          </Card>
-          </div>
-          <Container>
-          <Card.Text> My favorite movies: </Card.Text>
-          {favoritesList.map((movie) => {
-            return (
-              <Card key={movie._id} style={{ width: '10rem' }} className="favorite-movies">
-                <Card.Img variant='top' src={movie.ImagePath} />
-                <Card.Body>
-                  <Link to={`/movies/${movie._id}`}>
-                    <Card.Title>{movie.Title}</Card.Title>
-                  </Link >
-                <Link to=''>
-                  <Button onClick={() => this.removeFavorite(movie._id)}>delete favorite movie</Button>
-                </Link>
-                </Card.Body>
-              </Card>
-            );
-          })}
-          <Card.Body className="update">
-            <Card.Text>If you want to update your profile, you can use this form:</Card.Text>
-            <Form className="update-form" onSubmit={(e) => this.profileUpdate(e, this.Username, this.Password, this.Email, this.Birthday)} >
-              <Form.Group controlId="formBasicUsername">
-                <Form.Label className="form-label">Username:</Form.Label>
-                <Form.Control type="text" placeholder="Change Username" defaultValue={username} onChange={(e) => this.setUsername(e.target.value)} />
-              </Form.Group>
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label className="form-label">Password</Form.Label>
-                <Form.Control type="password" placeholder="Current or New Password" defaultValue="" onChange={(e) => this.setPassword(e.target.value)} required />
-              </Form.Group>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label className="form-label">Email</Form.Label>
-                <Form.Control type="email" placeholder="Change Email" defaultValue={"Email"} onChange={(e) => this.setEmail(e.target.value)} />
-              </Form.Group>
-              {/* <Form.Group controlId="formBasicBirthday">
-                <Form.Label className="form-label">Birthday</Form.Label>
-                <Form.Control type="date" placeholder="Change Birthday" defaultValue={Birthday} onChange={(e) => this.setBirthday(e.target.value)} />
-              </Form.Group> */}
-              <Button variant="success" className="update" type="submit" size="sm" >
-                Update
-              </Button>
-            </Form>
-          </Card.Body>
-         </Container>
+          <Card.Text>
+            <h3>Change my profile settings:</h3>
+            <Card.Body className="update">
+              <Form className="update-form" onSubmit={(e) => this.profileUpdate(e, this.Username, this.Password, this.Email, this.Birthday)} >
+                <Form.Group controlId="formBasicUsername">
+                  <Form.Label className="form-label">Username:</Form.Label>
+                  <Form.Control type="text" placeholder="Change Username" defaultValue={username} onChange={(e) => this.setUsername(e.target.value)} />
+                </Form.Group>
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label className="form-label">Password</Form.Label>
+                  <Form.Control type="password" placeholder="Current or New Password" defaultValue="" onChange={(e) => this.setPassword(e.target.value)} required />
+                </Form.Group>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label className="form-label">Email</Form.Label>
+                  <Form.Control type="email" placeholder="New Email" onChange={(e) => this.setEmail(e.target.value)} />
+                </Form.Group>
+                {/* <Form.Group controlId="formBasicBirthday">
+                    <Form.Label className="form-label">Birthday</Form.Label>
+                    <Form.Control type="date" placeholder="Change Birthday" defaultValue={Birthday}
+                        onChange={(e) => this.setBirthday(e.target.value)} />
+                    </Form.Group> */}
+                <Button variant="success" className="update-button" type="submit" size="md" >
+                  Update
+                  </Button>
+                <Button onClick={() => this.deleteUser()} variant="danger" className='delete-button'>Delete account</Button>
+              </Form>
+            </Card.Body>
+          </Card.Text>
+        </Card>
+        <Link to="/">
+          <Button variant="dark">Back to Movies</Button>
+        </Link>
       </Container>
     );
   }
