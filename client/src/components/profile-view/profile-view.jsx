@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import "./profile-view.scss";
+/* eslint-disable no-underscore-dangle */
+import React from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import './profile-view.scss';
 // bootstrap import
-import { Card, Button, Container, Form, Row, Col } from "react-bootstrap";
-import { MongooseDocument } from "mongoose";
+import { Card, Button, Container, Form, Row, Col } from 'react-bootstrap';
 // ProfileView is a low-level component.Here are user’s favorite movies are listed
 export class ProfileView extends React.Component {
   constructor(props) {
@@ -25,20 +25,22 @@ export class ProfileView extends React.Component {
       movies: [],
     };
   }
+
   componentDidMount() {
     //authentication
-    let accessToken = localStorage.getItem("token");
+    let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
       this.getUser(accessToken);
     }
   }
+
   /**
   * @function getUser
   * Displaying the current user
   * @axios
   */
   getUser(token) {
-    let username = localStorage.getItem("user");
+    let username = localStorage.getItem('user');
     axios.get(`https://myflix-movie.herokuapp.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -82,12 +84,13 @@ export class ProfileView extends React.Component {
         localStorage.removeItem("user");
         console.log(`${username} was deleted`);
         alert("your profile is successfully deleted");
-        window.open("/", "_self");
+        window.open("/", "_self"); // Are is it better to use redirection this.componentDidmount here?
       })
       .catch((e) => {
         console.log("Error deleting User profile");
       });
   };
+
   /**
   * Update users info in the database
   * @function profileUpdate
@@ -99,9 +102,8 @@ export class ProfileView extends React.Component {
   */
   profileUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
     e.preventDefault();
-    const username = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
-    // revision : axios.put("my/url/goes/here", { Username: "...", password: "...", ... }, { headers: Authorization: "..." } ).then(...)
+    const username = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
     axios
       .put(`https://myflix-movie.herokuapp.com/users/${username}`,
         { // UPDATE or PUT requests for User profile
@@ -119,36 +121,43 @@ export class ProfileView extends React.Component {
           Username: response.data.Username,
           Password: response.data.Password,
           Email: response.data.Email,
-          Birthday: response.data.Birthday
-        })
+          Birthday: response.data.Birthday,
+        });
         localStorage.setItem('user', this.state.Username);
         window.open(`/client/users/${username}`, '_self');
       })
       .catch(function (error) {
         console.log(error);
-      })
+      });
   }
+
   setUsername(input) {
     this.Username = input;
   }
+
   setPassword(input) {
     this.Password = input;
   }
+
   setEmail(input) {
     this.Email = input;
   }
+
   setBirthday(input) {
     this.Birthday = input;
   }
+
   /**
   * Logs the user out
   * @function onLoggedOut
   */
+  // eslint-disable-next-line class-methods-use-this
   onLogOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     window.open('/', '_self');
   }
+
   /**
     * Removes a movie from user's list of favorites
     * @function removeFavorite
@@ -156,20 +165,22 @@ export class ProfileView extends React.Component {
     * @param {*} movie._id
     * @axios
     */
+  // eslint-disable-next-line class-methods-use-this
   removeFavorite(e, movie) {
     e.preventDefault();
 
-    const username = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
+    const username = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
 
     axios.delete(
       `https://myflix-movie.herokuapp.com/users/${username}/favorites/:${movie}/`,
       {
         headers: { Authorization: `Bearer ${token}` },
-      })
+      },
+    )
       .then(() => {
         console.log(`Movie removed from your favorites`);
-        window.open("/", "_self");
+        window.open('/', '_self');
       })
       .catch((err) => {
         console.log(err);
@@ -191,47 +202,47 @@ export class ProfileView extends React.Component {
         >
           <h3>
             Profile pages of
-                <br />
+            <br />
             {username}
           </h3>
           <Card.Body>
             <br />
             <Card.Text>
               Username:
-                {username}
+              {username}
             </Card.Text>
             <Card.Text>
               Email:
-                {this.state.Email}
+              {this.state.Email}
             </Card.Text>
             <Card.Text>
               Birthday:
-                {this.state.Birthday}
+              {this.state.Birthday}
             </Card.Text>
             <Card.Text>
               <h3>
                 My collection of favorite movies:
-                </h3>
+              </h3>
             </Card.Text>
-            {favoritesList.map((movie) => {
-              return (
-                <Row>
-                  <Col key={movie._id} xs={12} s={6} md={4} l={3} xl={3}>
-                    <Card className="favorite-movies">
-                      <Card.Img variant='top' src={movie.ImagePath} />
-                      <Card.Body>
-                        <Link to={`/movies/${movie._id}`}>
-                          <Card.Title>{movie.Title}</Card.Title>
-                        </Link>
-                        <Link to=''>
-                          <Button onClick={() => this.removeFavorite(movie._id)}>delete this movie</Button>
-                        </Link>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                </Row>
-              );
-            })}
+            {favoritesList.map((movie) => (
+              <Row>
+                <Col key={movie._id} style={{ width: "15rem" }}>
+                  <Card className="favorite-movies">
+                    <Card.Img variant='top' src={movie.ImagePath} />
+                    <Card.Body>
+                      <Link to={`/movies/${movie._id}`}>
+                        <Card.Title>{movie.Title}</Card.Title>
+                      </Link>
+                      <Link to="/">
+                        <Button onClick={() => this.removeFavorite(movie._id)}>
+                          delete this movie
+                        </Button>
+                      </Link>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+            ))}
           </Card.Body>
           <Card.Text>
             <h3>Change my profile settings:</h3>
@@ -254,9 +265,9 @@ export class ProfileView extends React.Component {
                     <Form.Control type="date" placeholder="Change Birthday" defaultValue={Birthday}
                         onChange={(e) => this.setBirthday(e.target.value)} />
                     </Form.Group> */}
-                <Button variant="success" className="update-button" type="submit" size="md" >
+                <Button variant="success" className="update-button" type="submit" size="md">
                   Update
-                  </Button>
+                </Button>
                 <Button onClick={() => this.deleteUser()} variant="danger" className='delete-button'>Delete account</Button>
               </Form>
             </Card.Body>
@@ -271,6 +282,7 @@ export class ProfileView extends React.Component {
 }
 
 ProfileView.propTypes = {
+  // eslint-disable-next-line react/require-default-props
   user: PropTypes.shape({
     Username: PropTypes.string.isRequired,
     Password: PropTypes.string.isRequired,

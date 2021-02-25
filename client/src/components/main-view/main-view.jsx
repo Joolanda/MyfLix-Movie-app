@@ -6,6 +6,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 // #0
+import { CardGroup, Nav, Navbar } from 'react-bootstrap';
 import { setMovies, setUsers } from '../../actions/actions';
 
 import MoviesList from '../movies-list/movies-list';
@@ -18,7 +19,6 @@ import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
 
 // bootstrap import
-import { Row, Col, Card, CardGroup, Nav, Navbar, Container } from 'react-bootstrap';
 
 import './main-view.scss';
 /**
