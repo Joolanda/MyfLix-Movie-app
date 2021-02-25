@@ -5,11 +5,23 @@
   margin: auto;
   height: 100%;
 }
+
+body {
+  background: url("/background.8513044a.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+}
 .login-container {
   width: 100%;
   max-width: 330px;
   padding: 20px;
   margin: auto;
+  height: 100%;
+}
+
+body {
+  background: url("/background.8513044a.jpg") no-repeat center center fixed;
+  background-size: cover;
   height: 100%;
 }
 .registration-container {
@@ -23,6 +35,12 @@
 .form-group {
   margin-top: 40px;
 }
+
+body {
+  background: url("/background.8513044a.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+}
 .movie-view {
   width: 100%;
   min-width: 330;
@@ -34,6 +52,12 @@
 
 .movie-view-image {
   padding: 20px;
+}
+
+body {
+  background: url("/background.8513044a.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
 }
 .director-view {
   width: 100%;
@@ -62,8 +86,20 @@
   margin: auto;
   color: #fff;
 }
+
+body {
+  background: url("/background.8513044a.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+}
 .main-view {
   padding-top: 100px;
+}
+
+body {
+  background: url("/background.8513044a.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
 }
 .app-container {
   font-family: "Roboto", sans-serif;
