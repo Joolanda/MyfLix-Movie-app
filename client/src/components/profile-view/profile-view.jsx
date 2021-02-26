@@ -197,11 +197,11 @@ export class ProfileView extends React.Component {
     return (
       <Container className="profile-update-container">
         <Card
-          className="border-success text-white bg-secondary mb-3"
+          className="border-color text-white bg-dark mb-3"
           style={{ width: '20rem' }}
         >
           <h3>
-            Profile pages of
+            Collection and Settings of
             <br />
             {username}
           </h3>
@@ -221,7 +221,7 @@ export class ProfileView extends React.Component {
             </Card.Text>
             <Card.Text>
               <h3>
-                My collection of favorite movies:
+                My Favorites:
               </h3>
             </Card.Text>
             {favoritesList.map((movie) => (
@@ -265,10 +265,10 @@ export class ProfileView extends React.Component {
                     <Form.Control type="date" placeholder="Change Birthday" defaultValue={Birthday}
                         onChange={(e) => this.setBirthday(e.target.value)} />
                     </Form.Group> */}
-                <Button variant="success" className="update-button" type="submit" size="md">
-                  Update
+                <Button variant="primary" className="update-button" type="submit" size="md">
+                  update settings
                 </Button>
-                <Button onClick={() => this.deleteUser()} variant="danger" className='delete-button'>Delete account</Button>
+                <Button onClick={() => this.deleteUser()} variant="danger" className='delete-button'>delete account</Button>
               </Form>
             </Card.Body>
           </Card.Text>

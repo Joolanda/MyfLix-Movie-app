@@ -6,6 +6,10 @@
   height: 100%;
 }
 
+.card {
+  border: 1px solid #ce9e00;
+}
+
 body {
   background: url("/background.8513044a.jpg") no-repeat center center fixed;
   background-size: cover;
@@ -79,12 +83,13 @@ body {
   padding: 20px;
   margin: auto;
   height: 100%;
+  border-color: none;
 }
 
 .update {
   width: 100%;
   margin: auto;
-  color: #fff;
+  color: #f8e3e3;
 }
 
 body {
@@ -107,6 +112,10 @@ body {
 
 .my-flix {
   color: steelblue;
+}
+
+.bg-secondary {
+  background-color: #CE9e00;
 }
 
 /*# sourceMappingURL=/src.78399e21.css.map */

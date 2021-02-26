@@ -50,27 +50,29 @@ export class MovieView extends React.Component {
 
     return (
       <div className="movie-view">
-        <Card className="text-center" border="dark" text="white" bg="success mb-3" style={{ width: '20rem' }}>
+        <Card className="text-center" border="dark" text="white" bg="dark mb-3" style={{ width: '20rem' }}>
           <Card.Header>
             <Card.Img variant="top" className="movie-view-image" src={movie.ImagePath} />
           </Card.Header>
           <Card.Body>
             <Card.Title>{movie.Title}</Card.Title>
             {/*  path="/users/:Username/movies/:_Id" */}
-            <Button variant="warning" onClick={(e) => { this.addFavorite(e, movie._id) }}>Add to my favorites!
+            <ButtonGroup size="sm">
+              <Link to="/">
+                <Button variant="warning">Back to Movies</Button>
+              </Link>
+              <Button variant="primary" onClick={(e) => { this.addFavorite(e, movie._id) }}>Add to my favorites!
                </Button>
+            </ButtonGroup>
             <Card.Text>Description: {movie.Description}</Card.Text>
             <Card.Text>Genre: {movie.Genre.Name}</Card.Text>
             <Card.Text>Director: {movie.Director.Name}</Card.Text>
-            <ButtonGroup size="lg">
-              <Link to={`/`}>
-                <Button variant="dark">Back to Movies</Button>
-              </Link>
+            <ButtonGroup size="sm">
               <Link to={`/genres/${movie.Genre.Name}`}>
-                <Button variant="info" href="/genres/${movie.Genre.Name}"> More {movie.Genre.Name}</Button>
+                <Button size="lg" variant="link" href="/genres/${movie.Genre.Name}"> More {movie.Genre.Name}</Button>
               </Link>
               <Link to={`/directors/${movie.Director.Name}`}>
-                <Button variant="info" href="/directors/${movie.Director.Name}"> Bio of {movie.Director.Name}
+                <Button  size="lg" variant="link" href="/directors/${movie.Director.Name}"> Bio of {movie.Director.Name}
                 </Button>
               </Link>
             </ButtonGroup>

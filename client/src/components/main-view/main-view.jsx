@@ -147,7 +147,7 @@ class MainView extends React.Component {
       <Router basename="/client">
         <div className="main-view">
           <CardGroup className="card-group">
-            <Navbar bg="success" variant="dark" fixed="top">
+            <Navbar bg="warning" variant="dark" fixed="top">
               <Navbar.Brand as={Link} to="/">
                 MyFlix Movie
               </Navbar.Brand>

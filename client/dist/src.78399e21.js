@@ -51220,7 +51220,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
       return _react.default.createElement(_reactBootstrap.Col, null, _react.default.createElement("div", {
         className: "movie-card"
       }, _react.default.createElement(_reactBootstrap.CardGroup, null, _react.default.createElement(_reactBootstrap.Card, {
-        className: "border-success text-white bg-dark mb-3",
+        className: "border-color text-white bg-dark mb-3",
         style: {
           width: '20rem'
         }
@@ -51230,7 +51230,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
       }), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Header, null, " ", _react.default.createElement("h2", null, movie.Title)), _react.default.createElement(_reactBootstrap.Card.Text, null, movie.Description), _react.default.createElement(_reactRouterDom.Link, {
         to: "/movies/".concat(movie._id)
       }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "success",
+        variant: "warning",
         size: "lg",
         "btn-block": "true"
       }, "Tell me more")))))));
@@ -51708,7 +51708,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "text-center",
         border: "dark",
         text: "white",
-        bg: "success mb-3",
+        bg: "dark mb-3",
         style: {
           width: '20rem'
         }
@@ -51716,26 +51716,30 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         variant: "top",
         className: "movie-view-image",
         src: movie.ImagePath
-      })), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Title), _react.default.createElement(_reactBootstrap.Button, {
-        variant: "warning",
-        onClick: function onClick(e) {
-          _this3.addFavorite(e, movie._id);
-        }
-      }, "Add to my favorites!"), _react.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", movie.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "Genre: ", movie.Genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director: ", movie.Director.Name), _react.default.createElement(_reactBootstrap.ButtonGroup, {
-        size: "lg"
+      })), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Title), _react.default.createElement(_reactBootstrap.ButtonGroup, {
+        size: "sm"
       }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "dark"
-      }, "Back to Movies")), _react.default.createElement(_reactRouterDom.Link, {
+        variant: "warning"
+      }, "Back to Movies")), _react.default.createElement(_reactBootstrap.Button, {
+        variant: "primary",
+        onClick: function onClick(e) {
+          _this3.addFavorite(e, movie._id);
+        }
+      }, "Add to my favorites!")), _react.default.createElement(_reactBootstrap.Card.Text, null, "Description: ", movie.Description), _react.default.createElement(_reactBootstrap.Card.Text, null, "Genre: ", movie.Genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, "Director: ", movie.Director.Name), _react.default.createElement(_reactBootstrap.ButtonGroup, {
+        size: "sm"
+      }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/genres/".concat(movie.Genre.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "info",
+        size: "lg",
+        variant: "link",
         href: "/genres/${movie.Genre.Name}"
       }, " More ", movie.Genre.Name)), _react.default.createElement(_reactRouterDom.Link, {
         to: "/directors/".concat(movie.Director.Name)
       }, _react.default.createElement(_reactBootstrap.Button, {
-        variant: "info",
+        size: "lg",
+        variant: "link",
         href: "/directors/${movie.Director.Name}"
       }, " Bio of ", movie.Director.Name))))));
     }
@@ -52207,11 +52211,11 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       return _react.default.createElement(_reactBootstrap.Container, {
         className: "profile-update-container"
       }, _react.default.createElement(_reactBootstrap.Card, {
-        className: "border-success text-white bg-secondary mb-3",
+        className: "border-color text-white bg-dark mb-3",
         style: {
           width: '20rem'
         }
-      }, _react.default.createElement("h3", null, "Profile pages of", _react.default.createElement("br", null), username), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Card.Text, null, "Username:", username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email:", this.state.Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday:", this.state.Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, _react.default.createElement("h3", null, "My collection of favorite movies:")), favoritesList.map(function (movie) {
+      }, _react.default.createElement("h3", null, "Collection and Settings of", _react.default.createElement("br", null), username), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Card.Text, null, "Username:", username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email:", this.state.Email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday:", this.state.Birthday), _react.default.createElement(_reactBootstrap.Card.Text, null, _react.default.createElement("h3", null, "My Favorites:")), favoritesList.map(function (movie) {
         return _react.default.createElement(_reactBootstrap.Row, null, _react.default.createElement(_reactBootstrap.Col, {
           key: movie._id,
           style: {
@@ -52272,17 +52276,17 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           return _this4.setEmail(e.target.value);
         }
       })), _react.default.createElement(_reactBootstrap.Button, {
-        variant: "success",
+        variant: "primary",
         className: "update-button",
         type: "submit",
         size: "md"
-      }, "Update"), _react.default.createElement(_reactBootstrap.Button, {
+      }, "update settings"), _react.default.createElement(_reactBootstrap.Button, {
         onClick: function onClick() {
           return _this4.deleteUser();
         },
         variant: "danger",
         className: "delete-button"
-      }, "Delete account"))))), _react.default.createElement(_reactRouterDom.Link, {
+      }, "delete account"))))), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "dark"
@@ -52528,7 +52532,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_reactBootstrap.CardGroup, {
         className: "card-group"
       }, _react.default.createElement(_reactBootstrap.Navbar, {
-        bg: "success",
+        bg: "warning",
         variant: "dark",
         fixed: "top"
       }, _react.default.createElement(_reactBootstrap.Navbar.Brand, {
@@ -52846,7 +52850,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52630" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54791" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
