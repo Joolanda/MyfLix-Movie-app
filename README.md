@@ -1,6 +1,8 @@
 # MyFlix-Movie-app
 MyFlix is a Movie web application which provides users with the access to information about different movies, directors and genres. Using React, build client-side based on existing server-side code (REST API) and MongoDB database.
 
+![code to be replaced](./client/src/Images/movie2.png)
+
 The building process can be devided into parts: 
 - on the server-side: create a database of movies and users (a REST API) with Node.js 
 - on the client-side: create the interface for users allowing them to make requests to, and receiving responses from, the server side.
