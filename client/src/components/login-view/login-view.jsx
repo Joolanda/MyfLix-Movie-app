@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './login-view.scss';
 import axios from 'axios';
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 // bootstrap imports
 import { Row, Col, Button, Form, Container } from 'react-bootstrap';
