@@ -8,7 +8,7 @@
     "sass": "1.26.5"
   },
   "dependencies": {
-    "axios": "0.19.2",
+    "axios": "0.21.2",
     "body-parser": "1.19.0",
     "lodash": "4.17.19",
     "prop": "0.1.1",
