@@ -62,7 +62,7 @@ export class ProfileView extends React.Component {
 
   /**
   * Deletes the user's account
-  * After authorizing the user, it confirms deletion in an alert 
+  * After authorizing the user, it confirms deletion in an alert
   * Then it logs the user out and empties local storage
   * Redirects to login screen
   * @function deleteUser
