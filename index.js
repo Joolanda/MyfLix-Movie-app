@@ -9,7 +9,7 @@ const app = express();
 const path = require('path');
 const { check, validationResult } = require('express-validator');
 
-const allowedOrigins = ['http://localhost:1234', 'http://myflix-movie.herokuapp.com', 'https://myflix-movie.herokuapp.com', "*"]; // CORS origin sites to be given access
+const allowedOrigins = ['http://localhost:1234','http://localhost:3000', 'https://myflix-movie.herokuapp.com', "*"]; // CORS origin sites to be given access
 
 // Middleware //
 app.use(bodyParser.json()); // JSON Parsing
@@ -37,8 +37,8 @@ Users = Models.User;
 
 console.log(process.env);
 // MongoDB connections
-// mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true})..then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
+mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
+//mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
 
 // CORS implementation
 app.use(
