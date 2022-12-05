@@ -37,8 +37,22 @@ Users = Models.User;
 
 console.log(process.env);
 // MongoDB connections
-mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
+//mongoose.connect('mongodb://127.0.0.1:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
 //mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log('connecting to database successful')).catch(err => console.error('could not connect to mongo DB', err))
+
+//connecting cloud mongo using heroku
+mongoose.connect(process.env.MONGODB_URI, 
+  { useNewUrlParser: true, 
+   useUnifiedTopology: true,
+   useCreateIndex: true, })
+   .then(() => {
+      console.log("Successfully connected to MongoDB Atlas!");
+    })
+    .catch((error) => {
+      console.log("Unable to connect to MongoDB Atlas!");
+      console.error(error);
+    });
+
 
 // CORS implementation
 app.use(
