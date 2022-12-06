@@ -1,4 +1,22 @@
 {
+  "name": "movie_api",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.html",
+  "dependencies": {
+    "axios": "0.19.2",
+    "body-parser": "1.19.0",
+    "lodash": "4.17.19",
+    "prop": "0.1.1",
+    "prop-types": "15.7.2",
+    "re": "0.1.4",
+    "react": "16.13.1",
+    "react-bootstrap": "1.0.1",
+    "react-dom": "16.13.1",
+    "react-redux": "7.2.0",
+    "react-router-dom": "5.2.0",
+    "redux": "4.0.5"
+  },
   "scripts": {
     "start": "parcel",
     "build": "parcel build", 
@@ -21,20 +39,6 @@
     "cssnano": "4.1.10",
     "parcel": "^2.8.0",
     "sass": "1.26.5"
-  },
-  "dependencies": {
-    "axios": "0.19.2",
-    "body-parser": "1.19.0",
-    "lodash": "4.17.19",
-    "prop": "0.1.1",
-    "prop-types": "15.7.2",
-    "re": "0.1.4",
-    "react": "16.13.1",
-    "react-bootstrap": "1.0.1",
-    "react-dom": "16.13.1",
-    "react-redux": "7.2.0",
-    "react-router-dom": "5.2.0",
-    "redux": "4.0.5"
   }
 }
 
