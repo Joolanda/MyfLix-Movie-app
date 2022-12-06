@@ -1,44 +1,30 @@
 {
-  "name": "movie_api",
-  "version": "1.0.0",
-  "description": "",
-  "source": "src/index.html",
-  "dependencies": {
-    "axios": "0.19.2",
-    "body-parser": "1.19.0",
-    "lodash": "4.17.19",
-    "prop": "0.1.1",
-    "prop-types": "15.7.2",
-    "re": "0.1.4",
-    "react": "16.13.1",
-    "react-bootstrap": "1.0.1",
-    "react-dom": "16.13.1",
-    "react-redux": "7.2.0",
-    "react-router-dom": "5.2.0",
-    "redux": "4.0.5"
-  },
-  "scripts": {
-    "start": "parcel",
-    "build": "parcel build",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Joolanda/MyFlix-Movie-app.git"
-  },
-  "author": "Joolanda",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Joolanda/MyFlix-Movie-app/issues"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.20.5",
-    "babel-core": "6.26.3",
-    "babel-plugin-transform-class-properties": "6.24.1",
-    "babel-preset-env": "1.7.0",
-    "babel-preset-react": "6.24.1",
-    "cssnano": "4.1.10",
-    "parcel": "^2.8.0",
-    "sass": "1.26.5"
-  }
+    "name": "movie_api",
+    "version": "1.0.0",
+    "description": "",
+    "source": "src/index.html",
+    "dependencies": {
+        "axios": "^0.24.0",
+        "js-tokens": "^4.0.0",
+        "loose-envify": "^1.4.0",
+        "object-assign": "^4.1.1",
+        "prop-types": "^15.8.0",
+        "react": "^17.0.2",
+        "react-bootstrap": "^2.1.0",
+        "react-dom": "^17.0.2",
+        "react-redux": "^7.2.6",
+        "react-router-dom": "^5.2.0",
+        "scheduler": "^0.20.2",
+        "uuid": "^8.3.2"
+    },
+    "scripts": {
+        "start": "parcel",
+        "build": "parcel-build",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "devDependencies": {
+        "@parcel/transformer-sass": "^2.0.0-rc.0",
+        "parcel": "^2.8.0",
+        "process": "^0.11.10"
+    }
 }
