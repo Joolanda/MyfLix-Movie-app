@@ -5,6 +5,7 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "cssnano": "4.1.10",
+    "parcel": "^2.8.0",
     "sass": "1.26.5"
   },
   "dependencies": {
@@ -21,4 +22,19 @@
     "react-router-dom": "5.2.0",
     "redux": "4.0.5"
   }
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build", 
+    "test": "echo \"Error: no test specified\" && exit 1"
+},
+"repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joolanda/MyFlix-Movie-app.git"
+  },
+  "author": "Joolanda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joolanda/MyFlix-Movie-app/issues"
+  }
+}
 }
