@@ -80,7 +80,7 @@ body {
 .profile-container {
   width: 100%;
   min-width: 330;
-  padding: 20px;
+  padding: 1.25rem;
   margin: auto;
   height: 100%;
   border-color: none;
