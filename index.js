@@ -1,4 +1,4 @@
-require('dotenv').config({ debug: process.env.DEBUG });
+require('dotenpm nv').config({ debug: process.env.DEBUG });
 const express = require('express');
 bodyParser = require('body-parser');
 uuid = require('uuid');
