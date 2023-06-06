@@ -11,6 +11,8 @@ const { check, validationResult } = require('express-validator');
 
 const allowedOrigins = ['http://localhost:1234','http://localhost:3000', 'https://myflix-movie.herokuapp.com', "*"]; // CORS origin sites to be given access
 
+const { S3Client, ListObjectsV2Command, PutObjectCommand } = require('@aws-sdk/client-s3')
+
 // Middleware //
 app.use(bodyParser.json()); // JSON Parsing
 app.use(morgan('common')); // logging with Morgan
